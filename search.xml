@@ -47,161 +47,6 @@
 	    </script>]]></content>
   </entry>
   <entry>
-    <title>HPSS服务器</title>
-    <url>//post/HPSS%E6%9C%8D%E5%8A%A1%E5%99%A8.html</url>
-    <content><![CDATA[<h1 id="HPSS-Server-游玩指南"><a href="#HPSS-Server-游玩指南" class="headerlink" title="HPSS-Server 游玩指南"></a>HPSS-Server 游玩指南</h1><h2 id="服务器简介"><a href="#服务器简介" class="headerlink" title="服务器简介"></a>服务器简介</h2><p>本服务器于2023年12月15日首次开启测试。为了获得最佳体验，请使用Java 1.21.4版本，并支持基岩版。我们采用搭载了Intel Core i7 9750H处理器（笔记本）的Paper核心进行运作，理论上可支持多达100名玩家同时在线（实际承载量为35人，自己心里明白的）。</p>
-<h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><ul>
-<li><strong>CPU</strong>: Intel Core i7 9750H, 2.60GHz</li>
-<li><strong>内存</strong>: 16GB</li>
-<li><strong>磁盘</strong>: 品牌希捷酷鱼 ST1000LM024 HN-M101MBB<ul>
-<li>容量：932GB（也用于其他数据存储）</li>
-</ul>
-</li>
-<li><strong>显卡</strong>: GPU 0: Intel UHD Graphics 600<ul>
-<li>GPU 1: NVIDIA GeForce GTX 1660 Ti</li>
-</ul>
-</li>
-</ul>
-<h2 id="加入HPSS"><a href="#加入HPSS" class="headerlink" title="加入HPSS"></a>加入HPSS</h2><p>你需要填写一份申请表格即可获得游玩资格：<br>*为什么审核？白名单如今已成为正版服务器的常规操作。（由于微软身份验证服务器时常宕机）您需要访问<a href="https://api.mojang.com/users/profiles/minecraft/">https://api.mojang.com/users/profiles/minecraft/</a>&lt;你的id&gt;进行查询，并且在审核通过时截图给群主&#x2F;管理员<br>例：</p>
-<h2 id="游玩守则"><a href="#游玩守则" class="headerlink" title="游玩守则"></a>游玩守则</h2><ol>
-<li><strong>禁止使用外挂和作弊插件</strong>：禁止任何形式的自动攻击（连点器除外）、飞行、加速、透视挖矿等。<ul>
-<li>a. 禁止使用包括但不限于Wurst、Meteor、Baritone在内的多种作弊工具。</li>
-<li>b. 禁教唆他人使用外挂或作弊软件。</li>
-<li>c. 本服务器支持Tweakroo，但请勿滥用其功能。</li>
-</ul>
-</li>
-<li><strong>禁止盗窃与破坏行为</strong>：不得窃取他人物品或破坏建筑设施。<ul>
-<li>a. 对于无主或未知归属地的资源，未经许可不得擅自取用。</li>
-<li>b. 服务器已安装CoreProtect插件，违规者将受到相应惩罚。</li>
-</ul>
-</li>
-<li><strong>尊重被封禁玩家的财产</strong>：严禁收集或破坏已被封禁玩家基地内的资源。</li>
-<li><strong>保护原创内容</strong>：未经允许，不得复制或盗用他人的创意作品及机械装置。</li>
-<li><strong>避免制造干扰设备</strong>：禁止设置陷阱或其他可能严重影响其他玩家游戏体验的装置。</li>
-<li><strong>文明交流</strong>：禁止言语骚扰、性暗示以及其他不适当的互动方式。</li>
-<li><strong>尊重个人空间</strong>：未经同意，不得在他人领地附近施工或改动已有结构。</li>
-<li><strong>规范宣传行为</strong>：禁止在公共区域展示带有组织标识的宣传材料。<ul>
-<li>a. 禁止传播包含低俗内容的信息。</li>
-</ul>
-</li>
-<li><strong>分享时保护隐私</strong>：当分享关于基地的图片至主群聊时，请确保坐标信息不被泄露。</li>
-</ol>
-<h2 id="命令大全"><a href="#命令大全" class="headerlink" title="命令大全"></a>命令大全</h2><ul>
-<li><strong>传送类</strong>:<ul>
-<li><code>/sethome</code>：设定当前位置为家点。</li>
-<li><code>/home</code>：快速返回之前设定的家点。</li>
-<li><code>/tpa &lt;玩家ID&gt;</code>：请求传送到某位玩家身边。</li>
-<li><code>/tpaccept, /tpdeny</code>：接受&#x2F;拒绝他人的传送邀请。</li>
-<li><code>/tpahere &lt;玩家ID&gt;</code>：邀请指定玩家来到自己的位置。</li>
-<li><code>/tpacancel</code>：取消上一次发出的传送请求。</li>
-<li><code>/tpr</code>：随机传送至某个地点。</li>
-<li><code>/mv list</code>：列出所有可传送地点。</li>
-<li><code>/mv tp &lt;地图ID&gt;</code>：直接进入特定维度世界。</li>
-<li><code>/warp &lt;锚点ID&gt;</code>：传送到预定义的锚点位置。</li>
-</ul>
-</li>
-<li><strong>查询类</strong>:<ul>
-<li><code>/co i</code>：显示所选方块的历史操作记录。</li>
-<li><code>/co near</code>：查看周围一切交互记录。</li>
-<li><code>/invsee &lt;玩家ID&gt;</code>：查看目标玩家的物品栏。</li>
-</ul>
-</li>
-<li><strong>其他实用指令</strong>:<ul>
-<li><code>/afk</code>：标记为暂离状态。</li>
-<li><code>/suicide</code>：自杀并留下墓碑（会损失经验值），由GraveStonesPlus实现。</li>
-<li><code>/back</code>：回到最近一次死亡地点。</li>
-<li><code>/lay / /crawl / /spin</code>：执行不同动作效果。</li>
-<li><code>/skull</code>：获取生物头颅。</li>
-<li><code>/tps</code>：查看服务器性能指数；越高表示越流畅。</li>
-</ul>
-</li>
-</ul>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li><strong>若遇到权限问题或其他异常情况，请联系管理员解决。</strong></li>
-<li><strong>近期因数据迁移导致部分功能暂时无法正常使用，请联系管理员解决。</strong></li>
-</ul>
-<h2 id="服务器使用插件一览"><a href="#服务器使用插件一览" class="headerlink" title="服务器使用插件一览"></a>服务器使用插件一览</h2><ul>
-<li><strong>EssentialsX</strong>：提供基础功能如回家、返回死亡点等。</li>
-<li><strong>CoreProtect</strong>：防止物品被盗，记录所有交易历史。</li>
-<li><strong>CreeperConfetti</strong>：苦力怕爆炸防护机制。</li>
-<li><strong>GraveStonesPlus</strong>：玩家死亡后留下的墓碑系统。</li>
-<li><strong>GSit</strong>：增加更多姿势选项，包括躺下、爬行等。</li>
-<li><strong>Multiverse-Core</strong>：穿梭于不同的存档世界之间（目前关闭）。</li>
-<li><strong>PlasmoVoice</strong>：近距离语音聊天功能（目前关闭）。</li>
-<li><strong>Terra</strong>：地形生成与修改插件。</li>
-<li><strong>Geyser</strong>：实现Java版与基岩版之间的互通。</li>
-<li><strong>ViaVersion</strong>：支持多版本客户端连接服务器。</li>
-<li><strong>SimpleNoCropTrample</strong>：防止农作物被践踏破坏。</li>
-<li><strong>LuckPerms-Bkkit</strong>：权限管理插件。</li>
-</ul>
-<h1 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h1>
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>]]></content>
-  </entry>
-  <entry>
-    <title>关于寒假最后几天憋了泡大的这件事</title>
-    <url>//post/%E5%85%B3%E4%BA%8E%E5%AF%92%E5%81%87%E6%9C%80%E5%90%8E%E5%87%A0%E5%A4%A9%E6%86%8B%E4%BA%86%E6%B3%A1%E5%A4%A7%E7%9A%84%E8%BF%99%E4%BB%B6%E4%BA%8B.html</url>
-    <content><![CDATA[<h1 id="你们好"><a href="#你们好" class="headerlink" title="你们好"></a>你们好</h1><p>我是NanoTurtle!<br>反正开始写文章的时候，作业已经差不多了。</p>
-<h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><h3 id="我们干了些啥？"><a href="#我们干了些啥？" class="headerlink" title="我们干了些啥？"></a>我们干了些啥？</h3><ul>
-<li>我因为想要登录GitHub看一看死去的项目，但是2FA的验证方式早已全部丢失。故解绑邮箱开了个小号。</li>
-<li>一波三折<br>  （过于血腥）</li>
-<li>当当当当！<br>  现在映入眼帘的是乱改后的blog网站。Owner是NanoTurtle1145(NanoTurtle)和BusyMathing(四班的那位)。</li>
-</ul>
-<h3 id="题外话：我和BusyMathing有什么关系？"><a href="#题外话：我和BusyMathing有什么关系？" class="headerlink" title="题外话：我和BusyMathing有什么关系？"></a>题外话：我和BusyMathing有什么关系？</h3><p>小学同学。</p>
-<h3 id="好的，那么这个网站有什么用呢？"><a href="#好的，那么这个网站有什么用呢？" class="headerlink" title="好的，那么这个网站有什么用呢？"></a>好的，那么这个网站有什么用呢？</h3><p>装逼（前提是你得真的装的出来）</p>
-<h2 id="神秘小东西"><a href="#神秘小东西" class="headerlink" title="神秘小东西"></a>神秘小东西</h2><h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>苦逼白马湖OJ社团一员，<a href="https://">bmh.coderlands.com</a>（好消息，已离开这个社团）<br><img src="https://oj.hetao101.com/file/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<ul>
-<li><p>👋 嗨，我是Nanoturtle</p>
-</li>
-<li><p>😍本人是东方厨一位（</p>
-<h1 id="死胎马（STEMA）蓝桥杯大赛捷报-QWQ"><a href="#死胎马（STEMA）蓝桥杯大赛捷报-QWQ" class="headerlink" title="死胎马（STEMA）蓝桥杯大赛捷报(QWQ)"></a>死胎马（STEMA）蓝桥杯大赛捷报(QWQ)</h1><p><img src="https://oj.hetao101.com/file/41418/k_dOEc_HvZEFRGUjEaM-e.jpeg" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>QQ：3348076606<br>GitHub：GXBF<br>BiliBili：1711131229<br>AcFun：74416873<br>抖音：NanoTurtle<br>小红书：553030662<br>YouTube：由于手贱改了年龄，目前处于不可用阶段</p>
-<p><img src="/https:/oj.hetao101.comfile/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<h1 id="垃圾堆"><a href="#垃圾堆" class="headerlink" title="垃圾堆"></a>垃圾堆</h1><p>我的黑苹果成果</p>
-<p><img src="https://oj.hetao101.com/file/41418/%E6%88%AA%E5%B1%8F2024-08-23%2019.23.56.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p><em><strong>我的Apple设备</strong></em></p>
-<p>iPhone 4S</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-2.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>iPhone 4S</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-8.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>iPhone 5</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-3.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>iPhone 6S Plus</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-6.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>iPhone 7 Plus</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-1.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>MacBook Pro 15”(Hackintosh)</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-4.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>MacBook Pro 15”(Hackintosh)</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>MacBook Pro 16”(Hackintosh)</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-5.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>Microsoft Windows(迫真)</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-7.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-</li>
-</ul>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>]]></content>
-      <tags>
-        <tag>学习相关</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>“博丽灵梦”这一角色的深入探讨</title>
     <url>//post/%E2%80%9C%E5%8D%9A%E4%B8%BD%E7%81%B5%E6%A2%A6%E2%80%9D%E8%BF%99%E4%B8%80%E8%A7%92%E8%89%B2%E7%9A%84%E6%B7%B1%E5%85%A5%E6%8E%A2%E8%AE%A8.html</url>
     <content><![CDATA[<h3 id="本文疑似由AI编写，请注意甄别。"><a href="#本文疑似由AI编写，请注意甄别。" class="headerlink" title="本文疑似由AI编写，请注意甄别。"></a>本文疑似由AI编写，请注意甄别。</h3><p>博丽灵梦：幻想乡的平衡维系者与亚文化符号 </p>
@@ -307,6 +152,62 @@
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
 	    </script>]]></content>
+  </entry>
+  <entry>
+    <title>关于寒假最后几天憋了泡大的这件事</title>
+    <url>//post/%E5%85%B3%E4%BA%8E%E5%AF%92%E5%81%87%E6%9C%80%E5%90%8E%E5%87%A0%E5%A4%A9%E6%86%8B%E4%BA%86%E6%B3%A1%E5%A4%A7%E7%9A%84%E8%BF%99%E4%BB%B6%E4%BA%8B.html</url>
+    <content><![CDATA[<h1 id="你们好"><a href="#你们好" class="headerlink" title="你们好"></a>你们好</h1><p>我是NanoTurtle!<br>反正开始写文章的时候，作业已经差不多了。</p>
+<h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><h3 id="我们干了些啥？"><a href="#我们干了些啥？" class="headerlink" title="我们干了些啥？"></a>我们干了些啥？</h3><ul>
+<li>我因为想要登录GitHub看一看死去的项目，但是2FA的验证方式早已全部丢失。故解绑邮箱开了个小号。</li>
+<li>一波三折<br>  （过于血腥）</li>
+<li>当当当当！<br>  现在映入眼帘的是乱改后的blog网站。Owner是NanoTurtle1145(NanoTurtle)和BusyMathing(四班的那位)。</li>
+</ul>
+<h3 id="题外话：我和BusyMathing有什么关系？"><a href="#题外话：我和BusyMathing有什么关系？" class="headerlink" title="题外话：我和BusyMathing有什么关系？"></a>题外话：我和BusyMathing有什么关系？</h3><p>小学同学。</p>
+<h3 id="好的，那么这个网站有什么用呢？"><a href="#好的，那么这个网站有什么用呢？" class="headerlink" title="好的，那么这个网站有什么用呢？"></a>好的，那么这个网站有什么用呢？</h3><p>装逼（前提是你得真的装的出来）</p>
+<h2 id="神秘小东西"><a href="#神秘小东西" class="headerlink" title="神秘小东西"></a>神秘小东西</h2><h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>苦逼白马湖OJ社团一员，<a href="https://">bmh.coderlands.com</a>（好消息，已离开这个社团）<br><img src="https://oj.hetao101.com/file/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<ul>
+<li><p>👋 嗨，我是Nanoturtle</p>
+</li>
+<li><p>😍本人是东方厨一位（</p>
+<h1 id="死胎马（STEMA）蓝桥杯大赛捷报-QWQ"><a href="#死胎马（STEMA）蓝桥杯大赛捷报-QWQ" class="headerlink" title="死胎马（STEMA）蓝桥杯大赛捷报(QWQ)"></a>死胎马（STEMA）蓝桥杯大赛捷报(QWQ)</h1><p><img src="https://oj.hetao101.com/file/41418/k_dOEc_HvZEFRGUjEaM-e.jpeg" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>QQ：3348076606<br>GitHub：GXBF<br>BiliBili：1711131229<br>AcFun：74416873<br>抖音：NanoTurtle<br>小红书：553030662<br>YouTube：由于手贱改了年龄，目前处于不可用阶段</p>
+<p><img src="/https:/oj.hetao101.comfile/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="垃圾堆"><a href="#垃圾堆" class="headerlink" title="垃圾堆"></a>垃圾堆</h1><p>我的黑苹果成果</p>
+<p><img src="https://oj.hetao101.com/file/41418/%E6%88%AA%E5%B1%8F2024-08-23%2019.23.56.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><em><strong>我的Apple设备</strong></em></p>
+<p>iPhone 4S</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-2.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 4S</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-8.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 5</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-3.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 6S Plus</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-6.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 7 Plus</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-1.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>MacBook Pro 15”(Hackintosh)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-4.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>MacBook Pro 15”(Hackintosh)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>MacBook Pro 16”(Hackintosh)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-5.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>Microsoft Windows(迫真)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-7.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+</li>
+</ul>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <tags>
+        <tag>学习相关</tag>
+      </tags>
   </entry>
   <entry>
     <title>发病</title>
@@ -443,6 +344,20 @@
       </tags>
   </entry>
   <entry>
+    <title>希望工作室</title>
+    <url>//post/%E5%B8%8C%E6%9C%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4.html</url>
+    <content><![CDATA[<h2 id="欢迎来到希望工作室官方网站！"><a href="#欢迎来到希望工作室官方网站！" class="headerlink" title="欢迎来到希望工作室官方网站！"></a>欢迎来到希望工作室官方网站！</h2>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+  </entry>
+  <entry>
     <title>新主题测试内容</title>
     <url>//post/%E6%96%B0%E4%B8%BB%E9%A2%98%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9.html</url>
     <content><![CDATA[<h1 id="哇多么好的机会啊"><a href="#哇多么好的机会啊" class="headerlink" title="哇多么好的机会啊"></a>哇多么好的机会啊</h1>
@@ -460,9 +375,94 @@
       </tags>
   </entry>
   <entry>
-    <title>希望工作室</title>
-    <url>//post/%E5%B8%8C%E6%9C%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4.html</url>
-    <content><![CDATA[<h2 id="欢迎来到希望工作室官方网站！"><a href="#欢迎来到希望工作室官方网站！" class="headerlink" title="欢迎来到希望工作室官方网站！"></a>欢迎来到希望工作室官方网站！</h2>
+    <title>HPSS服务器</title>
+    <url>//post/HPSS%E6%9C%8D%E5%8A%A1%E5%99%A8.html</url>
+    <content><![CDATA[<h1 id="HPSS-Server-游玩指南"><a href="#HPSS-Server-游玩指南" class="headerlink" title="HPSS-Server 游玩指南"></a>HPSS-Server 游玩指南</h1><h2 id="服务器简介"><a href="#服务器简介" class="headerlink" title="服务器简介"></a>服务器简介</h2><p>本服务器于2023年12月15日首次开启测试。为了获得最佳体验，请使用Java 1.21.4版本，并支持基岩版。我们采用搭载了Intel Core i7 9750H处理器（笔记本）的Paper核心进行运作，理论上可支持多达100名玩家同时在线（实际承载量为35人，自己心里明白的）。</p>
+<h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><ul>
+<li><strong>CPU</strong>: Intel Core i7 9750H, 2.60GHz</li>
+<li><strong>内存</strong>: 16GB</li>
+<li><strong>磁盘</strong>: 品牌希捷酷鱼 ST1000LM024 HN-M101MBB<ul>
+<li>容量：932GB（也用于其他数据存储）</li>
+</ul>
+</li>
+<li><strong>显卡</strong>: GPU 0: Intel UHD Graphics 600<ul>
+<li>GPU 1: NVIDIA GeForce GTX 1660 Ti</li>
+</ul>
+</li>
+</ul>
+<h2 id="加入HPSS"><a href="#加入HPSS" class="headerlink" title="加入HPSS"></a>加入HPSS</h2><p>你需要填写一份申请表格即可获得游玩资格：<br>*为什么审核？白名单如今已成为正版服务器的常规操作。（由于微软身份验证服务器时常宕机）您需要访问<a href="https://api.mojang.com/users/profiles/minecraft/">https://api.mojang.com/users/profiles/minecraft/</a>&lt;你的id&gt;进行查询，并且在审核通过时截图给群主&#x2F;管理员<br>例：</p>
+<h2 id="游玩守则"><a href="#游玩守则" class="headerlink" title="游玩守则"></a>游玩守则</h2><ol>
+<li><strong>禁止使用外挂和作弊插件</strong>：禁止任何形式的自动攻击（连点器除外）、飞行、加速、透视挖矿等。<ul>
+<li>a. 禁止使用包括但不限于Wurst、Meteor、Baritone在内的多种作弊工具。</li>
+<li>b. 禁教唆他人使用外挂或作弊软件。</li>
+<li>c. 本服务器支持Tweakroo，但请勿滥用其功能。</li>
+</ul>
+</li>
+<li><strong>禁止盗窃与破坏行为</strong>：不得窃取他人物品或破坏建筑设施。<ul>
+<li>a. 对于无主或未知归属地的资源，未经许可不得擅自取用。</li>
+<li>b. 服务器已安装CoreProtect插件，违规者将受到相应惩罚。</li>
+</ul>
+</li>
+<li><strong>尊重被封禁玩家的财产</strong>：严禁收集或破坏已被封禁玩家基地内的资源。</li>
+<li><strong>保护原创内容</strong>：未经允许，不得复制或盗用他人的创意作品及机械装置。</li>
+<li><strong>避免制造干扰设备</strong>：禁止设置陷阱或其他可能严重影响其他玩家游戏体验的装置。</li>
+<li><strong>文明交流</strong>：禁止言语骚扰、性暗示以及其他不适当的互动方式。</li>
+<li><strong>尊重个人空间</strong>：未经同意，不得在他人领地附近施工或改动已有结构。</li>
+<li><strong>规范宣传行为</strong>：禁止在公共区域展示带有组织标识的宣传材料。<ul>
+<li>a. 禁止传播包含低俗内容的信息。</li>
+</ul>
+</li>
+<li><strong>分享时保护隐私</strong>：当分享关于基地的图片至主群聊时，请确保坐标信息不被泄露。</li>
+</ol>
+<h2 id="命令大全"><a href="#命令大全" class="headerlink" title="命令大全"></a>命令大全</h2><ul>
+<li><strong>传送类</strong>:<ul>
+<li><code>/sethome</code>：设定当前位置为家点。</li>
+<li><code>/home</code>：快速返回之前设定的家点。</li>
+<li><code>/tpa &lt;玩家ID&gt;</code>：请求传送到某位玩家身边。</li>
+<li><code>/tpaccept, /tpdeny</code>：接受&#x2F;拒绝他人的传送邀请。</li>
+<li><code>/tpahere &lt;玩家ID&gt;</code>：邀请指定玩家来到自己的位置。</li>
+<li><code>/tpacancel</code>：取消上一次发出的传送请求。</li>
+<li><code>/tpr</code>：随机传送至某个地点。</li>
+<li><code>/mv list</code>：列出所有可传送地点。</li>
+<li><code>/mv tp &lt;地图ID&gt;</code>：直接进入特定维度世界。</li>
+<li><code>/warp &lt;锚点ID&gt;</code>：传送到预定义的锚点位置。</li>
+</ul>
+</li>
+<li><strong>查询类</strong>:<ul>
+<li><code>/co i</code>：显示所选方块的历史操作记录。</li>
+<li><code>/co near</code>：查看周围一切交互记录。</li>
+<li><code>/invsee &lt;玩家ID&gt;</code>：查看目标玩家的物品栏。</li>
+</ul>
+</li>
+<li><strong>其他实用指令</strong>:<ul>
+<li><code>/afk</code>：标记为暂离状态。</li>
+<li><code>/suicide</code>：自杀并留下墓碑（会损失经验值），由GraveStonesPlus实现。</li>
+<li><code>/back</code>：回到最近一次死亡地点。</li>
+<li><code>/lay / /crawl / /spin</code>：执行不同动作效果。</li>
+<li><code>/skull</code>：获取生物头颅。</li>
+<li><code>/tps</code>：查看服务器性能指数；越高表示越流畅。</li>
+</ul>
+</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><strong>若遇到权限问题或其他异常情况，请联系管理员解决。</strong></li>
+<li><strong>近期因数据迁移导致部分功能暂时无法正常使用，请联系管理员解决。</strong></li>
+</ul>
+<h2 id="服务器使用插件一览"><a href="#服务器使用插件一览" class="headerlink" title="服务器使用插件一览"></a>服务器使用插件一览</h2><ul>
+<li><strong>EssentialsX</strong>：提供基础功能如回家、返回死亡点等。</li>
+<li><strong>CoreProtect</strong>：防止物品被盗，记录所有交易历史。</li>
+<li><strong>CreeperConfetti</strong>：苦力怕爆炸防护机制。</li>
+<li><strong>GraveStonesPlus</strong>：玩家死亡后留下的墓碑系统。</li>
+<li><strong>GSit</strong>：增加更多姿势选项，包括躺下、爬行等。</li>
+<li><strong>Multiverse-Core</strong>：穿梭于不同的存档世界之间（目前关闭）。</li>
+<li><strong>PlasmoVoice</strong>：近距离语音聊天功能（目前关闭）。</li>
+<li><strong>Terra</strong>：地形生成与修改插件。</li>
+<li><strong>Geyser</strong>：实现Java版与基岩版之间的互通。</li>
+<li><strong>ViaVersion</strong>：支持多版本客户端连接服务器。</li>
+<li><strong>SimpleNoCropTrample</strong>：防止农作物被践踏破坏。</li>
+<li><strong>LuckPerms-Bkkit</strong>：权限管理插件。</li>
+</ul>
+<h1 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h1>
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
