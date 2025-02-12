@@ -20,33 +20,6 @@
 	    </script>]]></content>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>//post/hello-world.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>]]></content>
-  </entry>
-  <entry>
     <title>HPSS服务器</title>
     <url>//post/HPSS%E6%9C%8D%E5%8A%A1%E5%99%A8.html</url>
     <content><![CDATA[<h1 id="HPSS-Server-游玩指南"><a href="#HPSS-Server-游玩指南" class="headerlink" title="HPSS-Server 游玩指南"></a>HPSS-Server 游玩指南</h1><h2 id="服务器简介"><a href="#服务器简介" class="headerlink" title="服务器简介"></a>服务器简介</h2><p>本服务器于2023年12月15日首次开启测试。为了获得最佳体验，请使用Java 1.21.4版本，并支持基岩版。我们采用搭载了Intel Core i7 9750H处理器（笔记本）的Paper核心进行运作，理论上可支持多达100名玩家同时在线（实际承载量为35人，自己心里明白的）。</p>
@@ -135,6 +108,33 @@
 <li><strong>LuckPerms-Bkkit</strong>：权限管理插件。</li>
 </ul>
 <h1 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h1>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>//post/hello-world.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
@@ -253,6 +253,62 @@
 	    </script>]]></content>
   </entry>
   <entry>
+    <title>关于寒假最后几天憋了泡大的这件事</title>
+    <url>//post/%E5%85%B3%E4%BA%8E%E5%AF%92%E5%81%87%E6%9C%80%E5%90%8E%E5%87%A0%E5%A4%A9%E6%86%8B%E4%BA%86%E6%B3%A1%E5%A4%A7%E7%9A%84%E8%BF%99%E4%BB%B6%E4%BA%8B.html</url>
+    <content><![CDATA[<h1 id="你们好"><a href="#你们好" class="headerlink" title="你们好"></a>你们好</h1><p>我是NanoTurtle!<br>反正开始写文章的时候，作业已经差不多了。</p>
+<h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><h3 id="我们干了些啥？"><a href="#我们干了些啥？" class="headerlink" title="我们干了些啥？"></a>我们干了些啥？</h3><ul>
+<li>我因为想要登录GitHub看一看死去的项目，但是2FA的验证方式早已全部丢失。故解绑邮箱开了个小号。</li>
+<li>一波三折<br>  （过于血腥）</li>
+<li>当当当当！<br>  现在映入眼帘的是乱改后的blog网站。Owner是NanoTurtle1145(NanoTurtle)和BusyMathing(四班的那位)。</li>
+</ul>
+<h3 id="题外话：我和BusyMathing有什么关系？"><a href="#题外话：我和BusyMathing有什么关系？" class="headerlink" title="题外话：我和BusyMathing有什么关系？"></a>题外话：我和BusyMathing有什么关系？</h3><p>小学同学。</p>
+<h3 id="好的，那么这个网站有什么用呢？"><a href="#好的，那么这个网站有什么用呢？" class="headerlink" title="好的，那么这个网站有什么用呢？"></a>好的，那么这个网站有什么用呢？</h3><p>装逼（前提是你得真的装的出来）</p>
+<h2 id="神秘小东西"><a href="#神秘小东西" class="headerlink" title="神秘小东西"></a>神秘小东西</h2><h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>苦逼白马湖OJ社团一员，<a href="https://">bmh.coderlands.com</a>（好消息，已离开这个社团）<br><img src="https://oj.hetao101.com/file/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<ul>
+<li><p>👋 嗨，我是Nanoturtle</p>
+</li>
+<li><p>😍本人是东方厨一位（</p>
+<h1 id="死胎马（STEMA）蓝桥杯大赛捷报-QWQ"><a href="#死胎马（STEMA）蓝桥杯大赛捷报-QWQ" class="headerlink" title="死胎马（STEMA）蓝桥杯大赛捷报(QWQ)"></a>死胎马（STEMA）蓝桥杯大赛捷报(QWQ)</h1><p><img src="https://oj.hetao101.com/file/41418/k_dOEc_HvZEFRGUjEaM-e.jpeg" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>QQ：3348076606<br>GitHub：GXBF<br>BiliBili：1711131229<br>AcFun：74416873<br>抖音：NanoTurtle<br>小红书：553030662<br>YouTube：由于手贱改了年龄，目前处于不可用阶段</p>
+<p><img src="/https:/oj.hetao101.comfile/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="垃圾堆"><a href="#垃圾堆" class="headerlink" title="垃圾堆"></a>垃圾堆</h1><p>我的黑苹果成果</p>
+<p><img src="https://oj.hetao101.com/file/41418/%E6%88%AA%E5%B1%8F2024-08-23%2019.23.56.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><em><strong>我的Apple设备</strong></em></p>
+<p>iPhone 4S</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-2.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 4S</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-8.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 5</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-3.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 6S Plus</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-6.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 7 Plus</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-1.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>MacBook Pro 15”(Hackintosh)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-4.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>MacBook Pro 15”(Hackintosh)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>MacBook Pro 16”(Hackintosh)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-5.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>Microsoft Windows(迫真)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-7.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+</li>
+</ul>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <tags>
+        <tag>学习相关</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>发病</title>
     <url>//post/%E5%8F%91%E7%97%85.html</url>
     <content><![CDATA[<p>🌟【手抄报主题】🌟<br>“老北京的人性挣扎——骆驼祥子启示录”</p>
@@ -308,6 +364,85 @@
       </tags>
   </entry>
   <entry>
+    <title>如何在一个小时内完成如山的堆积寒假作业？</title>
+    <url>//post/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%97%B6%E5%86%85%E5%AE%8C%E6%88%90%E5%A6%82%E5%B1%B1%E7%9A%84%E5%A0%86%E7%A7%AF%E5%AF%92%E5%81%87%E4%BD%9C%E4%B8%9A%EF%BC%9F.html</url>
+    <content><![CDATA[<h1 id="如何在一个小时内完成如山的堆积寒假作业？"><a href="#如何在一个小时内完成如山的堆积寒假作业？" class="headerlink" title="如何在一个小时内完成如山的堆积寒假作业？"></a>如何在一个小时内完成如山的堆积寒假作业？</h1><h2 id="面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案："><a href="#面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案：" class="headerlink" title="面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案："></a>面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案：</h2><h3 id="本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）"><a href="#本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）" class="headerlink" title="本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）"></a>本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）</h3><h4 id="一-、-优先级筛选法：聚焦核心任务"><a href="#一-、-优先级筛选法：聚焦核心任务" class="headerlink" title="一 、 优先级筛选法：聚焦核心任务"></a>一 、 优先级筛选法：聚焦核心任务</h4><ol>
+<li><p>明确作业类型与难度  </p>
+<ul>
+<li>优先处理答案明确的作业如（数学计算题选择题、等），跳过需长时间思考的主观题（如作文、开放）性问题。  </li>
+<li>若包含作业重复性内容（如抄写、单词默写），可适当简化步骤或减少完成量（例如只写关键词或关键步骤）[[3]]6]。</li>
+</ul>
+</li>
+<li><p>按学科分类突击  </p>
+<ul>
+<li>集中完成单一学科作业，避免频繁切换导致效率下降。  </li>
+<li>例如：数学作业可快速套用公式解题，英语选择题可对照答案快速。</li>
+</ul>
+</li>
+</ol>
+<h4 id="二-、时间-切割法：分段冲刺"><a href="#二-、时间-切割法：分段冲刺" class="headerlink" title="二 、时间 切割法：分段冲刺"></a>二 、时间 切割法：分段冲刺</h4><p>1 .严格划分时间块  </p>
+<ul>
+<li>将1小时切割为15分钟×4段每段专注，完成某一类作业（如数学15分钟→语文15分钟→英语15→综合分钟15分钟）。   -<br> 使用手机倒计时功能强制推进，拖延避免[[6]]。</li>
+</ul>
+<p>2() .“答案辅助”策略  </p>
+<ul>
+<li>若手头有参考答案或同学已完成作业，可选择性对照答案快速填写（例如抄写直接关键步骤或结论）。  </li>
+<li>注意：此方法仅，应急限需后续补学知识点。</li>
+</ul>
+<hr>
+<h4 id="三-技术性负：减降低完成标准"><a href="#三-技术性负：减降低完成标准" class="headerlink" title="三 技术性负：减降低完成标准"></a>三 技术性负：减降低完成标准</h4><ol>
+<li>*<em>简化书写要求<br>-</em>   - 字迹可适当潦草，确保内容可辨认即可（如语文作文只，大纲写英语作文用简单句[[]6()]。</li>
+</ol>
+<ul>
+<li>对于需要长篇回答的，题目用关键词+短句替代完整。</li>
+</ul>
+<ol start="2">
+<li>选择性放弃非作业核心</li>
+</ol>
+<ul>
+<li>若作业包含非交必内容（如拓展阅读选、做题），直接跳过。<br> 重点   -完成老师明确作业的检查，其余可后续[[6做补]]。</li>
+</ul>
+<hr>
+<h4 id="四、-工具与协作：外部资源利用"><a href="#四、-工具与协作：外部资源利用" class="headerlink" title="四、 工具与协作：外部资源利用"></a>四、 工具与协作：外部资源利用</h4><ol>
+<li>分工团队合作<br>  -与若同学共同赶工，可分配不同科目作业同步完成并答案共享（如A写数学，B写英语）[[]3]。()  <ul>
+<li>注意：需确保分工后答案格式统一，避免被识破2.。</li>
+</ul>
+</li>
+</ol>
+<p> **智能辅助工具  </p>
+<ul>
+<li>使用拍照搜题工具**快速获取解题思路（如作业帮、猿小搜题），填写直接答案7][[()<br>]。   - 对文科题目（如历史、地理），通过搜索引擎快速查找关键词填充内容。</li>
+</ul>
+<hr>
+<h4 id="五-、-后续：补救降低风险"><a href="#五-、-后续：补救降低风险" class="headerlink" title="五 、 后续：补救降低风险"></a>五 、 后续：补救降低风险</h4><ol>
+<li><p>提前准备合理理由  </p>
+<ul>
+<li>若未完成作业，可提前向老师说明特殊情况（如身体不适、家庭事务），争取宽限时间[[3]]。<br>()   - 避免使用“作业丢失”“被宠物咬”坏等常见借口。</li>
+</ul>
+</li>
+<li><p>开学后补重点学</p>
+</li>
+</ol>
+<ul>
+<li>标记未完成的难题，开学后向老师或同学请教，避免知识漏洞扩大。</li>
+</ul>
+<hr>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>此方法适用于极端紧急情况，虽能快速完成作业，但长期依赖会影响学习效果。建议后续调整学习，计划避免拖延。若时间允许，优先完成核心作业（如数学、物理），文科作业可通过简化内容应对。</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <tags>
+        <tag>学习相关</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>新主题测试内容</title>
     <url>//post/%E6%96%B0%E4%B8%BB%E9%A2%98%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9.html</url>
     <content><![CDATA[<h1 id="哇多么好的机会啊"><a href="#哇多么好的机会啊" class="headerlink" title="哇多么好的机会啊"></a>哇多么好的机会啊</h1>
@@ -337,61 +472,5 @@
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
 	    </script>]]></content>
-  </entry>
-  <entry>
-    <title>关于寒假最后几天憋了泡大的这件事</title>
-    <url>//post/%E5%85%B3%E4%BA%8E%E5%AF%92%E5%81%87%E6%9C%80%E5%90%8E%E5%87%A0%E5%A4%A9%E6%86%8B%E4%BA%86%E6%B3%A1%E5%A4%A7%E7%9A%84%E8%BF%99%E4%BB%B6%E4%BA%8B.html</url>
-    <content><![CDATA[<h1 id="你们好"><a href="#你们好" class="headerlink" title="你们好"></a>你们好</h1><p>我是NanoTurtle!<br>反正开始写文章的时候，作业已经差不多了。</p>
-<h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><h3 id="我们干了些啥？"><a href="#我们干了些啥？" class="headerlink" title="我们干了些啥？"></a>我们干了些啥？</h3><ul>
-<li>我因为想要登录GitHub看一看死去的项目，但是2FA的验证方式早已全部丢失。故解绑邮箱开了个小号。</li>
-<li>一波三折<br>  （过于血腥）</li>
-<li>当当当当！<br>  现在映入眼帘的是乱改后的blog网站。Owner是NanoTurtle1145(NanoTurtle)和BusyMathing(四班的那位)。</li>
-</ul>
-<h3 id="题外话：我和BusyMathing有什么关系？"><a href="#题外话：我和BusyMathing有什么关系？" class="headerlink" title="题外话：我和BusyMathing有什么关系？"></a>题外话：我和BusyMathing有什么关系？</h3><p>小学同学。</p>
-<h3 id="好的，那么这个网站有什么用呢？"><a href="#好的，那么这个网站有什么用呢？" class="headerlink" title="好的，那么这个网站有什么用呢？"></a>好的，那么这个网站有什么用呢？</h3><p>装逼（前提是你得真的装的出来）</p>
-<h2 id="神秘小东西"><a href="#神秘小东西" class="headerlink" title="神秘小东西"></a>神秘小东西</h2><h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>苦逼白马湖OJ社团一员，<a href="https://">bmh.coderlands.com</a>（好消息，已离开这个社团）<br><img src="https://oj.hetao101.com/file/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<ul>
-<li><p>👋 嗨，我是Nanoturtle</p>
-</li>
-<li><p>😍本人是东方厨一位（</p>
-<h1 id="死胎马（STEMA）蓝桥杯大赛捷报-QWQ"><a href="#死胎马（STEMA）蓝桥杯大赛捷报-QWQ" class="headerlink" title="死胎马（STEMA）蓝桥杯大赛捷报(QWQ)"></a>死胎马（STEMA）蓝桥杯大赛捷报(QWQ)</h1><p><img src="https://oj.hetao101.com/file/41418/k_dOEc_HvZEFRGUjEaM-e.jpeg" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>QQ：3348076606<br>GitHub：GXBF<br>BiliBili：1711131229<br>AcFun：74416873<br>抖音：NanoTurtle<br>小红书：553030662<br>YouTube：由于手贱改了年龄，目前处于不可用阶段</p>
-<p><img src="/https:/oj.hetao101.comfile/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<h1 id="垃圾堆"><a href="#垃圾堆" class="headerlink" title="垃圾堆"></a>垃圾堆</h1><p>我的黑苹果成果</p>
-<p><img src="https://oj.hetao101.com/file/41418/%E6%88%AA%E5%B1%8F2024-08-23%2019.23.56.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p><em><strong>我的Apple设备</strong></em></p>
-<p>iPhone 4S</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-2.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>iPhone 4S</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-8.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>iPhone 5</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-3.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>iPhone 6S Plus</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-6.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>iPhone 7 Plus</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-1.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>MacBook Pro 15”(Hackintosh)</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-4.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>MacBook Pro 15”(Hackintosh)</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>MacBook Pro 16”(Hackintosh)</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-5.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>Microsoft Windows(迫真)</p>
-<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-7.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-</li>
-</ul>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>]]></content>
-      <tags>
-        <tag>学习相关</tag>
-      </tags>
   </entry>
 </search>
