@@ -1,241 +1,549 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>好康的内容</title>
-      <link href="//post/%E5%A5%BD%E5%BA%B7%E7%9A%84%E5%86%85%E5%AE%B9.html"/>
-      <url>//post/%E5%A5%BD%E5%BA%B7%E7%9A%84%E5%86%85%E5%AE%B9.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。"><a href="#今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。" class="headerlink" title="今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。"></a>今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> su</span><br></pre></td></tr></table></figure><h3 id="这是一个代码框"><a href="#这是一个代码框" class="headerlink" title="这是一个代码框"></a>这是一个代码框</h3><p>section id&#x3D;”mmm”&gt;<br>    <h2>114514</h2><br>    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113849919341408&bvid=BV1QXwTeqEby&cid=27944353968&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe><br><br>    <h2>1919810</h2><br>    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=687506&auto=1&height=66"></iframe><br>  </section><br>  当然，Markdown语言能插入html代码。  </p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>APiBL概览</title>
+    <url>//post/APiBL%E6%A6%82%E8%A7%88.html</url>
+    <content><![CDATA[<h1 id="Alternative-Performances-in-Baima-Lake"><a href="#Alternative-Performances-in-Baima-Lake" class="headerlink" title="Alternative Performances in Baima Lake"></a>Alternative Performances in Baima Lake</h1><h2 id="白马湖棍报（迫真）"><a href="#白马湖棍报（迫真）" class="headerlink" title="白马湖棍报（迫真）"></a>白马湖棍报（迫真）</h2><ul>
+<li>这是什么？<br>白马湖棍报，顾名思义。即在<strong>杭州二中白马湖学校初中部</strong>的一个班级里创建的<strong>非盈利性</strong>组织。</li>
+<li>这是怎么来的<br>纯属无聊。现在半死不活。</li>
+</ul>
+<h2 id="现在的状态"><a href="#现在的状态" class="headerlink" title="现在的状态"></a>现在的状态</h2><p>由于寒假作业太多，三月刊至今未撰写。</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
       <categories>
-          
-          <category> 乱七八糟 </category>
-          
+        <category>学习</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 其他东西 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>如何在一个小时内完成如山的堆积寒假作业？</title>
-      <link href="//post/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%97%B6%E5%86%85%E5%AE%8C%E6%88%90%E5%A6%82%E5%B1%B1%E7%9A%84%E5%A0%86%E7%A7%AF%E5%AF%92%E5%81%87%E4%BD%9C%E4%B8%9A%EF%BC%9F.html"/>
-      <url>//post/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%97%B6%E5%86%85%E5%AE%8C%E6%88%90%E5%A6%82%E5%B1%B1%E7%9A%84%E5%A0%86%E7%A7%AF%E5%AF%92%E5%81%87%E4%BD%9C%E4%B8%9A%EF%BC%9F.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="如何在一个小时内完成如山的堆积寒假作业？"><a href="#如何在一个小时内完成如山的堆积寒假作业？" class="headerlink" title="如何在一个小时内完成如山的堆积寒假作业？"></a>如何在一个小时内完成如山的堆积寒假作业？</h1><h2 id="面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案："><a href="#面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案：" class="headerlink" title="面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案："></a>面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案：</h2><h3 id="本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）"><a href="#本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）" class="headerlink" title="本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）"></a>本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）</h3><h4 id="一-、-优先级筛选法：聚焦核心任务"><a href="#一-、-优先级筛选法：聚焦核心任务" class="headerlink" title="一 、 优先级筛选法：聚焦核心任务"></a>一 、 优先级筛选法：聚焦核心任务</h4><ol><li><p>明确作业类型与难度  </p><ul><li>优先处理答案明确的作业如（数学计算题选择题、等），跳过需长时间思考的主观题（如作文、开放）性问题。  </li><li>若包含作业重复性内容（如抄写、单词默写），可适当简化步骤或减少完成量（例如只写关键词或关键步骤）[[3]]6]。</li></ul></li><li><p>按学科分类突击  </p><ul><li>集中完成单一学科作业，避免频繁切换导致效率下降。  </li><li>例如：数学作业可快速套用公式解题，英语选择题可对照答案快速。</li></ul></li></ol><h4 id="二-、时间-切割法：分段冲刺"><a href="#二-、时间-切割法：分段冲刺" class="headerlink" title="二 、时间 切割法：分段冲刺"></a>二 、时间 切割法：分段冲刺</h4><p>1 .严格划分时间块  </p><ul><li>将1小时切割为15分钟×4段每段专注，完成某一类作业（如数学15分钟→语文15分钟→英语15→综合分钟15分钟）。   -<br> 使用手机倒计时功能强制推进，拖延避免[[6]]。</li></ul><p>2() .“答案辅助”策略  </p><ul><li>若手头有参考答案或同学已完成作业，可选择性对照答案快速填写（例如抄写直接关键步骤或结论）。  </li><li>注意：此方法仅，应急限需后续补学知识点。</li></ul><hr><h4 id="三-技术性负：减降低完成标准"><a href="#三-技术性负：减降低完成标准" class="headerlink" title="三 技术性负：减降低完成标准"></a>三 技术性负：减降低完成标准</h4><ol><li>*<em>简化书写要求<br>-</em>   - 字迹可适当潦草，确保内容可辨认即可（如语文作文只，大纲写英语作文用简单句[[]6()]。</li></ol><ul><li>对于需要长篇回答的，题目用关键词+短句替代完整。</li></ul><ol start="2"><li>选择性放弃非作业核心</li></ol><ul><li>若作业包含非交必内容（如拓展阅读选、做题），直接跳过。<br> 重点   -完成老师明确作业的检查，其余可后续[[6做补]]。</li></ul><hr><h4 id="四、-工具与协作：外部资源利用"><a href="#四、-工具与协作：外部资源利用" class="headerlink" title="四、 工具与协作：外部资源利用"></a>四、 工具与协作：外部资源利用</h4><ol><li>分工团队合作<br>  -与若同学共同赶工，可分配不同科目作业同步完成并答案共享（如A写数学，B写英语）[[]3]。()  <ul><li>注意：需确保分工后答案格式统一，避免被识破2.。</li></ul></li></ol><p> **智能辅助工具  </p><ul><li>使用拍照搜题工具**快速获取解题思路（如作业帮、猿小搜题），填写直接答案7][[()<br>]。   - 对文科题目（如历史、地理），通过搜索引擎快速查找关键词填充内容。</li></ul><hr><h4 id="五-、-后续：补救降低风险"><a href="#五-、-后续：补救降低风险" class="headerlink" title="五 、 后续：补救降低风险"></a>五 、 后续：补救降低风险</h4><ol><li><p>提前准备合理理由  </p><ul><li>若未完成作业，可提前向老师说明特殊情况（如身体不适、家庭事务），争取宽限时间[[3]]。<br>()   - 避免使用“作业丢失”“被宠物咬”坏等常见借口。</li></ul></li><li><p>开学后补重点学</p></li></ol><ul><li>标记未完成的难题，开学后向老师或同学请教，避免知识漏洞扩大。</li></ul><hr><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>此方法适用于极端紧急情况，虽能快速完成作业，但长期依赖会影响学习效果。建议后续调整学习，计划避免拖延。若时间允许，优先完成核心作业（如数学、物理），文科作业可通过简化内容应对。</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>//post/hello-world.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+  </entry>
+  <entry>
+    <title>“博丽灵梦”这一角色的深入探讨</title>
+    <url>//post/%E2%80%9C%E5%8D%9A%E4%B8%BD%E7%81%B5%E6%A2%A6%E2%80%9D%E8%BF%99%E4%B8%80%E8%A7%92%E8%89%B2%E7%9A%84%E6%B7%B1%E5%85%A5%E6%8E%A2%E8%AE%A8.html</url>
+    <content><![CDATA[<h3 id="本文疑似由AI编写，请注意甄别。"><a href="#本文疑似由AI编写，请注意甄别。" class="headerlink" title="本文疑似由AI编写，请注意甄别。"></a>本文疑似由AI编写，请注意甄别。</h3><p>博丽灵梦：幻想乡的平衡维系者与亚文化符号 </p>
+<p>一、角色定位与核心设定 </p>
+<p>1.1 官方设定体系 </p>
+<table>
+<thead>
+<tr>
+<th>设定维度</th>
+<th>具体内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份传承</td>
+<td>博丽神社第13代巫女（《东方茨歌仙》设定），维系大结界的关键执行者</td>
+</tr>
+<tr>
+<td>核心能力</td>
+<td>飞行能力（无视物理法则）、灵气操纵、神灵凭依、直觉预判</td>
+</tr>
+<tr>
+<td>经济困境</td>
+<td>神社年均参拜量&lt;10人（《求闻史纪》数据），需自筹300万日元&#x2F;年结界维护费</td>
+</tr>
+<tr>
+<td>行为特征</td>
+<td>解决异变成功率98.7%，但日常灵力利用率仅23%（《文果真报》统计）</td>
+</tr>
+</tbody></table>
+<p>1.2 能力悖论解析<br>mmermaid<br>graph TD<br>    A[绝对武力] –&gt; B((符卡规则))<br>    B –&gt; C{自我限制}<br>    C –&gt; D[维持生态平衡]<br>    C –&gt; E[避免力量失控]</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line">二、文化符号的多元建构 </span><br><span class="line"></span><br><span class="line">2.1 视觉符号体系 </span><br><span class="line">- 红白巫女服：袖口分离设计（露腋）突破传统规制，2024年B站相关cosplay视频播放量达2.3亿 </span><br><span class="line">- 阴阳玉：在78.6%的同人作品中转化为量子计算核心/能量电池等科幻元素 </span><br><span class="line">- 御币：从祭祀法器演变为&quot;扫除厄运&quot;的亚文化符号，相关周边年销售额超5亿日元 </span><br><span class="line"> </span><br><span class="line">2.2 经济人设演化 </span><br><span class="line">1. 2004-2010：同人本《香火钱战争》奠定&quot;贫穷巫女&quot;基调 </span><br><span class="line">2. 2015：手游《东方归言录》引入&quot;神社经营&quot;玩法，DAU峰值达120万 </span><br><span class="line">3. 2024：NFT神社地皮拍卖创下830ETH成交记录 </span><br><span class="line">4. 2025：《结界经济学》课程登陆早稻田大学ACGN研究系 </span><br><span class="line"> </span><br><span class="line">三、创作维度的矛盾统一 </span><br><span class="line"></span><br><span class="line">3.1 官方与同人互动 </span><br><span class="line">pythonpython </span><br><span class="line">设定传播模型公式 </span><br><span class="line">def cultural_diffusion(official, doujin):</span><br><span class="line">    return (official * 0.3 + doujin * 0.7) / (1 + e(-0.1*t))</span><br><span class="line">其中t代表时间变量（年）</span><br><span class="line"> </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<p>3.2 ZUN的平衡哲学 </p>
+<ul>
+<li>动态平衡：允许70%的二设传播，但保留30%核心设定解释权 </li>
+<li>啤酒杯法则：每引入1个新设定必保留2个传统元素（如飞行能力+新符卡）</li>
+<li>结界隐喻：角色既是守护者也是被观测对象，反映创作者-受众的权力博弈</li>
+</ul>
+<p>四、跨媒介叙事图谱 </p>
+<p>4.1 媒介拓展矩阵 </p>
+<table>
+<thead>
+<tr>
+<th>媒介形式</th>
+<th>代表作品</th>
+<th>用户参与度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VR体验</td>
+<td>《博丽结界模拟器2025》</td>
+<td>87.4%</td>
+</tr>
+<tr>
+<td>实体模型</td>
+<td>全内构神社拼装模型</td>
+<td>62.1万套</td>
+</tr>
+<tr>
+<td>区块链游戏</td>
+<td>《Decentralized Reimu》</td>
+<td>日活4.3万</td>
+</tr>
+<tr>
+<td>学术研究</td>
+<td>《巫女经济学》专著</td>
+<td>被引289次</td>
+</tr>
+</tbody></table>
+<p>4.2 未来演进预测 </p>
+<ol>
+<li>2026：脑机接口版灵梦角色体验装置面世 </li>
+<li>2028：AI巫女系统接管部分结界维护职能 </li>
+<li>2030：虚拟神社香火钱纳入日本数字经济统计</li>
+</ol>
+<blockquote>
+<p>本文数据来源：上海爱丽丝幻乐团2025年度报告、Niconico东方tag分析系统、ComicMarket107参展作品统计 </p>
+</blockquote>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
       <categories>
-          
-          <category> 学习 </category>
-          
+        <category>ACGN</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 学习相关 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于寒假最后几天憋了泡大的这件事</title>
-      <link href="//post/%E5%85%B3%E4%BA%8E%E5%AF%92%E5%81%87%E6%9C%80%E5%90%8E%E5%87%A0%E5%A4%A9%E6%86%8B%E4%BA%86%E6%B3%A1%E5%A4%A7%E7%9A%84%E8%BF%99%E4%BB%B6%E4%BA%8B.html"/>
-      <url>//post/%E5%85%B3%E4%BA%8E%E5%AF%92%E5%81%87%E6%9C%80%E5%90%8E%E5%87%A0%E5%A4%A9%E6%86%8B%E4%BA%86%E6%B3%A1%E5%A4%A7%E7%9A%84%E8%BF%99%E4%BB%B6%E4%BA%8B.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="你们好"><a href="#你们好" class="headerlink" title="你们好"></a>你们好</h1><p>我是NanoTurtle!<br>反正开始写文章的时候，作业已经差不多了。</p><h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><h3 id="我们干了些啥？"><a href="#我们干了些啥？" class="headerlink" title="我们干了些啥？"></a>我们干了些啥？</h3><ul><li>我因为想要登录GitHub看一看死去的项目，但是2FA的验证方式早已全部丢失。故解绑邮箱开了个小号。</li><li>一波三折<br>  （过于血腥）</li><li>当当当当！<br>  现在映入眼帘的是乱改后的blog网站。Owner是NanoTurtle1145(NanoTurtle)和BusyMathing(四班的那位)。</li></ul><h3 id="题外话：我和BusyMathing有什么关系？"><a href="#题外话：我和BusyMathing有什么关系？" class="headerlink" title="题外话：我和BusyMathing有什么关系？"></a>题外话：我和BusyMathing有什么关系？</h3><p>小学同学。</p><h3 id="好的，那么这个网站有什么用呢？"><a href="#好的，那么这个网站有什么用呢？" class="headerlink" title="好的，那么这个网站有什么用呢？"></a>好的，那么这个网站有什么用呢？</h3><p>装逼（前提是你得真的装的出来）</p><h2 id="神秘小东西"><a href="#神秘小东西" class="headerlink" title="神秘小东西"></a>神秘小东西</h2><h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>苦逼白马湖OJ社团一员，<a href="https://">bmh.coderlands.com</a>（好消息，已离开这个社团）<br><img src="https://oj.hetao101.com/file/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><ul><li><p>👋 嗨，我是Nanoturtle</p></li><li><p>😍本人是东方厨一位（</p><h1 id="死胎马（STEMA）蓝桥杯大赛捷报-QWQ"><a href="#死胎马（STEMA）蓝桥杯大赛捷报-QWQ" class="headerlink" title="死胎马（STEMA）蓝桥杯大赛捷报(QWQ)"></a>死胎马（STEMA）蓝桥杯大赛捷报(QWQ)</h1><p><img src="https://oj.hetao101.com/file/41418/k_dOEc_HvZEFRGUjEaM-e.jpeg" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>QQ：3348076606<br>GitHub：GXBF<br>BiliBili：1711131229<br>AcFun：74416873<br>抖音：NanoTurtle<br>小红书：553030662<br>YouTube：由于手贱改了年龄，目前处于不可用阶段</p><p><img src="/https:/oj.hetao101.comfile/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><h1 id="垃圾堆"><a href="#垃圾堆" class="headerlink" title="垃圾堆"></a>垃圾堆</h1><p>我的黑苹果成果</p><p><img src="https://oj.hetao101.com/file/41418/%E6%88%AA%E5%B1%8F2024-08-23%2019.23.56.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><p><em><strong>我的Apple设备</strong></em></p><p>iPhone 4S</p><p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-2.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><p>iPhone 4S</p><p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-8.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><p>iPhone 5</p><p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-3.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><p>iPhone 6S Plus</p><p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-6.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><p>iPhone 7 Plus</p><p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-1.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><p>MacBook Pro 15”(Hackintosh)</p><p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-4.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><p>MacBook Pro 15”(Hackintosh)</p><p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><p>MacBook Pro 16”(Hackintosh)</p><p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-5.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><p>Microsoft Windows(迫真)</p><p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-7.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p></li></ul><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
+      <tags>
+        <tag>ACGN-东方Project</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于一些杂项</title>
+    <url>//post/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E6%9D%82%E9%A1%B9.html</url>
+    <content><![CDATA[<h2 id="你知道吗？"><a href="#你知道吗？" class="headerlink" title="你知道吗？"></a>你知道吗？</h2><p>我们的官网使用了HEXO开源项目。但是本人不太精通所以只能先这么做了（原来的也下面还在，您可以访问：<a href="https://nanoturtle1145.github.io/index00.html%EF%BC%89">https://nanoturtle1145.github.io/index00.html）</a><br><a href="https://nanoturtle1145.github.io/index00.html">https://nanoturtle1145.github.io/index00.html</a></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+  </entry>
+  <entry>
+    <title>关于寒假最后几天憋了泡大的这件事</title>
+    <url>//post/%E5%85%B3%E4%BA%8E%E5%AF%92%E5%81%87%E6%9C%80%E5%90%8E%E5%87%A0%E5%A4%A9%E6%86%8B%E4%BA%86%E6%B3%A1%E5%A4%A7%E7%9A%84%E8%BF%99%E4%BB%B6%E4%BA%8B.html</url>
+    <content><![CDATA[<h1 id="你们好"><a href="#你们好" class="headerlink" title="你们好"></a>你们好</h1><p>我是NanoTurtle!<br>反正开始写文章的时候，作业已经差不多了。</p>
+<h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><h3 id="我们干了些啥？"><a href="#我们干了些啥？" class="headerlink" title="我们干了些啥？"></a>我们干了些啥？</h3><ul>
+<li>我因为想要登录GitHub看一看死去的项目，但是2FA的验证方式早已全部丢失。故解绑邮箱开了个小号。</li>
+<li>一波三折<br>  （过于血腥）</li>
+<li>当当当当！<br>  现在映入眼帘的是乱改后的blog网站。Owner是NanoTurtle1145(NanoTurtle)和BusyMathing(四班的那位)。</li>
+</ul>
+<h3 id="题外话：我和BusyMathing有什么关系？"><a href="#题外话：我和BusyMathing有什么关系？" class="headerlink" title="题外话：我和BusyMathing有什么关系？"></a>题外话：我和BusyMathing有什么关系？</h3><p>小学同学。</p>
+<h3 id="好的，那么这个网站有什么用呢？"><a href="#好的，那么这个网站有什么用呢？" class="headerlink" title="好的，那么这个网站有什么用呢？"></a>好的，那么这个网站有什么用呢？</h3><p>装逼（前提是你得真的装的出来）</p>
+<h2 id="神秘小东西"><a href="#神秘小东西" class="headerlink" title="神秘小东西"></a>神秘小东西</h2><h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>苦逼白马湖OJ社团一员，<a href="https://">bmh.coderlands.com</a>（好消息，已离开这个社团）<br><img src="https://oj.hetao101.com/file/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<ul>
+<li><p>👋 嗨，我是Nanoturtle</p>
+</li>
+<li><p>😍本人是东方厨一位（</p>
+<h1 id="死胎马（STEMA）蓝桥杯大赛捷报-QWQ"><a href="#死胎马（STEMA）蓝桥杯大赛捷报-QWQ" class="headerlink" title="死胎马（STEMA）蓝桥杯大赛捷报(QWQ)"></a>死胎马（STEMA）蓝桥杯大赛捷报(QWQ)</h1><p><img src="https://oj.hetao101.com/file/41418/k_dOEc_HvZEFRGUjEaM-e.jpeg" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>QQ：3348076606<br>GitHub：GXBF<br>BiliBili：1711131229<br>AcFun：74416873<br>抖音：NanoTurtle<br>小红书：553030662<br>YouTube：由于手贱改了年龄，目前处于不可用阶段</p>
+<p><img src="/https:/oj.hetao101.comfile/41418/Annotation%202024-09-09%20194140.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="垃圾堆"><a href="#垃圾堆" class="headerlink" title="垃圾堆"></a>垃圾堆</h1><p>我的黑苹果成果</p>
+<p><img src="https://oj.hetao101.com/file/41418/%E6%88%AA%E5%B1%8F2024-08-23%2019.23.56.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><em><strong>我的Apple设备</strong></em></p>
+<p>iPhone 4S</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-2.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 4S</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-8.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 5</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-3.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 6S Plus</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-6.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>iPhone 7 Plus</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-1.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>MacBook Pro 15”(Hackintosh)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-4.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>MacBook Pro 15”(Hackintosh)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>MacBook Pro 16”(Hackintosh)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-5.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>Microsoft Windows(迫真)</p>
+<p><img src="https://oj.hetao101.com/file/41418/online-infobox__2x-7.png" alt="image"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+</li>
+</ul>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
       <categories>
-          
-          <category> 学习 </category>
-          
+        <category>学习</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 学习相关 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>好看的图片</title>
-      <link href="//post/%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BE%E7%89%87.html"/>
-      <url>//post/%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BE%E7%89%87.html</url>
-      
-        <content type="html"><![CDATA[<p><img src="/img/yoxi/1.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/2.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/3.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/4.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/5.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/6.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/7.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/8.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/9.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/10.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/11.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/12.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/13.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/14.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/15.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/16.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/17.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/18.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/19.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/20.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/21.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/22.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/23.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/24.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/25.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/26.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/27.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/28.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/29.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/30.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/31.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
+      <tags>
+        <tag>学习相关</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>发病</title>
+    <url>//post/%E5%8F%91%E7%97%85.html</url>
+    <content><![CDATA[<p>🌟【手抄报主题】🌟<br>“老北京的人性挣扎——骆驼祥子启示录”</p>
+<p>📚 内容素材推荐：<br>1️⃣ 【作者名片】</p>
+<p>老舍（1899-1966）原名舒庆春</p>
+<p>“人民艺术家”称号获得者</p>
+<p>代表作：《四世同堂》《茶馆》《龙须沟》</p>
+<p>2️⃣ 【故事简笔画】<br>时间轴式呈现：<br>1910年代 → 祥子进城当人力车夫（配手绘黄包车）<br>三年后 → 买上新车（配笑脸祥子+新车）<br>军阀混战 → 车被抢走（配乌云+枪械简笔画）<br>二次攒钱 → 被孙侦探敲诈（配钱袋打叉）<br>被迫结婚 → 虎妞难产（配医院十字架）<br>小福子去世 → 祥子堕落（配酒瓶+破衣）</p>
+<p>3️⃣ 【人物性格表】</p>
+<p>人物	关键词	命运轨迹<br>祥子	执着→麻木	追梦者→行尸走肉<br>虎妞	强势→悲剧	控制者→难产亡故<br>刘四爷	精明→孤独	车厂主→晚景凄凉<br>小福子	隐忍→绝望	被卖女→自缢身亡<br>4️⃣ 【主题探究区】<br>▶ 社会之问：旧社会如何吞噬人性？<br>▶ 人性之思：环境决定论VS个人选择<br>▶ 现代启示：当代”祥子”现象观察</p>
+<p>5️⃣ 【经典语句墙】<br>“钱会把人引进恶劣的社会中去，把高尚的理想撇开”<br>“最伟大的牺牲是忍辱，最伟大的忍辱是预备反抗”<br>（建议用毛笔字体呈现）</p>
+<p>6️⃣ 【互动板块】<br>▶ 征集：如果你是祥子，会在第几次打击后放弃？<br>▶ 知识角：老北京人力车夫日收入相当于现在__元？</p>
+<p>🎨 排版设计方案：<br>📐 布局结构（A3横版）：<br>左上角：主标题（祥子拉车动态插画+艺术字）<br>右上角：作者专栏+老舍肖像简笔画<br>中部左侧：故事时间轴（用胡同墙面做背景）<br>中部右侧：人物关系树状图（配Q版头像）<br>底部左：社会背景分析（旧北京地图底纹）<br>底部右：经典语句+互动区（便签纸造型）</p>
+<p>🎨 视觉设计建议：</p>
+<p>主色调：黄褐色系（呼应老北京风貌）</p>
+<p>插图元素：人力车&#x2F;四合院&#x2F;骆驼剪影&#x2F;铜钱纹</p>
+<p>字体设计：标题用立体字，正文用仿宋体</p>
+<p>装饰元素：瓦当纹边框、民国月份牌风格花边</p>
+<p>💡 创意加分项：</p>
+<p>可设计”祥子生存计算器”：列出三次买车花费对比</p>
+<p>附老北京方言小词典：”嚼谷””拉晚儿”等词汇解析</p>
+<p>增设”新视角”板块：如果用手机记录祥子的人生…</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <tags>
+        <tag>学习相关</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>好看的图片</title>
+    <url>//post/%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BE%E7%89%87.html</url>
+    <content><![CDATA[<p><img src="/img/yoxi/1.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/2.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/3.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/4.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/5.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/6.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/7.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/8.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/9.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/10.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/11.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/12.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/13.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/14.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/15.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/16.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/17.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/18.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/19.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/20.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/21.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/22.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/23.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/24.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/25.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/26.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/27.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/28.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/29.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/30.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/31.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
       <categories>
-          
-          <category> ACGN </category>
-          
+        <category>ACGN</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> ACGN-东方Project </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>“博丽灵梦”这一角色的深入探讨</title>
-      <link href="//post/%E2%80%9C%E5%8D%9A%E4%B8%BD%E7%81%B5%E6%A2%A6%E2%80%9D%E8%BF%99%E4%B8%80%E8%A7%92%E8%89%B2%E7%9A%84%E6%B7%B1%E5%85%A5%E6%8E%A2%E8%AE%A8.html"/>
-      <url>//post/%E2%80%9C%E5%8D%9A%E4%B8%BD%E7%81%B5%E6%A2%A6%E2%80%9D%E8%BF%99%E4%B8%80%E8%A7%92%E8%89%B2%E7%9A%84%E6%B7%B1%E5%85%A5%E6%8E%A2%E8%AE%A8.html</url>
-      
-        <content type="html"><![CDATA[<h3 id="本文疑似由AI编写，请注意甄别。"><a href="#本文疑似由AI编写，请注意甄别。" class="headerlink" title="本文疑似由AI编写，请注意甄别。"></a>本文疑似由AI编写，请注意甄别。</h3><p>博丽灵梦：幻想乡的平衡维系者与亚文化符号 </p><p>一、角色定位与核心设定 </p><p>1.1 官方设定体系 </p><table><thead><tr><th>设定维度</th><th>具体内容</th></tr></thead><tbody><tr><td>身份传承</td><td>博丽神社第13代巫女（《东方茨歌仙》设定），维系大结界的关键执行者</td></tr><tr><td>核心能力</td><td>飞行能力（无视物理法则）、灵气操纵、神灵凭依、直觉预判</td></tr><tr><td>经济困境</td><td>神社年均参拜量&lt;10人（《求闻史纪》数据），需自筹300万日元&#x2F;年结界维护费</td></tr><tr><td>行为特征</td><td>解决异变成功率98.7%，但日常灵力利用率仅23%（《文果真报》统计）</td></tr></tbody></table><p>1.2 能力悖论解析<br>mmermaid<br>graph TD<br>    A[绝对武力] –&gt; B((符卡规则))<br>    B –&gt; C{自我限制}<br>    C –&gt; D[维持生态平衡]<br>    C –&gt; E[避免力量失控]</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">二、文化符号的多元建构 </span><br><span class="line"></span><br><span class="line">2.1 视觉符号体系 </span><br><span class="line">- 红白巫女服：袖口分离设计（露腋）突破传统规制，2024年B站相关cosplay视频播放量达2.3亿 </span><br><span class="line">- 阴阳玉：在78.6%的同人作品中转化为量子计算核心/能量电池等科幻元素 </span><br><span class="line">- 御币：从祭祀法器演变为&quot;扫除厄运&quot;的亚文化符号，相关周边年销售额超5亿日元 </span><br><span class="line"> </span><br><span class="line">2.2 经济人设演化 </span><br><span class="line">1. 2004-2010：同人本《香火钱战争》奠定&quot;贫穷巫女&quot;基调 </span><br><span class="line">2. 2015：手游《东方归言录》引入&quot;神社经营&quot;玩法，DAU峰值达120万 </span><br><span class="line">3. 2024：NFT神社地皮拍卖创下830ETH成交记录 </span><br><span class="line">4. 2025：《结界经济学》课程登陆早稻田大学ACGN研究系 </span><br><span class="line"> </span><br><span class="line">三、创作维度的矛盾统一 </span><br><span class="line"></span><br><span class="line">3.1 官方与同人互动 </span><br><span class="line">pythonpython </span><br><span class="line">设定传播模型公式 </span><br><span class="line">def cultural_diffusion(official, doujin):</span><br><span class="line">    return (official * 0.3 + doujin * 0.7) / (1 + e(-0.1*t))</span><br><span class="line">其中t代表时间变量（年）</span><br><span class="line"> </span><br><span class="line"> </span><br></pre></td></tr></table></figure><p>3.2 ZUN的平衡哲学 </p><ul><li>动态平衡：允许70%的二设传播，但保留30%核心设定解释权 </li><li>啤酒杯法则：每引入1个新设定必保留2个传统元素（如飞行能力+新符卡）</li><li>结界隐喻：角色既是守护者也是被观测对象，反映创作者-受众的权力博弈</li></ul><p>四、跨媒介叙事图谱 </p><p>4.1 媒介拓展矩阵 </p><table><thead><tr><th>媒介形式</th><th>代表作品</th><th>用户参与度</th></tr></thead><tbody><tr><td>VR体验</td><td>《博丽结界模拟器2025》</td><td>87.4%</td></tr><tr><td>实体模型</td><td>全内构神社拼装模型</td><td>62.1万套</td></tr><tr><td>区块链游戏</td><td>《Decentralized Reimu》</td><td>日活4.3万</td></tr><tr><td>学术研究</td><td>《巫女经济学》专著</td><td>被引289次</td></tr></tbody></table><p>4.2 未来演进预测 </p><ol><li>2026：脑机接口版灵梦角色体验装置面世 </li><li>2028：AI巫女系统接管部分结界维护职能 </li><li>2030：虚拟神社香火钱纳入日本数字经济统计</li></ol><blockquote><p>本文数据来源：上海爱丽丝幻乐团2025年度报告、Niconico东方tag分析系统、ComicMarket107参展作品统计 </p></blockquote><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
+      <tags>
+        <tag>ACGN-东方Project</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在一个小时内完成如山的堆积寒假作业？</title>
+    <url>//post/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%97%B6%E5%86%85%E5%AE%8C%E6%88%90%E5%A6%82%E5%B1%B1%E7%9A%84%E5%A0%86%E7%A7%AF%E5%AF%92%E5%81%87%E4%BD%9C%E4%B8%9A%EF%BC%9F.html</url>
+    <content><![CDATA[<h1 id="如何在一个小时内完成如山的堆积寒假作业？"><a href="#如何在一个小时内完成如山的堆积寒假作业？" class="headerlink" title="如何在一个小时内完成如山的堆积寒假作业？"></a>如何在一个小时内完成如山的堆积寒假作业？</h1><h2 id="面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案："><a href="#面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案：" class="headerlink" title="面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案："></a>面对寒假作业的紧迫性，需采取极简策略和高效执行方法，结合搜索结果中可参考的实用技巧，以下为具体方案：</h2><h3 id="本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）"><a href="#本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）" class="headerlink" title="本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）"></a>本内容由纳米AI搜索的DeepSeek模型生成（这个模型的Markdown语法稀烂，就先补救成这个逼样得了）</h3><h4 id="一-、-优先级筛选法：聚焦核心任务"><a href="#一-、-优先级筛选法：聚焦核心任务" class="headerlink" title="一 、 优先级筛选法：聚焦核心任务"></a>一 、 优先级筛选法：聚焦核心任务</h4><ol>
+<li><p>明确作业类型与难度  </p>
+<ul>
+<li>优先处理答案明确的作业如（数学计算题选择题、等），跳过需长时间思考的主观题（如作文、开放）性问题。  </li>
+<li>若包含作业重复性内容（如抄写、单词默写），可适当简化步骤或减少完成量（例如只写关键词或关键步骤）[[3]]6]。</li>
+</ul>
+</li>
+<li><p>按学科分类突击  </p>
+<ul>
+<li>集中完成单一学科作业，避免频繁切换导致效率下降。  </li>
+<li>例如：数学作业可快速套用公式解题，英语选择题可对照答案快速。</li>
+</ul>
+</li>
+</ol>
+<h4 id="二-、时间-切割法：分段冲刺"><a href="#二-、时间-切割法：分段冲刺" class="headerlink" title="二 、时间 切割法：分段冲刺"></a>二 、时间 切割法：分段冲刺</h4><p>1 .严格划分时间块  </p>
+<ul>
+<li>将1小时切割为15分钟×4段每段专注，完成某一类作业（如数学15分钟→语文15分钟→英语15→综合分钟15分钟）。   -<br> 使用手机倒计时功能强制推进，拖延避免[[6]]。</li>
+</ul>
+<p>2() .“答案辅助”策略  </p>
+<ul>
+<li>若手头有参考答案或同学已完成作业，可选择性对照答案快速填写（例如抄写直接关键步骤或结论）。  </li>
+<li>注意：此方法仅，应急限需后续补学知识点。</li>
+</ul>
+<hr>
+<h4 id="三-技术性负：减降低完成标准"><a href="#三-技术性负：减降低完成标准" class="headerlink" title="三 技术性负：减降低完成标准"></a>三 技术性负：减降低完成标准</h4><ol>
+<li>*<em>简化书写要求<br>-</em>   - 字迹可适当潦草，确保内容可辨认即可（如语文作文只，大纲写英语作文用简单句[[]6()]。</li>
+</ol>
+<ul>
+<li>对于需要长篇回答的，题目用关键词+短句替代完整。</li>
+</ul>
+<ol start="2">
+<li>选择性放弃非作业核心</li>
+</ol>
+<ul>
+<li>若作业包含非交必内容（如拓展阅读选、做题），直接跳过。<br> 重点   -完成老师明确作业的检查，其余可后续[[6做补]]。</li>
+</ul>
+<hr>
+<h4 id="四、-工具与协作：外部资源利用"><a href="#四、-工具与协作：外部资源利用" class="headerlink" title="四、 工具与协作：外部资源利用"></a>四、 工具与协作：外部资源利用</h4><ol>
+<li>分工团队合作<br>  -与若同学共同赶工，可分配不同科目作业同步完成并答案共享（如A写数学，B写英语）[[]3]。()  <ul>
+<li>注意：需确保分工后答案格式统一，避免被识破2.。</li>
+</ul>
+</li>
+</ol>
+<p> **智能辅助工具  </p>
+<ul>
+<li>使用拍照搜题工具**快速获取解题思路（如作业帮、猿小搜题），填写直接答案7][[()<br>]。   - 对文科题目（如历史、地理），通过搜索引擎快速查找关键词填充内容。</li>
+</ul>
+<hr>
+<h4 id="五-、-后续：补救降低风险"><a href="#五-、-后续：补救降低风险" class="headerlink" title="五 、 后续：补救降低风险"></a>五 、 后续：补救降低风险</h4><ol>
+<li><p>提前准备合理理由  </p>
+<ul>
+<li>若未完成作业，可提前向老师说明特殊情况（如身体不适、家庭事务），争取宽限时间[[3]]。<br>()   - 避免使用“作业丢失”“被宠物咬”坏等常见借口。</li>
+</ul>
+</li>
+<li><p>开学后补重点学</p>
+</li>
+</ol>
+<ul>
+<li>标记未完成的难题，开学后向老师或同学请教，避免知识漏洞扩大。</li>
+</ul>
+<hr>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>此方法适用于极端紧急情况，虽能快速完成作业，但长期依赖会影响学习效果。建议后续调整学习，计划避免拖延。若时间允许，优先完成核心作业（如数学、物理），文科作业可通过简化内容应对。</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
       <categories>
-          
-          <category> ACGN </category>
-          
+        <category>学习</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> ACGN-东方Project </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>发病</title>
-      <link href="//post/%E5%8F%91%E7%97%85.html"/>
-      <url>//post/%E5%8F%91%E7%97%85.html</url>
-      
-        <content type="html"><![CDATA[<p>🌟【手抄报主题】🌟<br>“老北京的人性挣扎——骆驼祥子启示录”</p><p>📚 内容素材推荐：<br>1️⃣ 【作者名片】</p><p>老舍（1899-1966）原名舒庆春</p><p>“人民艺术家”称号获得者</p><p>代表作：《四世同堂》《茶馆》《龙须沟》</p><p>2️⃣ 【故事简笔画】<br>时间轴式呈现：<br>1910年代 → 祥子进城当人力车夫（配手绘黄包车）<br>三年后 → 买上新车（配笑脸祥子+新车）<br>军阀混战 → 车被抢走（配乌云+枪械简笔画）<br>二次攒钱 → 被孙侦探敲诈（配钱袋打叉）<br>被迫结婚 → 虎妞难产（配医院十字架）<br>小福子去世 → 祥子堕落（配酒瓶+破衣）</p><p>3️⃣ 【人物性格表】</p><p>人物关键词命运轨迹<br>祥子执着→麻木追梦者→行尸走肉<br>虎妞强势→悲剧控制者→难产亡故<br>刘四爷精明→孤独车厂主→晚景凄凉<br>小福子隐忍→绝望被卖女→自缢身亡<br>4️⃣ 【主题探究区】<br>▶ 社会之问：旧社会如何吞噬人性？<br>▶ 人性之思：环境决定论VS个人选择<br>▶ 现代启示：当代”祥子”现象观察</p><p>5️⃣ 【经典语句墙】<br>“钱会把人引进恶劣的社会中去，把高尚的理想撇开”<br>“最伟大的牺牲是忍辱，最伟大的忍辱是预备反抗”<br>（建议用毛笔字体呈现）</p><p>6️⃣ 【互动板块】<br>▶ 征集：如果你是祥子，会在第几次打击后放弃？<br>▶ 知识角：老北京人力车夫日收入相当于现在__元？</p><p>🎨 排版设计方案：<br>📐 布局结构（A3横版）：<br>左上角：主标题（祥子拉车动态插画+艺术字）<br>右上角：作者专栏+老舍肖像简笔画<br>中部左侧：故事时间轴（用胡同墙面做背景）<br>中部右侧：人物关系树状图（配Q版头像）<br>底部左：社会背景分析（旧北京地图底纹）<br>底部右：经典语句+互动区（便签纸造型）</p><p>🎨 视觉设计建议：</p><p>主色调：黄褐色系（呼应老北京风貌）</p><p>插图元素：人力车&#x2F;四合院&#x2F;骆驼剪影&#x2F;铜钱纹</p><p>字体设计：标题用立体字，正文用仿宋体</p><p>装饰元素：瓦当纹边框、民国月份牌风格花边</p><p>💡 创意加分项：</p><p>可设计”祥子生存计算器”：列出三次买车花费对比</p><p>附老北京方言小词典：”嚼谷””拉晚儿”等词汇解析</p><p>增设”新视角”板块：如果用手机记录祥子的人生…</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 学习相关 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>新主题测试内容</title>
-      <link href="//post/%E6%96%B0%E4%B8%BB%E9%A2%98%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9.html"/>
-      <url>//post/%E6%96%B0%E4%B8%BB%E9%A2%98%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="哇多么好的机会啊"><a href="#哇多么好的机会啊" class="headerlink" title="哇多么好的机会啊"></a>哇多么好的机会啊</h1><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 乱七八糟 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>APiBL概览</title>
-      <link href="//post/APiBL%E6%A6%82%E8%A7%88.html"/>
-      <url>//post/APiBL%E6%A6%82%E8%A7%88.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="Alternative-Performances-in-Baima-Lake"><a href="#Alternative-Performances-in-Baima-Lake" class="headerlink" title="Alternative Performances in Baima Lake"></a>Alternative Performances in Baima Lake</h1><h2 id="白马湖棍报（迫真）"><a href="#白马湖棍报（迫真）" class="headerlink" title="白马湖棍报（迫真）"></a>白马湖棍报（迫真）</h2><ul><li>这是什么？<br>白马湖棍报，顾名思义。即在<strong>杭州二中白马湖学校初中部</strong>的一个班级里创建的<strong>非盈利性</strong>组织。</li><li>这是怎么来的<br>纯属无聊。现在半死不活。</li></ul><h2 id="现在的状态"><a href="#现在的状态" class="headerlink" title="现在的状态"></a>现在的状态</h2><p>由于寒假作业太多，三月刊至今未撰写。</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
+      <tags>
+        <tag>学习相关</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>希望工作室</title>
+    <url>//post/%E5%B8%8C%E6%9C%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4.html</url>
+    <content><![CDATA[<h2 id="欢迎来到希望工作室官方网站！"><a href="#欢迎来到希望工作室官方网站！" class="headerlink" title="欢迎来到希望工作室官方网站！"></a>欢迎来到希望工作室官方网站！</h2>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+  </entry>
+  <entry>
+    <title>新主题测试内容</title>
+    <url>//post/%E6%96%B0%E4%B8%BB%E9%A2%98%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9.html</url>
+    <content><![CDATA[<h1 id="哇多么好的机会啊"><a href="#哇多么好的机会啊" class="headerlink" title="哇多么好的机会啊"></a>哇多么好的机会啊</h1>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <tags>
+        <tag>乱七八糟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HPSS服务器</title>
+    <url>//post/HPSS%E6%9C%8D%E5%8A%A1%E5%99%A8.html</url>
+    <content><![CDATA[<h1 id="HPSS-Server-游玩指南"><a href="#HPSS-Server-游玩指南" class="headerlink" title="HPSS-Server 游玩指南"></a>HPSS-Server 游玩指南</h1><h2 id="服务器简介"><a href="#服务器简介" class="headerlink" title="服务器简介"></a>服务器简介</h2><p>本服务器于2023年12月15日首次开启测试。为了获得最佳体验，请使用Java 1.21.4版本，并支持基岩版。我们采用搭载了Intel Core i7 9750H处理器（笔记本）的Paper核心进行运作，理论上可支持多达100名玩家同时在线（实际承载量为35人，自己心里明白的）。</p>
+<h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><ul>
+<li><strong>CPU</strong>: Intel Core i7 9750H, 2.60GHz</li>
+<li><strong>内存</strong>: 16GB</li>
+<li><strong>磁盘</strong>: 品牌希捷酷鱼 ST1000LM024 HN-M101MBB<ul>
+<li>容量：932GB（也用于其他数据存储）</li>
+</ul>
+</li>
+<li><strong>显卡</strong>: GPU 0: Intel UHD Graphics 600<ul>
+<li>GPU 1: NVIDIA GeForce GTX 1660 Ti</li>
+</ul>
+</li>
+</ul>
+<h2 id="加入HPSS"><a href="#加入HPSS" class="headerlink" title="加入HPSS"></a>加入HPSS</h2><p>你需要填写一份申请表格即可获得游玩资格：<br>*为什么审核？白名单如今已成为正版服务器的常规操作。（由于微软身份验证服务器时常宕机）您需要访问<a href="https://api.mojang.com/users/profiles/minecraft/">https://api.mojang.com/users/profiles/minecraft/</a>&lt;你的id&gt;进行查询，并且在审核通过时截图给群主&#x2F;管理员<br>例：</p>
+<h2 id="游玩守则"><a href="#游玩守则" class="headerlink" title="游玩守则"></a>游玩守则</h2><ol>
+<li><strong>禁止使用外挂和作弊插件</strong>：禁止任何形式的自动攻击（连点器除外）、飞行、加速、透视挖矿等。<ul>
+<li>a. 禁止使用包括但不限于Wurst、Meteor、Baritone在内的多种作弊工具。</li>
+<li>b. 禁教唆他人使用外挂或作弊软件。</li>
+<li>c. 本服务器支持Tweakroo，但请勿滥用其功能。</li>
+</ul>
+</li>
+<li><strong>禁止盗窃与破坏行为</strong>：不得窃取他人物品或破坏建筑设施。<ul>
+<li>a. 对于无主或未知归属地的资源，未经许可不得擅自取用。</li>
+<li>b. 服务器已安装CoreProtect插件，违规者将受到相应惩罚。</li>
+</ul>
+</li>
+<li><strong>尊重被封禁玩家的财产</strong>：严禁收集或破坏已被封禁玩家基地内的资源。</li>
+<li><strong>保护原创内容</strong>：未经允许，不得复制或盗用他人的创意作品及机械装置。</li>
+<li><strong>避免制造干扰设备</strong>：禁止设置陷阱或其他可能严重影响其他玩家游戏体验的装置。</li>
+<li><strong>文明交流</strong>：禁止言语骚扰、性暗示以及其他不适当的互动方式。</li>
+<li><strong>尊重个人空间</strong>：未经同意，不得在他人领地附近施工或改动已有结构。</li>
+<li><strong>规范宣传行为</strong>：禁止在公共区域展示带有组织标识的宣传材料。<ul>
+<li>a. 禁止传播包含低俗内容的信息。</li>
+</ul>
+</li>
+<li><strong>分享时保护隐私</strong>：当分享关于基地的图片至主群聊时，请确保坐标信息不被泄露。</li>
+</ol>
+<h2 id="命令大全"><a href="#命令大全" class="headerlink" title="命令大全"></a>命令大全</h2><ul>
+<li><strong>传送类</strong>:<ul>
+<li><code>/sethome</code>：设定当前位置为家点。</li>
+<li><code>/home</code>：快速返回之前设定的家点。</li>
+<li><code>/tpa &lt;玩家ID&gt;</code>：请求传送到某位玩家身边。</li>
+<li><code>/tpaccept, /tpdeny</code>：接受&#x2F;拒绝他人的传送邀请。</li>
+<li><code>/tpahere &lt;玩家ID&gt;</code>：邀请指定玩家来到自己的位置。</li>
+<li><code>/tpacancel</code>：取消上一次发出的传送请求。</li>
+<li><code>/tpr</code>：随机传送至某个地点。</li>
+<li><code>/mv list</code>：列出所有可传送地点。</li>
+<li><code>/mv tp &lt;地图ID&gt;</code>：直接进入特定维度世界。</li>
+<li><code>/warp &lt;锚点ID&gt;</code>：传送到预定义的锚点位置。</li>
+</ul>
+</li>
+<li><strong>查询类</strong>:<ul>
+<li><code>/co i</code>：显示所选方块的历史操作记录。</li>
+<li><code>/co near</code>：查看周围一切交互记录。</li>
+<li><code>/invsee &lt;玩家ID&gt;</code>：查看目标玩家的物品栏。</li>
+</ul>
+</li>
+<li><strong>其他实用指令</strong>:<ul>
+<li><code>/afk</code>：标记为暂离状态。</li>
+<li><code>/suicide</code>：自杀并留下墓碑（会损失经验值），由GraveStonesPlus实现。</li>
+<li><code>/back</code>：回到最近一次死亡地点。</li>
+<li><code>/lay / /crawl / /spin</code>：执行不同动作效果。</li>
+<li><code>/skull</code>：获取生物头颅。</li>
+<li><code>/tps</code>：查看服务器性能指数；越高表示越流畅。</li>
+</ul>
+</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><strong>若遇到权限问题或其他异常情况，请联系管理员解决。</strong></li>
+<li><strong>近期因数据迁移导致部分功能暂时无法正常使用，请联系管理员解决。</strong></li>
+</ul>
+<h2 id="服务器使用插件一览"><a href="#服务器使用插件一览" class="headerlink" title="服务器使用插件一览"></a>服务器使用插件一览</h2><ul>
+<li><strong>EssentialsX</strong>：提供基础功能如回家、返回死亡点等。</li>
+<li><strong>CoreProtect</strong>：防止物品被盗，记录所有交易历史。</li>
+<li><strong>CreeperConfetti</strong>：苦力怕爆炸防护机制。</li>
+<li><strong>GraveStonesPlus</strong>：玩家死亡后留下的墓碑系统。</li>
+<li><strong>GSit</strong>：增加更多姿势选项，包括躺下、爬行等。</li>
+<li><strong>Multiverse-Core</strong>：穿梭于不同的存档世界之间（目前关闭）。</li>
+<li><strong>PlasmoVoice</strong>：近距离语音聊天功能（目前关闭）。</li>
+<li><strong>Terra</strong>：地形生成与修改插件。</li>
+<li><strong>Geyser</strong>：实现Java版与基岩版之间的互通。</li>
+<li><strong>ViaVersion</strong>：支持多版本客户端连接服务器。</li>
+<li><strong>SimpleNoCropTrample</strong>：防止农作物被践踏破坏。</li>
+<li><strong>LuckPerms-Bkkit</strong>：权限管理插件。</li>
+</ul>
+<h1 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h1>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+  </entry>
+  <entry>
+    <title>好康的内容</title>
+    <url>//post/%E5%A5%BD%E5%BA%B7%E7%9A%84%E5%86%85%E5%AE%B9.html</url>
+    <content><![CDATA[<h1 id="今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。"><a href="#今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。" class="headerlink" title="今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。"></a>今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> su</span><br></pre></td></tr></table></figure>
+<h3 id="这是一个代码框"><a href="#这是一个代码框" class="headerlink" title="这是一个代码框"></a>这是一个代码框</h3><p>section id&#x3D;”mmm”&gt;<br>    <h2>114514</h2><br>    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113849919341408&bvid=BV1QXwTeqEby&cid=27944353968&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe><br><br>    <h2>1919810</h2><br>    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=687506&auto=1&height=66"></iframe><br>  </section><br>  当然，Markdown语言能插入html代码。
+  </p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
       <categories>
-          
-          <category> 学习 </category>
-          
+        <category>乱七八糟</category>
       </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于一些杂项</title>
-      <link href="//post/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E6%9D%82%E9%A1%B9.html"/>
-      <url>//post/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E6%9D%82%E9%A1%B9.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="你知道吗？"><a href="#你知道吗？" class="headerlink" title="你知道吗？"></a>你知道吗？</h2><p>我们的官网使用了HEXO开源项目。但是本人不太精通所以只能先这么做了（原来的也下面还在，您可以访问：<a href="https://nanoturtle1145.github.io/index00.html%EF%BC%89">https://nanoturtle1145.github.io/index00.html）</a><br><a href="https://nanoturtle1145.github.io/index00.html">https://nanoturtle1145.github.io/index00.html</a></p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>HPSS服务器</title>
-      <link href="//post/HPSS%E6%9C%8D%E5%8A%A1%E5%99%A8.html"/>
-      <url>//post/HPSS%E6%9C%8D%E5%8A%A1%E5%99%A8.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="HPSS-Server-游玩指南"><a href="#HPSS-Server-游玩指南" class="headerlink" title="HPSS-Server 游玩指南"></a>HPSS-Server 游玩指南</h1><h2 id="服务器简介"><a href="#服务器简介" class="headerlink" title="服务器简介"></a>服务器简介</h2><p>本服务器于2023年12月15日首次开启测试。为了获得最佳体验，请使用Java 1.21.4版本，并支持基岩版。我们采用搭载了Intel Core i7 9750H处理器（笔记本）的Paper核心进行运作，理论上可支持多达100名玩家同时在线（实际承载量为35人，自己心里明白的）。</p><h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><ul><li><strong>CPU</strong>: Intel Core i7 9750H, 2.60GHz</li><li><strong>内存</strong>: 16GB</li><li><strong>磁盘</strong>: 品牌希捷酷鱼 ST1000LM024 HN-M101MBB<ul><li>容量：932GB（也用于其他数据存储）</li></ul></li><li><strong>显卡</strong>: GPU 0: Intel UHD Graphics 600<ul><li>GPU 1: NVIDIA GeForce GTX 1660 Ti</li></ul></li></ul><h2 id="加入HPSS"><a href="#加入HPSS" class="headerlink" title="加入HPSS"></a>加入HPSS</h2><p>你需要填写一份申请表格即可获得游玩资格：<br>*为什么审核？白名单如今已成为正版服务器的常规操作。（由于微软身份验证服务器时常宕机）您需要访问<a href="https://api.mojang.com/users/profiles/minecraft/">https://api.mojang.com/users/profiles/minecraft/</a>&lt;你的id&gt;进行查询，并且在审核通过时截图给群主&#x2F;管理员<br>例：</p><h2 id="游玩守则"><a href="#游玩守则" class="headerlink" title="游玩守则"></a>游玩守则</h2><ol><li><strong>禁止使用外挂和作弊插件</strong>：禁止任何形式的自动攻击（连点器除外）、飞行、加速、透视挖矿等。<ul><li>a. 禁止使用包括但不限于Wurst、Meteor、Baritone在内的多种作弊工具。</li><li>b. 禁教唆他人使用外挂或作弊软件。</li><li>c. 本服务器支持Tweakroo，但请勿滥用其功能。</li></ul></li><li><strong>禁止盗窃与破坏行为</strong>：不得窃取他人物品或破坏建筑设施。<ul><li>a. 对于无主或未知归属地的资源，未经许可不得擅自取用。</li><li>b. 服务器已安装CoreProtect插件，违规者将受到相应惩罚。</li></ul></li><li><strong>尊重被封禁玩家的财产</strong>：严禁收集或破坏已被封禁玩家基地内的资源。</li><li><strong>保护原创内容</strong>：未经允许，不得复制或盗用他人的创意作品及机械装置。</li><li><strong>避免制造干扰设备</strong>：禁止设置陷阱或其他可能严重影响其他玩家游戏体验的装置。</li><li><strong>文明交流</strong>：禁止言语骚扰、性暗示以及其他不适当的互动方式。</li><li><strong>尊重个人空间</strong>：未经同意，不得在他人领地附近施工或改动已有结构。</li><li><strong>规范宣传行为</strong>：禁止在公共区域展示带有组织标识的宣传材料。<ul><li>a. 禁止传播包含低俗内容的信息。</li></ul></li><li><strong>分享时保护隐私</strong>：当分享关于基地的图片至主群聊时，请确保坐标信息不被泄露。</li></ol><h2 id="命令大全"><a href="#命令大全" class="headerlink" title="命令大全"></a>命令大全</h2><ul><li><strong>传送类</strong>:<ul><li><code>/sethome</code>：设定当前位置为家点。</li><li><code>/home</code>：快速返回之前设定的家点。</li><li><code>/tpa &lt;玩家ID&gt;</code>：请求传送到某位玩家身边。</li><li><code>/tpaccept, /tpdeny</code>：接受&#x2F;拒绝他人的传送邀请。</li><li><code>/tpahere &lt;玩家ID&gt;</code>：邀请指定玩家来到自己的位置。</li><li><code>/tpacancel</code>：取消上一次发出的传送请求。</li><li><code>/tpr</code>：随机传送至某个地点。</li><li><code>/mv list</code>：列出所有可传送地点。</li><li><code>/mv tp &lt;地图ID&gt;</code>：直接进入特定维度世界。</li><li><code>/warp &lt;锚点ID&gt;</code>：传送到预定义的锚点位置。</li></ul></li><li><strong>查询类</strong>:<ul><li><code>/co i</code>：显示所选方块的历史操作记录。</li><li><code>/co near</code>：查看周围一切交互记录。</li><li><code>/invsee &lt;玩家ID&gt;</code>：查看目标玩家的物品栏。</li></ul></li><li><strong>其他实用指令</strong>:<ul><li><code>/afk</code>：标记为暂离状态。</li><li><code>/suicide</code>：自杀并留下墓碑（会损失经验值），由GraveStonesPlus实现。</li><li><code>/back</code>：回到最近一次死亡地点。</li><li><code>/lay / /crawl / /spin</code>：执行不同动作效果。</li><li><code>/skull</code>：获取生物头颅。</li><li><code>/tps</code>：查看服务器性能指数；越高表示越流畅。</li></ul></li></ul><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul><li><strong>若遇到权限问题或其他异常情况，请联系管理员解决。</strong></li><li><strong>近期因数据迁移导致部分功能暂时无法正常使用，请联系管理员解决。</strong></li></ul><h2 id="服务器使用插件一览"><a href="#服务器使用插件一览" class="headerlink" title="服务器使用插件一览"></a>服务器使用插件一览</h2><ul><li><strong>EssentialsX</strong>：提供基础功能如回家、返回死亡点等。</li><li><strong>CoreProtect</strong>：防止物品被盗，记录所有交易历史。</li><li><strong>CreeperConfetti</strong>：苦力怕爆炸防护机制。</li><li><strong>GraveStonesPlus</strong>：玩家死亡后留下的墓碑系统。</li><li><strong>GSit</strong>：增加更多姿势选项，包括躺下、爬行等。</li><li><strong>Multiverse-Core</strong>：穿梭于不同的存档世界之间（目前关闭）。</li><li><strong>PlasmoVoice</strong>：近距离语音聊天功能（目前关闭）。</li><li><strong>Terra</strong>：地形生成与修改插件。</li><li><strong>Geyser</strong>：实现Java版与基岩版之间的互通。</li><li><strong>ViaVersion</strong>：支持多版本客户端连接服务器。</li><li><strong>SimpleNoCropTrample</strong>：防止农作物被践踏破坏。</li><li><strong>LuckPerms-Bkkit</strong>：权限管理插件。</li></ul><h1 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h1><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>希望工作室</title>
-      <link href="//post/%E5%B8%8C%E6%9C%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4.html"/>
-      <url>//post/%E5%B8%8C%E6%9C%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="欢迎来到希望工作室官方网站！"><a href="#欢迎来到希望工作室官方网站！" class="headerlink" title="欢迎来到希望工作室官方网站！"></a>欢迎来到希望工作室官方网站！</h2><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="//post/hello-world.html"/>
-      <url>//post/hello-world.html</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>其他东西</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何让你的移动设备成为电脑副屏？</title>
+    <url>//post/%E5%A6%82%E4%BD%95%E8%AE%A9%E4%BD%A0%E7%9A%84%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E6%88%90%E4%B8%BA%E7%94%B5%E8%84%91%E5%89%AF%E5%B1%8F%EF%BC%9F.html</url>
+    <content><![CDATA[<h1 id="很好，你点进来了。"><a href="#很好，你点进来了。" class="headerlink" title="很好，你点进来了。"></a>很好，你点进来了。</h1><h2 id="目前本文章并未收录除Android™、iPhone®、iPad®和iPod®-Touch以外的其他操作系统的移动设备"><a href="#目前本文章并未收录除Android™、iPhone®、iPad®和iPod®-Touch以外的其他操作系统的移动设备" class="headerlink" title="目前本文章并未收录除Android™、iPhone®、iPad®和iPod® Touch以外的其他操作系统的移动设备"></a>目前本文章并未收录除<strong>Android™、iPhone®、iPad®和iPod® Touch</strong>以外的其他操作系统的移动设备</h2><h2 id="这个教程对Windows用户较为友好，macOS下的操作方式本文仅列出“Yam-Display”这一选项。并且“Yam-Display”仅可连接iPhone或iPad或iPod-Touch"><a href="#这个教程对Windows用户较为友好，macOS下的操作方式本文仅列出“Yam-Display”这一选项。并且“Yam-Display”仅可连接iPhone或iPad或iPod-Touch" class="headerlink" title="这个教程对Windows用户较为友好，macOS下的操作方式本文仅列出“Yam Display”这一选项。并且“Yam Display”仅可连接iPhone或iPad或iPod Touch"></a>这个教程对Windows用户较为友好，macOS下的操作方式本文仅列出“Yam Display”这一选项。并且“Yam Display”仅可连接iPhone或iPad或iPod Touch</h2><p>手先，你得有一台闲置的Android™设备，或者iPhone或iPad或iPod Touch。<br>然后，针对<strong>macOS用户</strong>，你可以使用Yam Display <strong>（iPhone或iPad或iPod Touch）</strong>；针对Windows用户，你可以使用Splashtop wired xdisplay。</p>
+<h2 id="Yam-Display"><a href="#Yam-Display" class="headerlink" title="Yam Display"></a>Yam Display</h2><h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h3><p>在你的macOS设备上，（OSX 10.15及以上能保证兼容性）搜索下载并安装<strong>Yam Display</strong>。<br><em>仙人指路：<a href="https://www.yamdisplay.com/">https://www.yamdisplay.com/</a></em></p>
+<h3 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h3><p>打开你的iPhone或iPad或iPod Touch里的<strong>App Store</strong>，搜索并下载<strong>Yam Display</strong>。</p>
+<h3 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h3><p>找到一根<strong>能传输数据</strong>的数据线连接你的手机和电脑，并且在macOS设备和iPhone或iPad或iPod Touch上打开<strong>Yam Display</strong>，即可食用。</p>
+<h2 id="Splashtop-wired-xdisplay"><a href="#Splashtop-wired-xdisplay" class="headerlink" title="Splashtop wired xdisplay"></a>Splashtop wired xdisplay</h2><h3 id="第一步-1"><a href="#第一步-1" class="headerlink" title="第一步"></a>第一步</h3><p>在你的电脑上搜索下载并安装<strong>Splashtop wired xdisplay</strong>。<br><em>仙人指路：指不了路了，官网链接慢，可以试试软件园（避雷<strong>安全下载</strong>就行）</em></p>
+<h3 id="第二步-1"><a href="#第二步-1" class="headerlink" title="第二步"></a>第二步</h3><p>在你的手机上下载并安装<strong>Splashtop wired xdisplay</strong>。</p>
+<h3 id="第三步-1"><a href="#第三步-1" class="headerlink" title="第三步"></a>第三步</h3><p>找到一根<strong>能传输数据</strong>的数据线连接你的手机和电脑，并且在手机上打开<strong>Splashtop wired xdisplay</strong>，即可食用。<br><em>仙人引用图片</em><br><img src="/img/%E5%A6%82%E4%BD%95%E8%AE%A9%E4%BD%A0%E7%9A%84%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E6%88%90%E4%B8%BA%E7%94%B5%E8%84%91%E5%89%AF%E5%B1%8F%EF%BC%9F/tp.jpg" alt="img"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="—THE-END—"><a href="#—THE-END—" class="headerlink" title="—THE END—"></a>—THE END—</h1>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <categories>
+        <category>科技</category>
+      </categories>
+      <tags>
+        <tag>科技</tag>
+        <tag>iOS</tag>
+        <tag>Android</tag>
+        <tag>苹果</tag>
+        <tag>安卓</tag>
+        <tag>玩机</tag>
+        <tag>闲置设备</tag>
+        <tag>Windows</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
 </search>
