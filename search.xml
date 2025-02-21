@@ -23,6 +23,105 @@
       </categories>
   </entry>
   <entry>
+    <title>HPSS服务器</title>
+    <url>//post/HPSS%E6%9C%8D%E5%8A%A1%E5%99%A8.html</url>
+    <content><![CDATA[<h1 id="HPSS-Server-游玩指南"><a href="#HPSS-Server-游玩指南" class="headerlink" title="HPSS-Server 游玩指南"></a>HPSS-Server 游玩指南</h1><h2 id="服务器简介"><a href="#服务器简介" class="headerlink" title="服务器简介"></a>服务器简介</h2><p>本服务器于2023年12月15日首次开启测试。为了获得最佳体验，请使用Java 1.21.4版本，并支持基岩版。我们采用搭载了Intel Core i7 9750H处理器（笔记本）的Paper核心进行运作，理论上可支持多达100名玩家同时在线（实际承载量为35人，自己心里明白的）。</p>
+<h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><ul>
+<li><strong>CPU</strong>: Intel Core i7 9750H, 2.60GHz</li>
+<li><strong>内存</strong>: 16GB</li>
+<li><strong>磁盘</strong>: 品牌希捷酷鱼 ST1000LM024 HN-M101MBB<ul>
+<li>容量：932GB（也用于其他数据存储）</li>
+</ul>
+</li>
+<li><strong>显卡</strong>: GPU 0: Intel UHD Graphics 600<ul>
+<li>GPU 1: NVIDIA GeForce GTX 1660 Ti</li>
+</ul>
+</li>
+</ul>
+<h2 id="加入HPSS"><a href="#加入HPSS" class="headerlink" title="加入HPSS"></a>加入HPSS</h2><p>你需要填写一份申请表格即可获得游玩资格：<br>*为什么审核？白名单如今已成为正版服务器的常规操作。（由于微软身份验证服务器时常宕机）您需要访问<a href="https://api.mojang.com/users/profiles/minecraft/">https://api.mojang.com/users/profiles/minecraft/</a>&lt;你的id&gt;进行查询，并且在审核通过时截图给群主&#x2F;管理员<br>例：</p>
+<h2 id="游玩守则"><a href="#游玩守则" class="headerlink" title="游玩守则"></a>游玩守则</h2><ol>
+<li><strong>禁止使用外挂和作弊插件</strong>：禁止任何形式的自动攻击（连点器除外）、飞行、加速、透视挖矿等。<ul>
+<li>a. 禁止使用包括但不限于Wurst、Meteor、Baritone在内的多种作弊工具。</li>
+<li>b. 禁教唆他人使用外挂或作弊软件。</li>
+<li>c. 本服务器支持Tweakroo，但请勿滥用其功能。</li>
+</ul>
+</li>
+<li><strong>禁止盗窃与破坏行为</strong>：不得窃取他人物品或破坏建筑设施。<ul>
+<li>a. 对于无主或未知归属地的资源，未经许可不得擅自取用。</li>
+<li>b. 服务器已安装CoreProtect插件，违规者将受到相应惩罚。</li>
+</ul>
+</li>
+<li><strong>尊重被封禁玩家的财产</strong>：严禁收集或破坏已被封禁玩家基地内的资源。</li>
+<li><strong>保护原创内容</strong>：未经允许，不得复制或盗用他人的创意作品及机械装置。</li>
+<li><strong>避免制造干扰设备</strong>：禁止设置陷阱或其他可能严重影响其他玩家游戏体验的装置。</li>
+<li><strong>文明交流</strong>：禁止言语骚扰、性暗示以及其他不适当的互动方式。</li>
+<li><strong>尊重个人空间</strong>：未经同意，不得在他人领地附近施工或改动已有结构。</li>
+<li><strong>规范宣传行为</strong>：禁止在公共区域展示带有组织标识的宣传材料。<ul>
+<li>a. 禁止传播包含低俗内容的信息。</li>
+</ul>
+</li>
+<li><strong>分享时保护隐私</strong>：当分享关于基地的图片至主群聊时，请确保坐标信息不被泄露。</li>
+</ol>
+<h2 id="命令大全"><a href="#命令大全" class="headerlink" title="命令大全"></a>命令大全</h2><ul>
+<li><strong>传送类</strong>:<ul>
+<li><code>/sethome</code>：设定当前位置为家点。</li>
+<li><code>/home</code>：快速返回之前设定的家点。</li>
+<li><code>/tpa &lt;玩家ID&gt;</code>：请求传送到某位玩家身边。</li>
+<li><code>/tpaccept, /tpdeny</code>：接受&#x2F;拒绝他人的传送邀请。</li>
+<li><code>/tpahere &lt;玩家ID&gt;</code>：邀请指定玩家来到自己的位置。</li>
+<li><code>/tpacancel</code>：取消上一次发出的传送请求。</li>
+<li><code>/tpr</code>：随机传送至某个地点。</li>
+<li><code>/mv list</code>：列出所有可传送地点。</li>
+<li><code>/mv tp &lt;地图ID&gt;</code>：直接进入特定维度世界。</li>
+<li><code>/warp &lt;锚点ID&gt;</code>：传送到预定义的锚点位置。</li>
+</ul>
+</li>
+<li><strong>查询类</strong>:<ul>
+<li><code>/co i</code>：显示所选方块的历史操作记录。</li>
+<li><code>/co near</code>：查看周围一切交互记录。</li>
+<li><code>/invsee &lt;玩家ID&gt;</code>：查看目标玩家的物品栏。</li>
+</ul>
+</li>
+<li><strong>其他实用指令</strong>:<ul>
+<li><code>/afk</code>：标记为暂离状态。</li>
+<li><code>/suicide</code>：自杀并留下墓碑（会损失经验值），由GraveStonesPlus实现。</li>
+<li><code>/back</code>：回到最近一次死亡地点。</li>
+<li><code>/lay / /crawl / /spin</code>：执行不同动作效果。</li>
+<li><code>/skull</code>：获取生物头颅。</li>
+<li><code>/tps</code>：查看服务器性能指数；越高表示越流畅。</li>
+</ul>
+</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><strong>若遇到权限问题或其他异常情况，请联系管理员解决。</strong></li>
+<li><strong>近期因数据迁移导致部分功能暂时无法正常使用，请联系管理员解决。</strong></li>
+</ul>
+<h2 id="服务器使用插件一览"><a href="#服务器使用插件一览" class="headerlink" title="服务器使用插件一览"></a>服务器使用插件一览</h2><ul>
+<li><strong>EssentialsX</strong>：提供基础功能如回家、返回死亡点等。</li>
+<li><strong>CoreProtect</strong>：防止物品被盗，记录所有交易历史。</li>
+<li><strong>CreeperConfetti</strong>：苦力怕爆炸防护机制。</li>
+<li><strong>GraveStonesPlus</strong>：玩家死亡后留下的墓碑系统。</li>
+<li><strong>GSit</strong>：增加更多姿势选项，包括躺下、爬行等。</li>
+<li><strong>Multiverse-Core</strong>：穿梭于不同的存档世界之间（目前关闭）。</li>
+<li><strong>PlasmoVoice</strong>：近距离语音聊天功能（目前关闭）。</li>
+<li><strong>Terra</strong>：地形生成与修改插件。</li>
+<li><strong>Geyser</strong>：实现Java版与基岩版之间的互通。</li>
+<li><strong>ViaVersion</strong>：支持多版本客户端连接服务器。</li>
+<li><strong>SimpleNoCropTrample</strong>：防止农作物被践踏破坏。</li>
+<li><strong>LuckPerms-Bkkit</strong>：权限管理插件。</li>
+</ul>
+<h1 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h1>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>//post/hello-world.html</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -160,6 +259,43 @@
 	    </script>]]></content>
   </entry>
   <entry>
+    <title>发病</title>
+    <url>//post/%E5%8F%91%E7%97%85.html</url>
+    <content><![CDATA[<p>🌟【手抄报主题】🌟<br>“老北京的人性挣扎——骆驼祥子启示录”</p>
+<p>📚 内容素材推荐：<br>1️⃣ 【作者名片】</p>
+<p>老舍（1899-1966）原名舒庆春</p>
+<p>“人民艺术家”称号获得者</p>
+<p>代表作：《四世同堂》《茶馆》《龙须沟》</p>
+<p>2️⃣ 【故事简笔画】<br>时间轴式呈现：<br>1910年代 → 祥子进城当人力车夫（配手绘黄包车）<br>三年后 → 买上新车（配笑脸祥子+新车）<br>军阀混战 → 车被抢走（配乌云+枪械简笔画）<br>二次攒钱 → 被孙侦探敲诈（配钱袋打叉）<br>被迫结婚 → 虎妞难产（配医院十字架）<br>小福子去世 → 祥子堕落（配酒瓶+破衣）</p>
+<p>3️⃣ 【人物性格表】</p>
+<p>人物	关键词	命运轨迹<br>祥子	执着→麻木	追梦者→行尸走肉<br>虎妞	强势→悲剧	控制者→难产亡故<br>刘四爷	精明→孤独	车厂主→晚景凄凉<br>小福子	隐忍→绝望	被卖女→自缢身亡<br>4️⃣ 【主题探究区】<br>▶ 社会之问：旧社会如何吞噬人性？<br>▶ 人性之思：环境决定论VS个人选择<br>▶ 现代启示：当代”祥子”现象观察</p>
+<p>5️⃣ 【经典语句墙】<br>“钱会把人引进恶劣的社会中去，把高尚的理想撇开”<br>“最伟大的牺牲是忍辱，最伟大的忍辱是预备反抗”<br>（建议用毛笔字体呈现）</p>
+<p>6️⃣ 【互动板块】<br>▶ 征集：如果你是祥子，会在第几次打击后放弃？<br>▶ 知识角：老北京人力车夫日收入相当于现在__元？</p>
+<p>🎨 排版设计方案：<br>📐 布局结构（A3横版）：<br>左上角：主标题（祥子拉车动态插画+艺术字）<br>右上角：作者专栏+老舍肖像简笔画<br>中部左侧：故事时间轴（用胡同墙面做背景）<br>中部右侧：人物关系树状图（配Q版头像）<br>底部左：社会背景分析（旧北京地图底纹）<br>底部右：经典语句+互动区（便签纸造型）</p>
+<p>🎨 视觉设计建议：</p>
+<p>主色调：黄褐色系（呼应老北京风貌）</p>
+<p>插图元素：人力车&#x2F;四合院&#x2F;骆驼剪影&#x2F;铜钱纹</p>
+<p>字体设计：标题用立体字，正文用仿宋体</p>
+<p>装饰元素：瓦当纹边框、民国月份牌风格花边</p>
+<p>💡 创意加分项：</p>
+<p>可设计”祥子生存计算器”：列出三次买车花费对比</p>
+<p>附老北京方言小词典：”嚼谷””拉晚儿”等词汇解析</p>
+<p>增设”新视角”板块：如果用手机记录祥子的人生…</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <tags>
+        <tag>学习相关</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于寒假最后几天憋了泡大的这件事</title>
     <url>//post/%E5%85%B3%E4%BA%8E%E5%AF%92%E5%81%87%E6%9C%80%E5%90%8E%E5%87%A0%E5%A4%A9%E6%86%8B%E4%BA%86%E6%B3%A1%E5%A4%A7%E7%9A%84%E8%BF%99%E4%BB%B6%E4%BA%8B.html</url>
     <content><![CDATA[<h1 id="你们好"><a href="#你们好" class="headerlink" title="你们好"></a>你们好</h1><p>我是NanoTurtle!<br>反正开始写文章的时候，作业已经差不多了。</p>
@@ -219,46 +355,11 @@
       </tags>
   </entry>
   <entry>
-    <title>发病</title>
-    <url>//post/%E5%8F%91%E7%97%85.html</url>
-    <content><![CDATA[<p>🌟【手抄报主题】🌟<br>“老北京的人性挣扎——骆驼祥子启示录”</p>
-<p>📚 内容素材推荐：<br>1️⃣ 【作者名片】</p>
-<p>老舍（1899-1966）原名舒庆春</p>
-<p>“人民艺术家”称号获得者</p>
-<p>代表作：《四世同堂》《茶馆》《龙须沟》</p>
-<p>2️⃣ 【故事简笔画】<br>时间轴式呈现：<br>1910年代 → 祥子进城当人力车夫（配手绘黄包车）<br>三年后 → 买上新车（配笑脸祥子+新车）<br>军阀混战 → 车被抢走（配乌云+枪械简笔画）<br>二次攒钱 → 被孙侦探敲诈（配钱袋打叉）<br>被迫结婚 → 虎妞难产（配医院十字架）<br>小福子去世 → 祥子堕落（配酒瓶+破衣）</p>
-<p>3️⃣ 【人物性格表】</p>
-<p>人物	关键词	命运轨迹<br>祥子	执着→麻木	追梦者→行尸走肉<br>虎妞	强势→悲剧	控制者→难产亡故<br>刘四爷	精明→孤独	车厂主→晚景凄凉<br>小福子	隐忍→绝望	被卖女→自缢身亡<br>4️⃣ 【主题探究区】<br>▶ 社会之问：旧社会如何吞噬人性？<br>▶ 人性之思：环境决定论VS个人选择<br>▶ 现代启示：当代”祥子”现象观察</p>
-<p>5️⃣ 【经典语句墙】<br>“钱会把人引进恶劣的社会中去，把高尚的理想撇开”<br>“最伟大的牺牲是忍辱，最伟大的忍辱是预备反抗”<br>（建议用毛笔字体呈现）</p>
-<p>6️⃣ 【互动板块】<br>▶ 征集：如果你是祥子，会在第几次打击后放弃？<br>▶ 知识角：老北京人力车夫日收入相当于现在__元？</p>
-<p>🎨 排版设计方案：<br>📐 布局结构（A3横版）：<br>左上角：主标题（祥子拉车动态插画+艺术字）<br>右上角：作者专栏+老舍肖像简笔画<br>中部左侧：故事时间轴（用胡同墙面做背景）<br>中部右侧：人物关系树状图（配Q版头像）<br>底部左：社会背景分析（旧北京地图底纹）<br>底部右：经典语句+互动区（便签纸造型）</p>
-<p>🎨 视觉设计建议：</p>
-<p>主色调：黄褐色系（呼应老北京风貌）</p>
-<p>插图元素：人力车&#x2F;四合院&#x2F;骆驼剪影&#x2F;铜钱纹</p>
-<p>字体设计：标题用立体字，正文用仿宋体</p>
-<p>装饰元素：瓦当纹边框、民国月份牌风格花边</p>
-<p>💡 创意加分项：</p>
-<p>可设计”祥子生存计算器”：列出三次买车花费对比</p>
-<p>附老北京方言小词典：”嚼谷””拉晚儿”等词汇解析</p>
-<p>增设”新视角”板块：如果用手机记录祥子的人生…</p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>]]></content>
-      <tags>
-        <tag>学习相关</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>好看的图片</title>
-    <url>//post/%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BE%E7%89%87.html</url>
-    <content><![CDATA[<p><img src="/img/yoxi/1.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/2.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/3.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/4.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/5.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/6.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/7.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/8.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/9.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/10.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/11.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/12.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/13.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/14.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/15.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/16.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/17.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/18.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/19.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/20.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/21.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/22.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/23.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/24.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/25.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/26.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/27.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/28.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/29.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/30.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/31.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+    <title>好康的内容</title>
+    <url>//post/%E5%A5%BD%E5%BA%B7%E7%9A%84%E5%86%85%E5%AE%B9.html</url>
+    <content><![CDATA[<h1 id="今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。"><a href="#今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。" class="headerlink" title="今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。"></a>今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> su</span><br></pre></td></tr></table></figure>
+<h3 id="这是一个代码框"><a href="#这是一个代码框" class="headerlink" title="这是一个代码框"></a>这是一个代码框</h3><p>section id&#x3D;”mmm”&gt;<br>    <h2>114514</h2><br>    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113849919341408&bvid=BV1QXwTeqEby&cid=27944353968&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe><br><br>    <h2>1919810</h2><br>    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=687506&auto=1&height=66"></iframe><br>  </section><br>  当然，Markdown语言能插入html代码。
+  </p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -270,10 +371,10 @@
 	    gitalk.render("gitalk-container");
 	    </script>]]></content>
       <categories>
-        <category>ACGN</category>
+        <category>乱七八糟</category>
       </categories>
       <tags>
-        <tag>ACGN-东方Project</tag>
+        <tag>其他东西</tag>
       </tags>
   </entry>
   <entry>
@@ -359,159 +460,6 @@
       </tags>
   </entry>
   <entry>
-    <title>希望工作室</title>
-    <url>//post/%E5%B8%8C%E6%9C%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4.html</url>
-    <content><![CDATA[<h2 id="欢迎来到希望工作室官方网站！"><a href="#欢迎来到希望工作室官方网站！" class="headerlink" title="欢迎来到希望工作室官方网站！"></a>欢迎来到希望工作室官方网站！</h2>
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>]]></content>
-  </entry>
-  <entry>
-    <title>新主题测试内容</title>
-    <url>//post/%E6%96%B0%E4%B8%BB%E9%A2%98%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9.html</url>
-    <content><![CDATA[<h1 id="哇多么好的机会啊"><a href="#哇多么好的机会啊" class="headerlink" title="哇多么好的机会啊"></a>哇多么好的机会啊</h1>
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>]]></content>
-      <tags>
-        <tag>乱七八糟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HPSS服务器</title>
-    <url>//post/HPSS%E6%9C%8D%E5%8A%A1%E5%99%A8.html</url>
-    <content><![CDATA[<h1 id="HPSS-Server-游玩指南"><a href="#HPSS-Server-游玩指南" class="headerlink" title="HPSS-Server 游玩指南"></a>HPSS-Server 游玩指南</h1><h2 id="服务器简介"><a href="#服务器简介" class="headerlink" title="服务器简介"></a>服务器简介</h2><p>本服务器于2023年12月15日首次开启测试。为了获得最佳体验，请使用Java 1.21.4版本，并支持基岩版。我们采用搭载了Intel Core i7 9750H处理器（笔记本）的Paper核心进行运作，理论上可支持多达100名玩家同时在线（实际承载量为35人，自己心里明白的）。</p>
-<h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><ul>
-<li><strong>CPU</strong>: Intel Core i7 9750H, 2.60GHz</li>
-<li><strong>内存</strong>: 16GB</li>
-<li><strong>磁盘</strong>: 品牌希捷酷鱼 ST1000LM024 HN-M101MBB<ul>
-<li>容量：932GB（也用于其他数据存储）</li>
-</ul>
-</li>
-<li><strong>显卡</strong>: GPU 0: Intel UHD Graphics 600<ul>
-<li>GPU 1: NVIDIA GeForce GTX 1660 Ti</li>
-</ul>
-</li>
-</ul>
-<h2 id="加入HPSS"><a href="#加入HPSS" class="headerlink" title="加入HPSS"></a>加入HPSS</h2><p>你需要填写一份申请表格即可获得游玩资格：<br>*为什么审核？白名单如今已成为正版服务器的常规操作。（由于微软身份验证服务器时常宕机）您需要访问<a href="https://api.mojang.com/users/profiles/minecraft/">https://api.mojang.com/users/profiles/minecraft/</a>&lt;你的id&gt;进行查询，并且在审核通过时截图给群主&#x2F;管理员<br>例：</p>
-<h2 id="游玩守则"><a href="#游玩守则" class="headerlink" title="游玩守则"></a>游玩守则</h2><ol>
-<li><strong>禁止使用外挂和作弊插件</strong>：禁止任何形式的自动攻击（连点器除外）、飞行、加速、透视挖矿等。<ul>
-<li>a. 禁止使用包括但不限于Wurst、Meteor、Baritone在内的多种作弊工具。</li>
-<li>b. 禁教唆他人使用外挂或作弊软件。</li>
-<li>c. 本服务器支持Tweakroo，但请勿滥用其功能。</li>
-</ul>
-</li>
-<li><strong>禁止盗窃与破坏行为</strong>：不得窃取他人物品或破坏建筑设施。<ul>
-<li>a. 对于无主或未知归属地的资源，未经许可不得擅自取用。</li>
-<li>b. 服务器已安装CoreProtect插件，违规者将受到相应惩罚。</li>
-</ul>
-</li>
-<li><strong>尊重被封禁玩家的财产</strong>：严禁收集或破坏已被封禁玩家基地内的资源。</li>
-<li><strong>保护原创内容</strong>：未经允许，不得复制或盗用他人的创意作品及机械装置。</li>
-<li><strong>避免制造干扰设备</strong>：禁止设置陷阱或其他可能严重影响其他玩家游戏体验的装置。</li>
-<li><strong>文明交流</strong>：禁止言语骚扰、性暗示以及其他不适当的互动方式。</li>
-<li><strong>尊重个人空间</strong>：未经同意，不得在他人领地附近施工或改动已有结构。</li>
-<li><strong>规范宣传行为</strong>：禁止在公共区域展示带有组织标识的宣传材料。<ul>
-<li>a. 禁止传播包含低俗内容的信息。</li>
-</ul>
-</li>
-<li><strong>分享时保护隐私</strong>：当分享关于基地的图片至主群聊时，请确保坐标信息不被泄露。</li>
-</ol>
-<h2 id="命令大全"><a href="#命令大全" class="headerlink" title="命令大全"></a>命令大全</h2><ul>
-<li><strong>传送类</strong>:<ul>
-<li><code>/sethome</code>：设定当前位置为家点。</li>
-<li><code>/home</code>：快速返回之前设定的家点。</li>
-<li><code>/tpa &lt;玩家ID&gt;</code>：请求传送到某位玩家身边。</li>
-<li><code>/tpaccept, /tpdeny</code>：接受&#x2F;拒绝他人的传送邀请。</li>
-<li><code>/tpahere &lt;玩家ID&gt;</code>：邀请指定玩家来到自己的位置。</li>
-<li><code>/tpacancel</code>：取消上一次发出的传送请求。</li>
-<li><code>/tpr</code>：随机传送至某个地点。</li>
-<li><code>/mv list</code>：列出所有可传送地点。</li>
-<li><code>/mv tp &lt;地图ID&gt;</code>：直接进入特定维度世界。</li>
-<li><code>/warp &lt;锚点ID&gt;</code>：传送到预定义的锚点位置。</li>
-</ul>
-</li>
-<li><strong>查询类</strong>:<ul>
-<li><code>/co i</code>：显示所选方块的历史操作记录。</li>
-<li><code>/co near</code>：查看周围一切交互记录。</li>
-<li><code>/invsee &lt;玩家ID&gt;</code>：查看目标玩家的物品栏。</li>
-</ul>
-</li>
-<li><strong>其他实用指令</strong>:<ul>
-<li><code>/afk</code>：标记为暂离状态。</li>
-<li><code>/suicide</code>：自杀并留下墓碑（会损失经验值），由GraveStonesPlus实现。</li>
-<li><code>/back</code>：回到最近一次死亡地点。</li>
-<li><code>/lay / /crawl / /spin</code>：执行不同动作效果。</li>
-<li><code>/skull</code>：获取生物头颅。</li>
-<li><code>/tps</code>：查看服务器性能指数；越高表示越流畅。</li>
-</ul>
-</li>
-</ul>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li><strong>若遇到权限问题或其他异常情况，请联系管理员解决。</strong></li>
-<li><strong>近期因数据迁移导致部分功能暂时无法正常使用，请联系管理员解决。</strong></li>
-</ul>
-<h2 id="服务器使用插件一览"><a href="#服务器使用插件一览" class="headerlink" title="服务器使用插件一览"></a>服务器使用插件一览</h2><ul>
-<li><strong>EssentialsX</strong>：提供基础功能如回家、返回死亡点等。</li>
-<li><strong>CoreProtect</strong>：防止物品被盗，记录所有交易历史。</li>
-<li><strong>CreeperConfetti</strong>：苦力怕爆炸防护机制。</li>
-<li><strong>GraveStonesPlus</strong>：玩家死亡后留下的墓碑系统。</li>
-<li><strong>GSit</strong>：增加更多姿势选项，包括躺下、爬行等。</li>
-<li><strong>Multiverse-Core</strong>：穿梭于不同的存档世界之间（目前关闭）。</li>
-<li><strong>PlasmoVoice</strong>：近距离语音聊天功能（目前关闭）。</li>
-<li><strong>Terra</strong>：地形生成与修改插件。</li>
-<li><strong>Geyser</strong>：实现Java版与基岩版之间的互通。</li>
-<li><strong>ViaVersion</strong>：支持多版本客户端连接服务器。</li>
-<li><strong>SimpleNoCropTrample</strong>：防止农作物被践踏破坏。</li>
-<li><strong>LuckPerms-Bkkit</strong>：权限管理插件。</li>
-</ul>
-<h1 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h1>
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>]]></content>
-  </entry>
-  <entry>
-    <title>好康的内容</title>
-    <url>//post/%E5%A5%BD%E5%BA%B7%E7%9A%84%E5%86%85%E5%AE%B9.html</url>
-    <content><![CDATA[<h1 id="今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。"><a href="#今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。" class="headerlink" title="今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。"></a>今天是2025年，我终于差不多搞懂了这到底是什么狗屁逻辑。</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> su</span><br></pre></td></tr></table></figure>
-<h3 id="这是一个代码框"><a href="#这是一个代码框" class="headerlink" title="这是一个代码框"></a>这是一个代码框</h3><p>section id&#x3D;”mmm”&gt;<br>    <h2>114514</h2><br>    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113849919341408&bvid=BV1QXwTeqEby&cid=27944353968&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe><br><br>    <h2>1919810</h2><br>    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=687506&auto=1&height=66"></iframe><br>  </section><br>  当然，Markdown语言能插入html代码。
-  </p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>]]></content>
-      <categories>
-        <category>乱七八糟</category>
-      </categories>
-      <tags>
-        <tag>其他东西</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何让你的移动设备成为电脑副屏？</title>
     <url>//post/%E5%A6%82%E4%BD%95%E8%AE%A9%E4%BD%A0%E7%9A%84%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E6%88%90%E4%B8%BA%E7%94%B5%E8%84%91%E5%89%AF%E5%B1%8F%EF%BC%9F.html</url>
     <content><![CDATA[<h1 id="很好，你点进来了。"><a href="#很好，你点进来了。" class="headerlink" title="很好，你点进来了。"></a>很好，你点进来了。</h1><h2 id="目前本文章并未收录除Android™、iPhone®、iPad®和iPod®-Touch以外的其他操作系统的移动设备"><a href="#目前本文章并未收录除Android™、iPhone®、iPad®和iPod®-Touch以外的其他操作系统的移动设备" class="headerlink" title="目前本文章并未收录除Android™、iPhone®、iPad®和iPod® Touch以外的其他操作系统的移动设备"></a>目前本文章并未收录除<strong>Android™、iPhone®、iPad®和iPod® Touch</strong>以外的其他操作系统的移动设备</h2><h2 id="这个教程对Windows用户较为友好，macOS下的操作方式本文仅列出“Yam-Display”这一选项。并且“Yam-Display”仅可连接iPhone或iPad或iPod-Touch"><a href="#这个教程对Windows用户较为友好，macOS下的操作方式本文仅列出“Yam-Display”这一选项。并且“Yam-Display”仅可连接iPhone或iPad或iPod-Touch" class="headerlink" title="这个教程对Windows用户较为友好，macOS下的操作方式本文仅列出“Yam Display”这一选项。并且“Yam Display”仅可连接iPhone或iPad或iPod Touch"></a>这个教程对Windows用户较为友好，macOS下的操作方式本文仅列出“Yam Display”这一选项。并且“Yam Display”仅可连接iPhone或iPad或iPod Touch</h2><p>手先，你得有一台闲置的Android™设备，或者iPhone或iPad或iPod Touch。<br>然后，针对<strong>macOS用户</strong>，你可以使用Yam Display <strong>（iPhone或iPad或iPod Touch）</strong>；针对Windows用户，你可以使用Splashtop wired xdisplay。</p>
@@ -544,6 +492,104 @@
         <tag>闲置设备</tag>
         <tag>Windows</tag>
         <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>希望工作室</title>
+    <url>//post/%E5%B8%8C%E6%9C%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4.html</url>
+    <content><![CDATA[<h2 id="欢迎来到希望工作室官方网站！"><a href="#欢迎来到希望工作室官方网站！" class="headerlink" title="欢迎来到希望工作室官方网站！"></a>欢迎来到希望工作室官方网站！</h2>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+  </entry>
+  <entry>
+    <title>好看的图片</title>
+    <url>//post/%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BE%E7%89%87.html</url>
+    <content><![CDATA[<p><img src="/img/yoxi/1.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/2.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/3.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/4.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/5.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/6.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/7.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/8.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/9.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/10.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/11.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/12.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/13.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/14.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/15.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/16.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/17.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/18.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/19.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/20.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/21.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/22.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/23.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/24.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/25.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/26.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/27.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/28.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/29.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/30.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/img/yoxi/31.gif" alt="好看的"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <categories>
+        <category>ACGN</category>
+      </categories>
+      <tags>
+        <tag>ACGN-东方Project</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新主题测试内容</title>
+    <url>//post/%E6%96%B0%E4%B8%BB%E9%A2%98%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9.html</url>
+    <content><![CDATA[<h1 id="哇多么好的机会啊"><a href="#哇多么好的机会啊" class="headerlink" title="哇多么好的机会啊"></a>哇多么好的机会啊</h1>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <tags>
+        <tag>乱七八糟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>班级神秘生物档案之：炫鞋哥</title>
+    <url>//post/%E7%8F%AD%E7%BA%A7%E7%A5%9E%E7%A7%98%E7%94%9F%E7%89%A9%E6%A1%A3%E6%A1%88%E4%B9%8B%EF%BC%9A%E7%82%AB%E9%9E%8B%E5%93%A5.html</url>
+    <content><![CDATA[<div class="ds-icon da6cda9a" style="font-size: 60px; width: 60px; height: 60px;"><svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="path" d="M27.501 8.46875C27.249 8.3457 27.1406 8.58008 26.9932 8.69922C26.9434 8.73828 26.9004 8.78906 26.8584 8.83398C26.4902 9.22852 26.0605 9.48633 25.5 9.45508C24.6787 9.41016 23.9785 9.66797 23.3594 10.2969C23.2275 9.52148 22.79 9.05859 22.125 8.76172C21.7764 8.60742 21.4238 8.45312 21.1807 8.11719C21.0098 7.87891 20.9639 7.61328 20.8779 7.35156C20.8242 7.19336 20.7695 7.03125 20.5879 7.00391C20.3906 6.97266 20.3135 7.13867 20.2363 7.27734C19.9258 7.84375 19.8066 8.46875 19.8174 9.10156C19.8447 10.5234 20.4453 11.6562 21.6367 12.4629C21.7725 12.5547 21.8076 12.6484 21.7646 12.7832C21.6836 13.0605 21.5869 13.3301 21.501 13.6074C21.4473 13.7852 21.3662 13.8242 21.1768 13.7461C20.5225 13.4727 19.957 13.0684 19.458 12.5781C18.6104 11.7578 17.8438 10.8516 16.8877 10.1426C16.6631 9.97656 16.4395 9.82227 16.207 9.67578C15.2314 8.72656 16.335 7.94727 16.5898 7.85547C16.8574 7.75977 16.6826 7.42773 15.8193 7.43164C14.957 7.43555 14.167 7.72461 13.1611 8.10938C13.0137 8.16797 12.8594 8.21094 12.7002 8.24414C11.7871 8.07227 10.8389 8.0332 9.84766 8.14453C7.98242 8.35352 6.49219 9.23633 5.39648 10.7441C4.08105 12.5547 3.77148 14.6133 4.15039 16.7617C4.54883 19.0234 5.70215 20.8984 7.47559 22.3633C9.31348 23.8809 11.4307 24.625 13.8457 24.4824C15.3125 24.3984 16.9463 24.2012 18.7881 22.6406C19.2529 22.8711 19.7402 22.9629 20.5498 23.0332C21.1729 23.0918 21.7725 23.002 22.2373 22.9062C22.9648 22.752 22.9141 22.0781 22.6514 21.9531C20.5186 20.959 20.9863 21.3633 20.5605 21.0371C21.6445 19.752 23.2783 18.418 23.917 14.0977C23.9668 13.7539 23.9238 13.5391 23.917 13.2598C23.9131 13.0918 23.9512 13.0254 24.1445 13.0059C24.6787 12.9453 25.1973 12.7988 25.6738 12.5352C27.0557 11.7793 27.6123 10.5391 27.7441 9.05078C27.7637 8.82422 27.7402 8.58789 27.501 8.46875ZM15.46 21.8613C13.3926 20.2344 12.3906 19.6992 11.9766 19.7227C11.5898 19.7441 11.6592 20.1875 11.7441 20.4766C11.833 20.7617 11.9492 20.959 12.1123 21.209C12.2246 21.375 12.3018 21.623 12 21.8066C11.334 22.2207 10.1768 21.668 10.1221 21.6406C8.77539 20.8477 7.64941 19.7988 6.85547 18.3652C6.08984 16.9844 5.64453 15.5039 5.57129 13.9238C5.55176 13.541 5.66406 13.4062 6.04297 13.3379C6.54199 13.2461 7.05762 13.2266 7.55664 13.2988C9.66602 13.6074 11.4619 14.5527 12.9668 16.0469C13.8262 16.9004 14.4766 17.918 15.1465 18.9121C15.8584 19.9688 16.625 20.9746 17.6006 21.7988C17.9443 22.0879 18.2197 22.3086 18.4824 22.4707C17.6895 22.5586 16.3652 22.5781 15.46 21.8613ZM16.4502 15.4805C16.4502 15.3105 16.5859 15.1758 16.7568 15.1758C16.7949 15.1758 16.8301 15.1836 16.8613 15.1953C16.9033 15.2109 16.9424 15.2344 16.9727 15.2695C17.0273 15.3223 17.0586 15.4004 17.0586 15.4805C17.0586 15.6504 16.9229 15.7852 16.7529 15.7852C16.582 15.7852 16.4502 15.6504 16.4502 15.4805ZM19.5273 17.0625C19.3301 17.1426 19.1328 17.2129 18.9434 17.2207C18.6494 17.2344 18.3281 17.1152 18.1533 16.9688C17.8828 16.7422 17.6895 16.6152 17.6074 16.2168C17.5732 16.0469 17.5928 15.7852 17.623 15.6348C17.6934 15.3105 17.6152 15.1035 17.3877 14.9141C17.2012 14.7598 16.9658 14.7188 16.7061 14.7188C16.6094 14.7188 16.5205 14.6758 16.4541 14.6406C16.3457 14.5859 16.2568 14.4512 16.3418 14.2852C16.3691 14.2324 16.501 14.1016 16.5322 14.0781C16.8838 13.877 17.29 13.9434 17.666 14.0938C18.0146 14.2363 18.2773 14.498 18.6562 14.8672C19.0439 15.3145 19.1133 15.4395 19.334 15.7734C19.5078 16.0371 19.667 16.3066 19.7754 16.6152C19.8408 16.8066 19.7559 16.9648 19.5273 17.0625Z" fill-rule="nonzero" fill="#4D6BFE"></path></svg></div>
+
+<h3 id="由DeepSeek-r1-8b模型生成"><a href="#由DeepSeek-r1-8b模型生成" class="headerlink" title="由DeepSeek-r1:8b模型生成"></a>由DeepSeek-r1:8b模型生成</h3><p><code>&gt;&gt;&gt; 我们班级里很多男生喜欢攀比鞋子，这是为什么</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;think&gt;</span><br><span class="line">思考内容：</span><br><span class="line">嗯，我们班级里有不少男生喜欢攀比鞋子，作为一个刚进入高中生活的学生，我对这个现象感到好奇。为什么会出现这种情况呢？我</span><br><span class="line">想先从基本概念入手，看看“攀比”是什么意思。“攀比”在中文里通常指的是因为想要达到某种标准而进行不必要的比较和追求，</span><br><span class="line">尤其是在与他人相比时。所以，当男生们谈论鞋子的时候，他们可能是出于一种心理上的比较和竞争。</span><br><span class="line"></span><br><span class="line">接下来，我想到高中是一个关键的社会化阶段，尤其对于男性来说，这一阶段通常被认为是塑造男性身份和自我认同的重要时期。在</span><br><span class="line">这个过程中，外表，特别是服装和鞋子，对形象的影响可能非常大。鞋子的种类和品牌可以反映一个人的地位、经济状况甚至个性。</span><br><span class="line">因此，当男生们谈论鞋子的时候，他们实际上是在通过这种方式来展示自己的社会阶层和个体价值。</span><br><span class="line"></span><br><span class="line">我想进一步分析一下为什么鞋子会成为攀比的对象。首先，鞋子的价格和品牌直接反映了购买者的经济能力。这对于学生来说，尤其</span><br><span class="line">是那些家境优越的男生来说，是一种身份象征。他们通过高价买的名牌鞋来显示自己的社交地位和消费能力。而对于那些经济条件不太好的男</span><br><span class="line">生来说，可能无法负担这些昂贵的品牌，这就导致了他们在外表上与他人产生差异，从而引发攀比心理。</span><br><span class="line"></span><br><span class="line">其次，鞋子的款式和设计也具有很强的时尚属性。新潮的款式会迅速流行开来，并成为学生们追求的对象。这使得拥有最新款的人感</span><br><span class="line">到自豪，而那些没有及时更新款式的男生则可能产生不满和攀比心理。这种现象在社交媒体高度发达的今天更为明显，很多时候网红</span><br><span class="line">带货和潮流单独会直接影响消费者的购买决策。</span><br><span class="line"></span><br><span class="line">我还想探讨一下社会性别角色的作用。在许多文化中，男性被鼓励通过外表来展示力量和成功，而鞋子作为一种外表的象征，自然而</span><br><span class="line">然地成为了这一现象的一部分。高帮设计、厚底等特点都与力量感有关，因此穿着好的鞋子可以让男生们在视觉上感到更有自信和实</span><br><span class="line">力。</span><br><span class="line"></span><br><span class="line">另外，我想到班级内部可能存在的攀比文化。由于同班同学之间的比较往往是日常的，有些人可能会通过展示自己的物质水平来获得</span><br><span class="line">他人的关注和认可。这种现象尤其在小圈子里更加明显，大家相互提及对方的鞋子、服装，从而形成一个循环的攀比过程。</span><br><span class="line"></span><br><span class="line">当然，我也考虑到有可能是个人性格因素的影响。在一些人中，攀比心理可能源于自我价值感不够稳定，他们通过与他人的比较来增</span><br><span class="line">强自己的自信心和成就感。这种情况下，鞋子只是一个触手可及的物质表现形式。</span><br><span class="line"></span><br><span class="line">然而，我也担心过度关注外表可能带来的负面影响。比如，不断追求最新款或名牌鞋可能导致家庭经济压力加大，或者在社交中产生</span><br><span class="line">不必要的情绪波动。当某些男生沉迷于攀比时，他们可能会忽略了内在的成长和自我提升，这对整体的心理健康和学习表现都有潜在</span><br><span class="line">的负面影响。</span><br><span class="line"></span><br><span class="line">接下来，我想了解一下其他因素，例如家庭价值观的影响。家长们在孩子小时候是否经常强调物质积累和外表展示？如果班里的男生</span><br><span class="line">大多来自于经济条件较好的家庭，他们可能更倾向于注重外表。而经济状况不佳的学生则可能有不同的消费观念，这种差异也会反映</span><br><span class="line">在他们对鞋子的关注程度上。</span><br><span class="line"></span><br><span class="line">此外，教育环境也是一个重要因素。高压的学习环境下，学生们往往需要找到放松和自我表达的方式之一，就是通过服装和鞋子来展</span><br><span class="line">现个性。然而，当社会氛围强调物质追求时，这种以物质为导向的行为更容易被鼓励和传播。</span><br><span class="line"></span><br><span class="line">最后，我考虑到男生的成长过程中的心理变化。青春期是自我认同和寻找群体归属感的关键阶段，鞋子作为一种集体符号，可以帮助</span><br><span class="line">他们在群体中找到位置。这可能解释了为什么鞋子攀比现象普遍存在于年轻人群体中。</span><br><span class="line"></span><br><span class="line">综上所述，我认为班级里男生喜欢攀比鞋子的现象是多种因素共同作用的结果，包括社会化过程中的性别角色、物质与身份的关联、</span><br><span class="line">高压的教育环境以及个人心理成长等。理解这些背景有助于更好地分析和应对这一现象。</span><br><span class="line">&lt;/think&gt; </span><br></pre></td></tr></table></figure>
+
+<p>班级里男生喜欢攀比鞋子的现象可以从多个角度来解释：</p>
+<ol>
+<li><p><strong>社会化过程中的性别角色</strong>：在高中阶段，男性身份的塑造常受到外表的影响。鞋子不仅是功能性的，还成为展示力量和社交<br>地位的象征。</p>
+</li>
+<li><p><strong>物质与身份的关联</strong>：高价名牌鞋反映了购买者的经济能力和社会地位。通过拥有昂贵或时尚的鞋子，男生们可以在群体中显<br>示自己的价值和成功感。</p>
+</li>
+<li><p><strong>教育环境的影响</strong>：高压的学习环境下，学生往往寻找自我表达的方式之一是服装和鞋子。物质追求在这种文化背景下更容易<br>被鼓励。</p>
+</li>
+<li><p><strong>个人心理因素</strong>：攀比心理可能源于自我价值感不稳定的一种表现。通过与他人的比较，男生们试图增强自信心或成就感。</p>
+</li>
+<li><p><strong>家庭价值观的影响</strong>：家长往往强调物质积累和外表展示，这在来自经济条件较好的家庭的学生中尤为明显，他们更倾向于注<br>重外表。</p>
+</li>
+<li><p><strong>群体归属感的需求</strong>：鞋子作为一种集体符号，帮助男生们在群体中找到位置，增强自我认同感。</p>
+</li>
+</ol>
+<p>然而，这种现象也可能带来负面影响，如经济压力、过度关注外表或忽视内在成长。因此，在分析和应对这一现象时，需要综合考虑<br>这些因素，并寻找平衡点，促进学生的全面发展。</p>
+<h3 id="怎么头重脚轻啊喂！！！"><a href="#怎么头重脚轻啊喂！！！" class="headerlink" title="怎么头重脚轻啊喂！！！"></a>怎么头重脚轻啊喂！！！</h3>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <categories>
+        <category>班队课精选文章</category>
+      </categories>
+      <tags>
+        <tag>生物档案</tag>
+        <tag>杭州二中白马湖学校</tag>
+        <tag>杂项</tag>
+        <tag>人性的秘密🤓</tag>
+        <tag>暗黑心理学</tag>
+        <tag>识人术</tag>
       </tags>
   </entry>
 </search>
