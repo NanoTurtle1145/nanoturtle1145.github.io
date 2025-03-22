@@ -7,12 +7,12 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="你知道吗？我们的官网使用了HEXO开源项目。但是本人不太精通所以只能先这么做了（原来的也下面还在，您可以访问：https:&#x2F;&#x2F;nanoturtle1145.github.io&#x2F;index00.html）https:&#x2F;&#x2F;nanoturtle1145.github.io&#x2F;index00.html     		 		var gitalkConfig &#x3D; {&quot;clientID&quot;:&quot;Ov23liZFigdW">
+<meta name="description" content="你知道吗？我们的官网使用了HEXO开源项目。但是本人不太精通所以只能先这么做了（原来的也下面还在，您可以访问：https:&#x2F;&#x2F;nanoturtle1145.github.io&#x2F;index00.html）https:&#x2F;&#x2F;nanoturtle1145.github.io&#x2F;index00.html     		 		var gitalkConfig &#x3D; {&quot;enable&quot;:true,&quot;clientID&quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于一些杂项">
 <meta property="og:url" content="http://example.com/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E6%9D%82%E9%A1%B9.html">
 <meta property="og:site_name" content="阿阿西尼米打击">
-<meta property="og:description" content="你知道吗？我们的官网使用了HEXO开源项目。但是本人不太精通所以只能先这么做了（原来的也下面还在，您可以访问：https:&#x2F;&#x2F;nanoturtle1145.github.io&#x2F;index00.html）https:&#x2F;&#x2F;nanoturtle1145.github.io&#x2F;index00.html     		 		var gitalkConfig &#x3D; {&quot;clientID&quot;:&quot;Ov23liZFigdW">
+<meta property="og:description" content="你知道吗？我们的官网使用了HEXO开源项目。但是本人不太精通所以只能先这么做了（原来的也下面还在，您可以访问：https:&#x2F;&#x2F;nanoturtle1145.github.io&#x2F;index00.html）https:&#x2F;&#x2F;nanoturtle1145.github.io&#x2F;index00.html     		 		var gitalkConfig &#x3D; {&quot;enable&quot;:true,&quot;clientID&quot;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-10T09:29:53.000Z">
 <meta property="article:modified_time" content="2025-02-10T09:32:25.807Z">
@@ -409,7 +409,7 @@
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+		var gitalkConfig = {"enable":true,"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"5e957f9a5a3e90682635e7fc875ebc78f2ba458f","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145","BusyMathing"],"distractionFreeMode":true};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -494,6 +494,50 @@
 </div>
 
     
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? 'transparent_dark' : 'light'
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'Nanoturtle1145/WebsiteComments',
+            "data-repo-id": 'R_kgDON3iy7Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDON3iy7c4CoWQC',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? 'transparent_dark' : 'light'
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
 
 
 

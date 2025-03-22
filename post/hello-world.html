@@ -421,7 +421,7 @@
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"e82ab10b760ffbf63206ead21a05757a136e2f38","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145"],"distractionFreeMode":false};
+		var gitalkConfig = {"enable":true,"clientID":"Ov23liZFigdWKGcHmnJo","clientSecret":"5e957f9a5a3e90682635e7fc875ebc78f2ba458f","repo":"WebsiteComments","owner":"NanoTurtle1145","admin":["NanoTurtle1145","BusyMathing"],"distractionFreeMode":true};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -475,6 +475,50 @@
 </div>
 
     
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? 'transparent_dark' : 'light'
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'Nanoturtle1145/WebsiteComments',
+            "data-repo-id": 'R_kgDON3iy7Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDON3iy7c4CoWQC',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? 'transparent_dark' : 'light'
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
 
 
 
