@@ -620,4 +620,27 @@
         <tag>识人术</tag>
       </tags>
   </entry>
+  <entry>
+    <title>浙江tho之旅（大嘘）</title>
+    <url>//post/%E6%B5%99%E6%B1%9Ftho%E4%B9%8B%E6%97%85%EF%BC%88%E5%A4%A7%E5%98%98%EF%BC%89.html</url>
+    <content><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=469699517&auto=0&height=66"></iframe>
+
+<h1 id="阿阿西尼米打击"><a href="#阿阿西尼米打击" class="headerlink" title="阿阿西尼米打击"></a>阿阿西尼米打击</h1><p>今天，四月五号，我去了浙江的tho04。<br>其他图片我将分享到照片墙。你们自己去看吧。<br>这里列出了一点点；<br><img src="https://img.picui.cn/free/2025/04/05/67f1339535484.jpg" alt="IMG_0090.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f133965e43f.jpg" alt="IMG_0016.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f13399690a7.jpg" alt="IMG_0087.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f1339ab9e6d.jpg" alt="IMG_0086.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f1339c3ac1a.jpg" alt="IMG_0088.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f1339cd6e1c.jpg" alt="IMG_0002.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f1339f5fe0e.jpg" alt="IMG_0089.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f133a5b2521.jpg" alt="IMG_0054.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f133a7645bb.jpg" alt="IMG_0091.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f133a87cdfb.jpg" alt="IMG_0055.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://img.picui.cn/free/2025/04/05/67f133a8ec6c0.jpg" alt="IMG_0031.JPG"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>这里用的是某cdn所以加载的快。进照片墙请务必开加速器或者访问kkgithub（？？？）</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"enable":false,"github_id":"NanoTurtle1145    // 这里可以不要加引号","repo":"WebsiteComments   // 不要写成仓库地址","client_id":"Ov23liZFigdWKGcHmnJo","client_secret":"5e957f9a5a3e90682635e7fc875ebc78f2ba458f","admin_user":"NanoTurtle1145","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>]]></content>
+      <categories>
+        <category>ACGN</category>
+      </categories>
+      <tags>
+        <tag>ACGN-东方Project</tag>
+      </tags>
+  </entry>
 </search>
