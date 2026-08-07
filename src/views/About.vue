@@ -12,12 +12,13 @@ useHead({
 });
 
 const timeline = [
-  { date: "2025-09", text: "希望工作室官方网站上线，开始持续发布技术笔记与分享。" },
-  { date: "2025-11", text: "站点完成一次重构（涅槃重生），内容与结构全面整理。" },
-  { date: "2025-12", text: "发布 WinUI 笔记系列，并确定 2026 年的项目计划。" },
-  { date: "2026-01", text: "WinUI 笔记迭代至 1.1.4.6，支持深色模式与更好的 Markdown 体验。" },
-  { date: "2026-07", text: "宣布旧站于 8 月 20 日关停，内容迁移至新的静态站点。" },
-  { date: "2026-08", text: "新版官网上线，采用 Vue 3 + Vite-SSG 静态生成，托管于 GitHub Pages。" },
+  { date: "2019", text: "希望工作室于杭州市滨文小学（2018 级 5 班）诞生，最初只是一群小学生无聊时组建的团体。" },
+  { date: "2022-09-08", text: "工作室正式成立。" },
+  { date: "2023-12-15", text: "HPSS（后更名 HopeCraft）Minecraft 服务器首次开启测试。" },
+  { date: "2025-07-27", text: "HPSS 更名为 HopeCraft（改名異變）。" },
+  { date: "2025-08-24", text: "hopestudio.top 初次运行。" },
+  { date: "2025-11-23", text: "因数据库损坏，站点重置重建。" },
+  { date: "2026-08", text: "阿里云服务器任期届满，站点归档为静态并迁移至 GitHub Pages。" },
 ];
 </script>
 
@@ -34,16 +35,63 @@ const timeline = [
           <p class="text-lg text-gray-300 mb-6">有希望者，事竟成。</p>
           <div class="text-gray-400 space-y-4 leading-8">
             <p>
-              希望工作室（Hope Studio）是一个由学生组成的技术兴趣团队。我们把课余时间投入到自己真正感兴趣的事情上：写桌面应用、折腾操作系统与设备、搭建服务、整理资料，并把过程中的经验记录下来。
+              希望工作室，成立于 2019 年的杭州市滨文小学，即 2018 级 5 班。正式成立时间为 2022 年 9 月 8
+              日。是一群小学生在无聊时组建的一个团体。
             </p>
             <p>
-              我们不追求规模，也不以盈利为目标。做出来的东西尽可能开源，写下来的笔记尽可能公开——因为我们自己就是从别人公开的资料里学会这些的。
+              本站初次运行于 2025 年 8 月 24 日。由于一些因素（数据库不知何时坏了）与同年 11 月 23
+              日重置。感谢阿里云，为我们提供了一套比较廉价的云服务器用于托管我们的网站。
             </p>
+            <p>目前活跃人数约 5 人。</p>
             <p>
-              旧版官网（hopestudio.top）自 2025 年 9 月起运营了约一年，于 2026 年 8 月 20
-              日关停。本站是它的延续：所有仍有价值的文章都已迁移至此，文中引用的图片也一并做了本地归档，以免随原站一起消失。
+              旧版官网（hopestudio.top）已归档为静态站点，
+              <RouterLink to="/archive" class="text-blue-400 hover:text-blue-300">点此访问归档官网</RouterLink>
+              ，保留了原有的 Argon 主题外观。
             </p>
           </div>
+
+          <div class="mt-8 pt-6 border-t border-gray-700">
+            <h3 class="text-lg font-semibold text-white mb-3">我们的图标</h3>
+            <p class="text-gray-400 leading-8">
+              「希望工作室」取前两个字拼音的首字母
+              <span class="text-blue-300 font-mono">X</span> 与
+              <span class="text-blue-300 font-mono">W</span>，又取第一个字拼音的第二个字母
+              <span class="text-blue-300 font-mono">i</span>。仔细观察，图标上的「星星」与「太阳」（小点）就是 X 和 i
+              的合体，那个有角的「月亮」就是 W。真佩服当年的奇思妙想。
+            </p>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-gray-700">
+            <h3 class="text-lg font-semibold text-white mb-3">我们都做些什么</h3>
+            <p class="text-gray-400 leading-8">
+              最初我们以著书为主，后来转型科技为主。在我们成立的几年后，同班的类似组织陆续出现，但最终我们至今仍然在正常运行。现在主要以科技为主，就是没事写点代码的那种。
+            </p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-white mb-6">成长历史</h2>
+        <div class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 sm:p-10 mb-10 text-gray-400 space-y-4 leading-8">
+          <p>
+            <span class="text-blue-300 font-mono">2019</span>
+            ：因小学低年级空闲时间充裕，NT 与 BS 在课余时间进行绘画等活动，这是希望工作室最早的运作形式。不久后，NT 与 BS
+            提议创建团队，希望工作室雏形诞生。
+          </p>
+          <p><span class="text-blue-300 font-mono">2020~2021</span>：资料不可考，无内容。</p>
+          <p>
+            <span class="text-blue-300 font-mono">2022</span>
+            ：因工作室表现突出，出现大量模仿团队，严重打击有生力量并压缩进步空间。为缓解困境，BS 于 2022 年 6 月 27
+            日决定开启「潜运行」。同年 9 月 8 日，希望工作室重新开始正常运行，NT 发布新 Logo 并沿用至今。
+          </p>
+          <p><span class="text-blue-300 font-mono">2023~2024</span>：工作室虽正常运行，但因学业压力无突出表现。</p>
+          <p>
+            <span class="text-blue-300 font-mono">2024-09</span>
+            ：小学毕业后许多成员离开，因 NT 与 BS 仍就读同一初中，工作室得以存续。
+          </p>
+          <p><span class="text-blue-300 font-mono">2025</span>：NT 购置阿里云服务器用于官网。</p>
+          <p class="pt-2 border-t border-gray-700">
+            目前的领导者为 <span class="text-white">NanoTurtle</span>、<span class="text-white">BusySheng</span>。他们是从
+            2019 年就开始效力于希望工作室的成员（即创始人）。
+          </p>
         </div>
 
         <h2 class="text-2xl font-bold text-white mb-6">大事记</h2>

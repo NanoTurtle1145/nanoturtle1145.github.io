@@ -6,13 +6,22 @@ useHead({
   meta: [{ name: "description", content: "希望工作室成员列表。" }],
 });
 
-const members = [
+const admins = [
   {
-    name: "NanoTurtle",
-    role: "站点运营 / 开发",
-    desc: "负责工作室网站的开发与运营，WinUI 笔记等项目的主要作者。",
-    link: "https://github.com/NanoTurtle1145",
+    name: "@NanoTurtle",
+    role: "管理员 · 创始人",
+    desc: "希望工作室创始人之一，元老级人物。是一位十分开朗的人，没了。他是 hopestudio.top 的站长。",
   },
+  {
+    name: "@BusyMitten / BusySheng",
+    role: "管理员 · 创始人",
+    desc: "希望工作室创始人之一，依旧元老级人物。他实力超群，超群，超群。",
+  },
+];
+
+const members = [
+  { name: "YP", role: "成员", desc: "" },
+  { name: "TP", role: "成员", desc: "" },
 ];
 </script>
 
@@ -20,26 +29,32 @@ const members = [
   <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-16">
     <section class="py-12 px-4">
       <div class="max-w-5xl mx-auto">
-        <h1 class="text-4xl font-bold text-white mb-2">成员</h1>
-        <p class="text-gray-400 mb-8">
-          名单仍在整理中。若你是工作室成员且希望登记信息，欢迎通过
-          <router-link to="/join" class="text-blue-400 hover:text-blue-300">加入我们</router-link>
-          页面联系。
-        </p>
+        <h1 class="text-4xl font-bold text-white mb-2">成员列表</h1>
+        <p class="text-gray-400 mb-8">由于一些特殊原因，此处某些成员仅有昵称的缩写。</p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <a
-            v-for="m in members"
+        <h2 class="text-2xl font-bold text-white mb-4">管理员</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+          <div
+            v-for="m in admins"
             :key="m.name"
-            :href="m.link"
-            target="_blank"
-            rel="noopener"
-            class="group relative bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 hover:bg-gray-800 transition-colors"
+            class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6"
           >
-            <h2 class="text-xl font-bold text-white mb-1">{{ m.name }}</h2>
+            <h3 class="text-xl font-bold text-white mb-1">{{ m.name }}</h3>
             <p class="text-sm text-blue-300 mb-3">{{ m.role }}</p>
             <p class="text-gray-400">{{ m.desc }}</p>
-          </a>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-white mb-4">成员</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div
+            v-for="m in members"
+            :key="m.name"
+            class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 text-center"
+          >
+            <h3 class="text-xl font-bold text-white">{{ m.name }}</h3>
+            <p class="text-sm text-blue-300">{{ m.role }}</p>
+          </div>
         </div>
       </div>
     </section>

@@ -8,14 +8,29 @@ useHead({
 
 const links = [
   {
-    name: "NanoTurtle's Blog",
-    url: "https://ntblog.cn",
-    desc: "工作室成员 NanoTurtle 的个人博客。",
+    name: "HopeOJ",
+    url: "http://hopeoj.asia/",
+    desc: "希望工作室 OJ 系统，基于 Hydro。",
   },
   {
-    name: "希望工作室（旧版存档）",
-    url: "https://www.hopestudio.top",
-    desc: "旧版官方网站，已于 2026 年 8 月 20 日关停。",
+    name: "HopeOJ 交流区",
+    url: "http://forum.hopeoj.asia/",
+    desc: "这个网站有一点死了。",
+  },
+  {
+    name: "Lincol29's Blog",
+    url: "https://www.lincol29.cn",
+    desc: "一名 Java 转 C# 开发的码农，分享一些项目中使用的技术和知识，以及 WordPress 建站技巧。",
+  },
+  {
+    name: "洛元の小屋",
+    url: "https://blog.dimeta.top/",
+    desc: "洛元の小屋，以科技、游戏、生活为主的 blog。",
+  },
+  {
+    name: "站长的博客",
+    url: "https://ntblog.cn",
+    desc: "NanoTurtle 的个人博客。",
   },
 ];
 </script>
@@ -26,16 +41,9 @@ const links = [
       <div class="max-w-4xl mx-auto">
         <h1 class="text-4xl font-bold text-white mb-2">友情链接</h1>
         <p class="text-gray-400 mb-8">
-          想要交换友链？欢迎在
-          <a
-            href="https://github.com/NanoTurtle1145/nanoturtle1145.github.io/issues"
-            target="_blank"
-            rel="noopener"
-            class="text-blue-400 hover:text-blue-300 underline"
-          >
-            仓库 Issues
-          </a>
-          中留下站点名称、地址与简介。
+          想要交换友链？欢迎通过
+          <router-link to="/join" class="text-blue-400 hover:text-blue-300">加入我们</router-link>
+          页面留下站点名称、地址与简介。
         </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">

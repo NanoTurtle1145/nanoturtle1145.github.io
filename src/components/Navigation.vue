@@ -11,7 +11,11 @@ const menuItems = ref([
   { name: "关于我们", link: "/about" },
   { name: "加入我们", link: "/join" },
   { name: "友情链接", link: "/friends" },
+  { name: "归档官网", link: "/archive/" },
 ]);
+
+// 归档站是静态 HTML，需用原生 <a> 直接跳转，不能走 vue-router
+const isRawLink = (link: string) => link.startsWith("http") || link.startsWith("/archive");
 
 watch(isOpen, (newVal) => {
   if (typeof document === "undefined") return;
@@ -50,7 +54,7 @@ defineProps({
             <template v-for="item in menuItems" :key="item.name">
               <li class="hidden lg:block whitespace-nowrap h-full">
                 <router-link
-                  v-if="!item.link.startsWith('http')"
+                  v-if="!isRawLink(item.link)"
                   :to="item.link"
                   class="pl-4 pr-4 h-full w-max flex items-center justify-center group text-sm font-medium hover:bg-gray-400/10 transition-all duration-200 item"
                 >
@@ -63,7 +67,7 @@ defineProps({
                 <a
                   v-else
                   :href="item.link"
-                  target="_blank"
+                  :target="item.link.startsWith('http') ? '_blank' : undefined"
                   rel="noopener"
                   class="pl-4 pr-4 h-full w-max flex items-center justify-center group text-sm font-medium hover:bg-gray-400/10 transition-all duration-200 item"
                 >
@@ -102,7 +106,7 @@ defineProps({
     <ul>
       <template v-for="(item, idx) in menuItems" :key="item.name">
         <router-link
-          v-if="!item.link.startsWith('http')"
+          v-if="!isRawLink(item.link)"
           :to="item.link"
           @click="isOpen = false"
           class="p-4 px-6 h-full w-full flex items-center group font-medium hover:bg-gray-400/10 transition-all duration-200 item"
@@ -119,7 +123,7 @@ defineProps({
           v-else
           :href="item.link"
           @click="isOpen = false"
-          target="_blank"
+          :target="item.link.startsWith('http') ? '_blank' : undefined"
           rel="noopener"
           class="p-4 px-6 h-full w-full flex items-center group font-medium hover:bg-gray-400/10 transition-all duration-200 item"
           :class="{ 'visible-anim': isOpen, 'opacity-0': !isOpen }"
