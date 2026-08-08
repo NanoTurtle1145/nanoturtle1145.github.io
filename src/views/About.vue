@@ -48,6 +48,12 @@ const timeline = [
               <RouterLink to="/archive" class="text-blue-400 hover:text-blue-300">点此访问归档官网</RouterLink>
               ，保留了原有的 Argon 主题外观。
             </p>
+
+            <img
+              class="fancybox-image mt-6 rounded-2xl w-full"
+              src="/media/hope-group.jpg"
+              alt="希望工作室成员合照"
+            />
           </div>
 
           <div class="mt-8 pt-6 border-t border-gray-700">

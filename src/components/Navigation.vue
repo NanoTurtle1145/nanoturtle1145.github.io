@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
+import { useRoute } from "vue-router";
 
 const isOpen = ref(false);
+const route = useRoute();
 
 const menuItems = ref([
   { name: "首页", link: "/" },
@@ -11,11 +13,24 @@ const menuItems = ref([
   { name: "关于我们", link: "/about" },
   { name: "加入我们", link: "/join" },
   { name: "友情链接", link: "/friends" },
+  { name: "页面编辑器", link: "/editor", devOnly: true },
   { name: "归档官网", link: "/archive/" },
 ]);
 
+// 页面编辑器仅在本地（localhost）显示，不发布到生产站点
+const isLocal =
+  typeof location !== "undefined" &&
+  (location.hostname === "localhost" || location.hostname === "127.0.0.1");
+const menu = computed(() =>
+  menuItems.value.filter((i) => !(i.devOnly && !isLocal))
+);
+
 // 归档站是静态 HTML，需用原生 <a> 直接跳转，不能走 vue-router
 const isRawLink = (link: string) => link.startsWith("http") || link.startsWith("/archive");
+
+// 首页 "/" 是其他所有路径的前缀，需用精确匹配，否则会常驻高亮
+const isActive = (link: string) =>
+  link === "/" ? route.path === "/" : route.path.startsWith(link);
 
 watch(isOpen, (newVal) => {
   if (typeof document === "undefined") return;
@@ -51,12 +66,13 @@ defineProps({
                 </span>
               </router-link>
             </li>
-            <template v-for="item in menuItems" :key="item.name">
+            <template v-for="item in menu" :key="item.name">
               <li class="hidden lg:block whitespace-nowrap h-full">
                 <router-link
                   v-if="!isRawLink(item.link)"
                   :to="item.link"
                   class="pl-4 pr-4 h-full w-max flex items-center justify-center group text-sm font-medium hover:bg-gray-400/10 transition-all duration-200 item"
+                  :class="{ 'item-active': isActive(item.link) }"
                 >
                   <span
                     class="text-gray-300 group-hover:text-white transition-colors duration-200"
@@ -70,6 +86,7 @@ defineProps({
                   :target="item.link.startsWith('http') ? '_blank' : undefined"
                   rel="noopener"
                   class="pl-4 pr-4 h-full w-max flex items-center justify-center group text-sm font-medium hover:bg-gray-400/10 transition-all duration-200 item"
+                  :class="{ 'item-active': isActive(item.link) }"
                 >
                   <span
                     class="text-gray-300 group-hover:text-white transition-colors duration-200"
@@ -104,13 +121,13 @@ defineProps({
     :class="{ 'invisible opacity-0 -left-full': !isOpen, 'left-0': isOpen }"
   >
     <ul>
-      <template v-for="(item, idx) in menuItems" :key="item.name">
+      <template v-for="(item, idx) in menu" :key="item.name">
         <router-link
           v-if="!isRawLink(item.link)"
           :to="item.link"
           @click="isOpen = false"
           class="p-4 px-6 h-full w-full flex items-center group font-medium hover:bg-gray-400/10 transition-all duration-200 item"
-          :class="{ 'visible-anim': isOpen, 'opacity-0': !isOpen }"
+          :class="{ 'item-active': isActive(item.link), 'visible-anim': isOpen, 'opacity-0': !isOpen }"
           :style="{ '--delay': `${(idx + 1) * 50 + 250}ms` }"
         >
           <span
@@ -126,7 +143,7 @@ defineProps({
           :target="item.link.startsWith('http') ? '_blank' : undefined"
           rel="noopener"
           class="p-4 px-6 h-full w-full flex items-center group font-medium hover:bg-gray-400/10 transition-all duration-200 item"
-          :class="{ 'visible-anim': isOpen, 'opacity-0': !isOpen }"
+          :class="{ 'item-active': isActive(item.link), 'visible-anim': isOpen, 'opacity-0': !isOpen }"
           :style="{ '--delay': `${(idx + 1) * 50 + 250}ms` }"
         >
           <span
@@ -141,11 +158,11 @@ defineProps({
 </template>
 
 <style scoped>
-.item.router-link-active span {
+.item.item-active span {
   @apply text-white;
 }
 
-.item.router-link-active {
+.item.item-active {
   @apply bg-white/10;
 }
 

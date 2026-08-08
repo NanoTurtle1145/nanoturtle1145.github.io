@@ -51,6 +51,18 @@ const routes: RouteRecordRaw[] = [
     meta: { title: "友情链接 | 希望工作室" },
   },
   {
+    path: "/hopeos",
+    name: "HopeOS",
+    component: () => import("../views/hopeos.vue"),
+    meta: { title: "HopeOS | 希望工作室" },
+  },
+  {
+    path: "/editor",
+    name: "editor",
+    component: () => import("../views/Editor.vue"),
+    meta: { title: "页面编辑器 | 希望工作室" },
+  },
+  {
     // 供 vite-ssg 预渲染出 GitHub Pages 用的 404 页面
     path: "/404",
     name: "404",
@@ -64,5 +76,18 @@ const routes: RouteRecordRaw[] = [
     meta: { title: "页面未找到 | 希望工作室" },
   },
 ];
+
+// 页面编辑器仅在本地（localhost）可用，不发布到 GitHub Pages 等线上环境
+const isLocal =
+  typeof location !== "undefined" &&
+  (location.hostname === "localhost" || location.hostname === "127.0.0.1");
+if (isLocal) {
+  routes.push({
+    path: "/editor",
+    name: "editor",
+    component: () => import("../views/Editor.vue"),
+    meta: { title: "页面编辑器 | 希望工作室" },
+  });
+}
 
 export default routes;

@@ -68,6 +68,11 @@ const year = new Date().getFullYear();
     <div class="py-8 text-center text-gray-400">
       <p>有希望者，事竟成。Where there is a hope, there is a way.</p>
       <p class="mt-2">版权所有 © 希望工作室 Hope Studio 2025 - {{ year }} 保留所有权利。</p>
+      <p class="mt-2">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" class="hover:text-white transition-colors duration-200">
+          浙ICP备2025195202号-1
+        </a>
+      </p>
     </div>
   </footer>
 </template>

@@ -23,7 +23,12 @@ export default defineConfig({
     dirStyle: "nested",
     formatting: "minify",
     includedRoutes(paths) {
-      return [...paths.filter((p) => !p.includes(":") && !p.includes("*")), ...postPaths()];
+      return [
+        ...paths.filter(
+          (p) => !p.includes(":") && !p.includes("*") && !p.includes("editor")
+        ),
+        ...postPaths(),
+      ];
     },
   },
   resolve: {

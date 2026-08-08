@@ -41,8 +41,8 @@ const products = [
 
 const advantages = [
   {
-    title: "学生团队，共同进步",
-    desc: "团队中的每个成员为共同的目标贡献自己的力量，在协作中不断提升自我。",
+    title: "学生团队",
+    desc: "在团队协作中不断提升自我。",
   },
   {
     title: "涉猎广泛",
@@ -55,6 +55,7 @@ const advantages = [
   {
     title: "长期留存",
     desc: "旧站关停后内容并未消失——所有有价值的文章都已迁移到这里，并做了本地化归档。",
+    link: "前往归档网站"
   },
 ];
 </script>
@@ -65,14 +66,14 @@ const advantages = [
     <div class="pt-16 relative">
       <div class="hero-container">
         <div class="cover flex items-center justify-center p-8 lg:p-16">
-          <img src="/logo.svg" alt="希望工作室" class="image max-h-72" />
+          <img src="/banner.png" alt="希望工作室" class="image max-h-514" />
         </div>
         <div class="body">
           <div class="container">
-            <h1 class="title">Where there is a hope, there is a way.</h1>
-            <p class="subtitle">有希望者，事竟成。</p>
+            <h1 class="title">HopeOS正在火热开发中！</h1>
+            <p class="subtitle">一个用于学习操作系统运行原理的项目。</p>
           </div>
-          <router-link to="/posts" class="link-button">浏览全部文章</router-link>
+          <router-link to="/hopeos" class="link-button">前往详情页面</router-link>
         </div>
       </div>
     </div>
@@ -161,15 +162,23 @@ const advantages = [
     <!-- 亮点 -->
     <section class="py-12 px-4 relative">
       <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-white mb-6 px-6">我们有什么亮点？</h2>
+        <h2 class="text-4xl font-bold text-white mb-6 px-6">我们的特点</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div
             v-for="adv in advantages"
             :key="adv.title"
             class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6"
           >
+
             <h3 class="text-xl font-bold text-white mb-4">{{ adv.title }}</h3>
             <p class="text-gray-400">{{ adv.desc }}</p>
+            <router-link v-if="adv.link" to="/archive" class="text-blue-400 hover:text-blue-300 transition-colors">
+              {{ adv.link }}
+            </router-link>
+
+
+
+
           </div>
         </div>
       </div>

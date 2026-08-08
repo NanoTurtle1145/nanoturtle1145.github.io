@@ -17,3 +17,12 @@ dist-ssr
 .idea
 .DS_Store
 *.sw?
+
+# Local/accidental artifacts (not part of the site)
+.codebuddy/
+.kdev4/
+.vite/
+website.kdev4
+WordPress.2026-08-07.xml
+nanoturtle1145.github.io/
+public/hopeos/
