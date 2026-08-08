@@ -29,7 +29,7 @@ const links = [
   },
   {
     name: "站长的博客",
-    url: "https://ntblog.cn",
+    url: "https://blog.nanoturtle.cn",
     desc: "NanoTurtle 的个人博客。",
   },
 ];
