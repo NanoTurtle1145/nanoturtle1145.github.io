@@ -2,45 +2,51 @@
 import { computed } from "vue";
 import { useHead } from "@vueuse/head";
 import { posts } from "../data/posts";
-import ProjectMarquee from "../components/ProjectMarquee.vue";
+import ProjectBanner from "../components/ProjectBanner.vue";
 
-// 首页项目滚动展示用到的卡片（含 HopeOS 与若干工作室项目）
+// 首页 banner 轮播展示的项目（含 HopeOS 与若干工作室项目）
 const showcaseProjects = [
   {
     title: "HopeOS",
     desc: "从零编写的 UEFI 操作系统，用于学习操作系统运行原理。",
     link: "/hopeos",
     external: false,
+    image: "/media/hopeos/desktop.png",
   },
   {
     title: "HopeCraft",
     desc: "NT & BM 联合推出的 Minecraft 服务器插件，实现服务器菜单等功能。",
     link: "https://github.com/BusyMitten/HopeCraft",
     external: true,
+    gradient: "bg-gradient-to-br from-emerald-700 to-emerald-950",
   },
   {
     title: "WinUI 笔记",
     desc: "面向 WinUI 3 的学习笔记系列，持续迭代更新。",
     link: "/posts/winui-notes",
     external: false,
+    gradient: "bg-gradient-to-br from-sky-700 to-indigo-950",
   },
   {
     title: "HopeOJ",
     desc: "在线评测系统相关项目，代码与文档持续开放。",
     link: "/projects",
     external: false,
+    gradient: "bg-gradient-to-br from-rose-700 to-rose-950",
   },
   {
     title: "HPSS",
     desc: "工作室持续开放的开源工具与脚本集合。",
     link: "/projects",
     external: false,
+    gradient: "bg-gradient-to-br from-amber-600 to-orange-900",
   },
   {
     title: "技术分享",
     desc: "从设备刷机到多线程网络编程，把踩过的坑写成可复用经验。",
     link: "/posts",
     external: false,
+    gradient: "bg-gradient-to-br from-violet-700 to-fuchsia-950",
   },
 ];
 
@@ -84,7 +90,7 @@ const advantages = [
     <div class="pt-16 relative">
       <div class="hero-container">
         <div class="cover flex items-center justify-center p-8 lg:p-16">
-          <ProjectMarquee :items="showcaseProjects" :duration="30" class="w-full" />
+          <ProjectBanner :items="showcaseProjects" :interval="5000" class="w-full" />
         </div>
         <div class="body">
           <div class="container">
