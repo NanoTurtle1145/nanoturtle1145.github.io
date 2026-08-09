@@ -82,14 +82,24 @@ const roadmap = [
             <p class="subtitle">一个从零编写的 UEFI 操作系统，用于学习操作系统运行原理。</p>
             <p class="subtitle">最早可追溯至2023年（https://hopestudio.mysxl.cn/blog/hope-os）</p>
           </div>
-          <a
-            href="https://github.com/NanoTurtle1145/HopeOS"
-            target="_blank"
-            rel="noopener"
-            class="link-button"
-          >
-            在 GitHub 上查看 →
-          </a>
+          <div class="flex flex-wrap items-center gap-4">
+            <a
+              href="https://github.com/NanoTurtle1145/HopeOS"
+              target="_blank"
+              rel="noopener"
+              class="link-button"
+            >
+              在 GitHub 上查看 →
+            </a>
+            <a
+              href="/THIRD-PARTY-NOTICES.md"
+              target="_blank"
+              rel="noopener"
+              class="link-button"
+            >
+              第三方组件许可证 →
+            </a>
+          </div>
         </div>
       </div>
     </div>
