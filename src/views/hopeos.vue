@@ -93,14 +93,13 @@ const roadmap = [
             <p class="subtitle">最早可追溯至2023年（https://hopestudio.mysxl.cn/blog/hope-os）</p>
           </div>
           <div class="flex flex-wrap items-center gap-4">
-            <a
-              href="https://github.com/NanoTurtle1145/HopeOS"
-              target="_blank"
-              rel="noopener"
-              class="link-button"
+            <span
+              class="link-button opacity-60 cursor-not-allowed select-none"
+              title="HopeOS 目前尚未开源"
+              aria-disabled="true"
             >
-              在 GitHub 上查看 →
-            </a>
+              源码暂未开源
+            </span>
             <a
               href="/license"
               class="link-button"
