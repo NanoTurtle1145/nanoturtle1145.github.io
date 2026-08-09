@@ -2,6 +2,47 @@
 import { computed } from "vue";
 import { useHead } from "@vueuse/head";
 import { posts } from "../data/posts";
+import ProjectMarquee from "../components/ProjectMarquee.vue";
+
+// 首页项目滚动展示用到的卡片（含 HopeOS 与若干工作室项目）
+const showcaseProjects = [
+  {
+    title: "HopeOS",
+    desc: "从零编写的 UEFI 操作系统，用于学习操作系统运行原理。",
+    link: "/hopeos",
+    external: false,
+  },
+  {
+    title: "HopeCraft",
+    desc: "NT & BM 联合推出的 Minecraft 服务器插件，实现服务器菜单等功能。",
+    link: "https://github.com/BusyMitten/HopeCraft",
+    external: true,
+  },
+  {
+    title: "WinUI 笔记",
+    desc: "面向 WinUI 3 的学习笔记系列，持续迭代更新。",
+    link: "/posts/winui-notes",
+    external: false,
+  },
+  {
+    title: "HopeOJ",
+    desc: "在线评测系统相关项目，代码与文档持续开放。",
+    link: "/projects",
+    external: false,
+  },
+  {
+    title: "HPSS",
+    desc: "工作室持续开放的开源工具与脚本集合。",
+    link: "/projects",
+    external: false,
+  },
+  {
+    title: "技术分享",
+    desc: "从设备刷机到多线程网络编程，把踩过的坑写成可复用经验。",
+    link: "/posts",
+    external: false,
+  },
+];
 
 useHead({
   title: "希望工作室 | Hope Studio",
@@ -15,29 +56,6 @@ useHead({
 });
 
 const latestPosts = computed(() => posts.slice(0, 3));
-
-const products = [
-  {
-    title: "桌面应用",
-    description: "基于 WinUI 3 / UWP 的现代 Windows 应用开发实践与笔记。",
-    link: "/posts",
-  },
-  {
-    title: "开源项目",
-    description: "HopeCraft、HopeOJ、HPSS 等项目，代码与文档持续开放。",
-    link: "/projects",
-  },
-  {
-    title: "技术分享",
-    description: "从设备刷机到多线程网络编程，把踩过的坑写成可复用的经验。",
-    link: "/posts",
-  },
-  {
-    title: "资料存档",
-    description: "对有价值的历史文献与资料进行整理、校对与长期保存。",
-    link: "/posts",
-  },
-];
 
 const advantages = [
   {
@@ -66,7 +84,7 @@ const advantages = [
     <div class="pt-16 relative">
       <div class="hero-container">
         <div class="cover flex items-center justify-center p-8 lg:p-16">
-          <img src="/banner.png" alt="希望工作室" class="image max-h-514" />
+          <ProjectMarquee :items="showcaseProjects" :duration="30" class="w-full" />
         </div>
         <div class="body">
           <div class="container">
@@ -77,39 +95,6 @@ const advantages = [
         </div>
       </div>
     </div>
-
-    <!-- 我们在做什么 -->
-    <section class="py-12 px-4 relative">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-white mb-6 px-6">我们在做什么</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div v-for="product in products" :key="product.title" class="group relative">
-            <div
-              class="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur"
-            ></div>
-            <div
-              class="relative bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 h-full flex flex-col justify-between"
-            >
-              <div>
-                <h3 class="text-xl font-bold text-white mb-2">{{ product.title }}</h3>
-                <p class="text-gray-400 mb-4">{{ product.description }}</p>
-              </div>
-              <router-link
-                :to="product.link"
-                class="inline-flex items-center text-blue-400 fill-blue-400 hover:text-blue-300 hover:fill-blue-300 transition-all duration-200 leading-4"
-              >
-                <span>了解更多</span>
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                  <path
-                    d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
-                  />
-                </svg>
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- 最新文章 -->
     <section class="py-12 px-4 relative">

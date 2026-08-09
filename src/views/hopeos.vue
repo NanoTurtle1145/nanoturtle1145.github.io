@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useHead } from "@vueuse/head";
+import BannerCarousel from "../components/BannerCarousel.vue";
 
 useHead({
   title: "HopeOS | 希望工作室",
@@ -11,6 +12,15 @@ useHead({
     },
   ],
 });
+
+// 自动轮播的配图：合成 banner + 各真实运行场景截图
+const showcase = [
+  "/banner.png",
+  "/media/hopeos/desktop.png",
+  "/media/hopeos/stardustui.png",
+  "/media/hopeos/ver.png",
+  "/media/hopeos/futextest.png",
+];
 
 const facts = [
   { label: "类型", value: "UEFI 操作系统（x86-64）" },
@@ -74,7 +84,7 @@ const roadmap = [
     <div class="pt-16 relative">
       <div class="hero-container">
         <div class="cover flex items-center justify-center p-8 lg:p-16">
-          <img src="/banner.png" alt="HopeOS" class="image max-h-514" />
+          <BannerCarousel :images="showcase" alt="HopeOS" class="w-full" />
         </div>
         <div class="body">
           <div class="container">
@@ -92,9 +102,7 @@ const roadmap = [
               在 GitHub 上查看 →
             </a>
             <a
-              href="/THIRD-PARTY-NOTICES.md"
-              target="_blank"
-              rel="noopener"
+              href="/license"
               class="link-button"
             >
               第三方组件许可证 →
