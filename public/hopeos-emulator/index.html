@@ -6,247 +6,244 @@
 <title>HopeOS 模拟器</title>
 <style>
   :root {
-    --accent: #3b82f6;
-    --accent-2: #60a5fa;
-    --panel: #1e293b;
-    --panel-2: #0f172a;
-    --text: #e2e8f0;
-    --muted: #94a3b8;
+    /* Real HopeOS palette (sampled from screenshots) */
+    --wall-top: #20538b;        /* (32,83,139) */
+    --wall-bot: #0d223c;        /* (13,34,60) */
+    --taskbar: #181c24;         /* dark taskbar (24,28,36) */
+    --start: #2d6cdf;           /* blue start button (45,108,223) */
+    --title-hi: #2c66d8;        /* titlebar bright left (40,100,212) */
+    --title-mid: #2d6cdf;       /* titlebar center */
+    --title-lo: #1a4270;        /* titlebar dark right edge (26,66,112) */
+    --title-in: #53607c;        /* inactive titlebar */
+    --frame: #163a66;           /* window border */
+    --body: #fafbfc;            /* window body near white (250,251,252) */
+    --text: #1a1a1a;
+    --text-dim: #6a6a6a;
+    --accent: #2d6cdf;
+    --term-bg: #000000;
+    --term-fg: #d4d5d7;         /* light gray terminal text (212,213,215) */
+    --term-hi: #8fb0e6;         /* blue terminal highlight (149,170,216) */
+    --term-err: #ff6b6b;
+    --icon: #2d6cdf;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; width: 100%; overflow: hidden; }
   body {
-    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-    background: #0b1220;
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", "Tahoma", "SimSun", system-ui, sans-serif;
     color: var(--text);
-    user-select: none;
-    -webkit-user-select: none;
+    user-select: none; -webkit-user-select: none;
   }
 
-  /* ---------------- Boot screen ---------------- */
+  /* ---------------- Boot ---------------- */
   #boot {
     position: absolute; inset: 0;
-    background: #000;
-    color: #cbd5e1;
-    font-family: "Courier New", ui-monospace, monospace;
-    font-size: 14px;
-    line-height: 1.5;
-    padding: 28px 32px;
-    white-space: pre-wrap;
-    overflow: hidden;
-    z-index: 50;
+    background: #000; color: #cfcfcf;
+    font-family: "Consolas", "Courier New", ui-monospace, monospace;
+    font-size: 13px; line-height: 1.5;
+    padding: 28px 32px; white-space: pre-wrap;
+    z-index: 100;
     transition: opacity .5s ease;
   }
-  #boot .ok { color: #4ade80; }
-  #boot .dim { color: #64748b; }
-  #boot .brand {
-    color: #fff; font-weight: bold; letter-spacing: 2px;
-  }
-  #boot-hint {
-    position: absolute; bottom: 18px; right: 24px;
-    color: #475569; font-size: 12px; font-family: monospace;
-    cursor: pointer;
-  }
+  #boot .ok { color: #7ec47e; }
+  #boot .dim { color: #5a5a5a; }
+  #boot-hint { position: absolute; bottom: 18px; right: 24px; color: #555; font-size: 12px; cursor: pointer; }
 
   /* ---------------- Desktop ---------------- */
   #desktop {
     position: absolute; inset: 0;
-    background:
-      radial-gradient(1200px 600px at 70% -10%, rgba(59,130,246,.22), transparent 60%),
-      radial-gradient(900px 500px at 10% 110%, rgba(168,85,247,.18), transparent 60%),
-      linear-gradient(160deg, #0b1220 0%, #0f172a 55%, #111c33 100%);
-    opacity: 0;
-    transition: opacity .6s ease;
+    background: linear-gradient(180deg, var(--wall-top) 0%, var(--wall-bot) 100%);
+    opacity: 0; transition: opacity .5s ease;
   }
   #desktop.show { opacity: 1; }
 
-  .desktop-icons {
-    position: absolute; top: 16px; left: 16px;
-    display: flex; flex-direction: column; gap: 18px;
-  }
-  .dicon {
-    width: 84px; text-align: center; cursor: pointer;
-    color: #e2e8f0; font-size: 12px;
-  }
-  .dicon .glyph {
-    width: 52px; height: 52px; margin: 0 auto 6px;
-    border-radius: 12px;
-    background: linear-gradient(160deg, #2563eb, #1e40af);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 22px; color: #fff;
-    box-shadow: 0 6px 18px rgba(37,99,235,.35);
-  }
-  .dicon:hover .glyph { filter: brightness(1.12); }
-  .dicon span { text-shadow: 0 1px 2px rgba(0,0,0,.6); }
-
   /* ---------------- Taskbar ---------------- */
   #taskbar {
-    position: absolute; bottom: 0; left: 0; right: 0; height: 46px;
-    background: rgba(15,23,42,.82);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(148,163,184,.18);
-    display: flex; align-items: center; gap: 10px;
-    padding: 0 10px;
-    z-index: 30;
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
+    background: var(--taskbar); z-index: 90;
+    display: flex; align-items: center; gap: 6px; padding: 0 6px;
   }
   #start-btn {
     display: flex; align-items: center; gap: 8px;
-    background: linear-gradient(160deg, #3b82f6, #2563eb);
-    color: #fff; font-weight: 700; font-size: 14px;
-    border: none; border-radius: 10px;
-    padding: 8px 14px; cursor: pointer;
-    box-shadow: 0 4px 12px rgba(37,99,235,.4);
+    background: linear-gradient(180deg, #3a7be8 0%, var(--start) 55%, #1d57c4 100%);
+    color: #fff; font-weight: 600; font-size: 13px;
+    border: 1px solid #1d57c4; border-radius: 3px;
+    padding: 0 12px 0 8px; height: 30px; cursor: pointer;
+    min-width: 112px; max-width: 112px;
   }
   #start-btn:hover { filter: brightness(1.08); }
-  #start-btn .logo {
-    width: 18px; height: 18px; border-radius: 5px;
-    background: #fff; color: #2563eb;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 900;
-  }
-  .task-items { display: flex; gap: 8px; flex: 1; overflow: hidden; }
+  #start-btn.open { filter: brightness(0.92); }
+  #start-btn .flag { display: grid; grid-template-columns: 7px 7px; grid-template-rows: 7px 7px; gap: 1px; }
+  #start-btn .flag span { display: block; }
+  #start-btn .flag .r { background: #f25022; }
+  #start-btn .flag .g { background: #7bbf2e; }
+  #start-btn .flag .b { background: #2d6cdf; }
+  #start-btn .flag .y { background: #ffc60a; }
+  .task-items { display: flex; gap: 6px; flex: 1; overflow: hidden; padding-left: 4px; }
   .task-item {
-    background: rgba(148,163,184,.14);
-    color: #e2e8f0; border: none; border-radius: 8px;
-    padding: 7px 12px; font-size: 13px; cursor: pointer;
-    max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    display: flex; align-items: center;
+    background: transparent; color: #e6e8ec; font-size: 13px;
+    border: 1px solid transparent; border-radius: 3px;
+    padding: 0 10px; height: 30px; cursor: pointer;
+    max-width: 180px; min-width: 64px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
-  .task-item.active { background: rgba(59,130,246,.35); }
-  .task-item:hover { background: rgba(148,163,184,.28); }
+  .task-item:hover { background: rgba(255,255,255,.08); }
+  .task-item.active { background: rgba(45,108,223,.32); border-color: rgba(45,108,223,.6); }
   #clock {
-    color: #cbd5e1; font-size: 13px; font-variant-numeric: tabular-nums;
-    text-align: right; padding: 0 8px; min-width: 76px;
+    width: 88px; text-align: center; font-size: 12px;
+    background: transparent; color: #d8dce4;
+    border: 1px solid transparent; border-radius: 3px; padding: 4px 0;
   }
-  #clock small { display: block; color: #94a3b8; font-size: 11px; }
 
   /* ---------------- Start menu ---------------- */
   #startmenu {
-    position: absolute; bottom: 54px; left: 10px;
-    width: 280px;
-    background: rgba(15,23,42,.96);
-    border: 1px solid rgba(148,163,184,.18);
-    border-radius: 14px;
-    box-shadow: 0 18px 50px rgba(0,0,0,.5);
-    padding: 10px;
-    z-index: 40;
-    display: none;
+    position: absolute; bottom: 40px; left: 6px; width: 360px;
+    background: #fff; z-index: 95;
+    display: none; box-shadow: 8px 8px 18px rgba(0,0,0,.45);
+    border-radius: 4px; overflow: hidden;
   }
   #startmenu.open { display: block; }
-  .sm-head {
-    font-weight: 800; font-size: 15px; color: #fff;
-    padding: 8px 10px 12px;
-    border-bottom: 1px solid rgba(148,163,184,.14);
-    margin-bottom: 8px;
+  .sm-header {
+    height: 58px;
+    background: linear-gradient(180deg, #2c66d8 0%, #1a4270 100%);
+    display: flex; align-items: center; gap: 10px; padding: 0 12px;
+    color: #fff;
   }
-  .sm-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 10px; border-radius: 9px; cursor: pointer;
-    color: #e2e8f0; font-size: 13px;
+  .sm-header .flag { display: grid; grid-template-columns: 7px 7px; grid-template-rows: 7px 7px; gap: 1px; }
+  .sm-header .flag span { display: block; width: 7px; height: 7px; }
+  .sm-header .flag .r { background: #f25022; }
+  .sm-header .flag .g { background: #7bbf2e; }
+  .sm-header .flag .b { background: #2d6cdf; }
+  .sm-header .flag .y { background: #ffc60a; }
+  .sm-title { flex: 1; }
+  .sm-title .big { font-weight: bold; font-size: 16px; display: block; }
+  .sm-title .small { font-size: 12px; color: #dce8ff; }
+  .sm-avatar { width: 44px; height: 44px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #2c66d8; font-weight: bold; }
+  .sm-body { display: flex; height: 240px; background: #f3f5f8; }
+  .sm-left { width: 224px; padding: 4px 0; }
+  .sm-right { flex: 1; background: #fff; border-left: 1px solid #d8dde4; padding: 4px 0; }
+  .sm-item { display: flex; align-items: center; gap: 10px; padding: 6px 10px; cursor: pointer; font-size: 13px; }
+  .sm-item:hover { background: #2d6cdf; color: #fff; }
+  .sm-item .ico {
+    width: 24px; height: 24px; background: #2d6cdf; color: #fff;
+    display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; border-radius: 3px;
   }
-  .sm-item:hover { background: rgba(59,130,246,.25); }
-  .sm-item .g {
-    width: 26px; height: 26px; border-radius: 7px;
-    background: linear-gradient(160deg,#3b82f6,#1e40af);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; color: #fff; font-size: 13px;
+  .sm-bottom {
+    height: 42px; background: linear-gradient(180deg, #2c66d8 0%, #1a4270 100%);
+    display: flex; align-items: center; justify-content: space-between; padding: 0 12px; color: #fff;
   }
+  .sm-bottom .search { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #dce8ff; }
+  .sm-bottom .search input { width: 120px; height: 20px; border: 1px solid #1a4270; border-radius: 2px; }
+  .power-btn { width: 28px; height: 28px; border-radius: 50%; background: #4a86e8; border: 1px solid #cfe0ff; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; }
 
   /* ---------------- Windows ---------------- */
   .window {
-    position: absolute;
-    min-width: 320px; min-height: 200px;
-    background: var(--panel);
-    border: 1px solid rgba(148,163,184,.22);
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.55);
-    display: flex; flex-direction: column;
-    overflow: hidden;
-    z-index: 10;
+    position: absolute; min-width: 260px; min-height: 160px;
+    background: var(--body);
+    border: 1px solid var(--frame);
+    box-shadow: 3px 3px 14px rgba(0,0,0,.45);
+    display: flex; flex-direction: column; z-index: 10;
+    border-radius: 2px;
   }
-  .window.focused { border-color: rgba(96,165,250,.6); }
+  .window.focused { outline: none; }
   .titlebar {
-    height: 34px; flex: 0 0 34px;
-    background: linear-gradient(180deg, #334155, #1e293b);
-    display: flex; align-items: center; gap: 8px;
-    padding: 0 10px; cursor: move;
-    border-bottom: 1px solid rgba(0,0,0,.3);
+    height: 24px; flex: 0 0 24px;
+    background: linear-gradient(90deg, var(--title-in) 0%, #44516c 100%);
+    display: flex; align-items: center; padding: 0 2px 0 4px; cursor: move;
   }
-  .titlebar .tt {
-    font-size: 13px; font-weight: 600; color: #e2e8f0; flex: 1;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  .window.focused .titlebar {
+    background: linear-gradient(90deg, var(--title-hi) 0%, var(--title-mid) 60%, var(--title-lo) 100%);
   }
-  .tb-dots { display: flex; gap: 6px; }
-  .dot { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; border: none; }
-  .dot.close { background: #ef4444; }
-  .dot.min { background: #f59e0b; }
-  .win-body { flex: 1; overflow: auto; position: relative; }
+  .title-icon { width: 16px; height: 16px; background: #fff; color: var(--icon); font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; border-radius: 2px; margin-right: 5px; }
+  .title-text { flex: 1; color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 2px; text-shadow: 0 1px 1px rgba(0,0,0,.25); }
+  .title-btns { display: flex; gap: 2px; }
+  .title-btn {
+    width: 20px; height: 18px; font-size: 11px; line-height: 16px;
+    background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.25);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 2px;
+  }
+  .title-btn:hover { background: rgba(255,255,255,.28); }
+  .title-btn.close:hover { background: #e23b3b; border-color: #ff8a8a; }
+  .win-body { flex: 1; overflow: auto; background: var(--body); position: relative; }
 
   /* ---------------- Terminal ---------------- */
-  #term {
-    background: #0a0f1c;
-    color: #d1fae5;
-    font-family: "Courier New", ui-monospace, monospace;
-    font-size: 13px; line-height: 1.45;
-    padding: 10px 12px;
-    height: 100%;
-    cursor: text;
+  .term-shell {
+    background: var(--term-bg); color: var(--term-fg);
+    font-family: "Consolas", "Courier New", "Lucida Console", ui-monospace, monospace;
+    font-size: 13px; line-height: 1.4;
+    padding: 4px 6px; height: 100%; overflow: auto;
+    -webkit-font-smoothing: none; font-smooth: never; text-rendering: geometricPrecision;
   }
-  #term-out { white-space: pre-wrap; word-break: break-word; }
-  #term-out .err { color: #fca5a5; }
-  #term-out .hl { color: #93c5fd; }
-  #term-out .ok { color: #6ee7b7; }
-  #term-out .dim { color: #64748b; }
+  .term-out { white-space: pre-wrap; word-break: break-word; }
+  .term-out .err { color: var(--term-err); }
+  .term-out .hi { color: var(--term-hi); }
+  .term-out .dim { color: #7a7d82; }
   .prompt-line { display: flex; }
-  .prompt-line .ps {
-    color: #6ee7b7; white-space: pre; flex: 0 0 auto;
-  }
-  #term-input {
+  .prompt-line .ps { color: var(--term-hi); white-space: pre; flex: 0 0 auto; }
+  .term-input {
     background: transparent; border: none; outline: none;
-    color: #d1fae5; font-family: inherit; font-size: inherit;
-    flex: 1; caret-color: #6ee7b7;
+    color: var(--term-fg); font-family: inherit; font-size: inherit;
+    flex: 1; caret-color: var(--term-fg);
+    -webkit-font-smoothing: none; font-smooth: never;
   }
 
-  /* About panel */
-  .about-body { padding: 16px; color: var(--text); font-size: 13px; line-height: 1.7; }
-  .about-body h3 { color: #fff; margin-bottom: 8px; }
-  .about-body code { background: #0f172a; padding: 1px 6px; border-radius: 5px; color: #93c5fd; }
-  .about-body a { color: var(--accent-2); }
+  /* ---------------- About / Welcome / Sysinfo ---------------- */
+  .panel-body { padding: 12px; font-size: 13px; line-height: 1.6; background: var(--body); }
+  .panel-body h3 { font-size: 14px; margin-bottom: 10px; }
+  .panel-body p { margin-bottom: 8px; }
+  .panel-body button, .dlg-btns button {
+    background: linear-gradient(180deg, #fbfbfc 0%, #e7e9ee 100%); color: #1a1a1a;
+    border: 1px solid #9aa1ad; border-radius: 3px;
+    padding: 3px 18px; font-size: 13px; cursor: pointer; min-width: 80px;
+  }
+  .panel-body button:hover, .dlg-btns button:hover { background: linear-gradient(180deg, #eaf1ff 0%, #cfe0ff 100%); border-color: #2d6cdf; }
+  .dlg-btns { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+  .welcome-body { padding: 16px; }
+  .welcome-body h2 { font-size: 18px; margin-bottom: 10px; }
+  .welcome-body p { font-size: 13px; margin-bottom: 8px; line-height: 1.5; }
+  .sysinfo-body { padding: 8px 10px; font-family: "Consolas", "Courier New", monospace; font-size: 12px; line-height: 1.45; }
+  .sysinfo-body h4 { font-size: 13px; margin-bottom: 6px; border-bottom: 1px solid #c9cdd4; padding-bottom: 2px; }
 
-  /* scrollbars */
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
+  /* Scrollbars */
+  ::-webkit-scrollbar { width: 12px; background: #e7e9ee; }
+  ::-webkit-scrollbar-thumb { background: #b9c0cc; border: 1px solid #9aa1ad; border-radius: 2px; }
+  ::-webkit-scrollbar-button { background: #d4d9e0; border: 1px solid #9aa1ad; height: 12px; }
 </style>
 </head>
 <body>
-  <!-- Boot -->
   <div id="boot"><span id="boot-text"></span><span id="boot-hint">点击任意处跳过</span></div>
 
-  <!-- Desktop -->
   <div id="desktop">
-    <div class="desktop-icons">
-      <div class="dicon" data-app="terminal">
-        <div class="glyph">&gt;_</div><span>终端</span>
-      </div>
-      <div class="dicon" data-app="about">
-        <div class="glyph">i</div><span>关于</span>
-      </div>
-    </div>
-
     <div id="startmenu">
-      <div class="sm-head">HopeOS</div>
-      <div class="sm-item" data-app="terminal"><span class="g">&gt;_</span> 终端</div>
-      <div class="sm-item" data-app="about"><span class="g">i</span> 关于 HopeOS</div>
-      <div class="sm-item" data-act="reboot"><span class="g">↻</span> 重启</div>
+      <div class="sm-header">
+        <div class="flag"><span class="r"></span><span class="g"></span><span class="b"></span><span class="y"></span></div>
+        <div class="sm-title"><span class="big">HopeOS</span><span class="small">user</span></div>
+        <div class="sm-avatar">U</div>
+      </div>
+      <div class="sm-body">
+        <div class="sm-left" id="sm-left"></div>
+        <div class="sm-right">
+          <div class="sm-item" data-app="terminal"><span class="ico">&gt;</span> 终端</div>
+          <div class="sm-item" data-app="sysinfo"><span class="ico">i</span> 系统信息</div>
+          <div class="sm-item" data-app="about"><span class="ico">?</span> 关于</div>
+          <div class="sm-item" data-act="reboot"><span class="ico">R</span> 重启</div>
+        </div>
+      </div>
+      <div class="sm-bottom">
+        <div class="search">搜索: <input type="text" /></div>
+        <div class="power-btn" title="关机" data-act="shutdown">&#x23FB;</div>
+      </div>
     </div>
 
-    <!-- Windows get injected here -->
     <div id="windows"></div>
 
     <div id="taskbar">
-      <button id="start-btn"><span class="logo">H</span> 开始</button>
+      <button id="start-btn">
+        <div class="flag"><span class="r"></span><span class="g"></span><span class="b"></span><span class="y"></span></div>
+        <span>开始</span>
+      </button>
       <div class="task-items" id="task-items"></div>
-      <div id="clock"><span id="clk-time">--:--</span><small id="clk-date">----</small></div>
+      <div id="clock">--:--</div>
     </div>
   </div>
 
@@ -254,13 +251,13 @@
 (function () {
   "use strict";
 
-  /* ---------------- Boot sequence ---------------- */
+  /* ---------------- Boot ---------------- */
   var bootEl = document.getElementById("boot");
   var bootText = document.getElementById("boot-text");
   var desktop = document.getElementById("desktop");
-
   var bootLines = [
-    { t: "HopeOS UEFI Shell  [Build M0-9]", c: "brand" },
+    { t: "HopeOS UEFI Boot Loader", c: "ok" },
+    { t: "========================", c: "" },
     { t: "", c: "" },
     { t: "Initializing UEFI runtime services............ [ ok ]", c: "ok" },
     { t: "Mapping memory map (EfiConventionalMemory).... [ ok ]", c: "ok" },
@@ -275,7 +272,6 @@
     { t: "", c: "" },
     { t: "Welcome to HopeOS. Launching desktop...", c: "ok" }
   ];
-
   var bi = 0, bc = 0, bootTimer = null, booted = false;
 
   function typeBoot() {
@@ -284,417 +280,263 @@
     if (bc === 0 && bootText.innerHTML && line.t !== "") bootText.appendChild(document.createTextNode("\n"));
     if (bc < line.t.length) {
       var ch = document.createTextNode(line.t[bc]);
-      var span = document.createElement("span");
-      if (line.c) span.className = line.c;
-      span.appendChild(ch);
-      bootText.appendChild(span);
-      bc++;
-      bootTimer = setTimeout(typeBoot, line.t ? 8 : 30);
-    } else {
-      bi++; bc = 0;
-      bootTimer = setTimeout(typeBoot, line.t === "" ? 120 : 90);
-    }
+      var span = document.createElement("span"); if (line.c) span.className = line.c;
+      span.appendChild(ch); bootText.appendChild(span); bc++;
+      bootTimer = setTimeout(typeBoot, line.t ? 6 : 20);
+    } else { bi++; bc = 0; bootTimer = setTimeout(typeBoot, line.t === "" ? 80 : 60); }
   }
-
   function finishBoot() {
-    if (booted) return;
-    booted = true;
+    if (booted) return; booted = true;
     if (bootTimer) clearTimeout(bootTimer);
     bootEl.style.opacity = "0";
     setTimeout(function () {
-      bootEl.style.display = "none";
-      desktop.classList.add("show");
-      openWindow("terminal");
-    }, 520);
+      bootEl.style.display = "none"; desktop.classList.add("show");
+      openWindow("welcome"); openWindow("sysinfo"); openWindow("terminal");
+    }, 500);
   }
-
   bootEl.addEventListener("click", finishBoot);
   typeBoot();
 
-  /* ---------------- Virtual filesystem ---------------- */
+  /* ---------------- Filesystem ---------------- */
   var FS = {
     "/": { type: "dir", children: ["home", "bin", "readme.txt", "hello.txt"] },
     "/home": { type: "dir", children: ["hopeos"] },
     "/home/hopeos": { type: "dir", children: ["notes.txt", "projects"] },
     "/home/hopeos/projects": { type: "dir", children: ["hopeos.os", "stardustui"] },
-    "/bin": { type: "dir", children: ["sh", "ls", "cat", "ver"] },
-    "/readme.txt": { type: "file", data:
-      "HopeOS 0.1.0 (M0)\n" +
-      "一个从零编写的 UEFI 操作系统，用于学习操作系统运行原理。\n" +
-      "输入 'help' 查看可用命令，'about' 了解项目。\n" },
+    "/bin": { type: "dir", children: ["sh", "ls", "cat", "ver", "hello"] },
+    "/readme.txt": { type: "file", data: "HopeOS 0.2.0 (M0)\n一个从零编写的 UEFI 操作系统。\n输入 'help' 查看命令。\n" },
     "/hello.txt": { type: "file", data: "Hello from HopeOS!\n" },
-    "/home/hopeos/notes.txt": { type: "file", data:
-      "TODO:\n" +
-      "  [进行中] 按需缺页 (demand paging)\n" +
-      "  [计划]  可写、持久化文件系统\n" +
-      "  [计划]  用户态 libc 完善 + 工具链\n" +
-      "  [远期]  兼容 BusyBox -> 跑 Minecraft (学习旅程本身才是重点)\n" },
+    "/home/hopeos/notes.txt": { type: "file", data: "TODO:\n  [进行中] 按需缺页\n  [计划]  持久化文件系统\n  [计划]  libc 完善 + BusyBox\n  [远期]  JVM -> Minecraft\n" },
     "/home/hopeos/projects/hopeos.os": { type: "file", data: "<kernel binary, 2.1 MiB>\n" },
-    "/home/hopeos/projects/stardustui": { type: "file", data: "<用户态 GUI 框架目录>\n" }
+    "/home/hopeos/projects/stardustui": { type: "file", data: "<user GUI framework>\n" }
   };
-
   function resolve(path) {
     if (!path) return null;
     if (path[0] !== "/") path = (cwd === "/" ? "/" : cwd + "/") + path;
     var parts = path.split("/").filter(function (p) { return p && p !== "."; });
-    var node = FS["/"];
-    var cur = "/";
+    var node = FS["/"]; var cur = "/";
     for (var i = 0; i < parts.length; i++) {
-      if (parts[i] === "..") {
-        if (cur !== "/") cur = cur.substring(0, cur.lastIndexOf("/")) || "/";
-        node = FS[cur] || FS["/"];
-        continue;
-      }
+      if (parts[i] === "..") { if (cur !== "/") cur = cur.substring(0, cur.lastIndexOf("/")) || "/"; node = FS[cur] || FS["/"]; continue; }
       if (!node || node.type !== "dir" || node.children.indexOf(parts[i]) < 0) return null;
-      cur = (cur === "/" ? "" : cur) + "/" + parts[i];
-      node = FS[cur];
+      cur = (cur === "/" ? "" : cur) + "/" + parts[i]; node = FS[cur];
     }
     return node ? { path: cur, node: node } : null;
   }
-
   var cwd = "/home/hopeos";
 
   /* ---------------- Terminal ---------------- */
-  var history = [];
-  var hidx = -1;
-
-  function esc(s) {
-    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  }
-
-  function print(out, html, cls) {
-    var div = document.createElement("div");
-    if (cls) div.className = cls;
-    div.innerHTML = html === undefined ? "" : html;
-    out.appendChild(div);
-    out.scrollTop = out.scrollHeight;
-    return div;
-  }
-
+  var history = [], hidx = -1;
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function print(out, html, cls) { var d = document.createElement("div"); if (cls) d.className = cls; d.innerHTML = html || ""; out.appendChild(d); out.scrollTop = out.scrollHeight; return d; }
   var commands = {
-    help: function (args, out) {
-      print(out,
-        "可用命令:\n" +
-        "  help            显示本帮助\n" +
-        "  ls [dir]        列出目录内容\n" +
-        "  cd <dir>        切换目录\n" +
-        "  pwd             显示当前目录\n" +
-        "  cat <file>      显示文件内容\n" +
-        "  echo <text>     回显文本\n" +
-        "  ver             显示系统版本\n" +
-        "  uname [-a]      显示内核信息\n" +
-        "  whoami          显示当前用户\n" +
-        "  date            显示日期时间\n" +
-        "  about           关于 HopeOS\n" +
-        "  hopestudio      访问希望工作室\n" +
-        "  neofetch        显示系统概览\n" +
-        "  clear           清屏");
-    },
+    help: function (_, out) { print(out, "可用命令: help ls cd pwd cat echo ver uname whoami date about hopestudio neofetch clear", "hi"); },
     ls: function (args, out) {
       var tgt = args[0] ? resolve(args[0]) : resolve(cwd);
-      if (!tgt) { print(out, "ls: 无法访问 '" + esc(args[0] || cwd) + "': 没有那个文件或目录", "err"); return; }
+      if (!tgt) { print(out, "ls: cannot access '" + esc(args[0] || cwd) + "': No such file or directory", "err"); return; }
       if (tgt.node.type === "file") { print(out, esc(args[0] || cwd)); return; }
-      var items = tgt.node.children.slice().sort();
-      var html = items.map(function (n) {
-        var isDir = FS[(tgt.path === "/" ? "" : tgt.path) + "/" + n].type === "dir";
-        return isDir ? '<span class="hl">' + esc(n) + "/</span>" : esc(n);
-      }).join("   ");
-      print(out, html);
+      var items = tgt.node.children.slice().sort().map(function (n) {
+        var full = (tgt.path === "/" ? "" : tgt.path) + "/" + n; return FS[full] && FS[full].type === "dir" ? '<span class="hi">' + esc(n) + "/</span>" : esc(n);
+      }).join("  "); print(out, items);
     },
     cd: function (args, out) {
       if (!args[0]) { cwd = "/home/hopeos"; return; }
-      var tgt = resolve(args[0]);
-      if (!tgt || tgt.node.type !== "dir") { print(out, "cd: " + esc(args[0]) + ": 不是目录", "err"); return; }
+      var tgt = resolve(args[0]); if (!tgt || tgt.node.type !== "dir") { print(out, "cd: " + esc(args[0]) + ": Not a directory", "err"); return; }
       cwd = tgt.path;
     },
-    pwd: function (args, out) { print(out, esc(cwd)); },
+    pwd: function (_, out) { print(out, esc(cwd)); },
     cat: function (args, out) {
-      if (!args[0]) { print(out, "cat: 缺少文件参数", "err"); return; }
-      var tgt = resolve(args[0]);
-      if (!tgt) { print(out, "cat: " + esc(args[0]) + ": 没有那个文件或目录", "err"); return; }
-      if (tgt.node.type === "dir") { print(out, "cat: " + esc(args[0]) + ": 是一个目录", "err"); return; }
-      print(out, esc(tgt.node.data).replace(/\n/g, "\n"));
+      if (!args[0]) { print(out, "cat: missing operand", "err"); return; }
+      var tgt = resolve(args[0]); if (!tgt) { print(out, "cat: " + esc(args[0]) + ": No such file or directory", "err"); return; }
+      if (tgt.node.type === "dir") { print(out, "cat: " + esc(args[0]) + ": Is a directory", "err"); return; }
+      print(out, esc(tgt.node.data));
     },
     echo: function (args, out) { print(out, esc(args.join(" "))); },
-    ver: function (args, out) {
-      print(out, "HopeOS 0.1.0 (M0)  x86-64 UEFI");
-      print(out, "Build " + new Date().getFullYear() + "-08  #1 SMP PREEMPT_DYNAMIC", "dim");
+    ver: function (_, out) { print(out, "HopeOS version 0.2.0 (M0)\nCopyright Hope Studio (2019-2026), all rights reserved."); },
+    uname: function (args, out) { if (args.indexOf("-a") >= 0) print(out, "HopeOS hopeos 0.2.0 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux"); else print(out, "HopeOS"); },
+    whoami: function (_, out) { print(out, "hopeos"); },
+    date: function (_, out) { print(out, new Date().toString()); },
+    about: function (_, out) { print(out, "HopeOS: a from-scratch UEFI OS for learning internals."); print(out, "Visit https://hopestudio.mysxl.cn", "hi"); },
+    hopestudio: function (_, out) { print(out, "https://hopestudio.mysxl.cn", "hi"); },
+    neofetch: function (_, out) {
+      var logo = ["   __  __", "  / / / /__  ___", " / /_/ / _ \\/ -_)", " \\____/\\___/\\__/"];
+      var info = ["hopeos@hopestudio", "-----------------", "OS: HopeOS 0.2.0 (M0)", "Kernel: hopeos 0.2.0", "Arch: x86_64", "Shell: sh", "DE: StarDustUI", "Uptime: " + Math.floor(performance.now()/1000) + "s"];
+      for (var i = 0; i < Math.max(logo.length, info.length); i++) print(out, '<span class="hi">' + esc((logo[i] || "").padEnd(16, " ")) + "</span>" + esc(info[i] ? "  " + info[i] : ""));
     },
-    uname: function (args, out) {
-      var a = args.indexOf("-a") >= 0;
-      if (a) print(out, "HopeOS hopeos 0.1.0 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux");
-      else print(out, "HopeOS");
-    },
-    whoami: function (args, out) { print(out, "hopeos"); },
-    date: function (args, out) { print(out, new Date().toString()); },
-    about: function (args, out) {
-      print(out, "HopeOS 是希望工作室发起的、从零编写的 UEFI 操作系统项目。");
-      print(out, "目标：学习操作系统内部原理（内存管理 / 中断 / 调度 / VFS / 用户态 / POSIX）。");
-      print(out, "当前阶段 M0：扩展 Linux x86-64 兼容的系统调用面，以承载真实 libc + BusyBox。");
-      print(out, "本页运行的『模拟器』为纯前端演示，并非真实内核。", "dim");
-    },
-    hopestudio: function (args, out) {
-      print(out, "希望工作室: https://hopestudio.mysxl.cn");
-    },
-    neofetch: function (args, out) {
-      var logo = [
-        "   __  __",
-        "  / / / /__  ___",
-        " / /_/ / _ \\/ -_)",
-        " \\____/\\___/\\__/"
-      ];
-      var info = [
-        "hopeos@hopestudio",
-        "-----------------",
-        "OS: HopeOS 0.1.0 (M0)",
-        "Kernel: hopeos 0.1.0",
-        "Arch: x86_64",
-        "Shell: sh (ring 3)",
-        "DE: StarDustUI",
-        "Uptime: " + Math.floor(performance.now() / 1000) + "s"
-      ];
-      for (var i = 0; i < Math.max(logo.length, info.length); i++) {
-        var l = (logo[i] || "        ").padEnd(16, " ");
-        var r = info[i] ? "  " + info[i] : "";
-        print(out, '<span class="hl">' + esc(l) + "</span>" + esc(r));
-      }
-    },
-    clear: function (args, out) { out.innerHTML = ""; }
+    clear: function (_, out) { out.innerHTML = ""; }
   };
-
   function runCommand(line, out) {
-    var trimmed = line.trim();
-    if (!trimmed) return;
-    history.push(trimmed); hidx = history.length;
-    var parts = trimmed.split(/\s+/);
-    var cmd = parts[0];
-    var args = parts.slice(1);
-    if (commands[cmd]) {
-      try { commands[cmd](args, out); }
-      catch (e) { print(out, cmd + ": 内部错误 (" + esc(e.message) + ")", "err"); }
-    } else {
-      print(out, cmd + ": command not found", "err");
-    }
+    var t = line.trim(); if (!t) return;
+    history.push(t); hidx = history.length;
+    var p = t.split(/\s+/), c = p[0], a = p.slice(1);
+    if (commands[c]) try { commands[c](a, out); } catch (e) { print(out, c + ": error: " + esc(e.message), "err"); }
+    else print(out, c + ": command not found", "err");
   }
-
-  /* ---------------- Windows ---------------- */
-  var zIndex = 10;
-  var winCount = 0;
-  var windowsEl = document.getElementById("windows");
-  var taskItemsEl = document.getElementById("task-items");
-  var openWins = {};
-
-  function promptStr() {
-    var home = "/home/hopeos";
-    var dir = (cwd === home) ? "~" : cwd;
-    return "hopeos@hopestudio:" + dir + "$ ";
-  }
+  function promptStr() { return "hopeos:" + (cwd === "/home/hopeos" ? "~" : cwd) + "$ "; }
 
   function makeTerminal() {
-    var body = document.createElement("div");
-    body.id = "term";
-    var out = document.createElement("div");
-    out.id = "term-out";
-    body.appendChild(out);
-    print(out, "HopeOS shell (sh) — 输入 'help' 获取命令列表。", "dim");
-
-    var line = document.createElement("div");
-    line.className = "prompt-line";
-    var ps = document.createElement("span");
-    ps.className = "ps"; ps.textContent = promptStr();
-    var input = document.createElement("input");
-    input.id = "term-input"; input.autocomplete = "off"; input.spellcheck = false;
-    line.appendChild(ps); line.appendChild(input);
-    body.appendChild(line);
-
-    function newPrompt() {
-      ps.textContent = promptStr();
-      input.value = "";
-      body.scrollTop = body.scrollHeight;
-    }
+    var body = document.createElement("div"); body.className = "term-shell";
+    var out = document.createElement("div"); out.className = "term-out";
+    body.appendChild(out); print(out, "HopeOS shell. Type 'help' for commands.", "dim");
+    var line = document.createElement("div"); line.className = "prompt-line";
+    var ps = document.createElement("span"); ps.className = "ps"; ps.textContent = promptStr();
+    var input = document.createElement("input"); input.className = "term-input"; input.autocomplete = "off"; input.spellcheck = false;
+    line.appendChild(ps); line.appendChild(input); body.appendChild(line);
+    function newPrompt() { ps.textContent = promptStr(); input.value = ""; body.scrollTop = body.scrollHeight; }
     function submit() {
-      var val = input.value;
-      // echo the command onto output
-      var echoDiv = document.createElement("div");
-      echoDiv.innerHTML = '<span class="ps">' + esc(promptStr()) + "</span>" + esc(val);
-      out.appendChild(echoDiv);
-      body.removeChild(line);
-      runCommand(val, out);
-      body.appendChild(line);
-      newPrompt();
-      input.focus();
+      var v = input.value;
+      var echo = document.createElement("div"); echo.innerHTML = '<span class="ps">' + esc(promptStr()) + "</span>" + esc(v);
+      out.appendChild(echo); body.removeChild(line); runCommand(v, out); body.appendChild(line); newPrompt(); input.focus();
     }
     input.addEventListener("keydown", function (e) {
       if (e.key === "Enter") { e.preventDefault(); submit(); }
-      else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        if (hidx > 0) { hidx--; input.value = history[hidx] || ""; }
-      } else if (e.key === "ArrowDown") {
-        e.preventDefault();
-        if (hidx < history.length - 1) { hidx++; input.value = history[hidx] || ""; }
-        else { hidx = history.length; input.value = ""; }
-      }
+      else if (e.key === "ArrowUp") { e.preventDefault(); if (hidx > 0) { hidx--; input.value = history[hidx] || ""; } }
+      else if (e.key === "ArrowDown") { e.preventDefault(); if (hidx < history.length - 1) { hidx++; input.value = history[hidx] || ""; } else { hidx = history.length; input.value = ""; } }
     });
     body.addEventListener("click", function () { input.focus(); });
     setTimeout(function () { input.focus(); }, 60);
     return body;
   }
 
-  function makeAbout() {
-    var body = document.createElement("div");
-    body.className = "about-body";
-    body.innerHTML =
-      "<h3>关于 HopeOS</h3>" +
-      "<p>HopeOS 是希望工作室发起的一个<b>从零手写</b>的 UEFI 操作系统项目，源自 2023 年，" +
-      "目的是搞清楚一台计算机到底是怎么跑起来的。</p>" +
-      "<p>已实现：分页与 ring 3 用户态、抢占式调度器、中断/定时器、图形桌面（离屏双缓冲 + 脏矩形合成）、" +
-      "VFS + ramfs、Linux 风格 POSIX 系统调用（含 fcntl/pipe2、信号、poll/epoll）。</p>" +
-      "<p>本网页中的『模拟器』是<b>纯前端演示</b>，用 HTML/CSS/JS 复刻了 HopeOS 的观感，" +
-      "并非真实运行的内核。</p>" +
-      "<p>了解更多：<a href='https://hopestudio.mysxl.cn' target='_blank' rel='noopener'>hopestudio.mysxl.cn</a></p>";
-    return body;
+  /* ---------------- Windows ---------------- */
+  var zIndex = 10, winCount = 0;
+  var windowsEl = document.getElementById("windows");
+  var taskItemsEl = document.getElementById("task-items");
+  var openWins = {};
+
+  function makeWelcome() {
+    var b = document.createElement("div"); b.className = "welcome-body";
+    b.innerHTML = '<h2>Welcome to HopeOS!</h2><p>A minimal UEFI operating system with a graphical interface.</p><p>UEFI Graphics Mode Active</p><div class="dlg-btns"><button id="welcome-ok">OK</button><button id="welcome-cancel">Cancel</button></div>';
+    return b;
   }
+  function makeSysinfo() {
+    var b = document.createElement("div"); b.className = "sysinfo-body";
+    b.innerHTML = '<h4>System Info</h4><div>HopeOS v0.2.0</div><div>Display: 1600 x 900</div><div>Font: 16px CJK bitmap</div><div>Apps: 9 loaded</div><div>Shell: /bin/sh</div><div>DE: StarDustUI</div>';
+    return b;
+  }
+  function makeAbout() {
+    var b = document.createElement("div"); b.className = "panel-body";
+    b.innerHTML = '<h3>关于 HopeOS</h3><p>HopeOS 是希望工作室发起的、从零手写的 UEFI 操作系统项目。</p><p>当前处于 M0 阶段：扩展 Linux x86-64 兼容的系统调用面，以承载真实 libc + BusyBox。</p><p>本页面中的『模拟器』是纯前端演示，并非真实内核。</p>';
+    return b;
+  }
+
+  var appDefs = {
+    terminal: { title: "Terminal", w: 520, h: 340, icon: "&gt;", make: makeTerminal },
+    welcome: { title: "Welcome to HopeOS", w: 360, h: 190, icon: "?", make: makeWelcome },
+    sysinfo: { title: "System Info", w: 220, h: 170, icon: "i", make: makeSysinfo },
+    about: { title: "About HopeOS", w: 340, h: 200, icon: "?", make: makeAbout }
+  };
 
   function openWindow(app) {
     if (openWins[app]) { focusWindow(openWins[app]); return; }
-
+    var def = appDefs[app]; if (!def) return;
     winCount++;
-    var w = document.createElement("div");
-    w.className = "window";
-    var width = app === "terminal" ? 560 : 420;
-    var height = app === "terminal" ? 380 : 300;
-    w.style.width = width + "px";
-    w.style.height = height + "px";
-    w.style.left = (60 + winCount * 26) + "px";
-    w.style.top = (40 + winCount * 22) + "px";
+    var w = document.createElement("div"); w.className = "window";
+    w.style.width = def.w + "px"; w.style.height = def.h + "px";
+    var maxX = Math.max(20, window.innerWidth - def.w - 20);
+    var maxY = Math.max(20, window.innerHeight - def.h - 50);
+    if (app === "sysinfo") { w.style.left = (window.innerWidth - def.w - 12) + "px"; w.style.top = (window.innerHeight - def.h - 42) + "px"; }
+    else { w.style.left = Math.min(30 + winCount * 22, maxX) + "px"; w.style.top = Math.min(24 + winCount * 18, maxY) + "px"; }
 
-    var bar = document.createElement("div");
-    bar.className = "titlebar";
-    var tt = document.createElement("div");
-    tt.className = "tt";
-    var title = app === "terminal" ? "终端 — sh" : "关于 HopeOS";
-    tt.textContent = title;
-    var dots = document.createElement("div");
-    dots.className = "tb-dots";
-    var closeBtn = document.createElement("button");
-    closeBtn.className = "dot close"; closeBtn.title = "关闭";
-    dots.appendChild(closeBtn);
-    bar.appendChild(dots); bar.appendChild(tt);
+    var bar = document.createElement("div"); bar.className = "titlebar";
+    var ico = document.createElement("div"); ico.className = "title-icon"; ico.innerHTML = def.icon;
+    var tt = document.createElement("div"); tt.className = "title-text"; tt.textContent = def.title;
+    var btns = document.createElement("div"); btns.className = "title-btns";
+    var min = document.createElement("div"); min.className = "title-btn"; min.textContent = "_";
+    var max = document.createElement("div"); max.className = "title-btn"; max.textContent = "□";
+    var close = document.createElement("div"); close.className = "title-btn close"; close.textContent = "×";
+    btns.appendChild(min); btns.appendChild(max); btns.appendChild(close);
+    bar.appendChild(ico); bar.appendChild(tt); bar.appendChild(btns);
 
-    var bodyWrap = document.createElement("div");
-    bodyWrap.className = "win-body";
-    bodyWrap.appendChild(app === "terminal" ? makeTerminal() : makeAbout());
-
-    w.appendChild(bar); w.appendChild(bodyWrap);
+    var wrap = document.createElement("div"); wrap.className = "win-body";
+    var content = def.make();
+    wrap.appendChild(content);
+    if (app === "welcome") {
+      wrap.querySelector("#welcome-ok").addEventListener("click", function () { closeRec(rec); });
+      wrap.querySelector("#welcome-cancel").addEventListener("click", function () { closeRec(rec); });
+    }
+    w.appendChild(bar); w.appendChild(wrap);
     windowsEl.appendChild(w);
 
-    var rec = { el: w, app: app, title: title, body: bodyWrap, taskEl: null };
-    openWins[app] = rec;
-    makeTaskItem(rec);
-    focusWindow(rec);
+    var rec = { el: w, app: app, title: def.title, body: wrap, taskEl: null };
+    openWins[app] = rec; makeTaskItem(rec); focusWindow(rec);
 
-    // dragging
     var drag = false, ox = 0, oy = 0;
     bar.addEventListener("mousedown", function (e) {
-      if (e.target === closeBtn) return;
-      drag = true; ox = e.clientX - w.offsetLeft; oy = e.clientY - w.offsetTop;
-      focusWindow(rec); e.preventDefault();
+      if (e.target.closest(".title-btn")) return;
+      drag = true; ox = e.clientX - w.offsetLeft; oy = e.clientY - w.offsetTop; focusWindow(rec); e.preventDefault();
     });
     document.addEventListener("mousemove", function (e) {
       if (!drag) return;
       var nx = e.clientX - ox, ny = e.clientY - oy;
-      nx = Math.max(0, Math.min(nx, window.innerWidth - 60));
-      ny = Math.max(0, Math.min(ny, window.innerHeight - 80));
+      nx = Math.max(0, Math.min(nx, window.innerWidth - 80)); ny = Math.max(0, Math.min(ny, window.innerHeight - 80));
       w.style.left = nx + "px"; w.style.top = ny + "px";
     });
     document.addEventListener("mouseup", function () { drag = false; });
-
-    closeBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      windowsEl.removeChild(w);
-      if (rec.taskEl && rec.taskEl.parentNode) rec.taskEl.parentNode.removeChild(rec.taskEl);
-      delete openWins[app];
-    });
-    bar.addEventListener("mousedown", function () { focusWindow(rec); });
+    close.addEventListener("click", function (e) { e.stopPropagation(); closeRec(rec); });
+    min.addEventListener("click", function () { w.style.display = "none"; rec.taskEl.classList.remove("active"); });
+    max.addEventListener("click", function () { if (w.dataset.max === "1") { w.style.width = def.w + "px"; w.style.height = def.h + "px"; w.style.left = "30px"; w.style.top = "30px"; w.dataset.max = "0"; } else { w.style.width = (window.innerWidth - 6) + "px"; w.style.height = (window.innerHeight - 46) + "px"; w.style.left = "0px"; w.style.top = "0px"; w.dataset.max = "1"; } });
   }
 
+  function closeRec(rec) {
+    if (rec.el.parentNode) rec.el.parentNode.removeChild(rec.el);
+    if (rec.taskEl && rec.taskEl.parentNode) rec.taskEl.parentNode.removeChild(rec.taskEl);
+    delete openWins[rec.app];
+  }
   function focusWindow(rec) {
-    zIndex++;
-    rec.el.style.zIndex = zIndex;
-    rec.el.classList.add("focused");
-    Object.keys(openWins).forEach(function (k) {
-      if (openWins[k] !== rec) openWins[k].el.classList.remove("focused");
-    });
-    if (rec.taskEl) {
-      Array.prototype.forEach.call(taskItemsEl.children, function (c) { c.classList.remove("active"); });
-      rec.taskEl.classList.add("active");
-    }
-    var inp = rec.body.querySelector("#term-input");
-    if (inp) setTimeout(function () { inp.focus(); }, 30);
+    zIndex++; rec.el.style.zIndex = zIndex; rec.el.classList.add("focused");
+    Object.keys(openWins).forEach(function (k) { if (openWins[k] !== rec) openWins[k].el.classList.remove("focused"); });
+    if (rec.el.style.display === "none") rec.el.style.display = "flex";
+    Array.prototype.forEach.call(taskItemsEl.children, function (c) { c.classList.remove("active"); });
+    if (rec.taskEl) rec.taskEl.classList.add("active");
+    var inp = rec.body.querySelector(".term-input"); if (inp) setTimeout(function () { inp.focus(); }, 30);
   }
-
   function makeTaskItem(rec) {
-    var t = document.createElement("button");
-    t.className = "task-item active";
-    t.textContent = rec.title;
+    var t = document.createElement("div"); t.className = "task-item active"; t.textContent = rec.title;
     t.addEventListener("click", function () { focusWindow(rec); });
-    taskItemsEl.appendChild(t);
-    rec.taskEl = t;
+    taskItemsEl.appendChild(t); rec.taskEl = t;
   }
 
-  /* ---------------- Taskbar / start menu ---------------- */
+  /* ---------------- Start menu ---------------- */
   var startBtn = document.getElementById("start-btn");
   var startMenu = document.getElementById("startmenu");
-  startBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    startMenu.classList.toggle("open");
+  var smLeft = document.getElementById("sm-left");
+  var appList = [
+    { app: "welcome", label: "Welcome", ico: "?" },
+    { app: "terminal", label: "Terminal", ico: "&gt;" },
+    { app: "sysinfo", label: "System Info", ico: "i" },
+    { app: "about", label: "About", ico: "?" }
+  ];
+  appList.forEach(function (a) {
+    var d = document.createElement("div"); d.className = "sm-item"; d.setAttribute("data-app", a.app);
+    d.innerHTML = '<span class="ico">' + a.ico + '</span> ' + a.label;
+    d.addEventListener("click", function () { startMenu.classList.remove("open"); startBtn.classList.remove("open"); openWindow(a.app); });
+    smLeft.appendChild(d);
   });
-  document.addEventListener("click", function () { startMenu.classList.remove("open"); });
+  startBtn.addEventListener("click", function (e) { e.stopPropagation(); startMenu.classList.toggle("open"); startBtn.classList.toggle("open"); });
+  document.addEventListener("click", function () { startMenu.classList.remove("open"); startBtn.classList.remove("open"); });
   startMenu.addEventListener("click", function (e) { e.stopPropagation(); });
-
-  Array.prototype.forEach.call(document.querySelectorAll("[data-app]"), function (el) {
-    el.addEventListener("click", function () {
-      var app = el.getAttribute("data-app");
-      if (el.classList.contains("dicon")) startMenu.classList.remove("open");
-      if (app) openWindow(app);
-      var act = el.getAttribute("data-act");
-      if (act === "reboot") reboot();
-    });
-  });
   Array.prototype.forEach.call(startMenu.querySelectorAll("[data-act]"), function (el) {
     el.addEventListener("click", function () {
+      startMenu.classList.remove("open"); startBtn.classList.remove("open");
       var act = el.getAttribute("data-act");
-      startMenu.classList.remove("open");
       if (act === "reboot") reboot();
+      if (act === "shutdown") { bootEl.style.display = "block"; bootEl.style.opacity = "1"; bootText.textContent = "It is now safe to turn off your computer."; }
     });
   });
 
   function reboot() {
-    // close all windows
-    Object.keys(openWins).forEach(function (k) {
-      var rec = openWins[k];
-      if (rec.el.parentNode) rec.el.parentNode.removeChild(rec.el);
-      if (rec.taskEl && rec.taskEl.parentNode) rec.taskEl.parentNode.removeChild(rec.taskEl);
-    });
-    openWins = {}; winCount = 0;
-    desktop.classList.remove("show");
+    Object.keys(openWins).forEach(function (k) { closeRec(openWins[k]); });
+    winCount = 0; desktop.classList.remove("show");
     bootEl.style.display = "block"; bootEl.style.opacity = "1";
-    bootText.innerHTML = ""; bi = 0; bc = 0; booted = false;
-    typeBoot();
+    bootText.innerHTML = ""; bi = 0; bc = 0; booted = false; typeBoot();
   }
 
   /* ---------------- Clock ---------------- */
   function tick() {
-    var d = new Date();
-    var hh = String(d.getHours()).padStart(2, "0");
-    var mm = String(d.getMinutes()).padStart(2, "0");
-    var wd = ["日","一","二","三","四","五","六"][d.getDay()];
-    document.getElementById("clk-time").textContent = hh + ":" + mm;
-    document.getElementById("clk-date").textContent =
-      (d.getMonth() + 1) + "/" + d.getDate() + " 周" + wd;
+    var d = new Date(); document.getElementById("clock").textContent =
+      String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0") + ":" + String(d.getSeconds()).padStart(2, "0");
   }
   tick(); setInterval(tick, 1000);
-
 })();
 </script>
 </body>
