@@ -5,44 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>HopeOS 模拟器</title>
 <style>
+  /* Palette taken verbatim from kernel/gui/gui_internal.h + the paint functions
+     so this front-end matches the real kernel render, not a guess. */
   :root {
-    /* Real HopeOS palette (sampled from screenshots) */
-    --wall-top: #20538b;        /* (32,83,139) */
-    --wall-bot: #0d223c;        /* (13,34,60) */
-    --taskbar: #181c24;         /* dark taskbar (24,28,36) */
-    --start: #2d6cdf;           /* blue start button (45,108,223) */
-    --title-hi: #2c66d8;        /* titlebar bright left (40,100,212) */
-    --title-mid: #2d6cdf;       /* titlebar center */
-    --title-lo: #1a4270;        /* titlebar dark right edge (26,66,112) */
-    --title-in: #53607c;        /* inactive titlebar */
-    --frame: #163a66;           /* window border */
-    --body: #fafbfc;            /* window body near white (250,251,252) */
-    --text: #1a1a1a;
-    --text-dim: #6a6a6a;
-    --accent: #2d6cdf;
+    --face:    #c0c0c0;   /* WIN9X_FACE */
+    --hi:      #ffffff;   /* WIN9X_HI */
+    --sh:      #808080;   /* WIN9X_SH */
+    --dk:      #404040;   /* WIN9X_DK */
+    --wall-top:#21548c;   /* paint_wallpaper() top (33,84,140) */
+    --wall-bot:#0c1e36;   /* paint_wallpaper() bottom (12,30,54) */
+    --accent:  #0054e3;   /* COL_ACCENT (0,84,227) */
+    --accent-dk:#143891;  /* COL_ACCENT_DARK (20,56,145) */
+    --title-hi:#3e87f6;   /* WIN9X_TITLE_HI (62,135,246) */
+    --title-lo:#0b36a2;   /* WIN9X_TITLE_LO (11,54,162) */
+    --title-in:#808080;   /* WIN9X_TITLE_IN */
+    --paper:   #ffffff;   /* COL_PAPER */
+    --win7-hdr:#2358b2;   /* WIN7_HEADER (35,88,178) */
+    --win7-hdr2:#0d307c;  /* WIN7_HEADER2 (13,48,124) */
+    --win7-sel:#4667d0;   /* WIN7_SEL (70,103,208) */
+    --win7-pow:#5f8ce6;   /* WIN7_POWER (95,140,230) */
+    --text:    #000000;
+    --text-dim:#808080;
     --term-bg: #000000;
-    --term-fg: #d4d5d7;         /* light gray terminal text (212,213,215) */
-    --term-hi: #8fb0e6;         /* blue terminal highlight (149,170,216) */
-    --term-err: #ff6b6b;
-    --icon: #2d6cdf;
+    --term-fg: #c8c8c8;   /* terminal text (200,200,200) */
+    --term-cur:#64dc64;   /* terminal cursor (100,220,100) */
+    --term-bd: #3c3c3c;   /* terminal 60,60,60 frame */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; width: 100%; overflow: hidden; }
   body {
-    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", "Tahoma", "SimSun", system-ui, sans-serif;
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", Tahoma, system-ui, sans-serif;
     color: var(--text);
     user-select: none; -webkit-user-select: none;
+    font-size: 13px;
   }
+
+  /* 2px Win9x bevel: light top/left, dark bottom/right (gui_bevel). */
+  .bevel { border: 2px solid; border-color: var(--hi) var(--sh) var(--sh) var(--hi); }
+  .bevel-sunken { border: 2px solid; border-color: var(--sh) var(--hi) var(--hi) var(--sh); }
 
   /* ---------------- Boot ---------------- */
   #boot {
-    position: absolute; inset: 0;
+    position: absolute; inset: 0; z-index: 200;
     background: #000; color: #cfcfcf;
-    font-family: "Consolas", "Courier New", ui-monospace, monospace;
-    font-size: 13px; line-height: 1.5;
-    padding: 28px 32px; white-space: pre-wrap;
-    z-index: 100;
-    transition: opacity .5s ease;
+    font-family: "Consolas", "Courier New", monospace; font-size: 13px; line-height: 1.5;
+    padding: 28px 32px; white-space: pre-wrap; transition: opacity .4s ease;
   }
   #boot .ok { color: #7ec47e; }
   #boot .dim { color: #5a5a5a; }
@@ -52,252 +59,292 @@
   #desktop {
     position: absolute; inset: 0;
     background: linear-gradient(180deg, var(--wall-top) 0%, var(--wall-bot) 100%);
-    opacity: 0; transition: opacity .5s ease;
   }
-  #desktop.show { opacity: 1; }
+  #icons { position: absolute; left: 0; top: 0; }
+  .dicon {
+    position: absolute; width: 96px; height: 64px; cursor: pointer; text-align: center;
+  }
+  .dicon .tile {
+    width: 36px; height: 36px; margin: 0 auto; background: var(--accent);
+    border-radius: 6px; border: 1px solid var(--accent-dk);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: bold; font-size: 18px;
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,.4);
+  }
+  .dicon .lbl { color: #fff; font-size: 12px; margin-top: 4px; text-shadow: 0 1px 2px #000; }
 
   /* ---------------- Taskbar ---------------- */
   #taskbar {
     position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
-    background: var(--taskbar); z-index: 90;
-    display: flex; align-items: center; gap: 6px; padding: 0 6px;
+    background: var(--face); z-index: 150;
+    border-top: 2px solid var(--hi);
+    display: flex; align-items: center; gap: 0; padding: 0 0 0 0;
   }
   #start-btn {
-    display: flex; align-items: center; gap: 8px;
-    background: linear-gradient(180deg, #3a7be8 0%, var(--start) 55%, #1d57c4 100%);
-    color: #fff; font-weight: 600; font-size: 13px;
-    border: 1px solid #1d57c4; border-radius: 3px;
-    padding: 0 12px 0 8px; height: 30px; cursor: pointer;
-    min-width: 112px; max-width: 112px;
+    position: absolute; left: 8px; top: 5px; width: 112px; height: 30px;
+    background: var(--face); color: #000; font-weight: 600; font-size: 13px;
+    display: flex; align-items: center; gap: 6px; padding: 0 8px; cursor: pointer;
   }
-  #start-btn:hover { filter: brightness(1.08); }
-  #start-btn.open { filter: brightness(0.92); }
-  #start-btn .flag { display: grid; grid-template-columns: 7px 7px; grid-template-rows: 7px 7px; gap: 1px; }
+  #start-btn.open { border-color: var(--sh) var(--hi) var(--hi) var(--sh); }
+  #start-btn .flag { display: grid; grid-template-columns: 7px 7px; grid-template-rows: 7px 7px; gap: 0; }
   #start-btn .flag span { display: block; }
-  #start-btn .flag .r { background: #f25022; }
-  #start-btn .flag .g { background: #7bbf2e; }
-  #start-btn .flag .b { background: #2d6cdf; }
-  #start-btn .flag .y { background: #ffc60a; }
-  .task-items { display: flex; gap: 6px; flex: 1; overflow: hidden; padding-left: 4px; }
+  #start-btn .flag .r { background: #dc2828; }
+  #start-btn .flag .g { background: #28aa3c; }
+  #start-btn .flag .b { background: #286edc; }
+  #start-btn .flag .y { background: #ebc828; }
+  #task-items { position: absolute; left: 130px; top: 5px; right: 96px; height: 30px; }
   .task-item {
-    display: flex; align-items: center;
-    background: transparent; color: #e6e8ec; font-size: 13px;
-    border: 1px solid transparent; border-radius: 3px;
-    padding: 0 10px; height: 30px; cursor: pointer;
-    max-width: 180px; min-width: 64px;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    position: absolute; top: 0; height: 30px;
+    background: var(--face); color: #000; font-size: 13px;
+    display: flex; align-items: center; padding: 0 8px; cursor: pointer; overflow: hidden;
+    white-space: nowrap; text-overflow: ellipsis;
   }
-  .task-item:hover { background: rgba(255,255,255,.08); }
-  .task-item.active { background: rgba(45,108,223,.32); border-color: rgba(45,108,223,.6); }
+  .task-item.active { border-color: var(--sh) var(--hi) var(--hi) var(--sh); background: #b9b9b9; }
+  .task-item.min { color: var(--text-dim); }
   #clock {
-    width: 88px; text-align: center; font-size: 12px;
-    background: transparent; color: #d8dce4;
-    border: 1px solid transparent; border-radius: 3px; padding: 4px 0;
+    position: absolute; right: 8px; top: 5px; width: 80px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid; border-color: var(--sh) var(--hi) var(--hi) var(--sh);
+    font-size: 12px; color: #000; background: var(--face);
   }
 
   /* ---------------- Start menu ---------------- */
   #startmenu {
-    position: absolute; bottom: 40px; left: 6px; width: 360px;
-    background: #fff; z-index: 95;
-    display: none; box-shadow: 8px 8px 18px rgba(0,0,0,.45);
-    border-radius: 4px; overflow: hidden;
+    position: absolute; width: 384px; z-index: 160; display: none;
+    background: var(--face);
   }
   #startmenu.open { display: block; }
   .sm-header {
-    height: 58px;
-    background: linear-gradient(180deg, #2c66d8 0%, #1a4270 100%);
-    display: flex; align-items: center; gap: 10px; padding: 0 12px;
-    color: #fff;
+    height: 58px; margin: 1px;
+    background: linear-gradient(180deg, var(--win7-hdr) 0%, var(--win7-hdr2) 100%);
+    display: flex; align-items: center; gap: 10px; padding: 0 12px; color: #fff; position: relative;
   }
-  .sm-header .flag { display: grid; grid-template-columns: 7px 7px; grid-template-rows: 7px 7px; gap: 1px; }
+  .sm-header .flag { display: grid; grid-template-columns: 7px 7px; grid-template-rows: 7px 7px; gap: 0; }
   .sm-header .flag span { display: block; width: 7px; height: 7px; }
-  .sm-header .flag .r { background: #f25022; }
-  .sm-header .flag .g { background: #7bbf2e; }
-  .sm-header .flag .b { background: #2d6cdf; }
-  .sm-header .flag .y { background: #ffc60a; }
-  .sm-title { flex: 1; }
-  .sm-title .big { font-weight: bold; font-size: 16px; display: block; }
-  .sm-title .small { font-size: 12px; color: #dce8ff; }
-  .sm-avatar { width: 44px; height: 44px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #2c66d8; font-weight: bold; }
-  .sm-body { display: flex; height: 240px; background: #f3f5f8; }
-  .sm-left { width: 224px; padding: 4px 0; }
-  .sm-right { flex: 1; background: #fff; border-left: 1px solid #d8dde4; padding: 4px 0; }
-  .sm-item { display: flex; align-items: center; gap: 10px; padding: 6px 10px; cursor: pointer; font-size: 13px; }
-  .sm-item:hover { background: #2d6cdf; color: #fff; }
-  .sm-item .ico {
-    width: 24px; height: 24px; background: #2d6cdf; color: #fff;
-    display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; border-radius: 3px;
+  .sm-header .flag .r { background: #dc2828; }
+  .sm-header .flag .g { background: #28aa3c; }
+  .sm-header .flag .b { background: #286edc; }
+  .sm-header .flag .y { background: #ebc828; }
+  .sm-header .brand { flex: 1; }
+  .sm-header .brand .b1 { font-weight: bold; font-size: 16px; }
+  .sm-header .brand .b2 { font-size: 12px; color: #dce6ff; }
+  .sm-header .avatar {
+    width: 44px; height: 44px; background: #fff; border: 1px solid #9aa1ad; border-radius: 3px;
+    position: relative; overflow: hidden;
   }
+  .sm-header .avatar::before { content:""; position:absolute; left:50%; top:28%; width:16px; height:16px; border-radius:50%; background: var(--accent); transform: translateX(-50%); }
+  .sm-header .avatar::after { content:""; position:absolute; left:50%; top:55%; width:30px; height:26px; border-radius:50%; background: var(--accent); transform: translateX(-50%); }
+  .sm-body { display: flex; }
+  .sm-left { width: 224px; }
+  .sm-right {
+    width: 160px; background: #fff; border-left: 1px solid var(--sh);
+  }
+  .sm-row {
+    height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 8px; cursor: pointer; font-size: 13px;
+  }
+  .sm-row .ic {
+    width: 24px; height: 24px; color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center;
+    border-radius: 3px; flex: 0 0 auto;
+  }
+  .sm-row.left .ic { background: var(--accent); }
+  .sm-row.right .ic { background: var(--win7-hdr); }
+  .sm-row.hot { background: var(--win7-sel); color: #fff; }
   .sm-bottom {
-    height: 42px; background: linear-gradient(180deg, #2c66d8 0%, #1a4270 100%);
-    display: flex; align-items: center; justify-content: space-between; padding: 0 12px; color: #fff;
+    height: 42px; margin: 0 1px 1px 1px;
+    background: linear-gradient(180deg, var(--win7-hdr) 0%, var(--win7-hdr2) 100%);
+    display: flex; align-items: center; justify-content: space-between; padding: 0 10px;
   }
-  .sm-bottom .search { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #dce8ff; }
-  .sm-bottom .search input { width: 120px; height: 20px; border: 1px solid #1a4270; border-radius: 2px; }
-  .power-btn { width: 28px; height: 28px; border-radius: 50%; background: #4a86e8; border: 1px solid #cfe0ff; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; }
+  .sm-search {
+    flex: 0 0 184px; height: 26px; background: #fff; border: 2px solid; border-color: var(--sh) var(--hi) var(--hi) var(--sh);
+    display: flex; align-items: center; gap: 8px; padding: 0 8px; color: var(--text-dim); font-size: 12px;
+  }
+  .sm-search .mag { width: 12px; height: 12px; border: 2px solid #333; border-radius: 50%; position: relative; }
+  .sm-search .mag::after { content:""; position:absolute; right:-4px; bottom:-3px; width:6px; height:2px; background:#333; transform: rotate(45deg); }
+  .sm-power {
+    width: 22px; height: 22px; border-radius: 50%; background: var(--win7-pow);
+    display: flex; align-items: center; justify-content: center; position: relative;
+  }
+  .sm-power::before { content:""; width:2px; height:9px; background:#fff; border-radius:1px; }
 
   /* ---------------- Windows ---------------- */
   .window {
-    position: absolute; min-width: 260px; min-height: 160px;
-    background: var(--body);
-    border: 1px solid var(--frame);
-    box-shadow: 3px 3px 14px rgba(0,0,0,.45);
+    position: absolute; min-width: 200px; min-height: 120px;
+    background: var(--face);
+    border: 1px solid var(--dk);
+    box-shadow: inset 2px 2px 0 var(--hi), inset -2px -2px 0 var(--sh);
     display: flex; flex-direction: column; z-index: 10;
-    border-radius: 2px;
   }
-  .window.focused { outline: none; }
   .titlebar {
-    height: 24px; flex: 0 0 24px;
-    background: linear-gradient(90deg, var(--title-in) 0%, #44516c 100%);
-    display: flex; align-items: center; padding: 0 2px 0 4px; cursor: move;
+    height: 22px; flex: 0 0 22px; position: relative;
+    background: linear-gradient(90deg, var(--title-hi) 0%, var(--title-lo) 100%);
+    display: flex; align-items: center; cursor: move;
   }
-  .window.focused .titlebar {
-    background: linear-gradient(90deg, var(--title-hi) 0%, var(--title-mid) 60%, var(--title-lo) 100%);
+  .window.inactive .titlebar { background: var(--title-in); }
+  .title-icon {
+    width: 16px; height: 16px; margin-left: 6px; background: #fff; color: var(--accent);
+    display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; border-radius: 2px;
   }
-  .title-icon { width: 16px; height: 16px; background: #fff; color: var(--icon); font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; border-radius: 2px; margin-right: 5px; }
-  .title-text { flex: 1; color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 2px; text-shadow: 0 1px 1px rgba(0,0,0,.25); }
-  .title-btns { display: flex; gap: 2px; }
+  .title-text {
+    flex: 1; color: #fff; font-size: 13px; font-weight: 600; margin-left: 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 22px;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  }
+  .title-btns { position: absolute; right: 5px; top: 4px; display: flex; gap: 1px; }
   .title-btn {
-    width: 20px; height: 18px; font-size: 11px; line-height: 16px;
-    background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.25);
-    display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 2px;
+    width: 16px; height: 14px; background: var(--face); color: #000; font-size: 10px; line-height: 11px;
+    border: 2px solid; border-color: var(--hi) var(--sh) var(--sh) var(--hi);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
   }
-  .title-btn:hover { background: rgba(255,255,255,.28); }
-  .title-btn.close:hover { background: #e23b3b; border-color: #ff8a8a; }
-  .win-body { flex: 1; overflow: auto; background: var(--body); position: relative; }
+  .title-btn:hover { background: #d4d4d4; }
+  .title-btn.close:hover { background: #c0392b; color: #fff; border-color: #ff8a8a; }
+  .win-client {
+    position: absolute; left: 3px; right: 3px; bottom: 3px; top: 23px;
+    background: var(--paper); overflow: hidden;
+  }
 
   /* ---------------- Terminal ---------------- */
-  .term-shell {
-    background: var(--term-bg); color: var(--term-fg);
-    font-family: "Consolas", "Courier New", "Lucida Console", ui-monospace, monospace;
-    font-size: 13px; line-height: 1.4;
-    padding: 4px 6px; height: 100%; overflow: auto;
-    -webkit-font-smoothing: none; font-smooth: never; text-rendering: geometricPrecision;
+  .term {
+    position: absolute; inset: 0; background: var(--term-bg); color: var(--term-fg);
+    font-family: "Consolas", "Courier New", monospace; font-size: 13px; line-height: 16px;
+    padding: 2px 0 2px 4px; overflow: auto; white-space: pre-wrap; word-break: break-word;
   }
-  .term-out { white-space: pre-wrap; word-break: break-word; }
-  .term-out .err { color: var(--term-err); }
-  .term-out .hi { color: var(--term-hi); }
-  .term-out .dim { color: #7a7d82; }
-  .prompt-line { display: flex; }
-  .prompt-line .ps { color: var(--term-hi); white-space: pre; flex: 0 0 auto; }
-  .term-input {
-    background: transparent; border: none; outline: none;
-    color: var(--term-fg); font-family: inherit; font-size: inherit;
-    flex: 1; caret-color: var(--term-fg);
-    -webkit-font-smoothing: none; font-smooth: never;
+  .term .err { color: #ff6b6b; }
+  .term .dim { color: #888; }
+  .term-cursor { display: inline-block; width: 7px; height: 14px; background: var(--term-cur); vertical-align: text-bottom; }
+
+  /* ---------------- Built-in dialogs ---------------- */
+  .welcome, .sysinfo, .run, .app-pane { position: absolute; inset: 0; background: var(--paper); padding: 16px; }
+  .welcome h2 { font-size: 22px; margin-bottom: 12px; }
+  .welcome p { color: var(--text-dim); margin-bottom: 4px; }
+  .welcome p.acc { color: var(--accent); margin-top: 8px; }
+  .sysinfo h4 { font-size: 15px; margin-bottom: 8px; }
+  .sysinfo div { color: var(--text-dim); line-height: 1.7; }
+  .dlg-btns { position: absolute; bottom: 16px; right: 16px; display: flex; gap: 8px; }
+  .btn {
+    min-width: 78px; height: 32px; padding: 0 12px; cursor: pointer; font-size: 13px;
+  }
+  .btn.primary { background: var(--accent); color: #fff; border: 2px solid var(--accent-dk); }
+  .btn.primary:hover { filter: brightness(1.08); }
+  .btn.normal { background: var(--face); color: #000; border: 2px solid var(--sh); }
+  .btn.normal:hover { background: #d4d4d4; }
+  .run-label { color: var(--text-dim); margin: 4px 0 8px 0; }
+  .run-input {
+    width: calc(100% - 8px); height: 24px; background: #fff; border: 2px solid; border-color: var(--sh) var(--hi) var(--hi) var(--sh);
+    padding: 0 4px; font-size: 13px; color: #000; outline: none;
   }
 
-  /* ---------------- About / Welcome / Sysinfo ---------------- */
-  .panel-body { padding: 12px; font-size: 13px; line-height: 1.6; background: var(--body); }
-  .panel-body h3 { font-size: 14px; margin-bottom: 10px; }
-  .panel-body p { margin-bottom: 8px; }
-  .panel-body button, .dlg-btns button {
-    background: linear-gradient(180deg, #fbfbfc 0%, #e7e9ee 100%); color: #1a1a1a;
-    border: 1px solid #9aa1ad; border-radius: 3px;
-    padding: 3px 18px; font-size: 13px; cursor: pointer; min-width: 80px;
-  }
-  .panel-body button:hover, .dlg-btns button:hover { background: linear-gradient(180deg, #eaf1ff 0%, #cfe0ff 100%); border-color: #2d6cdf; }
-  .dlg-btns { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
-  .welcome-body { padding: 16px; }
-  .welcome-body h2 { font-size: 18px; margin-bottom: 10px; }
-  .welcome-body p { font-size: 13px; margin-bottom: 8px; line-height: 1.5; }
-  .sysinfo-body { padding: 8px 10px; font-family: "Consolas", "Courier New", monospace; font-size: 12px; line-height: 1.45; }
-  .sysinfo-body h4 { font-size: 13px; margin-bottom: 6px; border-bottom: 1px solid #c9cdd4; padding-bottom: 2px; }
+  /* ---------------- App: notepad ---------------- */
+  .np-toolbar { height: 24px; background: #dcdcdc; border-bottom: 1px solid #a0a0a0; display: flex; align-items: center; padding: 0 6px; gap: 8px; }
+  .np-toolbar .t { color: #3c3c3c; font-size: 12px; }
+  .np-btn { background: #becdff; border: 1px solid #a0a0a0; padding: 1px 8px; font-size: 12px; color: #14143c; cursor: pointer; }
+  .np-area { position: absolute; left: 4px; right: 4px; top: 28px; bottom: 4px; background: #fff; border: 1px solid #a0a0a0; padding: 4px; overflow: auto; font-family: "Consolas", monospace; font-size: 13px; line-height: 16px; color: #1e1e1e; }
+  .np-area:focus { outline: none; }
 
-  /* Scrollbars */
-  ::-webkit-scrollbar { width: 12px; background: #e7e9ee; }
-  ::-webkit-scrollbar-thumb { background: #b9c0cc; border: 1px solid #9aa1ad; border-radius: 2px; }
-  ::-webkit-scrollbar-button { background: #d4d9e0; border: 1px solid #9aa1ad; height: 12px; }
+  /* ---------------- App: calculator ---------------- */
+  .calc { position: absolute; inset: 0; background: #2d2d2d; padding: 10px; }
+  .calc-disp { height: 36px; background: #1e1e1e; border: 1px solid #646464; color: #fff; font-family: "Consolas", monospace; font-size: 20px; display: flex; align-items: center; justify-content: flex-end; padding: 0 8px; }
+  .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 10px; }
+  .calc-grid button { height: 36px; border: none; color: #c8c8c8; cursor: pointer; font-size: 14px; font-weight: bold; border-radius: 2px; }
+  .calc-grid button:active { filter: brightness(1.25); }
+  .calc-num { background: #505050; }
+  .calc-op { background: #c87832; color: #fff; }
+  .calc-eq { background: #329632; color: #fff; }
+  .calc-clr { background: #b43232; color: #fff; }
+
+  /* ---------------- App: clock ---------------- */
+  .clk { position: absolute; inset: 0; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .clk .big { font-family: "Consolas", monospace; font-size: 34px; color: #143891; }
+  .clk .sub { color: var(--text-dim); }
+
+  /* ---------------- App: paint ---------------- */
+  .paint { position: absolute; inset: 0; background: #fff; }
+  .paint canvas { display: block; background: #fff; cursor: crosshair; touch-action: none; }
+
+  /* ---------------- App: sysmonitor ---------------- */
+  .sys { position: absolute; inset: 0; background: #fff; padding: 12px; font-family: "Consolas", monospace; font-size: 13px; color: var(--text-dim); line-height: 1.8; }
+  .sys b { color: #333; }
+
+  /* ---------------- App: filemgr ---------------- */
+  .fm { position: absolute; inset: 0; background: #fff; padding: 10px; font-family: "Consolas", monospace; font-size: 13px; color: #1e1e1e; overflow: auto; }
+
+  /* ---------------- App: placeholder ---------------- */
+  .ph { position: absolute; inset: 0; background: #fff; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--text-dim); }
+  .ph .big { font-size: 18px; color: #333; }
 </style>
 </head>
 <body>
   <div id="boot"><span id="boot-text"></span><span id="boot-hint">点击任意处跳过</span></div>
 
   <div id="desktop">
-    <div id="startmenu">
-      <div class="sm-header">
-        <div class="flag"><span class="r"></span><span class="g"></span><span class="b"></span><span class="y"></span></div>
-        <div class="sm-title"><span class="big">HopeOS</span><span class="small">user</span></div>
-        <div class="sm-avatar">U</div>
-      </div>
-      <div class="sm-body">
-        <div class="sm-left" id="sm-left"></div>
-        <div class="sm-right">
-          <div class="sm-item" data-app="terminal"><span class="ico">&gt;</span> 终端</div>
-          <div class="sm-item" data-app="sysinfo"><span class="ico">i</span> 系统信息</div>
-          <div class="sm-item" data-app="about"><span class="ico">?</span> 关于</div>
-          <div class="sm-item" data-act="reboot"><span class="ico">R</span> 重启</div>
-        </div>
-      </div>
-      <div class="sm-bottom">
-        <div class="search">搜索: <input type="text" /></div>
-        <div class="power-btn" title="关机" data-act="shutdown">&#x23FB;</div>
-      </div>
-    </div>
-
+    <div id="icons"></div>
     <div id="windows"></div>
-
     <div id="taskbar">
-      <button id="start-btn">
+      <div id="start-btn">
         <div class="flag"><span class="r"></span><span class="g"></span><span class="b"></span><span class="y"></span></div>
         <span>开始</span>
-      </button>
-      <div class="task-items" id="task-items"></div>
-      <div id="clock">--:--</div>
+      </div>
+      <div id="task-items"></div>
+      <div id="clock">--:--:--</div>
     </div>
+    <div id="startmenu"></div>
   </div>
 
 <script>
 (function () {
   "use strict";
 
-  /* ---------------- Boot ---------------- */
+  /* ===================== geometry constants (from kernel) ===================== */
+  var TITLE_H = 22, TASKBAR_H = 40;
+
+  /* ===================== Boot ===================== */
   var bootEl = document.getElementById("boot");
   var bootText = document.getElementById("boot-text");
   var desktop = document.getElementById("desktop");
   var bootLines = [
-    { t: "HopeOS UEFI Boot Loader", c: "ok" },
-    { t: "========================", c: "" },
-    { t: "", c: "" },
-    { t: "Initializing UEFI runtime services............ [ ok ]", c: "ok" },
-    { t: "Mapping memory map (EfiConventionalMemory).... [ ok ]", c: "ok" },
-    { t: "Enabling paging / long mode (CR0.PG, CR4.PAE).. [ ok ]", c: "ok" },
-    { t: "Installing GDT / TSS / 256-entry IDT.......... [ ok ]", c: "ok" },
-    { t: "Remapping 8259 PIC, arming PIT @ 100 Hz....... [ ok ]", c: "ok" },
-    { t: "Heap allocator online (8 MiB)................. [ ok ]", c: "ok" },
-    { t: "Spawn scheduler (16 kernel threads)........... [ ok ]", c: "ok" },
-    { t: "Mounting ramfs (VFS).......................... [ ok ]", c: "ok" },
-    { t: "Starting GUI compositor (off-screen dbl buf).. [ ok ]", c: "ok" },
-    { t: "Loading user shell (ring 3)................... [ ok ]", c: "ok" },
-    { t: "", c: "" },
-    { t: "Welcome to HopeOS. Launching desktop...", c: "ok" }
+    "HopeOS UEFI Boot Loader",
+    "========================",
+    "",
+    "Initializing UEFI runtime services............ [ ok ]",
+    "Mapping memory map (EfiConventionalMemory).... [ ok ]",
+    "Enabling paging / long mode (CR0.PG, CR4.PAE).. [ ok ]",
+    "Installing GDT / TSS / 256-entry IDT.......... [ ok ]",
+    "Remapping 8259 PIC, arming PIT @ 100 Hz....... [ ok ]",
+    "Heap allocator online (8 MiB)................. [ ok ]",
+    "Spawn scheduler (16 kernel threads)........... [ ok ]",
+    "Mounting ramfs (VFS).......................... [ ok ]",
+    "Starting GUI compositor (off-screen dbl buf).. [ ok ]",
+    "Loading user shell (ring 3)................... [ ok ]",
+    "",
+    "Welcome to HopeOS. Launching desktop..."
   ];
   var bi = 0, bc = 0, bootTimer = null, booted = false;
-
   function typeBoot() {
     if (bi >= bootLines.length) { finishBoot(); return; }
     var line = bootLines[bi];
-    if (bc === 0 && bootText.innerHTML && line.t !== "") bootText.appendChild(document.createTextNode("\n"));
-    if (bc < line.t.length) {
-      var ch = document.createTextNode(line.t[bc]);
-      var span = document.createElement("span"); if (line.c) span.className = line.c;
-      span.appendChild(ch); bootText.appendChild(span); bc++;
-      bootTimer = setTimeout(typeBoot, line.t ? 6 : 20);
-    } else { bi++; bc = 0; bootTimer = setTimeout(typeBoot, line.t === "" ? 80 : 60); }
+    if (bc === 0 && bootText.innerHTML && line !== "") bootText.appendChild(document.createTextNode("\n"));
+    if (bc < line.length) {
+      var span = document.createElement("span");
+      if (line.indexOf("[ ok ]") >= 0) span.className = "ok";
+      span.textContent = line[bc]; bootText.appendChild(span); bc++;
+      bootTimer = setTimeout(typeBoot, line ? 5 : 18);
+    } else { bi++; bc = 0; bootTimer = setTimeout(typeBoot, line === "" ? 60 : 40); }
   }
   function finishBoot() {
     if (booted) return; booted = true;
     if (bootTimer) clearTimeout(bootTimer);
     bootEl.style.opacity = "0";
     setTimeout(function () {
-      bootEl.style.display = "none"; desktop.classList.add("show");
-      openWindow("welcome"); openWindow("sysinfo"); openWindow("terminal");
-    }, 500);
+      bootEl.style.display = "none";
+      buildIcons();
+      buildStartMenu();
+      openBuiltin("welcome");
+      openBuiltin("sysinfo");
+    }, 400);
   }
   bootEl.addEventListener("click", finishBoot);
   typeBoot();
 
-  /* ---------------- Filesystem ---------------- */
+  /* ===================== filesystem (for filemgr/terminal) ===================== */
   var FS = {
     "/": { type: "dir", children: ["home", "bin", "readme.txt", "hello.txt"] },
     "/home": { type: "dir", children: ["hopeos"] },
@@ -324,219 +371,547 @@
   }
   var cwd = "/home/hopeos";
 
-  /* ---------------- Terminal ---------------- */
-  var history = [], hidx = -1;
-  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-  function print(out, html, cls) { var d = document.createElement("div"); if (cls) d.className = cls; d.innerHTML = html || ""; out.appendChild(d); out.scrollTop = out.scrollHeight; return d; }
-  var commands = {
-    help: function (_, out) { print(out, "可用命令: help ls cd pwd cat echo ver uname whoami date about hopestudio neofetch clear", "hi"); },
-    ls: function (args, out) {
-      var tgt = args[0] ? resolve(args[0]) : resolve(cwd);
-      if (!tgt) { print(out, "ls: cannot access '" + esc(args[0] || cwd) + "': No such file or directory", "err"); return; }
-      if (tgt.node.type === "file") { print(out, esc(args[0] || cwd)); return; }
-      var items = tgt.node.children.slice().sort().map(function (n) {
-        var full = (tgt.path === "/" ? "" : tgt.path) + "/" + n; return FS[full] && FS[full].type === "dir" ? '<span class="hi">' + esc(n) + "/</span>" : esc(n);
-      }).join("  "); print(out, items);
-    },
-    cd: function (args, out) {
-      if (!args[0]) { cwd = "/home/hopeos"; return; }
-      var tgt = resolve(args[0]); if (!tgt || tgt.node.type !== "dir") { print(out, "cd: " + esc(args[0]) + ": Not a directory", "err"); return; }
-      cwd = tgt.path;
-    },
-    pwd: function (_, out) { print(out, esc(cwd)); },
-    cat: function (args, out) {
-      if (!args[0]) { print(out, "cat: missing operand", "err"); return; }
-      var tgt = resolve(args[0]); if (!tgt) { print(out, "cat: " + esc(args[0]) + ": No such file or directory", "err"); return; }
-      if (tgt.node.type === "dir") { print(out, "cat: " + esc(args[0]) + ": Is a directory", "err"); return; }
-      print(out, esc(tgt.node.data));
-    },
-    echo: function (args, out) { print(out, esc(args.join(" "))); },
-    ver: function (_, out) { print(out, "HopeOS version 0.2.0 (M0)\nCopyright Hope Studio (2019-2026), all rights reserved."); },
-    uname: function (args, out) { if (args.indexOf("-a") >= 0) print(out, "HopeOS hopeos 0.2.0 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux"); else print(out, "HopeOS"); },
-    whoami: function (_, out) { print(out, "hopeos"); },
-    date: function (_, out) { print(out, new Date().toString()); },
-    about: function (_, out) { print(out, "HopeOS: a from-scratch UEFI OS for learning internals."); print(out, "Visit https://hopestudio.mysxl.cn", "hi"); },
-    hopestudio: function (_, out) { print(out, "https://hopestudio.mysxl.cn", "hi"); },
-    neofetch: function (_, out) {
-      var logo = ["   __  __", "  / / / /__  ___", " / /_/ / _ \\/ -_)", " \\____/\\___/\\__/"];
-      var info = ["hopeos@hopestudio", "-----------------", "OS: HopeOS 0.2.0 (M0)", "Kernel: hopeos 0.2.0", "Arch: x86_64", "Shell: sh", "DE: StarDustUI", "Uptime: " + Math.floor(performance.now()/1000) + "s"];
-      for (var i = 0; i < Math.max(logo.length, info.length); i++) print(out, '<span class="hi">' + esc((logo[i] || "").padEnd(16, " ")) + "</span>" + esc(info[i] ? "  " + info[i] : ""));
-    },
-    clear: function (_, out) { out.innerHTML = ""; }
-  };
-  function runCommand(line, out) {
-    var t = line.trim(); if (!t) return;
-    history.push(t); hidx = history.length;
-    var p = t.split(/\s+/), c = p[0], a = p.slice(1);
-    if (commands[c]) try { commands[c](a, out); } catch (e) { print(out, c + ": error: " + esc(e.message), "err"); }
-    else print(out, c + ": command not found", "err");
+  /* ===================== app registry (mirrors main.c app_register order) ===================== */
+  var APPS = [
+    { key: "terminal",     name: "Terminal",      icon: "T", w: 400, h: 280, make: makeTerminal },
+    { key: "calculator",   name: "Calculator",    icon: "C", w: 240, h: 300, make: makeCalculator },
+    { key: "clock",        name: "Clock",         icon: "K", w: 240, h: 170, make: makeClock },
+    { key: "paint",        name: "Paint",         icon: "P", w: 440, h: 330, make: makePaint },
+    { key: "snake",        name: "Snake",         icon: "S", w: 360, h: 300, make: makeSnake },
+    { key: "notepad",      name: "Notepad",       icon: "N", w: 440, h: 320, make: makeNotepad },
+    { key: "sysmonitor",   name: "SysMonitor",    icon: "M", w: 320, h: 250, make: makeSys },
+    { key: "filemgr",      name: "FileMgr",       icon: "F", w: 440, h: 320, make: makeFm },
+    { key: "controlpanel", name: "Control Panel", icon: "C", w: 360, h: 260, make: makeControl }
+  ];
+  function appByName(n) {
+    for (var i = 0; i < APPS.length; i++)
+      if (APPS[i].name.toLowerCase() === n.toLowerCase()) return i;
+    return -1;
   }
-  function promptStr() { return "hopeos:" + (cwd === "/home/hopeos" ? "~" : cwd) + "$ "; }
 
-  function makeTerminal() {
-    var body = document.createElement("div"); body.className = "term-shell";
-    var out = document.createElement("div"); out.className = "term-out";
-    body.appendChild(out); print(out, "HopeOS shell. Type 'help' for commands.", "dim");
-    var line = document.createElement("div"); line.className = "prompt-line";
-    var ps = document.createElement("span"); ps.className = "ps"; ps.textContent = promptStr();
-    var input = document.createElement("input"); input.className = "term-input"; input.autocomplete = "off"; input.spellcheck = false;
-    line.appendChild(ps); line.appendChild(input); body.appendChild(line);
-    function newPrompt() { ps.textContent = promptStr(); input.value = ""; body.scrollTop = body.scrollHeight; }
-    function submit() {
-      var v = input.value;
-      var echo = document.createElement("div"); echo.innerHTML = '<span class="ps">' + esc(promptStr()) + "</span>" + esc(v);
-      out.appendChild(echo); body.removeChild(line); runCommand(v, out); body.appendChild(line); newPrompt(); input.focus();
-    }
-    input.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") { e.preventDefault(); submit(); }
-      else if (e.key === "ArrowUp") { e.preventDefault(); if (hidx > 0) { hidx--; input.value = history[hidx] || ""; } }
-      else if (e.key === "ArrowDown") { e.preventDefault(); if (hidx < history.length - 1) { hidx++; input.value = history[hidx] || ""; } else { hidx = history.length; input.value = ""; } }
+  /* ===================== desktop icons ===================== */
+  function buildIcons() {
+    var box = document.getElementById("icons");
+    box.innerHTML = "";
+    var IW = 96, IH = 64, TILE = 36, GAP = 8, X0 = 16, Y0 = 16;
+    var yLimit = window.innerHeight - TASKBAR_H - IH;
+    var x = X0, y = Y0;
+    APPS.forEach(function (a, i) {
+      if (y > yLimit) { y = Y0; x += IW + GAP; }
+      var d = document.createElement("div");
+      d.className = "dicon";
+      d.style.left = x + "px"; d.style.top = y + "px";
+      d.innerHTML = '<div class="tile">' + a.icon + '</div><div class="lbl">' + a.name + '</div>';
+      d.addEventListener("dblclick", function () { openApp(i); });
+      d.addEventListener("click", function () { openApp(i); });
+      box.appendChild(d);
+      y += IH + GAP;
     });
-    body.addEventListener("click", function () { input.focus(); });
-    setTimeout(function () { input.focus(); }, 60);
-    return body;
   }
 
-  /* ---------------- Windows ---------------- */
+  /* ===================== window manager ===================== */
   var zIndex = 10, winCount = 0;
   var windowsEl = document.getElementById("windows");
   var taskItemsEl = document.getElementById("task-items");
-  var openWins = {};
+  var openWins = {};   /* key -> rec */
 
-  function makeWelcome() {
-    var b = document.createElement("div"); b.className = "welcome-body";
-    b.innerHTML = '<h2>Welcome to HopeOS!</h2><p>A minimal UEFI operating system with a graphical interface.</p><p>UEFI Graphics Mode Active</p><div class="dlg-btns"><button id="welcome-ok">OK</button><button id="welcome-cancel">Cancel</button></div>';
-    return b;
-  }
-  function makeSysinfo() {
-    var b = document.createElement("div"); b.className = "sysinfo-body";
-    b.innerHTML = '<h4>System Info</h4><div>HopeOS v0.2.0</div><div>Display: 1600 x 900</div><div>Font: 16px CJK bitmap</div><div>Apps: 9 loaded</div><div>Shell: /bin/sh</div><div>DE: StarDustUI</div>';
-    return b;
-  }
-  function makeAbout() {
-    var b = document.createElement("div"); b.className = "panel-body";
-    b.innerHTML = '<h3>关于 HopeOS</h3><p>HopeOS 是希望工作室发起的、从零手写的 UEFI 操作系统项目。</p><p>当前处于 M0 阶段：扩展 Linux x86-64 兼容的系统调用面，以承载真实 libc + BusyBox。</p><p>本页面中的『模拟器』是纯前端演示，并非真实内核。</p>';
-    return b;
+  function recFor(title, kind, extra) {
+    var rec = { el: null, title: title, kind: kind, body: null, taskEl: null, minimized: false, maximized: false, prev: null };
+    if (extra) for (var k in extra) rec[k] = extra[k];
+    return rec;
   }
 
-  var appDefs = {
-    terminal: { title: "Terminal", w: 520, h: 340, icon: "&gt;", make: makeTerminal },
-    welcome: { title: "Welcome to HopeOS", w: 360, h: 190, icon: "?", make: makeWelcome },
-    sysinfo: { title: "System Info", w: 220, h: 170, icon: "i", make: makeSysinfo },
-    about: { title: "About HopeOS", w: 340, h: 200, icon: "?", make: makeAbout }
-  };
-
-  function openWindow(app) {
-    if (openWins[app]) { focusWindow(openWins[app]); return; }
-    var def = appDefs[app]; if (!def) return;
-    winCount++;
-    var w = document.createElement("div"); w.className = "window";
-    w.style.width = def.w + "px"; w.style.height = def.h + "px";
-    var maxX = Math.max(20, window.innerWidth - def.w - 20);
-    var maxY = Math.max(20, window.innerHeight - def.h - 50);
-    if (app === "sysinfo") { w.style.left = (window.innerWidth - def.w - 12) + "px"; w.style.top = (window.innerHeight - def.h - 42) + "px"; }
-    else { w.style.left = Math.min(30 + winCount * 22, maxX) + "px"; w.style.top = Math.min(24 + winCount * 18, maxY) + "px"; }
+  function makeFrame(rec, w, h, x, y, iconChar, whiteIcon) {
+    var el = document.createElement("div");
+    el.className = "window";
+    el.style.width = w + "px"; el.style.height = h + "px";
+    el.style.left = x + "px"; el.style.top = y + "px";
 
     var bar = document.createElement("div"); bar.className = "titlebar";
-    var ico = document.createElement("div"); ico.className = "title-icon"; ico.innerHTML = def.icon;
-    var tt = document.createElement("div"); tt.className = "title-text"; tt.textContent = def.title;
+    var ico = document.createElement("div"); ico.className = "title-icon"; ico.textContent = iconChar || "?";
+    if (whiteIcon) ico.style.color = "#fff";
+    var tt = document.createElement("div"); tt.className = "title-text"; tt.textContent = rec.title;
     var btns = document.createElement("div"); btns.className = "title-btns";
     var min = document.createElement("div"); min.className = "title-btn"; min.textContent = "_";
     var max = document.createElement("div"); max.className = "title-btn"; max.textContent = "□";
-    var close = document.createElement("div"); close.className = "title-btn close"; close.textContent = "×";
+    var close = document.createElement("div"); close.className = "title-btn close"; close.textContent = "✕";
     btns.appendChild(min); btns.appendChild(max); btns.appendChild(close);
     bar.appendChild(ico); bar.appendChild(tt); bar.appendChild(btns);
 
-    var wrap = document.createElement("div"); wrap.className = "win-body";
-    var content = def.make();
-    wrap.appendChild(content);
-    if (app === "welcome") {
-      wrap.querySelector("#welcome-ok").addEventListener("click", function () { closeRec(rec); });
-      wrap.querySelector("#welcome-cancel").addEventListener("click", function () { closeRec(rec); });
-    }
-    w.appendChild(bar); w.appendChild(wrap);
-    windowsEl.appendChild(w);
+    var client = document.createElement("div"); client.className = "win-client";
+    el.appendChild(bar); el.appendChild(client);
+    windowsEl.appendChild(el);
 
-    var rec = { el: w, app: app, title: def.title, body: wrap, taskEl: null };
-    openWins[app] = rec; makeTaskItem(rec); focusWindow(rec);
+    rec.el = el; rec.body = client; rec.titleText = tt;
+    el._min = min; el._max = max; el._close = close;
 
+    /* drag */
     var drag = false, ox = 0, oy = 0;
     bar.addEventListener("mousedown", function (e) {
       if (e.target.closest(".title-btn")) return;
-      drag = true; ox = e.clientX - w.offsetLeft; oy = e.clientY - w.offsetTop; focusWindow(rec); e.preventDefault();
+      drag = true; ox = e.clientX - el.offsetLeft; oy = e.clientY - el.offsetTop; focus(rec); e.preventDefault();
     });
     document.addEventListener("mousemove", function (e) {
       if (!drag) return;
-      var nx = e.clientX - ox, ny = e.clientY - oy;
-      nx = Math.max(0, Math.min(nx, window.innerWidth - 80)); ny = Math.max(0, Math.min(ny, window.innerHeight - 80));
-      w.style.left = nx + "px"; w.style.top = ny + "px";
+      var nx = Math.max(0, Math.min(e.clientX - ox, window.innerWidth - 40));
+      var ny = Math.max(0, Math.min(e.clientY - oy, window.innerHeight - TASKBAR_H - 4));
+      el.style.left = nx + "px"; el.style.top = ny + "px";
     });
     document.addEventListener("mouseup", function () { drag = false; });
-    close.addEventListener("click", function (e) { e.stopPropagation(); closeRec(rec); });
-    min.addEventListener("click", function () { w.style.display = "none"; rec.taskEl.classList.remove("active"); });
-    max.addEventListener("click", function () { if (w.dataset.max === "1") { w.style.width = def.w + "px"; w.style.height = def.h + "px"; w.style.left = "30px"; w.style.top = "30px"; w.dataset.max = "0"; } else { w.style.width = (window.innerWidth - 6) + "px"; w.style.height = (window.innerHeight - 46) + "px"; w.style.left = "0px"; w.style.top = "0px"; w.dataset.max = "1"; } });
+
+    min.addEventListener("click", function (e) { e.stopPropagation(); minimize(rec); });
+    max.addEventListener("click", function (e) { e.stopPropagation(); toggleMax(rec); });
+    close.addEventListener("click", function (e) { e.stopPropagation(); closeWin(rec); });
+    return el;
   }
 
-  function closeRec(rec) {
-    if (rec.el.parentNode) rec.el.parentNode.removeChild(rec.el);
-    if (rec.taskEl && rec.taskEl.parentNode) rec.taskEl.parentNode.removeChild(rec.taskEl);
-    delete openWins[rec.app];
+  function focus(rec) {
+    zIndex++; rec.el.style.zIndex = zIndex; rec.el.classList.remove("inactive");
+    Object.keys(openWins).forEach(function (k) { if (openWins[k] !== rec) openWins[k].el.classList.add("inactive"); });
+    if (rec.minimized) { rec.minimized = false; rec.el.style.display = "flex"; }
+    Array.prototype.forEach.call(taskItemsEl.children, function (c) { c.classList.remove("active"); c.classList.remove("min"); });
+    if (rec.taskEl) { rec.taskEl.classList.add("active"); if (rec.minimized) rec.taskEl.classList.add("min"); }
+    if (rec.onFocus) rec.onFocus();
   }
-  function focusWindow(rec) {
-    zIndex++; rec.el.style.zIndex = zIndex; rec.el.classList.add("focused");
-    Object.keys(openWins).forEach(function (k) { if (openWins[k] !== rec) openWins[k].el.classList.remove("focused"); });
-    if (rec.el.style.display === "none") rec.el.style.display = "flex";
-    Array.prototype.forEach.call(taskItemsEl.children, function (c) { c.classList.remove("active"); });
-    if (rec.taskEl) rec.taskEl.classList.add("active");
-    var inp = rec.body.querySelector(".term-input"); if (inp) setTimeout(function () { inp.focus(); }, 30);
+  function minimize(rec) {
+    rec.minimized = true; rec.el.style.display = "none";
+    if (rec.taskEl) rec.taskEl.classList.add("min");
+    guiFocusTopmost();
+  }
+  function toggleMax(rec) {
+    if (rec.maximized) {
+      rec.maximized = false;
+      rec.el.style.left = rec.prev.x; rec.el.style.top = rec.prev.y;
+      rec.el.style.width = rec.prev.w; rec.el.style.height = rec.prev.h;
+    } else {
+      rec.prev = { x: rec.el.offsetLeft, y: rec.el.offsetTop, w: rec.el.offsetWidth, h: rec.el.offsetHeight };
+      rec.maximized = true;
+      rec.el.style.left = "0px"; rec.el.style.top = "0px";
+      rec.el.style.width = window.innerWidth + "px";
+      rec.el.style.height = (window.innerHeight - TASKBAR_H) + "px";
+    }
+    focus(rec);
+  }
+  function closeWin(rec) {
+    if (rec.el && rec.el.parentNode) rec.el.parentNode.removeChild(rec.el);
+    if (rec.taskEl && rec.taskEl.parentNode) rec.taskEl.parentNode.removeChild(rec.taskEl);
+    delete openWins[rec.key];
+    if (rec.onClose) rec.onClose();
+    guiFocusTopmost();
+  }
+  function guiFocusTopmost() {
+    var top = null;
+    Object.keys(openWins).forEach(function (k) {
+      var r = openWins[k];
+      if (!r.minimized && (!top || parseInt(r.el.style.zIndex) > parseInt(top.el.style.zIndex))) top = r;
+    });
+    if (top) focus(top);
   }
   function makeTaskItem(rec) {
     var t = document.createElement("div"); t.className = "task-item active"; t.textContent = rec.title;
-    t.addEventListener("click", function () { focusWindow(rec); });
-    taskItemsEl.appendChild(t); rec.taskEl = t;
+    t.addEventListener("click", function () {
+      if (rec.minimized) { rec.minimized = false; rec.el.style.display = "flex"; }
+      else if (parseInt(rec.el.style.zIndex) === zIndex) { minimize(rec); return; }
+      focus(rec);
+    });
+    rec.taskEl = t; layoutTaskItems();
+  }
+  function layoutTaskItems() {
+    var n = 0;
+    Object.keys(openWins).forEach(function (k) { if (!openWins[k].minimized) n++; });
+    var avail = taskItemsEl.clientWidth;
+    var bw = Math.max(48, Math.min(168, (avail - (n - 1) * 6) / (n || 1)));
+    var x = 0;
+    Object.keys(openWins).forEach(function (k) {
+      var t = openWins[k].taskEl; if (!t) return;
+      t.style.left = x + "px"; t.style.width = bw + "px"; x += bw + 6;
+    });
   }
 
-  /* ---------------- Start menu ---------------- */
+  function openApp(i) {
+    var a = APPS[i];
+    if (openWins[a.key]) { focus(openWins[a.key]); return; }
+    winCount++;
+    var x = Math.min(40 + winCount * 22, window.innerWidth - a.w - 20);
+    var y = Math.min(40 + winCount * 18, window.innerHeight - a.h - TASKBAR_H - 10);
+    var rec = recFor(a.name, "app", { key: a.key });
+    var el = makeFrame(rec, a.w, a.h, x, y, a.icon);
+    var content = a.make(rec);
+    rec.body.appendChild(content);
+    openWins[a.key] = rec; makeTaskItem(rec); focus(rec);
+    layoutTaskItems();
+  }
+
+  function openBuiltin(kind) {
+    if (openWins[kind]) { focus(openWins[kind]); return; }
+    winCount++;
+    var rec = recFor(kind === "welcome" ? "Welcome to HopeOS" : "System Info", "builtin", { key: kind });
+    var el, content, x, y, w, h;
+    if (kind === "welcome") {
+      w = 440; h = 280; x = (window.innerWidth - w) / 2; y = (window.innerHeight - h) / 2 - 20;
+      el = makeFrame(rec, w, h, x, y, "?");
+      content = makeWelcome(rec);
+    } else {
+      w = 280; h = 160; x = window.innerWidth - w - 60; y = window.innerHeight - TASKBAR_H - h - 20;
+      el = makeFrame(rec, w, h, x, y, "i");
+      content = makeSysinfo();
+    }
+    rec.body.appendChild(content);
+    openWins[kind] = rec; makeTaskItem(rec); focus(rec);
+    layoutTaskItems();
+  }
+
+  /* ===================== built-in dialogs ===================== */
+  function makeWelcome(rec) {
+    var b = document.createElement("div"); b.className = "welcome";
+    b.innerHTML =
+      '<h2>Welcome to HopeOS!</h2>' +
+      '<p>A minimal UEFI operating system</p>' +
+      '<p>with a graphical interface.</p>' +
+      '<p class="acc">UEFI Graphics Mode Active</p>' +
+      '<div class="dlg-btns">' +
+      '<button class="btn primary" id="w-ok">OK</button>' +
+      '<button class="btn normal" id="w-cancel">Cancel</button></div>';
+    b.querySelector("#w-ok").addEventListener("click", function () { closeWin(rec); });
+    b.querySelector("#w-cancel").addEventListener("click", function () { closeWin(rec); });
+    return b;
+  }
+  function makeSysinfo() {
+    var b = document.createElement("div"); b.className = "sysinfo";
+    b.innerHTML = '<h4>HopeOS v0.2</h4>' +
+      '<div>Display: ' + window.innerWidth + ' x ' + window.innerHeight + '</div>' +
+      '<div>Font: 16px CJK + 8x8</div>' +
+      '<div>Apps: ' + APPS.length + ' loaded</div>';
+    return b;
+  }
+
+  /* ===================== Run dialog ===================== */
+  var runOpen = false, runRec = null, runInput = null;
+  function openRun() {
+    if (runOpen) { runInput.focus(); return; }
+    runOpen = true;
+    var rec = recFor("Run", "run", { key: "run" });
+    var w = 340, h = 128;
+    var x = window.innerWidth / 2 - 170, y = window.innerHeight / 2 - 66;
+    var el = makeFrame(rec, w, h, x, y, "R");
+    var b = document.createElement("div"); b.className = "run";
+    b.innerHTML = '<div class="run-label">Type the name of a program</div>' +
+      '<input class="run-input" id="run-in" />' +
+      '<div class="dlg-btns">' +
+      '<button class="btn primary" id="run-ok">OK</button>' +
+      '<button class="btn normal" id="run-cancel">Cancel</button></div>';
+    rec.body.appendChild(b);
+    runInput = b.querySelector("#run-in");
+    runRec = rec; openWins["run"] = rec; makeTaskItem(rec); focus(rec); layoutTaskItems();
+    runInput.focus();
+    b.querySelector("#run-ok").addEventListener("click", runExec);
+    b.querySelector("#run-cancel").addEventListener("click", closeRun);
+    runInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); runExec(); }
+      else if (e.key === "Escape") { e.preventDefault(); closeRun(); }
+    });
+  }
+  function closeRun() {
+    runOpen = false;
+    if (runRec) closeWin(runRec);
+    runRec = null; runInput = null;
+  }
+  function runExec() {
+    var v = (runInput.value || "").trim();
+    if (!v) { closeRun(); return; }
+    var ai = appByName(v);
+    closeRun();
+    if (ai >= 0) { openApp(ai); return; }
+    /* /bin spawns (from start-menu links) */
+    if (v[0] === "/") {
+      alert("HopeOS: proc_spawn(" + v + ") — 模拟器仅演示内核应用");
+      return;
+    }
+    alert("HopeOS: '" + v + "' 不是已注册的应用");
+  }
+
+  /* ===================== Start menu ===================== */
   var startBtn = document.getElementById("start-btn");
   var startMenu = document.getElementById("startmenu");
-  var smLeft = document.getElementById("sm-left");
-  var appList = [
-    { app: "welcome", label: "Welcome", ico: "?" },
-    { app: "terminal", label: "Terminal", ico: "&gt;" },
-    { app: "sysinfo", label: "System Info", ico: "i" },
-    { app: "about", label: "About", ico: "?" }
+  var startOpen = false;
+  var SM_LINKS = [
+    { label: "Run...", act: "run" },
+    { label: "Shell", act: "spawn:/bin/sh" },
+    { label: "Hello", act: "spawn:/bin/hello" },
+    { label: "Credits", act: "spawn:/bin/credits" }
   ];
-  appList.forEach(function (a) {
-    var d = document.createElement("div"); d.className = "sm-item"; d.setAttribute("data-app", a.app);
-    d.innerHTML = '<span class="ico">' + a.ico + '</span> ' + a.label;
-    d.addEventListener("click", function () { startMenu.classList.remove("open"); startBtn.classList.remove("open"); openWindow(a.app); });
-    smLeft.appendChild(d);
-  });
-  startBtn.addEventListener("click", function (e) { e.stopPropagation(); startMenu.classList.toggle("open"); startBtn.classList.toggle("open"); });
-  document.addEventListener("click", function () { startMenu.classList.remove("open"); startBtn.classList.remove("open"); });
-  startMenu.addEventListener("click", function (e) { e.stopPropagation(); });
-  Array.prototype.forEach.call(startMenu.querySelectorAll("[data-act]"), function (el) {
-    el.addEventListener("click", function () {
-      startMenu.classList.remove("open"); startBtn.classList.remove("open");
-      var act = el.getAttribute("data-act");
-      if (act === "reboot") reboot();
-      if (act === "shutdown") { bootEl.style.display = "block"; bootEl.style.opacity = "1"; bootText.textContent = "It is now safe to turn off your computer."; }
+  function startMenuHeight() {
+    var rows = Math.max(APPS.length, SM_LINKS.length);
+    return 58 + rows * 34 + 42;
+  }
+  function buildStartMenu() {
+    var h = startMenuHeight();
+    startMenu.style.height = h + "px";
+    startMenu.style.left = "8px";
+    startMenu.style.top = (window.innerHeight - TASKBAR_H - h) + "px";
+    startMenu.innerHTML =
+      '<div class="sm-header">' +
+        '<div class="flag"><span class="r"></span><span class="g"></span><span class="b"></span><span class="y"></span></div>' +
+        '<div class="brand"><div class="b1">HopeOS</div><div class="b2">user</div></div>' +
+        '<div class="avatar"></div>' +
+      '</div>' +
+      '<div class="sm-body">' +
+        '<div class="sm-left" id="sm-left"></div>' +
+        '<div class="sm-right" id="sm-right"></div>' +
+      '</div>' +
+      '<div class="sm-bottom">' +
+        '<div class="sm-search"><div class="mag"></div>Search programs and files</div>' +
+        '<div class="sm-power"></div>' +
+      '</div>';
+    var left = startMenu.querySelector("#sm-left");
+    APPS.forEach(function (a, i) {
+      var r = document.createElement("div"); r.className = "sm-row left";
+      r.innerHTML = '<div class="ic">' + a.icon + '</div><div>' + a.name + '</div>';
+      r.addEventListener("mouseenter", function () { clearHot(); r.classList.add("hot"); });
+      r.addEventListener("click", function () { closeStart(); openApp(i); });
+      left.appendChild(r);
     });
+    var right = startMenu.querySelector("#sm-right");
+    SM_LINKS.forEach(function (lk) {
+      var r = document.createElement("div"); r.className = "sm-row right";
+      r.innerHTML = '<div class="ic">' + lk.label[0] + '</div><div>' + lk.label + '</div>';
+      r.addEventListener("mouseenter", function () { clearHot(); r.classList.add("hot"); });
+      r.addEventListener("click", function () {
+        closeStart();
+        if (lk.act === "run") openRun();
+        else if (lk.act.indexOf("spawn:") === 0) alert("HopeOS: " + lk.act + " (模拟器仅演示内核应用)");
+      });
+      right.appendChild(r);
+    });
+  }
+  function clearHot() {
+    Array.prototype.forEach.call(startMenu.querySelectorAll(".sm-row"), function (r) { r.classList.remove("hot"); });
+  }
+  function openStart() { startOpen = true; startMenu.classList.add("open"); startBtn.classList.add("open"); }
+  function closeStart() { startOpen = false; startMenu.classList.remove("open"); startBtn.classList.remove("open"); }
+  function toggleStart() { startOpen ? closeStart() : openStart(); }
+  startBtn.addEventListener("click", function (e) { e.stopPropagation(); toggleStart(); });
+  document.addEventListener("click", function (e) {
+    if (startOpen && !startMenu.contains(e.target) && e.target !== startBtn && !startBtn.contains(e.target)) closeStart();
   });
 
-  function reboot() {
-    Object.keys(openWins).forEach(function (k) { closeRec(openWins[k]); });
-    winCount = 0; desktop.classList.remove("show");
-    bootEl.style.display = "block"; bootEl.style.opacity = "1";
-    bootText.innerHTML = ""; bi = 0; bc = 0; booted = false; typeBoot();
+  /* ===================== terminal (black / gray / green cursor) ===================== */
+  function makeTerminal(rec) {
+    var box = document.createElement("div"); box.className = "term";
+    var hist = [], hidx = -1, buf = "", cur = 0;
+    function promptStr() { return "hopeos:" + (cwd === "/home/hopeos" ? "~" : cwd) + "$ "; }
+    function render() {
+      var html = outHTML;
+      html += '<span>' + esc(promptStr()) + '</span>';
+      html += esc(buf.slice(0, cur)) + '<span class="term-cursor"></span>' + esc(buf.slice(cur));
+      box.innerHTML = html;
+      box.scrollTop = box.scrollHeight;
+    }
+    var outHTML = "";
+    function print(s, cls) { outHTML += '<div class="' + (cls || "") + '">' + (s === "" ? " " : esc(s)) + '</div>'; }
+    var commands = {
+      help: function () { print("可用命令: help ls cd pwd cat echo ver uname whoami date about hopestudio neofetch clear"); },
+      ls: function (a) {
+        var tgt = a[0] ? resolve(a[0]) : resolve(cwd);
+        if (!tgt) { print("ls: cannot access '" + (a[0] || cwd) + "': No such file or directory", "err"); return; }
+        if (tgt.node.type === "file") { print(a[0] || cwd); return; }
+        print(tgt.node.children.slice().sort().map(function (n) {
+          var full = (tgt.path === "/" ? "" : tgt.path) + "/" + n;
+          return FS[full] && FS[full].type === "dir" ? n + "/" : n;
+        }).join("  "));
+      },
+      cd: function (a) { if (!a[0]) { cwd = "/home/hopeos"; return; } var t = resolve(a[0]); if (!t || t.node.type !== "dir") { print("cd: " + a[0] + ": Not a directory", "err"); return; } cwd = t.path; },
+      pwd: function () { print(cwd); },
+      cat: function (a) {
+        if (!a[0]) { print("cat: missing operand", "err"); return; }
+        var t = resolve(a[0]); if (!t) { print("cat: " + a[0] + ": No such file or directory", "err"); return; }
+        if (t.node.type === "dir") { print("cat: " + a[0] + ": Is a directory", "err"); return; }
+        print(t.node.data);
+      },
+      echo: function (a) { print(a.join(" ")); },
+      ver: function () { print("HopeOS version 0.2.0 (M0)\nCopyright Hope Studio (2019-2026), all rights reserved."); },
+      uname: function (a) { print(a.indexOf("-a") >= 0 ? "HopeOS hopeos 0.2.0 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux" : "HopeOS"); },
+      whoami: function () { print("hopeos"); },
+      date: function () { print(new Date().toString()); },
+      about: function () { print("HopeOS: a from-scratch UEFI OS for learning internals.\nVisit https://hopestudio.mysxl.cn"); },
+      hopestudio: function () { print("https://hopestudio.mysxl.cn"); },
+      neofetch: function () {
+        var logo = ["   __  __", "  / / / /__  ___", " / /_/ / _ \\/ -_)", " \\____/\\___/\\__/"];
+        var info = ["hopeos@hopestudio", "-----------------", "OS: HopeOS 0.2.0 (M0)", "Kernel: hopeos 0.2.0", "Arch: x86_64", "Shell: sh", "DE: StarDustUI", "Uptime: " + Math.floor(performance.now() / 1000) + "s"];
+        for (var i = 0; i < Math.max(logo.length, info.length); i++)
+          print('<span style="color:#c8c8c8">' + esc((logo[i] || "").padEnd(16, " ")) + '</span>' + esc(info[i] ? "  " + info[i] : ""));
+      },
+      clear: function () { outHTML = ""; }
+    };
+    function run(line) {
+      var t = line.trim(); if (!t) return;
+      hist.push(t); hidx = hist.length;
+      var p = t.split(/\s+/), c = p[0], a = p.slice(1);
+      if (commands[c]) try { commands[c](a); } catch (e) { print(c + ": error: " + e.message, "err"); }
+      else print(c + ": command not found", "err");
+    }
+    print("HopeOS Terminal");
+    var inputTimer = null;
+    box.tabIndex = 0;
+    box.addEventListener("click", function () { box.focus(); });
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        print(promptStr() + buf);
+        run(buf);
+        buf = ""; cur = 0; render();
+      } else if (e.key === "Backspace") {
+        e.preventDefault();
+        if (cur > 0) { buf = buf.slice(0, cur - 1) + buf.slice(cur); cur--; render(); }
+      } else if (e.key === "ArrowLeft") { e.preventDefault(); if (cur > 0) { cur--; render(); } }
+      else if (e.key === "ArrowRight") { e.preventDefault(); if (cur < buf.length) { cur++; render(); } }
+      else if (e.key === "ArrowUp") { e.preventDefault(); if (hidx > 0) { hidx--; buf = hist[hidx] || ""; cur = buf.length; render(); } }
+      else if (e.key === "ArrowDown") { e.preventDefault(); if (hidx < hist.length - 1) { hidx++; buf = hist[hidx] || ""; } else { hidx = hist.length; buf = ""; } cur = buf.length; render(); }
+      else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
+        buf = buf.slice(0, cur) + e.key + buf.slice(cur); cur++; render();
+      }
+    });
+    rec.onFocus = function () { setTimeout(function () { box.focus(); }, 30); };
+    render();
+    return box;
   }
 
-  /* ---------------- Clock ---------------- */
-  function tick() {
-    var d = new Date(); document.getElementById("clock").textContent =
-      String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0") + ":" + String(d.getSeconds()).padStart(2, "0");
+  /* ===================== app: calculator ===================== */
+  function makeCalculator() {
+    var b = document.createElement("div"); b.className = "calc";
+    b.innerHTML = '<div class="calc-disp" id="cdisp">0</div><div class="calc-grid" id="cgrid"></div>';
+    var disp = b.querySelector("#cdisp"), grid = b.querySelector("#cgrid");
+    var val = 0, op = null, fresh = true;
+    function show() { disp.textContent = String(val); }
+    var keys = [["C","+","-","*"],["7","8","9","/"],["4","5","6","="],["1","2","3","0"]];
+    keys.forEach(function (row) {
+      row.forEach(function (k) {
+        var btn = document.createElement("button");
+        btn.textContent = k;
+        if (k === "C") btn.className = "calc-clr";
+        else if (k === "=") btn.className = "calc-eq";
+        else if (k === "+" || k === "-" || k === "*" || k === "/") btn.className = "calc-op";
+        else btn.className = "calc-num";
+        btn.addEventListener("click", function () {
+          if (k >= "0" && k <= "9") {
+            val = fresh ? (val * 10 + parseInt(k)) : parseInt(k);
+            fresh = false;
+          } else if (k === "C") { val = 0; op = null; fresh = true; }
+          else if (k === "=") { op = null; fresh = true; }
+          else { op = k; fresh = true; }
+          show();
+        });
+        grid.appendChild(btn);
+      });
+    });
+    show();
+    return b;
   }
-  tick(); setInterval(tick, 1000);
+
+  /* ===================== app: clock ===================== */
+  function makeClock() {
+    var b = document.createElement("div"); b.className = "clk";
+    b.innerHTML = '<div class="big" id="clk-big">--:--:--</div><div class="sub">HopeOS Clock</div>';
+    var big = b.querySelector("#clk-big");
+    function tick() {
+      var d = new Date();
+      big.textContent = [d.getHours(), d.getMinutes(), d.getSeconds()].map(function (n) { return String(n).padStart(2, "0"); }).join(":");
+    }
+    tick(); var id = setInterval(tick, 1000);
+    b._timer = id;
+    return b;
+  }
+
+  /* ===================== app: paint ===================== */
+  function makePaint() {
+    var b = document.createElement("div"); b.className = "paint";
+    var cv = document.createElement("canvas");
+    b.appendChild(cv);
+    setTimeout(function () {
+      cv.width = b.clientWidth; cv.height = b.clientHeight;
+      var ctx = cv.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, cv.width, cv.height);
+      var drawing = false;
+      function pos(e) { var r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+      cv.addEventListener("mousedown", function (e) { drawing = true; var p = pos(e); ctx.fillStyle = "#0054e3"; ctx.fillRect(p.x - 2, p.y - 2, 4, 4); });
+      cv.addEventListener("mousemove", function (e) { if (!drawing) return; var p = pos(e); ctx.fillStyle = "#0054e3"; ctx.fillRect(p.x - 2, p.y - 2, 4, 4); });
+      window.addEventListener("mouseup", function () { drawing = false; });
+    }, 30);
+    return b;
+  }
+
+  /* ===================== app: notepad ===================== */
+  function makeNotepad() {
+    var b = document.createElement("div"); b.style.position = "absolute"; b.style.inset = "0";
+    b.innerHTML = '<div class="np-toolbar"><span class="t">Notepad</span>' +
+      '<span class="np-btn" id="np-save">Save</span><span class="np-btn" id="np-open">Open</span></div>' +
+      '<textarea class="np-area" id="np-area" spellcheck="false">HopeOS Notepad\nType here...</textarea>';
+    var area = b.querySelector("#np-area");
+    b.querySelector("#np-save").addEventListener("click", function () { area.dataset.saved = area.value; area.blur(); });
+    b.querySelector("#np-open").addEventListener("click", function () { area.value = area.dataset.saved || ""; });
+    return b;
+  }
+
+  /* ===================== app: sysmonitor ===================== */
+  function makeSys() {
+    var b = document.createElement("div"); b.className = "sys";
+    function tick() {
+      var d = Math.floor(performance.now() / 1000);
+      b.innerHTML = "<b>HopeOS SysMonitor</b><br>" +
+        "Uptime: " + d + "s<br>" +
+        "Threads: 16<br>" +
+        "Windows: " + Object.keys(openWins).length + "<br>" +
+        "Memory: " + (8 - (d % 3)) + " / 8 MiB<br>" +
+        "DE: StarDustUI<br>" +
+        "Kernel: hopeos 0.2.0";
+    }
+    tick(); b._timer = setInterval(tick, 1000);
+    return b;
+  }
+
+  /* ===================== app: filemgr ===================== */
+  function makeFm() {
+    var b = document.createElement("div"); b.className = "fm";
+    function render() {
+      var lines = ["/" + cwd.slice(1)];
+      var node = resolve(cwd);
+      if (node && node.type === "dir") {
+        node.node.children.forEach(function (n) {
+          var full = (cwd === "/" ? "" : cwd) + "/" + n;
+          lines.push("  " + (FS[full] && FS[full].type === "dir" ? "[" + n + "]" : n));
+        });
+      }
+      b.textContent = "HopeOS FileMgr\n" + lines.join("\n");
+    }
+    render();
+    b._refresh = render;
+    return b;
+  }
+
+  /* ===================== app: control panel / snake (placeholder) ===================== */
+  function makeControl() {
+    var b = document.createElement("div"); b.className = "ph";
+    b.innerHTML = '<div class="big">Control Panel</div><div>设置项：显示 / 区域 / 电源（演示占位）</div>';
+    return b;
+  }
+  function makeSnake() {
+    var b = document.createElement("div"); b.className = "ph";
+    b.innerHTML = '<div class="big">Snake</div><div>贪吃蛇小游戏（模拟器占位）</div>';
+    return b;
+  }
+
+  /* keep timers/refresh aligned with focus; refresh filemgr on open is enough */
+
+  /* ===================== clock (taskbar) ===================== */
+  function tickClock() {
+    var d = new Date();
+    document.getElementById("clock").textContent =
+      [d.getHours(), d.getMinutes(), d.getSeconds()].map(function (n) { return String(n).padStart(2, "0"); }).join(":");
+  }
+  tickClock(); setInterval(tickClock, 1000);
+
+  window.addEventListener("resize", function () { buildIcons(); buildStartMenu(); layoutTaskItems(); });
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 })();
 </script>
 </body>
