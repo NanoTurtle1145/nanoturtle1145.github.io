@@ -300,20 +300,29 @@
   var bootEl = document.getElementById("boot");
   var bootText = document.getElementById("boot-text");
   var desktop = document.getElementById("desktop");
+  /* Mirrors the real kernel boot log (kernel/main.c: the UEFI console prints
+     "HopeOS Kernel" / "Kernel started successfully." / "Kernel heap: 64 MiB
+     ready." / "Page pool: 16 MiB ready." / "VFS: ramfs ready." / "Preloaded
+     /bin from ESP." / "Loaded CJK font from ESP." / "Filesystem mounted."),
+     followed by the in-kernel takeover + GUI handover milestones. */
   var bootLines = [
-    "HopeOS UEFI Boot Loader",
-    "========================",
+    "HopeOS Kernel",
+    "Kernel started successfully.",
+    "Kernel heap: 64 MiB ready.",
+    "Page pool: 16 MiB ready.",
+    "VFS: ramfs ready.",
+    "Preloaded /bin from ESP.",
+    "Loaded CJK font from ESP.",
+    "Filesystem mounted.",
     "",
-    "Initializing UEFI runtime services............ [ ok ]",
-    "Mapping memory map (EfiConventionalMemory).... [ ok ]",
-    "Enabling paging / long mode (CR0.PG, CR4.PAE).. [ ok ]",
+    "Enabling long mode / paging (CR0.PG, CR4.PAE).. [ ok ]",
     "Installing GDT / TSS / 256-entry IDT.......... [ ok ]",
     "Remapping 8259 PIC, arming PIT @ 100 Hz....... [ ok ]",
-    "Heap allocator online (8 MiB)................. [ ok ]",
-    "Spawn scheduler (16 kernel threads)........... [ ok ]",
-    "Mounting ramfs (VFS).......................... [ ok ]",
-    "Starting GUI compositor (off-screen dbl buf).. [ ok ]",
-    "Loading user shell (ring 3)................... [ ok ]",
+    "Initializing FPU / SSE state.................. [ ok ]",
+    "Starting preemptive scheduler (16 threads).... [ ok ]",
+    "Compositor: caching desktop + taskbar......... [ ok ]",
+    "Window manager: 9 apps registered............. [ ok ]",
+    "Launching GUI shell (ring 3).................. [ ok ]",
     "",
     "Welcome to HopeOS. Launching desktop..."
   ];
@@ -695,11 +704,18 @@
     if (startOpen && !startMenu.contains(e.target) && e.target !== startBtn && !startBtn.contains(e.target)) closeStart();
   });
 
-  /* ===================== terminal (black / gray / green cursor) ===================== */
+  /* ===================== terminal (black / gray / green cursor) =====================
+     Mirrors user/sh.c: builtins help/cd/pwd/echo/export/unset/env/exit, prompt
+     "hopeos:<cwd>$ ", and the shell greeting printed after terminal.c's
+     "HopeOS Terminal" banner. ls/cat/ver/hello/credits/etc. are emulated /bin
+     programs reading the ramfs. */
   function makeTerminal(rec) {
     var box = document.createElement("div"); box.className = "term";
     var hist = [], hidx = -1, buf = "", cur = 0;
-    function promptStr() { return "hopeos:" + (cwd === "/home/hopeos" ? "~" : cwd) + "$ "; }
+    var env = {};            /* shell-owned environment (export/unset/env) */
+    var lastStatus = 0;
+    var fakePid = 1;
+    function promptStr() { return "hopeos:" + cwd + "$ "; }
     function render() {
       var html = outHTML;
       html += '<span>' + esc(promptStr()) + '</span>';
@@ -709,49 +725,83 @@
     }
     var outHTML = "";
     function print(s, cls) { outHTML += '<div class="' + (cls || "") + '">' + (s === "" ? " " : esc(s)) + '</div>'; }
+    /* $VAR / ${VAR} / $$ / $? expansion, run on the whole line before exec. */
+    function expand(line) {
+      return line
+        .replace(/\$\{(\w+)\}/g, function (_, n) { return env[n] || ""; })
+        .replace(/\$(\w+)/g, function (_, n) { return env[n] || ""; })
+        .replace(/\$\$/g, String(fakePid))
+        .replace(/\$\?/g, String(lastStatus));
+    }
     var commands = {
-      help: function () { print("可用命令: help ls cd pwd cat echo ver uname whoami date about hopestudio neofetch clear"); },
+      help: function () {
+        print("builtins: exit cd pwd echo export unset env help");
+        print("operators: | ; && ||   redirs: < > >>");
+        print("expansion: $VAR ${VAR} $$ $?  ~  globs: * ?");
+        print("everything else is a program in /bin -- run `ls /bin`");
+      },
+      cd: function (a) {
+        var dir = a.length ? a[0] : "/";
+        if (dir[0] === "~") dir = "/";           /* HOME defaults to "/" */
+        var t = resolve(dir);
+        if (!t || t.node.type !== "dir") { print("cd: " + dir + ": Not a directory", "err"); lastStatus = 1; return; }
+        cwd = t.path; lastStatus = 0;
+      },
+      pwd: function () { print(cwd); lastStatus = 0; },
+      echo: function (a) { print(a.join(" ")); lastStatus = 0; },
+      export: function (a) {
+        a.forEach(function (kv) { var i = kv.indexOf("="); if (i > 0) env[kv.slice(0, i)] = kv.slice(i + 1); });
+        lastStatus = 0;
+      },
+      unset: function (a) { a.forEach(function (n) { delete env[n]; }); lastStatus = 0; },
+      env: function () { Object.keys(env).forEach(function (k) { print(k + "=" + env[k]); }); lastStatus = 0; },
+      exit: function () { closeWin(rec); },
+      /* ---- emulated /bin programs (read the ramfs) ---- */
       ls: function (a) {
         var tgt = a[0] ? resolve(a[0]) : resolve(cwd);
-        if (!tgt) { print("ls: cannot access '" + (a[0] || cwd) + "': No such file or directory", "err"); return; }
-        if (tgt.node.type === "file") { print(a[0] || cwd); return; }
+        if (!tgt) { print("ls: cannot access '" + (a[0] || cwd) + "': No such file or directory", "err"); lastStatus = 1; return; }
+        if (tgt.node.type === "file") { print(a[0] || cwd); lastStatus = 0; return; }
         print(tgt.node.children.slice().sort().map(function (n) {
           var full = (tgt.path === "/" ? "" : tgt.path) + "/" + n;
           return FS[full] && FS[full].type === "dir" ? n + "/" : n;
         }).join("  "));
+        lastStatus = 0;
       },
-      cd: function (a) { if (!a[0]) { cwd = "/home/hopeos"; return; } var t = resolve(a[0]); if (!t || t.node.type !== "dir") { print("cd: " + a[0] + ": Not a directory", "err"); return; } cwd = t.path; },
-      pwd: function () { print(cwd); },
       cat: function (a) {
-        if (!a[0]) { print("cat: missing operand", "err"); return; }
-        var t = resolve(a[0]); if (!t) { print("cat: " + a[0] + ": No such file or directory", "err"); return; }
-        if (t.node.type === "dir") { print("cat: " + a[0] + ": Is a directory", "err"); return; }
-        print(t.node.data);
+        if (!a[0]) { print("cat: missing operand", "err"); lastStatus = 1; return; }
+        var t = resolve(a[0]); if (!t) { print("cat: " + a[0] + ": No such file or directory", "err"); lastStatus = 1; return; }
+        if (t.node.type === "dir") { print("cat: " + a[0] + ": Is a directory", "err"); lastStatus = 1; return; }
+        print(t.node.data); lastStatus = 0;
       },
-      echo: function (a) { print(a.join(" ")); },
-      ver: function () { print("HopeOS version 0.2.0 (M0)\nCopyright Hope Studio (2019-2026), all rights reserved."); },
-      uname: function (a) { print(a.indexOf("-a") >= 0 ? "HopeOS hopeos 0.2.0 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux" : "HopeOS"); },
-      whoami: function () { print("hopeos"); },
-      date: function () { print(new Date().toString()); },
-      about: function () { print("HopeOS: a from-scratch UEFI OS for learning internals.\nVisit https://hopestudio.mysxl.cn"); },
-      hopestudio: function () { print("https://hopestudio.mysxl.cn"); },
+      ver: function () { print("HopeOS version 0.2.0 (M0)\nCopyright Hope Studio (2019-2026), all rights reserved."); lastStatus = 0; },
+      uname: function (a) { print(a.indexOf("-a") >= 0 ? "HopeOS hopeos 0.2.0 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux" : "HopeOS"); lastStatus = 0; },
+      whoami: function () { print("hopeos"); lastStatus = 0; },
+      date: function () { print(new Date().toString()); lastStatus = 0; },
+      about: function () { print("HopeOS: a from-scratch UEFI OS for learning internals.\nVisit https://hopestudio.mysxl.cn"); lastStatus = 0; },
+      hopestudio: function () { print("https://hopestudio.mysxl.cn"); lastStatus = 0; },
+      hello: function () { print("Hello from HopeOS!"); lastStatus = 0; },
+      credits: function () { print("HopeOS — Hope Studio (希望工作室) 2019-2026."); lastStatus = 0; },
       neofetch: function () {
         var logo = ["   __  __", "  / / / /__  ___", " / /_/ / _ \\/ -_)", " \\____/\\___/\\__/"];
         var info = ["hopeos@hopestudio", "-----------------", "OS: HopeOS 0.2.0 (M0)", "Kernel: hopeos 0.2.0", "Arch: x86_64", "Shell: sh", "DE: StarDustUI", "Uptime: " + Math.floor(performance.now() / 1000) + "s"];
         for (var i = 0; i < Math.max(logo.length, info.length); i++)
           print('<span style="color:#c8c8c8">' + esc((logo[i] || "").padEnd(16, " ")) + '</span>' + esc(info[i] ? "  " + info[i] : ""));
+        lastStatus = 0;
       },
-      clear: function () { outHTML = ""; }
+      clear: function () { outHTML = ""; lastStatus = 0; }
     };
     function run(line) {
       var t = line.trim(); if (!t) return;
+      t = expand(t);
       hist.push(t); hidx = hist.length;
-      var p = t.split(/\s+/), c = p[0], a = p.slice(1);
-      if (commands[c]) try { commands[c](a); } catch (e) { print(c + ": error: " + e.message, "err"); }
-      else print(c + ": command not found", "err");
+      var parts = t.split(/\s+/).filter(Boolean);
+      var c = parts[0], a = parts.slice(1);
+      if (!c) return;
+      if (commands[c]) { try { commands[c](a); } catch (e) { print(c + ": error: " + e.message, "err"); lastStatus = 1; } }
+      else { print("sh: /bin/" + c + ": not found (errno 2)", "err"); lastStatus = 127; }
     }
     print("HopeOS Terminal");
-    var inputTimer = null;
+    print("HopeOS shell. Type 'help'.");
     box.tabIndex = 0;
     box.addEventListener("click", function () { box.focus(); });
     box.addEventListener("keydown", function (e) {
