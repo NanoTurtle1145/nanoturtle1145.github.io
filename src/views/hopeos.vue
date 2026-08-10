@@ -184,6 +184,32 @@ const roadmap = [
       </div>
     </section>
 
+    <!-- 在线体验 -->
+    <section class="py-12 px-4 relative">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-4xl font-bold text-white mb-2 px-6">在线体验</h2>
+        <p class="text-gray-400 px-6 mb-6 leading-relaxed">
+          下面是一个纯前端的 HopeOS 模拟器（启动自检 → 桌面 → 终端），可直接在浏览器里操作。
+          点击「开始」打开开始菜单，或在终端里输入 <code class="text-blue-300">help</code> 查看命令。
+          （这是网页演示，并非真实运行的内核。）
+        </p>
+        <div class="px-6">
+          <div
+            class="rounded-2xl overflow-hidden border border-gray-700/60 shadow-2xl bg-black"
+            style="aspect-ratio: 16 / 10; min-height: 420px;"
+          >
+            <iframe
+              src="/hopeos-emulator/index.html"
+              title="HopeOS 模拟器"
+              allow="fullscreen"
+              allowfullscreen
+              class="w-full h-full border-0"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 返回 -->
     <section class="py-12 px-4 relative">
       <div class="max-w-7xl mx-auto px-6">
