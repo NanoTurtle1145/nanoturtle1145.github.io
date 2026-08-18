@@ -11,7 +11,7 @@ const admins = [
     avatar: "/member/nt.png",
     name: "@NanoTurtle",
     role: "管理员 · 创始人",
-    desc: "希望工作室创始人之一，元老级人物。是一位十分开朗的人，没了。他是 hopestudio.top 的站长。",
+    desc: "希望工作室创始人之一，元老级人物。是一位十分开朗的人，没了。个人博客 blog.nanoturtle.cn；近期沉迷 S24 Ultra 免解锁 root（开源项目 RootMyS9280）与 HopeOS。",
   },
   {
     avatar: "/member/bs.png", // 可替换为实际头像路径，留空则显示首字母占位

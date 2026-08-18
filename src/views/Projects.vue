@@ -29,6 +29,13 @@ const projects = [
     link: "/hopeos",
     external: false,
   },
+  {
+    name: "RootMyS9280",
+    desc: "三星 Galaxy S24 Ultra 免解锁 Root 工具：基于 CVE-2026-43499 的临时提权 + KernelSU 加载，不熔断 KNOX。",
+    status: ["开源", "更新中"],
+    link: "https://github.com/NanoTurtle1145/root-my-s9280",
+    external: true,
+  },
 ];
 
 // 修改：中文键名加引号，避免语法错误（兼容性更好）

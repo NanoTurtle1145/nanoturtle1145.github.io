@@ -18,7 +18,7 @@ const timeline = [
   { date: "2025-07-27", text: "HPSS 更名为 HopeCraft（改名異變）。" },
   { date: "2025-08-24", text: "hopestudio.top 初次运行。" },
   { date: "2025-11-23", text: "因数据库损坏，站点重置重建。" },
-  { date: "2026-08", text: "阿里云服务器任期届满，站点归档为静态并迁移至 GitHub Pages。" },
+  { date: "2026-08-20", text: "阿里云服务器任期届满，原站 hopestudio.top 关闭；站点归档为静态并迁移至 GitHub Pages。" },
 ];
 </script>
 

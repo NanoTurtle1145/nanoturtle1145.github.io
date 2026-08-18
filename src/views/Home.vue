@@ -42,6 +42,13 @@ const showcaseProjects = [
     gradient: "bg-gradient-to-br from-amber-600 to-orange-900",
   },
   {
+    title: "RootMyS9280",
+    desc: "三星 S24 Ultra 免解锁 Root：CVE-2026-43499 提权 + KernelSU，不熔断 KNOX。",
+    link: "https://github.com/NanoTurtle1145/root-my-s9280",
+    external: true,
+    gradient: "bg-gradient-to-br from-cyan-700 to-blue-950",
+  },
+  {
     title: "技术分享",
     desc: "从设备刷机到多线程网络编程，把踩过的坑写成可复用经验。",
     link: "/posts",
