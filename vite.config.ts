@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import vuetify from "vite-plugin-vuetify";
 import { fileURLToPath, URL } from "url";
 import { readFileSync } from "fs";
 
@@ -18,7 +19,11 @@ function postPaths(): string[] {
 // 用户 Pages 仓库（nanoturtle1145.github.io）+ 自定义域名，base 保持 "/"
 export default defineConfig({
   base: "/",
-  plugins: [vue()],
+  plugins: [vue(), vuetify()],
+  ssr: {
+    // Vuetify 需要在 SSR/SSG 阶段被转换（否则 Node ESM 无法加载其 .css）
+    noExternal: ["vuetify"],
+  },
   ssgOptions: {
     dirStyle: "nested",
     formatting: "minify",

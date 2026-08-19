@@ -1,0 +1,96 @@
+import { createVuetify } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
+import "vuetify/styles";
+import "@mdi/font/css/materialdesignicons.css";
+
+// Material 3 官方 Baseline 色板（Google 标准 MD3 主题）
+// 参考：https://m3.material.io/styles/color/static/baseline
+export default createVuetify({
+  components,
+  directives,
+  ssr: true,
+  defaults: {
+    VCard: {
+      rounded: "xl",
+      color: "surface-container",
+      elevation: 0,
+      variant: "flat",
+    },
+    VBtn: { rounded: "pill" },
+    VChip: { rounded: "pill" },
+    VTextField: { variant: "outlined" },
+    VSelect: { variant: "outlined" },
+    VTextarea: { variant: "outlined" },
+    VAlert: { rounded: "lg", variant: "tonal" },
+    VNavigationDrawer: { rounded: "lg" },
+    VList: { rounded: "lg" },
+  },
+  theme: {
+    defaultTheme: "dark",
+    themes: {
+      light: {
+        dark: false,
+        colors: {
+          primary: "#6750A4",
+          "on-primary": "#FFFFFF",
+          "primary-container": "#EADDFF",
+          "on-primary-container": "#21005D",
+          secondary: "#625B71",
+          "on-secondary": "#FFFFFF",
+          "secondary-container": "#E8DEF8",
+          "on-secondary-container": "#1D192B",
+          tertiary: "#7D5260",
+          "on-tertiary": "#FFFFFF",
+          "tertiary-container": "#FFD8E4",
+          "on-tertiary-container": "#31111D",
+          error: "#B3261E",
+          "on-error": "#FFFFFF",
+          "error-container": "#F9DEDC",
+          "on-error-container": "#410E0B",
+          background: "#FEF7FF",
+          "on-background": "#1D1B20",
+          surface: "#FEF7FF",
+          "on-surface": "#1D1B20",
+          "surface-variant": "#E7E0EC",
+          "on-surface-variant": "#49454F",
+          outline: "#79747E",
+          "surface-container": "#F3EDF7",
+          "surface-container-high": "#ECE6F0",
+          "surface-container-highest": "#E6E0E9",
+        },
+      },
+      dark: {
+        dark: true,
+        colors: {
+          primary: "#D0BCFF",
+          "on-primary": "#381E72",
+          "primary-container": "#4F378B",
+          "on-primary-container": "#EADDFF",
+          secondary: "#CCC2DC",
+          "on-secondary": "#332D41",
+          "secondary-container": "#4A4458",
+          "on-secondary-container": "#E8DEF8",
+          tertiary: "#EFB8C8",
+          "on-tertiary": "#492532",
+          "tertiary-container": "#633B48",
+          "on-tertiary-container": "#FFD8E4",
+          error: "#F2B8B5",
+          "on-error": "#601410",
+          "error-container": "#8C1D18",
+          "on-error-container": "#F9DEDC",
+          background: "#141218",
+          "on-background": "#E6E0E9",
+          surface: "#141218",
+          "on-surface": "#E6E0E9",
+          "surface-variant": "#49454F",
+          "on-surface-variant": "#CAC4D0",
+          outline: "#938F99",
+          "surface-container": "#211F26",
+          "surface-container-high": "#2B2930",
+          "surface-container-highest": "#36343B",
+        },
+      },
+    },
+  },
+});

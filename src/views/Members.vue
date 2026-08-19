@@ -28,50 +28,47 @@ const members = [
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-16">
-    <section class="py-12 px-4">
-      <div class="max-w-5xl mx-auto">
-        <h1 class="text-4xl font-bold text-white mb-2">成员列表</h1>
-        <p class="text-gray-400 mb-8">由于一些特殊原因，此处某些成员仅有昵称的缩写。</p>
+  <v-container class="py-12 px-4" style="max-width: 1024px">
+    <div class="text-h4 font-weight-bold text-on-surface mb-2">成员列表</div>
+    <div class="text-body-1 text-medium-emphasis mb-8">
+      由于一些特殊原因，此处某些成员仅有昵称的缩写。
+    </div>
 
-        <h2 class="text-2xl font-bold text-white mb-4">管理员</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
-          <div
-            v-for="m in admins"
-            :key="m.name"
-            class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6"
-          >
-            <!-- 有头像则显示图片，无头像则显示名字首字母占位 -->
-            <img
-              v-if="m.avatar"
-              :src="m.avatar"
-              class="w-24 h-24 rounded-xl object-cover"
-              alt=""
-            />
+    <div class="text-h5 font-weight-bold text-on-surface mb-4">管理员</div>
+    <v-row class="mb-10">
+      <v-col v-for="m in admins" :key="m.name" cols="12" sm="6">
+        <v-card elevation="0" class="h-100">
+          <v-card-text>
+            <v-avatar v-if="m.avatar" size="96" rounded="lg" class="mb-3">
+              <v-img :src="m.avatar" alt="" />
+            </v-avatar>
             <div
               v-else
-              class="w-24 h-24 rounded-xl bg-gray-700 flex items-center justify-center text-gray-400 text-lg"
+              class="v-avatar mb-3 rounded-lg bg-grey-darken-2 d-flex align-center justify-center"
+              style="width: 96px; height: 96px"
             >
-              {{ m.name.charAt(0) }}
+              <span class="text-h6 text-grey-lighten-2">{{ m.name.charAt(0) }}</span>
             </div>
-            <h3 class="text-xl font-bold text-white mb-1">{{ m.name }}</h3>
-            <p class="text-sm text-blue-300 mb-3">{{ m.role }}</p>
-            <p class="text-gray-400">{{ m.desc }}</p>
-          </div>
-        </div>
+            <div class="text-h6 font-weight-bold text-on-surface mb-1">{{ m.name }}</div>
+            <div class="text-body-2 text-primary mb-3">{{ m.role }}</div>
+            <div class="text-body-2 text-medium-emphasis">{{ m.desc }}</div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
 
-        <h2 class="text-2xl font-bold text-white mb-4">成员</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-          <div
-            v-for="m in members"
-            :key="m.name"
-            class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 text-center"
-          >
-            <h3 class="text-xl font-bold text-white">{{ m.name }}</h3>
-            <p class="text-sm text-blue-300">{{ m.role }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+    <div class="text-h5 font-weight-bold text-on-surface mb-4">成员</div>
+    <v-row>
+      <v-col v-for="m in members" :key="m.name" cols="6" sm="3">
+        <v-card elevation="0" class="text-center">
+          <v-card-text>
+            <div class="text-h6 font-weight-bold text-on-surface">{{ m.name }}</div>
+            <div class="text-body-2 text-primary">{{ m.role }}</div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+
+

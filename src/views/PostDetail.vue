@@ -22,82 +22,86 @@ useHead(
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-16">
-    <section class="py-12 px-4">
-      <div class="max-w-3xl mx-auto">
-        <template v-if="post">
-          <router-link
-            to="/posts"
-            class="inline-block text-blue-400 hover:text-blue-300 mb-6 transition-colors"
-          >
-            ← 返回文章列表
-          </router-link>
+  <v-container class="py-12 px-4" style="max-width: 768px">
+    <template v-if="post">
+      <router-link to="/posts" class="text-decoration-none">
+        <v-btn variant="text" color="primary" prepend-icon="mdi-arrow-left" class="mb-6 px-0">
+          返回文章列表
+        </v-btn>
+      </router-link>
 
-          <header class="mb-8">
-            <div class="flex flex-wrap items-center gap-3 mb-3 text-sm">
-              <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">
-                {{ post.category }}
-              </span>
-              <time class="text-gray-500">{{ post.date }}</time>
-            </div>
-            <h1 class="text-4xl font-bold text-white leading-tight">{{ post.title }}</h1>
-            <div v-if="post.tags.length" class="flex flex-wrap gap-2 mt-4">
-              <span
-                v-for="tag in post.tags"
-                :key="tag"
-                class="text-xs px-2 py-0.5 rounded bg-gray-700/60 text-gray-400"
-              >
-                #{{ tag }}
-              </span>
-            </div>
-          </header>
+      <header class="mb-8">
+        <div class="d-flex flex-wrap align-center ga-3 mb-3">
+          <v-chip size="small" color="primary" variant="tonal">
+            {{ post.category }}
+          </v-chip>
+          <span class="text-caption text-medium-emphasis">{{ post.date }}</span>
+        </div>
+        <h1 class="text-h4 font-weight-bold text-on-surface" style="line-height: 1.3">
+          {{ post.title }}
+        </h1>
+        <div v-if="post.tags.length" class="d-flex flex-wrap ga-2 mt-4">
+          <v-chip v-for="tag in post.tags" :key="tag" size="x-small" variant="flat" color="grey-darken-2">
+            #{{ tag }}
+          </v-chip>
+        </div>
+      </header>
 
-          <div class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 sm:p-10">
-            <!-- 内容来自已归档的自有站点，构建期静态注入 -->
-            <div class="post-body" v-html="post.content"></div>
-          </div>
+      <v-card elevation="0">
+        <v-card-text class="pa-6 pa-sm-10">
+          <!-- 内容来自已归档的自有站点，构建期静态注入 -->
+          <div class="post-body" v-html="post.content"></div>
+        </v-card-text>
+      </v-card>
 
-          <p class="text-sm text-gray-600 mt-6">
-            本文迁移自旧版官网，原始链接：
-            <a
-              :href="post.origin"
-              target="_blank"
-              rel="noopener"
-              class="text-gray-500 hover:text-gray-300 break-all underline"
-            >
-              {{ post.origin }}
-            </a>
-          </p>
-
-          <nav class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
-            <router-link
-              v-if="siblings.prev"
-              :to="`/posts/${siblings.prev.slug}`"
-              class="bg-gray-800/50 hover:bg-gray-800 rounded-2xl p-4 transition-colors"
-            >
-              <p class="text-xs text-gray-500 mb-1">上一篇</p>
-              <p class="text-white">{{ siblings.prev.title }}</p>
-            </router-link>
-            <span v-else></span>
-            <router-link
-              v-if="siblings.next"
-              :to="`/posts/${siblings.next.slug}`"
-              class="bg-gray-800/50 hover:bg-gray-800 rounded-2xl p-4 transition-colors sm:text-right"
-            >
-              <p class="text-xs text-gray-500 mb-1">下一篇</p>
-              <p class="text-white">{{ siblings.next.title }}</p>
-            </router-link>
-          </nav>
-        </template>
-
-        <template v-else>
-          <h1 class="text-3xl font-bold text-white mb-4">文章未找到</h1>
-          <p class="text-gray-400 mb-6">该文章可能已被移除，或链接有误。</p>
-          <router-link to="/posts" class="text-blue-400 hover:text-blue-300">
-            ← 返回文章列表
-          </router-link>
-        </template>
+      <div class="text-caption text-medium-emphasis mt-6">
+        本文迁移自旧版官网，原始链接：
+        <a
+          :href="post.origin"
+          target="_blank"
+          rel="noopener"
+          class="text-primary text-decoration-underline text-break"
+        >
+          {{ post.origin }}
+        </a>
       </div>
-    </section>
-  </div>
+
+      <v-row class="mt-8">
+        <v-col cols="12" sm="6">
+          <router-link
+            v-if="siblings.prev"
+            :to="`/posts/${siblings.prev.slug}`"
+            class="text-decoration-none"
+          >
+            <v-card hover class="pa-4">
+              <div class="text-caption text-medium-emphasis mb-1">上一篇</div>
+              <div class="text-body-1 text-on-surface">{{ siblings.prev.title }}</div>
+            </v-card>
+          </router-link>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <router-link
+            v-if="siblings.next"
+            :to="`/posts/${siblings.next.slug}`"
+            class="text-decoration-none"
+          >
+            <v-card hover class="pa-4 text-sm-right">
+              <div class="text-caption text-medium-emphasis mb-1">下一篇</div>
+              <div class="text-body-1 text-on-surface">{{ siblings.next.title }}</div>
+            </v-card>
+          </router-link>
+        </v-col>
+      </v-row>
+    </template>
+
+    <template v-else>
+      <div class="text-h4 font-weight-bold text-on-surface mb-4">文章未找到</div>
+      <div class="text-body-1 text-medium-emphasis mb-6">该文章可能已被移除，或链接有误。</div>
+      <router-link to="/posts" class="text-decoration-none">
+        <v-btn variant="text" color="primary" prepend-icon="mdi-arrow-left">返回文章列表</v-btn>
+      </router-link>
+    </template>
+  </v-container>
 </template>
+
+

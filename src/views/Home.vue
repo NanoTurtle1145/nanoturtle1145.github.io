@@ -18,42 +18,42 @@ const showcaseProjects = [
     desc: "NT & BM 联合推出的 Minecraft 服务器插件，实现服务器菜单等功能。",
     link: "https://github.com/BusyMitten/HopeCraft",
     external: true,
-    gradient: "bg-gradient-to-br from-emerald-700 to-emerald-950",
+    gradient: "linear-gradient(135deg, #0f5132, #022c22)",
   },
   {
     title: "WinUI 笔记",
     desc: "面向 WinUI 3 的学习笔记系列，持续迭代更新。",
     link: "/posts/winui-notes",
     external: false,
-    gradient: "bg-gradient-to-br from-sky-700 to-indigo-950",
+    gradient: "linear-gradient(135deg, #0369a1, #1e1b4b)",
   },
   {
     title: "HopeOJ",
     desc: "在线评测系统相关项目，代码与文档持续开放。",
     link: "/projects",
     external: false,
-    gradient: "bg-gradient-to-br from-rose-700 to-rose-950",
+    gradient: "linear-gradient(135deg, #be123c, #4c0519)",
   },
   {
     title: "HPSS",
     desc: "工作室持续开放的开源工具与脚本集合。",
     link: "/projects",
     external: false,
-    gradient: "bg-gradient-to-br from-amber-600 to-orange-900",
+    gradient: "linear-gradient(135deg, #d97706, #7c2d12)",
   },
   {
     title: "RootMyS9280",
     desc: "三星 S24 Ultra 免解锁 Root：CVE-2026-43499 提权 + KernelSU，不熔断 KNOX。",
     link: "https://github.com/NanoTurtle1145/root-my-s9280",
     external: true,
-    gradient: "bg-gradient-to-br from-cyan-700 to-blue-950",
+    gradient: "linear-gradient(135deg, #0e7490, #172554)",
   },
   {
     title: "技术分享",
     desc: "从设备刷机到多线程网络编程，把踩过的坑写成可复用经验。",
     link: "/posts",
     external: false,
-    gradient: "bg-gradient-to-br from-violet-700 to-fuchsia-950",
+    gradient: "linear-gradient(135deg, #6d28d9, #4a044e)",
   },
 ];
 
@@ -74,121 +74,123 @@ const advantages = [
   {
     title: "动手实践",
     desc: "比起空谈，我们更愿意把想法做成真正能用的东西。",
+    icon: "mdi-hammer-wrench",
   },
   {
     title: "自由探索",
     desc: "没有硬性路线，感兴趣的方向就大胆去钻。",
+    icon: "mdi-compass-outline",
   },
   {
     title: "一起成长",
     desc: "遇到难题大家一起琢磨、互相补位，比一个人扛着走得快。",
+    icon: "mdi-account-group",
   },
   {
     title: "长期留存",
     desc: "老站虽然关了，但好内容都搬过来了，妥妥存好，随时都能翻出来看。",
-    link: "去归档站逛逛"
+    link: "去归档站逛逛",
+    icon: "mdi-archive-outline",
   },
 ];
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+  <div class="pb-8">
     <!-- Hero -->
-    <div class="pt-16 relative">
-      <div class="hero-container">
-        <div class="cover flex items-center justify-center p-8 lg:p-16">
-          <ProjectBanner :items="showcaseProjects" :interval="5000" class="w-full" />
-        </div>
-        <div class="body">
-          <div class="container">
-            <h1 class="title">HopeOS正在火热开发中！</h1>
-            <p class="subtitle">一个用于学习操作系统运行原理的项目。</p>
+    <v-container class="pt-16 pb-8">
+      <v-row align="center">
+        <v-col cols="12" lg="7">
+          <ProjectBanner :items="showcaseProjects" :interval="5000" />
+        </v-col>
+        <v-col cols="12" lg="5">
+          <div class="hero-body pa-6 pa-lg-10">
+            <div class="text-h4 text-xl-h3 font-weight-bold text-on-surface mb-2">
+              HopeOS正在火热开发中！
+            </div>
+            <div class="text-subtitle-1 text-medium-emphasis mb-6">
+              一个用于学习操作系统运行原理的项目。
+            </div>
+            <router-link to="/hopeos" class="text-decoration-none">
+              <v-btn color="primary" size="large">前往详情页面</v-btn>
+            </router-link>
           </div>
-          <router-link to="/hopeos" class="link-button">前往详情页面</router-link>
-        </div>
-      </div>
-    </div>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <!-- 最新文章 -->
-    <section class="py-12 px-4 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex items-baseline justify-between mb-6 px-6">
-          <h2 class="text-4xl font-bold text-white">最新文章</h2>
-          <router-link to="/posts" class="text-blue-400 hover:text-blue-300 transition-colors">
-            查看全部 →
-          </router-link>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <router-link
-            v-for="post in latestPosts"
-            :key="post.slug"
-            :to="`/posts/${post.slug}`"
-            class="group relative block"
-          >
-            <div
-              class="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur"
-            ></div>
-            <div
-              class="relative bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 h-full flex flex-col justify-between"
-            >
-              <div>
-                <div class="flex items-center gap-3 mb-3 text-sm">
-                  <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">
-                    {{ post.category }}
-                  </span>
-                  <time class="text-gray-500">{{ post.date }}</time>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2">{{ post.title }}</h3>
-                <p class="text-gray-400 mb-4 line-clamp-3">{{ post.excerpt }}</p>
-              </div>
-              <span
-                class="inline-flex items-center text-blue-400 fill-blue-400 group-hover:text-blue-300 group-hover:fill-blue-300 transition-all duration-200 leading-4"
-              >
-                <span>阅读全文</span>
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                  <path
-                    d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
-                  />
-                </svg>
-              </span>
-            </div>
-          </router-link>
-        </div>
+    <v-container class="py-8">
+      <div class="d-flex align-baseline justify-space-between mb-6">
+        <div class="text-h4 font-weight-bold text-on-surface">最新文章</div>
+        <router-link to="/posts" class="text-decoration-none">
+          <v-btn variant="text" color="primary" append-icon="mdi-arrow-right">
+            查看全部
+          </v-btn>
+        </router-link>
       </div>
-    </section>
+      <v-row>
+        <v-col v-for="post in latestPosts" :key="post.slug" cols="12" md="6" lg="4">
+          <router-link :to="`/posts/${post.slug}`" class="text-decoration-none">
+            <v-card class="h-100" elevation="0" hover>
+              <v-card-text class="d-flex flex-column justify-space-between h-100">
+                <div>
+                  <div class="d-flex align-center ga-3 mb-3">
+                    <v-chip size="small" color="primary" variant="tonal">
+                      {{ post.category }}
+                    </v-chip>
+                    <span class="text-caption text-medium-emphasis">{{ post.date }}</span>
+                  </div>
+                  <div class="text-h6 font-weight-bold text-on-surface mb-2">
+                    {{ post.title }}
+                  </div>
+                  <div class="text-body-2 text-medium-emphasis line-clamp-3 mb-4">
+                    {{ post.excerpt }}
+                  </div>
+                </div>
+                <span class="d-inline-flex align-center text-primary text-body-2">
+                  阅读全文
+                  <v-icon icon="mdi-arrow-right" size="small" class="ml-1" />
+                </span>
+              </v-card-text>
+            </v-card>
+          </router-link>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <!-- 亮点 -->
-    <section class="py-12 px-4 relative">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-white mb-6 px-6">我们的特点</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div
-            v-for="adv in advantages"
-            :key="adv.title"
-            class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6"
-          >
-
-            <h3 class="text-xl font-bold text-white mb-4">{{ adv.title }}</h3>
-            <p class="text-gray-400">{{ adv.desc }}</p>
-            <router-link v-if="adv.link" to="/archive" class="text-blue-400 hover:text-blue-300 transition-colors">
-              {{ adv.link }}
-            </router-link>
-
-
-
-
-          </div>
-        </div>
-      </div>
-    </section>
+    <v-container class="py-8">
+      <div class="text-h4 font-weight-bold text-on-surface mb-6">我们的特点</div>
+      <v-row>
+        <v-col v-for="adv in advantages" :key="adv.title" cols="12" md="6">
+          <v-card elevation="0" class="h-100">
+            <v-card-text>
+              <v-avatar
+                color="primary"
+                variant="tonal"
+                size="44"
+                class="mb-4"
+              >
+                <v-icon :icon="adv.icon" />
+              </v-avatar>
+              <div class="text-h6 font-weight-bold text-on-surface mb-2">
+                {{ adv.title }}
+              </div>
+              <div class="text-body-2 text-medium-emphasis mb-2">{{ adv.desc }}</div>
+              <router-link
+                v-if="adv.link"
+                to="/archive"
+                class="text-primary text-decoration-none"
+              >
+                {{ adv.link }}
+              </router-link>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
-<style scoped>
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-</style>
+

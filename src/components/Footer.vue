@@ -36,43 +36,69 @@ const year = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="text-left text-white bg-gray-800/50 backdrop-blur-md">
-    <section class="px-4 relative">
-      <div class="max-w-7xl mx-auto px-4 py-12">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div
-            v-for="fastguide in fastguides"
-            :key="fastguide.parentdex"
-            class="relative rounded-2xl"
-          >
-            <p class="text-xl font-semibold text-gray-200 py-2">
-              {{ fastguide.parentdex }}
-            </p>
-            <template v-for="eindex in fastguide.eindexs" :key="eindex.text">
-              <router-link v-if="!eindex.link.startsWith('http')" :to="eindex.link">
-                <p class="text-gray-400 hover:text-white transition-colors duration-200 py-1">
-                  {{ eindex.text }}
-                </p>
-              </router-link>
-              <a v-else :href="eindex.link" target="_blank" rel="noopener">
-                <p class="text-gray-400 hover:text-white transition-colors duration-200 py-1">
-                  {{ eindex.text }}
-                </p>
-              </a>
-            </template>
+  <v-footer class="bg-surface-variant flex-column pa-0">
+    <v-container class="py-10">
+      <v-row>
+        <v-col
+          v-for="fastguide in fastguides"
+          :key="fastguide.parentdex"
+          cols="6"
+          md="3"
+        >
+          <div class="text-subtitle-1 font-weight-semibold mb-3">
+            {{ fastguide.parentdex }}
           </div>
-        </div>
-      </div>
-    </section>
+          <template v-for="eindex in fastguide.eindexs" :key="eindex.text">
+            <router-link
+              v-if="!eindex.link.startsWith('http')"
+              :to="eindex.link"
+              class="text-decoration-none"
+            >
+              <div class="text-body-2 text-medium-emphasis py-1 hover-text">
+                {{ eindex.text }}
+              </div>
+            </router-link>
+            <a
+              v-else
+              :href="eindex.link"
+              target="_blank"
+              rel="noopener"
+              class="text-decoration-none"
+            >
+              <div class="text-body-2 text-medium-emphasis py-1 hover-text">
+                {{ eindex.text }}
+              </div>
+            </a>
+          </template>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <div class="py-8 text-center text-gray-400">
-      <p>有希望者，事竟成。Where there is a hope, there is a way.</p>
-      <p class="mt-2">版权所有 © 希望工作室 Hope Studio 2025 - {{ year }} 保留所有权利。</p>
-      <p class="mt-2">
-        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" class="hover:text-white transition-colors duration-200">
+    <v-divider />
+
+    <v-container class="py-6 text-center">
+      <div class="text-body-2 text-medium-emphasis">
+        有希望者，事竟成。Where there is a hope, there is a way.
+      </div>
+      <div class="text-caption text-medium-emphasis mt-2">
+        版权所有 © 希望工作室 Hope Studio 2025 - {{ year }} 保留所有权利。
+      </div>
+      <div class="text-caption text-medium-emphasis mt-1">
+        <a
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          rel="noopener"
+          class="text-decoration-none"
+        >
           浙ICP备2025195202号-1
         </a>
-      </p>
-    </div>
-  </footer>
+      </div>
+    </v-container>
+  </v-footer>
 </template>
+
+<style scoped>
+.hover-text:hover {
+  color: rgb(var(--v-theme-on-surface));
+}
+</style>

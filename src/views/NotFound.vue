@@ -5,18 +5,13 @@ useHead({ title: "页面未找到 | 希望工作室" });
 </script>
 
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-16 flex items-center justify-center px-4"
-  >
+  <v-container class="d-flex align-center justify-center" style="min-height: 70vh">
     <div class="text-center py-24">
-      <p class="text-7xl font-bold text-white mb-4">404</p>
-      <p class="text-gray-400 mb-8">页面不存在，或已随旧站一起归档。</p>
-      <router-link
-        to="/"
-        class="inline-block border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-[#00a2e8] hover:border-[#00a2e8] transition-all duration-200"
-      >
-        返回首页
+      <div class="text-h1 font-weight-bold text-on-surface mb-4">404</div>
+      <div class="text-body-1 text-medium-emphasis mb-8">页面不存在，或已随旧站一起归档。</div>
+      <router-link to="/" class="text-decoration-none">
+        <v-btn color="primary" size="large" variant="outlined">返回首页</v-btn>
       </router-link>
     </div>
-  </div>
+  </v-container>
 </template>

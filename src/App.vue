@@ -17,21 +17,17 @@ watch(
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-gray-900">
+  <v-app>
     <Navigation :nav-name="navName" />
-    <main class="flex-1">
+    <v-main>
       <router-view></router-view>
-    </main>
+    </v-main>
     <Footer />
-  </div>
+  </v-app>
 </template>
 
 <style>
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  @apply bg-gray-900;
 }
 </style>

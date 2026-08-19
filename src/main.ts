@@ -1,9 +1,12 @@
 import { ViteSSG } from "vite-ssg";
 import App from "./App.vue";
 import routes from "./router";
+import vuetify from "./vuetify";
 import "./style.css";
 
 export const createApp = ViteSSG(App, { routes }, (ctx) => {
+  ctx.app.use(vuetify);
+
   ctx.router.beforeEach((to, _from, next) => {
     const { title, description } = to.meta;
     const defaultTitle = "希望工作室 | Hope Studio";

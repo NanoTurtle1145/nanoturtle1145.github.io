@@ -23,95 +23,101 @@ const timeline = [
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-16">
-    <section class="py-12 px-4">
-      <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl font-bold text-white mb-6">关于我们</h1>
+  <v-container class="py-12 px-4" style="max-width: 896px">
+    <div class="text-h4 font-weight-bold text-on-surface mb-6">关于我们</div>
 
-        <div class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 sm:p-10 mb-8">
-          <p class="text-2xl font-bold text-white mb-2">
-            Where there is a hope, there is a way.
+    <v-card elevation="0" class="mb-8">
+      <v-card-text class="pa-6 pa-sm-10">
+        <div class="text-h5 font-weight-bold text-on-surface mb-2">
+          Where there is a hope, there is a way.
+        </div>
+        <div class="text-subtitle-1 text-on-surface mb-6">有希望者，事竟成。</div>
+        <div class="text-body-1 text-medium-emphasis" style="line-height: 2">
+          <p class="mb-4">
+            希望工作室，成立于 2019 年的杭州市滨文小学，即 2018 级 5 班。正式成立时间为 2022 年 9 月 8
+            日。是一群小学生在无聊时组建的一个团体。
           </p>
-          <p class="text-lg text-gray-300 mb-6">有希望者，事竟成。</p>
-          <div class="text-gray-400 space-y-4 leading-8">
-            <p>
-              希望工作室，成立于 2019 年的杭州市滨文小学，即 2018 级 5 班。正式成立时间为 2022 年 9 月 8
-              日。是一群小学生在无聊时组建的一个团体。
-            </p>
-            <p>
-              本站初次运行于 2025 年 8 月 24 日。由于一些因素（数据库不知何时坏了）与同年 11 月 23
-              日重置。感谢阿里云，为我们提供了一套比较廉价的云服务器用于托管我们的网站。
-            </p>
-            <p>目前活跃人数约 5 人。</p>
-            <p>
-              旧版官网（hopestudio.top）已归档为静态站点，
-              <RouterLink to="/archive" class="text-blue-400 hover:text-blue-300">点此访问归档官网</RouterLink>
-              ，保留了原有的 Argon 主题外观。
-            </p>
-
-            <img
-              class="fancybox-image mt-6 rounded-2xl w-full"
-              src="/media/hope-group.jpg"
-              alt="希望工作室成员合照"
-            />
-          </div>
-
-          <div class="mt-8 pt-6 border-t border-gray-700">
-            <h3 class="text-lg font-semibold text-white mb-3">我们的图标</h3>
-            <p class="text-gray-400 leading-8">
-              「希望工作室」取前两个字拼音的首字母
-              <span class="text-blue-300 font-mono">X</span> 与
-              <span class="text-blue-300 font-mono">W</span>，又取第一个字拼音的第二个字母
-              <span class="text-blue-300 font-mono">i</span>。仔细观察，图标上的「星星」与「太阳」（小点）就是 X 和 i
-              的合体，那个有角的「月亮」就是 W。真佩服当年的奇思妙想。
-            </p>
-          </div>
-
-          <div class="mt-8 pt-6 border-t border-gray-700">
-            <h3 class="text-lg font-semibold text-white mb-3">我们都做些什么</h3>
-            <p class="text-gray-400 leading-8">
-              最初我们以著书为主，后来转型科技为主。在我们成立的几年后，同班的类似组织陆续出现，但最终我们至今仍然在正常运行。现在主要以科技为主，就是没事写点代码的那种。
-            </p>
-          </div>
+          <p class="mb-4">
+            本站初次运行于 2025 年 8 月 24 日。由于一些因素（数据库不知何时坏了）与同年 11 月 23
+            日重置。感谢阿里云，为我们提供了一套比较廉价的云服务器用于托管我们的网站。
+          </p>
+          <p class="mb-4">目前活跃人数约 5 人。</p>
+          <p class="mb-4">
+            旧版官网（hopestudio.top）已归档为静态站点，
+            <RouterLink to="/archive" class="text-primary text-decoration-none">点此访问归档官网</RouterLink>
+            ，保留了原有的 Argon 主题外观。
+          </p>
+          <v-img
+            class="rounded-xl mt-6"
+            src="/media/hope-group.jpg"
+            alt="希望工作室成员合照"
+            max-height="480"
+            cover
+          />
         </div>
 
-        <h2 class="text-2xl font-bold text-white mb-6">成长历史</h2>
-        <div class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 sm:p-10 mb-10 text-gray-400 space-y-4 leading-8">
-          <p>
-            <span class="text-blue-300 font-mono">2019</span>
-            ：因小学低年级空闲时间充裕，NT 与 BS 在课余时间进行绘画等活动，这是希望工作室最早的运作形式。不久后，NT 与 BS
-            提议创建团队，希望工作室雏形诞生。
-          </p>
-          <p><span class="text-blue-300 font-mono">2020~2021</span>：资料不可考，无内容。</p>
-          <p>
-            <span class="text-blue-300 font-mono">2022</span>
-            ：因工作室表现突出，出现大量模仿团队，严重打击有生力量并压缩进步空间。为缓解困境，BS 于 2022 年 6 月 27
-            日决定开启「潜运行」。同年 9 月 8 日，希望工作室重新开始正常运行，NT 发布新 Logo 并沿用至今。
-          </p>
-          <p><span class="text-blue-300 font-mono">2023~2024</span>：工作室虽正常运行，但因学业压力无突出表现。</p>
-          <p>
-            <span class="text-blue-300 font-mono">2024-09</span>
-            ：小学毕业后许多成员离开，因 NT 与 BS 仍就读同一初中，工作室得以存续。
-          </p>
-          <p><span class="text-blue-300 font-mono">2025</span>：NT 购置阿里云服务器用于官网。</p>
-          <p class="pt-2 border-t border-gray-700">
-            目前的领导者为 <span class="text-white">NanoTurtle</span>、<span class="text-white">BusySheng</span>。他们是从
-            2019 年就开始效力于希望工作室的成员（即创始人）。
-          </p>
+        <v-divider class="my-6" />
+
+        <div class="text-h6 font-weight-semibold text-on-surface mb-3">我们的图标</div>
+        <div class="text-body-1 text-medium-emphasis" style="line-height: 2">
+          「希望工作室」取前两个字拼音的首字母
+          <span class="text-primary font-mono">X</span> 与
+          <span class="text-primary font-mono">W</span>，又取第一个字拼音的第二个字母
+          <span class="text-primary font-mono">i</span>。仔细观察，图标上的「星星」与「太阳」（小点）就是 X 和 i
+          的合体，那个有角的「月亮」就是 W。真佩服当年的奇思妙想。
         </div>
 
-        <h2 class="text-2xl font-bold text-white mb-6">大事记</h2>
-        <div class="space-y-4">
-          <div
-            v-for="item in timeline"
-            :key="item.date"
-            class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-5 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6"
-          >
-            <time class="text-blue-300 font-mono whitespace-nowrap">{{ item.date }}</time>
-            <p class="text-gray-400">{{ item.text }}</p>
-          </div>
+        <v-divider class="my-6" />
+
+        <div class="text-h6 font-weight-semibold text-on-surface mb-3">我们都做些什么</div>
+        <div class="text-body-1 text-medium-emphasis" style="line-height: 2">
+          最初我们以著书为主，后来转型科技为主。在我们成立的几年后，同班的类似组织陆续出现，但最终我们至今仍然在正常运行。现在主要以科技为主，就是没事写点代码的那种。
         </div>
-      </div>
-    </section>
-  </div>
+      </v-card-text>
+    </v-card>
+
+    <div class="text-h5 font-weight-bold text-on-surface mb-4">成长历史</div>
+    <v-card elevation="0" class="mb-10">
+      <v-card-text class="pa-6 pa-sm-10 text-body-1 text-medium-emphasis" style="line-height: 2">
+        <p class="mb-4">
+          <span class="text-primary font-mono">2019</span>
+          ：因小学低年级空闲时间充裕，NT 与 BS 在课余时间进行绘画等活动，这是希望工作室最早的运作形式。不久后，NT 与 BS
+          提议创建团队，希望工作室雏形诞生。
+        </p>
+        <p class="mb-4"><span class="text-primary font-mono">2020~2021</span>：资料不可考，无内容。</p>
+        <p class="mb-4">
+          <span class="text-primary font-mono">2022</span>
+          ：因工作室表现突出，出现大量模仿团队，严重打击有生力量并压缩进步空间。为缓解困境，BS 于 2022 年 6 月 27
+          日决定开启「潜运行」。同年 9 月 8 日，希望工作室重新开始正常运行，NT 发布新 Logo 并沿用至今。
+        </p>
+        <p class="mb-4"><span class="text-primary font-mono">2023~2024</span>：工作室虽正常运行，但因学业压力无突出表现。</p>
+        <p class="mb-4">
+          <span class="text-primary font-mono">2024-09</span>
+          ：小学毕业后许多成员离开，因 NT 与 BS 仍就读同一初中，工作室得以存续。
+        </p>
+        <p class="mb-4"><span class="text-primary font-mono">2025</span>：NT 购置阿里云服务器用于官网。</p>
+        <p class="pt-4 border-top">
+          目前的领导者为 <span class="text-on-surface">NanoTurtle</span>、<span class="text-on-surface">BusySheng</span>。他们是从
+          2019 年就开始效力于希望工作室的成员（即创始人）。
+        </p>
+      </v-card-text>
+    </v-card>
+
+    <div class="text-h5 font-weight-bold text-on-surface mb-4">大事记</div>
+    <div class="d-flex flex-column ga-3">
+      <v-card
+        v-for="item in timeline"
+        :key="item.date"
+        elevation="0"
+        class="pa-3"
+      >
+        <v-card-text class="d-flex flex-column flex-sm-row align-sm-baseline ga-2 ga-sm-4">
+          <time class="text-primary font-mono text-no-wrap">{{ item.date }}</time>
+          <span class="text-body-1 text-medium-emphasis">{{ item.text }}</span>
+        </v-card-text>
+      </v-card>
+    </div>
+  </v-container>
 </template>
+
+

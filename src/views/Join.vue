@@ -5,29 +5,28 @@ useHead({
   title: "加入我们 | 希望工作室",
   meta: [{ name: "description", content: "希望工作室成员招募。" }],
 });
-
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-16">
-    <section class="py-12 px-4">
-      <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl font-bold text-white mb-2">加入我们</h1>
-        <p class="text-gray-400 mb-8">Under Construction…</p>
+  <v-container class="py-12 px-4" style="max-width: 896px">
+    <div class="text-h4 font-weight-bold text-on-surface mb-2">加入我们</div>
+    <div class="text-body-1 text-medium-emphasis mb-8">Under Construction…</div>
 
-        <div class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 sm:p-10">
-          <h2 class="text-2xl font-bold text-white mb-4">联系我们</h2>
-          <p class="text-gray-400 leading-8">
-            Email me：
-            <a
-              href="mailto:guixiabaifo2022@outlook.com"
-              class="text-blue-400 hover:text-blue-300 underline break-all"
-            >
-              guixiabaifo2022@outlook.com
-            </a>
-          </p>
+    <v-card elevation="0">
+      <v-card-text class="pa-6 pa-sm-10">
+        <div class="text-h6 font-weight-bold text-on-surface mb-4">联系我们</div>
+        <div class="text-body-1 text-medium-emphasis" style="line-height: 2">
+          Email me：
+          <a
+            href="mailto:guixiabaifo2022@outlook.com"
+            class="text-primary text-decoration-underline text-break"
+          >
+            guixiabaifo2022@outlook.com
+          </a>
         </div>
-      </div>
-    </section>
-  </div>
+      </v-card-text>
+    </v-card>
+  </v-container>
 </template>
+
+

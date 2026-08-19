@@ -76,147 +76,134 @@ const roadmap = [
   { stage: "兼容 BusyBox", detail: "PIE 加载 + auxv + arch_prctl + mmap/brk + 信号，分 A~E 阶段推进。", status: "远期" },
   { stage: "承载 JVM → 跑 Minecraft", detail: "需要足够 POSIX + GPU 图形，属于极远远期终态，学习旅程本身才是重点。", status: "极远" },
 ];
+
+const statusColor = (s: string) =>
+  ({ 进行中: "success", 计划中: "info", 远期: "grey", 极远: "grey" })[s] ?? "grey";
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+  <div class="pb-8">
     <!-- Hero -->
-    <div class="pt-16 relative">
-      <div class="hero-container">
-        <div class="cover flex items-center justify-center p-8 lg:p-16">
-          <BannerCarousel :images="showcase" alt="HopeOS" class="w-full" />
-        </div>
-        <div class="body">
-          <div class="container">
-            <h1 class="title">HopeOS</h1>
-            <p class="subtitle">一个从零编写的 UEFI 操作系统，用于学习操作系统运行原理。</p>
-            <p class="subtitle">最早可追溯至2023年（https://hopestudio.mysxl.cn/blog/hope-os）</p>
+    <v-container class="pt-16">
+      <v-row align="center">
+        <v-col cols="12" lg="7">
+          <BannerCarousel :images="showcase" alt="HopeOS" />
+        </v-col>
+        <v-col cols="12" lg="5">
+          <div class="pa-6 pa-lg-10">
+            <div class="text-h2 font-weight-bold text-on-surface mb-2">HopeOS</div>
+            <div class="text-subtitle-1 text-medium-emphasis mb-2">
+              一个从零编写的 UEFI 操作系统，用于学习操作系统运行原理。
+            </div>
+            <div class="text-body-2 text-medium-emphasis mb-6">
+              最早可追溯至2023年（https://hopestudio.mysxl.cn/blog/hope-os）
+            </div>
+            <div class="d-flex flex-wrap align-center ga-4">
+              <v-chip disabled color="grey">源码暂未开源</v-chip>
+              <router-link to="/license" class="text-decoration-none">
+                <v-btn color="primary" variant="tonal" append-icon="mdi-arrow-right">
+                  第三方组件许可证
+                </v-btn>
+              </router-link>
+            </div>
           </div>
-          <div class="flex flex-wrap items-center gap-4">
-            <span
-              class="link-button opacity-60 cursor-not-allowed select-none"
-              title="HopeOS 目前尚未开源"
-              aria-disabled="true"
-            >
-              源码暂未开源
-            </span>
-            <a
-              href="/license"
-              class="link-button"
-            >
-              第三方组件许可证 →
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <!-- 项目概况 -->
-    <section class="py-12 px-4 relative">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-white mb-6 px-6">关于 HopeOS</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-6 mb-6">
-          <div
-            v-for="f in facts"
-            :key="f.label"
-            class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-4"
-          >
-            <p class="text-sm text-blue-300 mb-1">{{ f.label }}</p>
-            <p class="text-gray-200 font-medium">{{ f.value }}</p>
-          </div>
-        </div>
-        <p class="text-gray-400 px-6 leading-relaxed">
-          HopeOS 是一个从零手写、基于 UEFI 启动的 x86-64 操作系统。它现在已具备内核线程调度、中断与定时器、图形桌面、虚拟文件系统，以及
-          ring 3 用户态与一套 Linux 风格的 POSIX 系统调用。项目的核心目标不是做一个玩具，而是借此搞清楚一台计算机到底是怎么跑起来的——跑起
-          Minecraft 只是极远期的趣味终态，学习的过程才是重点。
-        </p>
+    <v-container class="py-8">
+      <div class="text-h4 font-weight-bold text-on-surface mb-6">关于 HopeOS</div>
+      <v-row class="mb-6">
+        <v-col v-for="f in facts" :key="f.label" cols="6" md="3">
+          <v-card elevation="0" class="pa-2">
+            <v-card-text>
+              <div class="text-caption text-primary mb-1">{{ f.label }}</div>
+              <div class="text-body-1 text-on-surface font-weight-medium">{{ f.value }}</div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+      <div class="text-body-1 text-medium-emphasis" style="line-height: 1.8">
+        HopeOS 是一个从零手写、基于 UEFI 启动的 x86-64 操作系统。它现在已具备内核线程调度、中断与定时器、图形桌面、虚拟文件系统，以及
+        ring 3 用户态与一套 Linux 风格的 POSIX 系统调用。项目的核心目标不是做一个玩具，而是借此搞清楚一台计算机到底是怎么跑起来的——跑起
+        Minecraft 只是极远期的趣味终态，学习的过程才是重点。
       </div>
-    </section>
+    </v-container>
 
     <!-- 已完成 -->
-    <section class="py-12 px-4 relative">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-white mb-6 px-6">已经实现的</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
-          <div
-            v-for="item in done"
-            :key="item.title"
-            class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6"
-          >
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-green-300 text-sm">✓</span>
-              <h3 class="text-lg font-bold text-white">{{ item.title }}</h3>
-            </div>
-            <p class="text-gray-400 text-sm leading-relaxed">{{ item.desc }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <v-container class="py-8">
+      <div class="text-h4 font-weight-bold text-on-surface mb-6">已经实现的</div>
+      <v-row>
+        <v-col v-for="item in done" :key="item.title" cols="12" md="6" lg="4">
+          <v-card elevation="0" class="h-100 pa-1">
+            <v-card-text>
+              <div class="d-flex align-center ga-2 mb-3">
+                <v-icon icon="mdi-check-circle" color="success" size="small" />
+                <div class="text-subtitle-1 font-weight-bold text-on-surface">
+                  {{ item.title }}
+                </div>
+              </div>
+              <div class="text-body-2 text-medium-emphasis" style="line-height: 1.7">
+                {{ item.desc }}
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <!-- 开发路线 -->
-    <section class="py-12 px-4 relative">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-white mb-6 px-6">开发路线</h2>
-        <div class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 px-6 mx-6">
-          <ul class="space-y-4">
-            <li
-              v-for="step in roadmap"
-              :key="step.stage"
-              class="flex items-start gap-4"
-            >
-              <span
-                class="mt-1 shrink-0 text-xs px-2 py-0.5 rounded"
-                :class="{
-                  'bg-green-500/20 text-green-300': step.status === '进行中',
-                  'bg-blue-500/20 text-blue-300': step.status === '计划中',
-                  'bg-gray-600/40 text-gray-400': step.status === '远期' || step.status === '极远',
-                }"
-              >
+    <v-container class="py-8">
+      <div class="text-h4 font-weight-bold text-on-surface mb-6">开发路线</div>
+      <v-card elevation="0">
+        <v-card-text class="pa-6">
+          <div class="d-flex flex-column ga-4">
+            <div v-for="step in roadmap" :key="step.stage" class="d-flex align-start ga-4">
+              <v-chip size="small" :color="statusColor(step.status)" variant="tonal" class="mt-1 shrink-0">
                 {{ step.status }}
-              </span>
+              </v-chip>
               <div>
-                <h3 class="text-lg font-bold text-white">{{ step.stage }}</h3>
-                <p class="text-gray-400">{{ step.detail }}</p>
+                <div class="text-subtitle-1 font-weight-bold text-on-surface">
+                  {{ step.stage }}
+                </div>
+                <div class="text-body-2 text-medium-emphasis">{{ step.detail }}</div>
               </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+            </div>
+          </div>
+        </v-card-text>
+      </v-card>
+    </v-container>
 
     <!-- 在线体验 -->
-    <section class="py-12 px-4 relative">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-white mb-2 px-6">在线体验</h2>
-        <p class="text-gray-400 px-6 mb-6 leading-relaxed">
-          下面是一个纯前端的 HopeOS 模拟器（启动自检 → 桌面 → 终端），可直接在浏览器里操作。
-          点击「开始」打开开始菜单，或在终端里输入 <code class="text-blue-300">help</code> 查看命令。
-          （这是网页演示，并非真实运行的内核。）
-        </p>
-        <div class="px-6">
-          <div
-            class="rounded-2xl overflow-hidden border border-gray-700/60 shadow-2xl bg-black"
-            style="aspect-ratio: 16 / 10; min-height: 420px;"
-          >
-            <iframe
-              src="/hopeos-emulator/index.html"
-              title="HopeOS 模拟器"
-              allow="fullscreen"
-              allowfullscreen
-              class="w-full h-full border-0"
-            ></iframe>
-          </div>
-        </div>
+    <v-container class="py-8">
+      <div class="text-h4 font-weight-bold text-on-surface mb-2">在线体验</div>
+      <div class="text-body-1 text-medium-emphasis mb-6" style="line-height: 1.8">
+        下面是一个纯前端的 HopeOS 模拟器（启动自检 → 桌面 → 终端），可直接在浏览器里操作。
+        点击「开始」打开开始菜单，或在终端里输入 <code class="text-primary">help</code> 查看命令。
+        （这是网页演示，并非真实运行的内核。）
       </div>
-    </section>
+      <div
+        class="rounded-xl overflow-hidden border"
+        style="aspect-ratio: 16 / 10; min-height: 420px; background: #000; border-color: rgb(var(--v-theme-outline))"
+      >
+        <iframe
+          src="/hopeos-emulator/index.html"
+          title="HopeOS 模拟器"
+          allow="fullscreen"
+          allowfullscreen
+          class="w-100 h-100 border-0"
+        ></iframe>
+      </div>
+    </v-container>
 
     <!-- 返回 -->
-    <section class="py-12 px-4 relative">
-      <div class="max-w-7xl mx-auto px-6">
-        <router-link to="/" class="text-blue-400 hover:text-blue-300 transition-colors">
-          ← 返回首页
-        </router-link>
-      </div>
-    </section>
+    <v-container class="pb-12">
+      <router-link to="/" class="text-decoration-none">
+        <v-btn variant="text" color="primary" prepend-icon="mdi-arrow-left">返回首页</v-btn>
+      </router-link>
+    </v-container>
   </div>
 </template>
+
+
