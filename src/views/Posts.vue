@@ -23,18 +23,22 @@ const filtered = computed(() =>
 
 <template>
   <v-container class="py-12 px-4" style="max-width: 1024px">
-    <div class="text-h4 font-weight-bold text-on-surface mb-2">文章</div>
-    <div class="text-body-1 text-medium-emphasis mb-8">
-      共 {{ posts.length }} 篇。内容迁移自旧版官网 hopestudio.top，已做本地归档。
+    <div class="mb-8">
+      <div class="md3e-eyebrow mb-1">文章归档 · Posts</div>
+      <div class="md3e-display-sm text-h3 text-on-surface mb-2">全部文章</div>
+      <div class="text-body-1 text-medium-emphasis">
+        共 {{ posts.length }} 篇。内容迁移自旧版官网 hopestudio.top，已做本地归档。
+      </div>
     </div>
 
-    <!-- 分类筛选 -->
+    <!-- 分类筛选（MD3 筛选 chip：选中填充 secondary-container，未选中描边） -->
     <div class="d-flex flex-wrap ga-2 mb-10">
       <v-chip
         v-for="c in filters"
         :key="c"
-        :color="active === c ? 'primary' : undefined"
-        variant="tonal"
+        :color="active === c ? 'secondary-container' : undefined"
+        :text-color="active === c ? 'on-secondary-container' : undefined"
+        :variant="active === c ? 'flat' : 'outlined'"
         class="cursor-pointer"
         @click="active = c"
       >

@@ -42,7 +42,8 @@ defineProps({
 </script>
 
 <template>
-  <v-app-bar :elevation="1" class="bg-surface">
+  <!-- MD3E top app bar：容器色 + 底部细分隔线（见 style.css .v-app-bar） -->
+  <v-app-bar>
     <template v-slot:prepend>
       <v-app-bar-nav-icon
         class="d-lg-none"
@@ -58,7 +59,7 @@ defineProps({
       </router-link>
     </v-app-bar-title>
 
-    <!-- 桌面端：MD3 胶囊导航 -->
+    <!-- 桌面端：MD3E 胶囊导航（激活项 secondary-container + 弹簧切换） -->
     <template v-slot:append>
       <div class="d-none d-lg-flex align-center ga-2 pr-4">
         <template v-for="item in menu" :key="item.name">
@@ -74,7 +75,7 @@ defineProps({
               rounded="pill"
               label
               size="small"
-              class="pa-3"
+              class="pa-3 nav-chip"
             >
               {{ item.name }}
             </v-chip>
@@ -93,7 +94,7 @@ defineProps({
               rounded="pill"
               label
               size="small"
-              class="pa-3"
+              class="pa-3 nav-chip"
             >
               {{ item.name }}
             </v-chip>
@@ -144,3 +145,14 @@ defineProps({
     </v-list>
   </v-navigation-drawer>
 </template>
+
+<style scoped>
+.nav-chip {
+  transition: transform var(--md3e-duration-short) var(--md3e-motion-spring),
+    background-color var(--md3e-duration-short) var(--md3e-motion-emphasized),
+    color var(--md3e-duration-short) var(--md3e-motion-emphasized);
+}
+.nav-chip:hover {
+  transform: translateY(-1px);
+}
+</style>

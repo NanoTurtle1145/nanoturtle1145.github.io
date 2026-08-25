@@ -6,31 +6,49 @@ defineProps<{
 </script>
 
 <template>
+  <!-- MD3E 成员网格：头像形状多样（圆 / 圆角），角色用 tertiary 强调 -->
   <section class="py-12 px-4">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl font-bold text-white mb-6">{{ title }}</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-        <div
-          v-for="(it, i) in items"
-          :key="i"
-          class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6"
-        >
-          <img
-            v-if="it.avatar"
-            :src="it.avatar"
-            class="w-20 h-20 rounded-xl object-cover mb-3"
-            alt=""
-          />
-          <div
-            v-else
-            class="w-20 h-20 rounded-xl bg-gray-700 flex items-center justify-center text-gray-400 text-lg mb-3"
-          >
-            {{ (it.name || "?").charAt(0) }}
-          </div>
-          <h3 class="text-xl font-bold text-white mb-1">{{ it.name }}</h3>
-          <p class="text-sm text-blue-300 mb-3">{{ it.role }}</p>
-          <p class="text-gray-400">{{ it.desc }}</p>
-        </div>
+    <div class="mx-auto" style="max-width: 1080px">
+      <h2 class="md3e-display-sm text-h4 text-on-surface mb-6">{{ title }}</h2>
+      <div
+        style="
+          display: grid;
+          gap: 24px;
+          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        "
+      >
+        <v-card v-for="(it, i) in items" :key="i" elevation="0" hover class="pa-2">
+          <v-card-text>
+            <v-avatar
+              v-if="it.avatar"
+              size="72"
+              :rounded="i % 2 === 0 ? 'lg' : 'circle'"
+              class="mb-3"
+            >
+              <v-img :src="it.avatar" alt="" />
+            </v-avatar>
+            <div
+              v-else
+              class="d-inline-flex align-center justify-center mb-3"
+              style="
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                background: rgb(var(--v-theme-primary-container));
+                color: rgb(var(--v-theme-on-primary-container));
+                font-size: 1.5rem;
+                font-weight: 700;
+              "
+            >
+              {{ (it.name || "?").charAt(0) }}
+            </div>
+            <div class="text-h6 font-weight-bold text-on-surface mb-1">
+              {{ it.name }}
+            </div>
+            <div class="text-body-2 text-tertiary mb-3">{{ it.role }}</div>
+            <p class="text-body-2 text-medium-emphasis mb-0">{{ it.desc }}</p>
+          </v-card-text>
+        </v-card>
       </div>
     </div>
   </section>

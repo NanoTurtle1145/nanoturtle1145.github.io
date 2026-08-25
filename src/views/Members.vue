@@ -29,12 +29,15 @@ const members = [
 
 <template>
   <v-container class="py-12 px-4" style="max-width: 1024px">
-    <div class="text-h4 font-weight-bold text-on-surface mb-2">成员列表</div>
-    <div class="text-body-1 text-medium-emphasis mb-8">
-      由于一些特殊原因，此处某些成员仅有昵称的缩写。
+    <div class="mb-8">
+      <div class="md3e-eyebrow mb-1">成员列表 · Members</div>
+      <div class="md3e-display-sm text-h3 text-on-surface mb-2">成员列表</div>
+      <div class="text-body-1 text-medium-emphasis">
+        由于一些特殊原因，此处某些成员仅有昵称的缩写。
+      </div>
     </div>
 
-    <div class="text-h5 font-weight-bold text-on-surface mb-4">管理员</div>
+    <div class="md3e-eyebrow mb-4">管理员</div>
     <v-row class="mb-10">
       <v-col v-for="m in admins" :key="m.name" cols="12" sm="6">
         <v-card elevation="0" class="h-100">
@@ -50,14 +53,14 @@ const members = [
               <span class="text-h6 text-grey-lighten-2">{{ m.name.charAt(0) }}</span>
             </div>
             <div class="text-h6 font-weight-bold text-on-surface mb-1">{{ m.name }}</div>
-            <div class="text-body-2 text-primary mb-3">{{ m.role }}</div>
+            <div class="text-body-2 text-tertiary mb-3">{{ m.role }}</div>
             <div class="text-body-2 text-medium-emphasis">{{ m.desc }}</div>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
 
-    <div class="text-h5 font-weight-bold text-on-surface mb-4">成员</div>
+    <div class="md3e-eyebrow mb-4">成员</div>
     <v-row>
       <v-col v-for="m in members" :key="m.name" cols="6" sm="3">
         <v-card elevation="0" class="text-center">

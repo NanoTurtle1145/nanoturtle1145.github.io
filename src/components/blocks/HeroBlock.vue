@@ -9,19 +9,36 @@ defineProps<{
 </script>
 
 <template>
-  <section class="py-16 px-4 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8">
-      <div class="flex-1">
-        <h1 class="text-4xl font-bold text-white mb-2">{{ title }}</h1>
-        <p class="text-xl text-gray-300 mb-6">{{ subtitle }}</p>
-        <a
-          :href="buttonLink"
-          class="inline-block border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-[#00a2e8] hover:border-[#00a2e8] transition-all"
-          >{{ buttonText }}</a
-        >
-      </div>
-      <div class="flex-1">
-        <img :src="image" alt="" class="rounded-2xl w-full object-cover" />
+  <!-- MD3E hero：editorial 排版 + 行动号召（容器分组：内部用 surfaceContainer） -->
+  <section class="py-16 px-4">
+    <div class="mx-auto md3e-group pa-6 pa-md-10" style="max-width: 1080px">
+      <div class="d-flex flex-column flex-md-row align-center ga-8">
+        <div class="flex-1">
+          <div class="md3e-eyebrow mb-3">希望工作室 · Hope Studio</div>
+          <h1 class="md3e-display text-h3 text-on-surface mb-3">{{ title }}</h1>
+          <p class="text-body-1 text-medium-emphasis mb-7" style="max-width: 34rem">
+            {{ subtitle }}
+          </p>
+          <a
+            v-if="buttonLink"
+            :href="buttonLink"
+            class="text-decoration-none d-inline-block"
+          >
+            <v-btn color="primary" size="large" append-icon="mdi-arrow-right" class="md3e-nudge">
+              {{ buttonText }}
+            </v-btn>
+          </a>
+        </div>
+        <div class="flex-1 w-100">
+          <v-img
+            v-if="image"
+            :src="image"
+            alt=""
+            class="rounded-xl"
+            max-height="360"
+            cover
+          />
+        </div>
       </div>
     </div>
   </section>

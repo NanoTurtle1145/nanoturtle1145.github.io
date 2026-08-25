@@ -6,21 +6,34 @@ defineProps<{
 </script>
 
 <template>
+  <!-- MD3E 链接卡片：surfaceContainerLowest 卡片 + 弹簧抬升 -->
   <section class="py-12 px-4">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl font-bold text-white mb-2">{{ title }}</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="mx-auto" style="max-width: 1080px">
+      <h2 class="md3e-display-sm text-h4 text-on-surface mb-2">{{ title }}</h2>
+      <div
+        style="
+          display: grid;
+          gap: 24px;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        "
+      >
         <a
           v-for="(it, i) in items"
           :key="i"
           :href="it.url"
           target="_blank"
           rel="noopener"
-          class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-6 hover:bg-gray-800 transition-colors"
+          class="text-decoration-none"
         >
-          <h2 class="text-xl font-bold text-white mb-2">{{ it.name }}</h2>
-          <p class="text-gray-400 mb-3">{{ it.desc }}</p>
-          <p class="text-sm text-blue-400 break-all">{{ it.url }}</p>
+          <v-card elevation="0" hover class="h-100 pa-2">
+            <v-card-text>
+              <div class="text-h6 font-weight-bold text-on-surface mb-2">
+                {{ it.name }}
+              </div>
+              <p class="text-body-2 text-medium-emphasis mb-3">{{ it.desc }}</p>
+              <div class="text-caption text-primary text-break">{{ it.url }}</div>
+            </v-card-text>
+          </v-card>
         </a>
       </div>
     </div>

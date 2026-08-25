@@ -9,8 +9,11 @@ useHead({
 
 <template>
   <v-container class="py-12 px-4" style="max-width: 896px">
-    <div class="text-h4 font-weight-bold text-on-surface mb-2">加入我们</div>
-    <div class="text-body-1 text-medium-emphasis mb-8">Under Construction…</div>
+    <div class="mb-8">
+      <div class="md3e-eyebrow mb-1">加入我们 · Join Us</div>
+      <div class="md3e-display-sm text-h3 text-on-surface mb-2">加入我们</div>
+      <div class="text-body-1 text-medium-emphasis">Under Construction…</div>
+    </div>
 
     <v-card elevation="0">
       <v-card-text class="pa-6 pa-sm-10">

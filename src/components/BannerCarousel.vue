@@ -19,7 +19,7 @@ const paused = ref(false);
     height="514"
     show-arrows="hover"
     hide-delimiters
-    class="rounded-2xl overflow-hidden"
+    class="rounded-xl overflow-hidden"
     @mouseenter="paused = true"
     @mouseleave="paused = false"
   >

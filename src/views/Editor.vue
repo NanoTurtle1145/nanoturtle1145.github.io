@@ -249,7 +249,7 @@ const byType = (t) => blocks.filter((b) => b.type === t)
 <\/script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+  <div class="min-h-screen bg-surface md3e-bg-ambient">
 ${loops}
   </div>
 </template>
@@ -347,7 +347,7 @@ onMounted(() => load());
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-900 text-white pt-16 flex flex-col">
+  <div class="min-h-screen bg-surface md3e-bg-ambient pt-16 d-flex flex-column">
     <!-- 工具栏 -->
     <div class="border-b border-gray-700 bg-gray-800/60 px-4 py-2 flex flex-wrap items-center gap-2">
       <span class="font-bold mr-2">页面编辑器</span>
@@ -426,8 +426,8 @@ onMounted(() => load());
       </aside>
 
       <!-- 中间：实时预览（渲染真实 Vue 组件）-->
-      <main class="flex-1 overflow-y-auto bg-gray-900">
-        <div v-if="!blocks.length" class="h-full flex items-center justify-center text-gray-600">
+      <main class="flex-1 overflow-y-auto bg-surface">
+        <div v-if="!blocks.length" class="h-full d-flex align-center justify-center text-medium-emphasis">
           预览区 · 从左侧添加区块开始
         </div>
         <div

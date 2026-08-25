@@ -6,18 +6,25 @@ defineProps<{
 </script>
 
 <template>
+  <!-- MD3E 时间线：日期 mono 主色 + 内容容器分组 -->
   <section class="py-12 px-4">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-bold text-white mb-6">{{ title }}</h2>
-      <div class="space-y-4">
-        <div
+    <div class="mx-auto" style="max-width: 896px">
+      <h2 class="md3e-display-sm text-h4 text-on-surface mb-6">{{ title }}</h2>
+      <div class="d-flex flex-column ga-3">
+        <v-card
           v-for="(it, i) in items"
           :key="i"
-          class="bg-gray-800/50 backdrop-blur-md rounded-2xl p-5 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6"
+          elevation="0"
+          hover
+          class="pa-2"
         >
-          <time class="text-blue-300 font-mono whitespace-nowrap">{{ it.date }}</time>
-          <p class="text-gray-400">{{ it.text }}</p>
-        </div>
+          <v-card-text class="d-flex flex-column flex-sm-row align-sm-baseline ga-2 ga-sm-5">
+            <time class="text-primary text-no-wrap" style="font-family: var(--md3e-font-mono); font-weight: 600">
+              {{ it.date }}
+            </time>
+            <span class="text-body-1 text-medium-emphasis">{{ it.text }}</span>
+          </v-card-text>
+        </v-card>
       </div>
     </div>
   </section>

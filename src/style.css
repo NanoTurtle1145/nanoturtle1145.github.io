@@ -1,12 +1,365 @@
-/* ============ 全局 ============ */
+/* ============================================================
+   Material Design 3 Expressive (MD3E) 设计系统层
+   依据 mfskys/md3e-skill（Google MD3E, 2025）的 7 个设计策略落地：
+   1. 形状多样（shape variety）  2. 丰富配色（rich color）
+   3. 排版引导（typography）     4. 容器分组（container grouping）
+   5. 弹性动效（spring motion）  6. 自适应组件
+   7. Hero 时刻（hero moments，1~2 处克制而精致的瞬间）
+   ============================================================ */
+
+:root {
+  /* ---------- 字体（变量字体：Roboto Flex 已自托管，CJK 走系统字体栈） ---------- */
+  --md3e-font-display: "Roboto Flex", "PingFang SC", "HarmonyOS Sans SC",
+    "Source Han Sans SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --md3e-font-body: "Roboto Flex", "PingFang SC", "HarmonyOS Sans SC",
+    "Source Han Sans SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --md3e-font-mono: ui-monospace, "Cascadia Mono", "SF Mono", "JetBrains Mono",
+    Menlo, Consolas, "Liberation Mono", monospace;
+  /* 让 Vuetify 的 typography 也吃到变量字体 */
+  --v-font-body: var(--md3e-font-body);
+  --v-font-heading: var(--md3e-font-display);
+
+  /* ---------- 形状刻度（MD3E shape scale） ---------- */
+  --md3e-shape-xs: 4px;  /* 小元素、文字输入框 */
+  --md3e-shape-sm: 8px;  /* chips、小按钮 */
+  --md3e-shape-md: 12px; /* 卡片、对话框 */
+  --md3e-shape-lg: 16px; /* FAB、大卡片、sheet */
+  --md3e-shape-xl: 24px; /* 大容器、搜索栏 */
+  --md3e-shape-pill: 9999px;
+
+  /* ---------- 动效（spring-based motion） ----------
+     MD3E 用弹簧物理取代缓动曲线：spatial（位移/缩放）允许过冲回弹，
+     effects（颜色/透明度）不允许过冲。web 侧用两条 cubic-bezier 近似。 */
+  --md3e-motion-spring: cubic-bezier(0.34, 1.56, 0.64, 1);        /* spatial: 过冲回弹 */
+  --md3e-motion-emphasized: cubic-bezier(0.2, 0, 0, 1);           /* effects: 无过冲 */
+  --md3e-motion-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --md3e-motion-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+  /* 时长刻度：short 50-200ms / medium 250-400ms / long 450-600ms */
+  --md3e-duration-short: 200ms;
+  --md3e-duration-medium: 400ms;
+  --md3e-duration-long: 600ms;
+}
+
+/* ============================================================
+   全局基础
+   ============================================================ */
 #app {
   width: 100%;
   min-height: 100vh;
 }
 
-/* ============ 文章正文排版（PostDetail 的 v-html 注入） ============ */
-/* 不依赖任何 CSS 框架，纯手写，供旧站迁移的 HTML 文章使用 */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--md3e-font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* 选区与焦点：MD3 焦点样式（2px primary 描边 + 容器底色） */
+::selection {
+  background: rgb(var(--v-theme-primary-container));
+  color: rgb(var(--v-theme-on-primary-container));
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--v-theme-primary));
+  outline-offset: 2px;
+  border-radius: var(--md3e-shape-xs);
+}
+
+/* 细滚动条，贴合容器色调 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--v-theme-outline-variant)) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgb(var(--v-theme-outline-variant));
+  border-radius: var(--md3e-shape-pill);
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ============================================================
+   MD3E 排版刻度（editorial typography）
+   补充 Vuetify 之外的 display / eyebrow / 强调样式
+   ============================================================ */
+
+/* 首页级大标题：重字重 + 紧字距，形成「编辑式」排版时刻 */
+.md3e-display {
+  font-family: var(--md3e-font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.md3e-display-sm {
+  font-family: var(--md3e-font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* 小节眉标：label-large 风格，主色/第三色 + 字距拉开 */
+.md3e-eyebrow {
+  font-size: 0.8125rem; /* 13px ≈ labelLarge */
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--v-theme-tertiary));
+}
+
+/* 强调正文：比 bodyLarge 更重的字重，用于要点句 */
+.md3e-emphasized {
+  font-weight: 600;
+  color: rgb(var(--v-theme-on-surface));
+}
+
+/* 代码/数字：等宽感 + primary 色调 */
+.md3e-num {
+  font-family: var(--md3e-font-mono);
+  color: rgb(var(--v-theme-primary));
+  font-weight: 600;
+}
+
+/* ============================================================
+   形状工具类（tactic 1: use a variety of shapes）
+   ============================================================ */
+.md3e-shape-xs { border-radius: var(--md3e-shape-xs); }
+.md3e-shape-sm { border-radius: var(--md3e-shape-sm); }
+.md3e-shape-md { border-radius: var(--md3e-shape-md); }
+.md3e-shape-lg { border-radius: var(--md3e-shape-lg); }
+.md3e-shape-xl { border-radius: var(--md3e-shape-xl); }
+.md3e-shape-pill { border-radius: var(--md3e-shape-pill); }
+
+/* 混合「圆 + 方」：一端直角一端大圆角，制造视觉张力 */
+.md3e-shape-mixed {
+  border-radius: var(--md3e-shape-lg) var(--md3e-shape-xs)
+    var(--md3e-shape-xs) var(--md3e-shape-lg);
+}
+
+/* 斜切角（angular accent）：用于 hero 装饰块 */
+.md3e-shape-angular {
+  border-radius: var(--md3e-shape-lg);
+  clip-path: polygon(0 0, 100% 12%, 100% 100%, 0 88%);
+}
+
+/* ============================================================
+   动效工具类（tactic 5: fluid and natural motion）
+   ============================================================ */
+.md3e-spring {
+  transition: all var(--md3e-duration-short) var(--md3e-motion-spring);
+}
+
+.md3e-fade {
+  transition: opacity var(--md3e-duration-medium) var(--md3e-motion-emphasized),
+    transform var(--md3e-duration-medium) var(--md3e-motion-spring);
+}
+
+/* 渐变强调（tactic 2: rich color）——标题 / 按钮用 primary→tertiary 渐变 */
+.md3e-text-gradient {
+  background: linear-gradient(
+    115deg,
+    rgb(var(--v-theme-primary)),
+    rgb(var(--v-theme-tertiary))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.md3e-btn-gradient {
+  background: linear-gradient(
+    120deg,
+    rgb(var(--v-theme-primary)),
+    rgb(var(--v-theme-tertiary))
+  ) !important;
+  color: rgb(var(--v-theme-on-primary)) !important;
+  border: none !important;
+  background-size: 140% 140%;
+  transition: background-position var(--md3e-duration-medium)
+      var(--md3e-motion-emphasized),
+    transform var(--md3e-duration-short) var(--md3e-motion-spring),
+    box-shadow var(--md3e-duration-short) var(--md3e-motion-emphasized) !important;
+}
+.md3e-btn-gradient:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 6px 20px rgb(var(--v-theme-primary), 0.35);
+  transform: translateY(-2px);
+}
+
+/* 有机 blob 形状（35 种官方形状之外的 web 侧实现，用于 hero 装饰） */
+.md3e-blob {
+  border-radius: 58% 42% 55% 45% / 45% 55% 42% 58%;
+}
+
+@keyframes md3e-drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(14px, -18px) rotate(4deg); }
+  66% { transform: translate(-10px, 10px) rotate(-3deg); }
+}
+.md3e-drift {
+  animation: md3e-drift 14s ease-in-out infinite;
+}
+
+/* 悬浮抬升：surface effect + spatial spring 的组合反馈 */
+.md3e-hover-lift {
+  transition: transform var(--md3e-duration-short) var(--md3e-motion-spring),
+    box-shadow var(--md3e-duration-short) var(--md3e-motion-emphasized);
+  will-change: transform;
+}
+.md3e-hover-lift:hover {
+  transform: translateY(-4px) scale(1.012);
+  box-shadow: 0 6px 24px rgb(var(--v-theme-scrim), 0.18);
+}
+
+/* 按下回弹（press feedback） */
+.md3e-press:active {
+  transform: scale(0.96);
+}
+
+/* 入场：rise（空间位移 + 弹性）与 fade（透明度） */
+@keyframes md3e-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.md3e-rise-in {
+  animation: md3e-rise var(--md3e-duration-medium) var(--md3e-motion-spring)
+    both;
+}
+
+/* 呼吸点（hero 时刻用）：scale + 透明度脉冲 */
+@keyframes md3e-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgb(var(--v-theme-tertiary), 0.45);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgb(var(--v-theme-tertiary), 0);
+    transform: scale(1.06);
+  }
+}
+.md3e-pulse {
+  animation: md3e-pulse 2s var(--md3e-motion-emphasized) infinite;
+}
+
+/* 箭头/图标轻微前移的悬停反馈 */
+.md3e-nudge .v-icon {
+  transition: transform var(--md3e-duration-short) var(--md3e-motion-spring);
+}
+.md3e-nudge:hover .v-icon {
+  transform: translateX(3px);
+}
+
+/* 尊重系统减弱动效设置 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   容器分组（tactic 4: contain content for emphasis）
+   ============================================================ */
+
+/* 分组容器：把相关内容收进一个 surfaceContainer 容器里 */
+.md3e-group {
+  background: rgb(var(--v-theme-surface-container));
+  border-radius: var(--md3e-shape-xl);
+  border: 1px solid rgb(var(--v-theme-outline-variant), 0.4);
+}
+
+/* 更高强调的分组（重要内容用最亮表面） */
+.md3e-group-high {
+  background: rgb(var(--v-theme-surface-container-high));
+  border-radius: var(--md3e-shape-xl);
+}
+
+/* 页面级柔和渐变背景：primary/secondary/tertiary 的容器色调低透明度叠加，
+   呼应 MD3E「rich and nuanced colors」 */
+.md3e-bg-ambient {
+  background-image: radial-gradient(
+      38rem 28rem at 8% 0%,
+      rgb(var(--v-theme-primary-container), 0.55),
+      transparent 70%
+    ),
+    radial-gradient(
+      30rem 24rem at 96% 14%,
+      rgb(var(--v-theme-tertiary-container), 0.4),
+      transparent 70%
+    ),
+    radial-gradient(
+      26rem 22rem at 60% 110%,
+      rgb(var(--v-theme-secondary-container), 0.35),
+      transparent 70%
+    );
+}
+
+/* ============================================================
+   Vuetify 组件级的 MD3E 打磨
+   ============================================================ */
+
+/* 卡片 hover：抬升 + 弹性（MD3E surface effect） */
+.v-card--hover {
+  transition: transform var(--md3e-duration-short) var(--md3e-motion-spring),
+    box-shadow var(--md3e-duration-short) var(--md3e-motion-emphasized);
+}
+.v-card--hover:hover {
+  transform: translateY(-4px) scale(1.008);
+  box-shadow: 0 6px 24px rgb(var(--v-theme-scrim), 0.18);
+}
+
+/* chip 悬停：轻微上浮 */
+.v-chip {
+  transition: transform var(--md3e-duration-short) var(--md3e-motion-spring),
+    background-color var(--md3e-duration-short) var(--md3e-motion-emphasized),
+    color var(--md3e-duration-short) var(--md3e-motion-emphasized);
+}
+.v-chip:hover {
+  transform: translateY(-1px);
+}
+
+/* 按钮：按下回弹；图标按钮悬停用容器底色做反馈 */
+.v-btn {
+  transition: transform var(--md3e-duration-short) var(--md3e-motion-spring),
+    background-color var(--md3e-duration-short) var(--md3e-motion-emphasized),
+    color var(--md3e-duration-short) var(--md3e-motion-emphasized);
+}
+.v-btn:active {
+  transform: scale(0.96);
+}
+
+/* 分割线淡一些，符合 outline-variant */
+.v-divider {
+  border-color: rgb(var(--v-theme-outline-variant), 0.6) !important;
+}
+
+/* 顶部应用栏：容器色 + 底部细分隔线（替代硬阴影） */
+.v-app-bar {
+  border-bottom: 1px solid rgb(var(--v-theme-outline-variant), 0.35);
+}
+
+/* ============================================================
+   文章正文排版（PostDetail 的 v-html 注入）——MD3E 排版刻度
+   ============================================================ */
 .post-body {
+  font-family: var(--md3e-font-body);
   font-size: 1rem;
   line-height: 2;
   color: rgb(var(--v-theme-on-surface-variant));
@@ -19,7 +372,9 @@
 
 .post-body h1 {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 800;
+  font-family: var(--md3e-font-display);
+  letter-spacing: -0.01em;
   color: rgb(var(--v-theme-on-surface));
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -28,7 +383,8 @@
 
 .post-body h2 {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
+  font-family: var(--md3e-font-display);
   color: rgb(var(--v-theme-on-surface));
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -37,6 +393,7 @@
 .post-body h3 {
   font-size: 1.25rem;
   font-weight: 700;
+  font-family: var(--md3e-font-display);
   color: rgb(var(--v-theme-on-surface));
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
@@ -55,11 +412,14 @@
 .post-body a {
   color: rgb(var(--v-theme-primary));
   text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
   word-break: break-all;
+  transition: opacity var(--md3e-duration-short) var(--md3e-motion-emphasized);
 }
 
 .post-body a:hover {
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 .post-body ul {
@@ -75,23 +435,26 @@
 }
 
 .post-body blockquote {
-  border-left: 4px solid rgb(var(--v-theme-primary), 0.5);
-  padding-left: 1rem;
+  border-left: 4px solid rgb(var(--v-theme-tertiary), 0.6);
+  background: rgb(var(--v-theme-tertiary-container), 0.18);
+  border-radius: 0 var(--md3e-shape-md) var(--md3e-shape-md) 0;
+  padding: 0.75rem 1.25rem;
   margin: 1rem 0;
   color: rgb(var(--v-theme-on-surface-variant));
   font-style: italic;
 }
 
 .post-body img {
-  border-radius: 12px;
+  border-radius: var(--md3e-shape-lg);
   margin: 1.5rem 0;
   max-width: 100%;
   height: auto;
 }
 
 .post-body pre {
-  background: rgb(var(--v-theme-surface-variant), 0.8);
-  border-radius: 12px;
+  background: rgb(var(--v-theme-surface-container-high));
+  border: 1px solid rgb(var(--v-theme-outline-variant), 0.5);
+  border-radius: var(--md3e-shape-md);
   padding: 1rem;
   margin: 1.5rem 0;
   overflow-x: auto;
@@ -99,8 +462,8 @@
 }
 
 .post-body code {
-  background: rgb(var(--v-theme-surface-variant), 0.7);
-  border-radius: 4px;
+  background: rgb(var(--v-theme-primary-container), 0.4);
+  border-radius: var(--md3e-shape-xs);
   padding: 1px 6px;
   color: rgb(var(--v-theme-primary));
   font-size: 0.875em;
@@ -121,20 +484,25 @@
 
 .post-body th,
 .post-body td {
-  border: 1px solid rgb(var(--v-theme-outline), 0.4);
+  border: 1px solid rgb(var(--v-theme-outline-variant), 0.6);
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
 
 .post-body th {
-  background: rgb(var(--v-theme-surface-variant), 0.5);
+  background: rgb(var(--v-theme-surface-container));
   color: rgb(var(--v-theme-on-surface));
+  font-weight: 700;
+}
+
+.post-body tr:nth-child(even) td {
+  background: rgb(var(--v-theme-surface-container-lowest), 0.5);
 }
 
 .post-body hr {
   margin: 2rem 0;
   border: none;
-  border-top: 1px solid rgb(var(--v-theme-outline), 0.5);
+  border-top: 1px solid rgb(var(--v-theme-outline-variant), 0.7);
 }
 
 /* 指向已关停原站的附件下载 */
@@ -152,7 +520,7 @@
 .post-body iframe,
 .post-body video {
   width: 100%;
-  border-radius: 12px;
+  border-radius: var(--md3e-shape-lg);
   margin: 1.5rem 0;
   aspect-ratio: 16 / 9;
 }

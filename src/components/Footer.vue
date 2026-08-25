@@ -36,7 +36,7 @@ const year = new Date().getFullYear();
 </script>
 
 <template>
-  <v-footer class="bg-surface-variant flex-column pa-0">
+  <v-footer class="bg-surface-container flex-column pa-0">
     <v-container class="py-10">
       <v-row>
         <v-col
@@ -45,7 +45,7 @@ const year = new Date().getFullYear();
           cols="6"
           md="3"
         >
-          <div class="text-subtitle-1 font-weight-semibold mb-3">
+          <div class="md3e-eyebrow mb-4">
             {{ fastguide.parentdex }}
           </div>
           <template v-for="eindex in fastguide.eindexs" :key="eindex.text">
@@ -98,7 +98,13 @@ const year = new Date().getFullYear();
 </template>
 
 <style scoped>
+.hover-text {
+  transition: color var(--md3e-duration-short) var(--md3e-motion-emphasized),
+    transform var(--md3e-duration-short) var(--md3e-motion-spring);
+  display: inline-block;
+}
 .hover-text:hover {
-  color: rgb(var(--v-theme-on-surface));
+  color: rgb(var(--v-theme-primary));
+  transform: translateX(2px);
 }
 </style>

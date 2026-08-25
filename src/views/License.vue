@@ -37,13 +37,16 @@ const fullText = [
 
 <template>
   <v-container class="py-12 px-4" style="max-width: 896px">
-    <div class="text-h4 font-weight-bold text-on-surface mb-4">
-      HopeOS 第三方组件许可证说明
-    </div>
-    <div class="text-body-1 text-medium-emphasis mb-6" style="line-height: 1.8">
-      本页汇总 HopeOS 项目在构建与运行中使用的第三方代码、字体与工具链及其许可证。
-      HopeOS 自身的许可证目前尚未在仓库中标注（TBD）；下述仅罗列
-      <strong class="text-on-surface">第三方</strong>依赖。
+    <div class="mb-8">
+      <div class="md3e-eyebrow mb-1">许可证 · Licenses</div>
+      <div class="md3e-display-sm text-h3 text-on-surface mb-2">
+        HopeOS 第三方组件许可证说明
+      </div>
+      <div class="text-body-1 text-medium-emphasis" style="line-height: 1.8">
+        本页汇总 HopeOS 项目在构建与运行中使用的第三方代码、字体与工具链及其许可证。
+        HopeOS 自身的许可证目前尚未在仓库中标注（TBD）；下述仅罗列
+        <strong class="text-on-surface">第三方</strong>依赖。
+      </div>
     </div>
 
     <v-alert type="info" variant="tonal" class="mb-8">

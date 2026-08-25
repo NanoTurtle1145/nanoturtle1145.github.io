@@ -24,7 +24,10 @@ const timeline = [
 
 <template>
   <v-container class="py-12 px-4" style="max-width: 896px">
-    <div class="text-h4 font-weight-bold text-on-surface mb-6">关于我们</div>
+    <div class="mb-8">
+      <div class="md3e-eyebrow mb-1">关于我们 · About</div>
+      <div class="md3e-display-sm text-h3 text-on-surface">关于我们</div>
+    </div>
 
     <v-card elevation="0" class="mb-8">
       <v-card-text class="pa-6 pa-sm-10">
@@ -76,7 +79,7 @@ const timeline = [
       </v-card-text>
     </v-card>
 
-    <div class="text-h5 font-weight-bold text-on-surface mb-4">成长历史</div>
+    <div class="md3e-display-sm text-h5 text-on-surface mb-4">成长历史</div>
     <v-card elevation="0" class="mb-10">
       <v-card-text class="pa-6 pa-sm-10 text-body-1 text-medium-emphasis" style="line-height: 2">
         <p class="mb-4">
@@ -103,7 +106,7 @@ const timeline = [
       </v-card-text>
     </v-card>
 
-    <div class="text-h5 font-weight-bold text-on-surface mb-4">大事记</div>
+    <div class="md3e-display-sm text-h5 text-on-surface mb-4">大事记</div>
     <div class="d-flex flex-column ga-3">
       <v-card
         v-for="item in timeline"
