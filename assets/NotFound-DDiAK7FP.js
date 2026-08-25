@@ -1,0 +1,5 @@
+import{d as r,u as o,r as i,o as d,c as l,w as a,a as t,h as s,v as m,g as c,l as p}from"./app-DLxlERtI.js";const u={class:"text-center py-24"},v={class:"md3e-rise-in",style:{"animation-delay":"240ms"}},x=r({__name:"NotFound",setup(y){return o({title:"页面未找到 | 希望工作室"}),(_,e)=>{const n=i("router-link");return d(),l(p,{class:"d-flex align-center justify-center",style:{"min-height":"70vh"}},{default:a(()=>[t("div",u,[e[1]||(e[1]=t("div",{class:"md3e-display mb-4 md3e-rise-in",style:{"font-size":"clamp(5rem, 16vw, 9rem)",background:`linear-gradient(
+            135deg,
+            rgb(var(--v-theme-primary)),
+            rgb(var(--v-theme-tertiary))
+          )`,"-webkit-background-clip":"text","background-clip":"text",color:"transparent"}}," 404 ",-1)),e[2]||(e[2]=t("div",{class:"text-body-1 text-medium-emphasis mb-8 md3e-rise-in",style:{"animation-delay":"120ms"}}," 页面不存在，或已随旧站一起归档。 ",-1)),t("div",v,[s(n,{to:"/",class:"text-decoration-none"},{default:a(()=>[s(m,{color:"primary",size:"large",variant:"outlined"},{default:a(()=>[...e[0]||(e[0]=[c("返回首页",-1)])]),_:1})]),_:1})])])]),_:1})}}});export{x as default};
