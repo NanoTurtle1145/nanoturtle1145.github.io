@@ -37,7 +37,7 @@ useHead(
           </v-chip>
           <span class="text-caption text-medium-emphasis">{{ post.date }}</span>
         </div>
-        <h1 class="md3e-display-sm text-h3 text-on-surface" style="line-height: 1.3">
+        <h1 class="text-h3 text-on-surface" style="line-height: 1.3; font-weight: 700">
           {{ post.title }}
         </h1>
         <div v-if="post.tags.length" class="d-flex flex-wrap ga-2 mt-4">
@@ -95,7 +95,7 @@ useHead(
     </template>
 
     <template v-else>
-      <div class="md3e-display-sm text-h3 text-on-surface mb-4">文章未找到</div>
+      <div class="text-h3 text-on-surface mb-4" style="font-weight: 700">文章未找到</div>
       <div class="text-body-1 text-medium-emphasis mb-6">该文章可能已被移除，或链接有误。</div>
       <router-link to="/posts" class="text-decoration-none">
         <v-btn variant="text" color="primary" prepend-icon="mdi-arrow-left">返回文章列表</v-btn>

@@ -9,13 +9,14 @@ defineProps<{
 </script>
 
 <template>
-  <!-- MD3E hero：editorial 排版 + 行动号召（容器分组：内部用 surfaceContainer） -->
   <section class="py-16 px-4">
     <div class="mx-auto md3e-group pa-6 pa-md-10" style="max-width: 1080px">
       <div class="d-flex flex-column flex-md-row align-center ga-8">
         <div class="flex-1">
-          <div class="md3e-eyebrow mb-3">希望工作室 · Hope Studio</div>
-          <h1 class="md3e-display text-h3 text-on-surface mb-3">{{ title }}</h1>
+          <div class="text-subtitle-1 text-tertiary font-weight-medium mb-3">
+            希望工作室 · Hope Studio
+          </div>
+          <h1 class="text-h3 text-on-surface mb-3" style="font-weight: 700">{{ title }}</h1>
           <p class="text-body-1 text-medium-emphasis mb-7" style="max-width: 34rem">
             {{ subtitle }}
           </p>
@@ -24,7 +25,7 @@ defineProps<{
             :href="buttonLink"
             class="text-decoration-none d-inline-block"
           >
-            <v-btn color="primary" size="large" append-icon="mdi-arrow-right" class="md3e-nudge">
+            <v-btn color="primary" size="large" append-icon="mdi-arrow-right">
               {{ buttonText }}
             </v-btn>
           </a>

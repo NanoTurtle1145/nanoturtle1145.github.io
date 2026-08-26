@@ -45,7 +45,7 @@ const year = new Date().getFullYear();
           cols="6"
           md="3"
         >
-          <div class="md3e-eyebrow mb-4">
+          <div class="text-subtitle-1 text-tertiary font-weight-medium mb-4">
             {{ fastguide.parentdex }}
           </div>
           <template v-for="eindex in fastguide.eindexs" :key="eindex.text">

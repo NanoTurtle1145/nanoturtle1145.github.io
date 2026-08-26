@@ -249,7 +249,7 @@ const byType = (t) => blocks.filter((b) => b.type === t)
 <\/script>
 
 <template>
-  <div class="min-h-screen bg-surface md3e-bg-ambient">
+  <div class="min-h-screen bg-surface">
 ${loops}
   </div>
 </template>
@@ -347,7 +347,7 @@ onMounted(() => load());
 </script>
 
 <template>
-  <div class="min-h-screen bg-surface md3e-bg-ambient pt-16 d-flex flex-column">
+  <div class="min-h-screen bg-surface pt-16 d-flex flex-column">
     <!-- 工具栏 -->
     <div class="border-b border-gray-700 bg-gray-800/60 px-4 py-2 flex flex-wrap items-center gap-2">
       <span class="font-bold mr-2">页面编辑器</span>

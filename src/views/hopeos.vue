@@ -91,8 +91,8 @@ const statusColor = (s: string) =>
         </v-col>
         <v-col cols="12" lg="5">
           <div class="pa-6 pa-lg-10">
-            <div class="md3e-eyebrow mb-2">操作系统项目 · HopeOS</div>
-            <div class="md3e-display text-h2 text-on-surface mb-2">HopeOS</div>
+            <div class="text-subtitle-1 text-tertiary font-weight-medium mb-2">操作系统项目 · HopeOS</div>
+            <div class="text-h2 text-on-surface mb-2">HopeOS</div>
             <div class="text-subtitle-1 text-medium-emphasis mb-2">
               一个从零编写的 UEFI 操作系统，用于学习操作系统运行原理。
             </div>
@@ -102,7 +102,7 @@ const statusColor = (s: string) =>
             <div class="d-flex flex-wrap align-center ga-4">
               <v-chip disabled color="grey">源码暂未开源</v-chip>
               <router-link to="/license" class="text-decoration-none">
-                <v-btn color="primary" variant="tonal" append-icon="mdi-arrow-right" class="md3e-nudge">
+                <v-btn color="primary" variant="tonal" append-icon="mdi-arrow-right">
                   第三方组件许可证
                 </v-btn>
               </router-link>
@@ -115,8 +115,8 @@ const statusColor = (s: string) =>
     <!-- 项目概况 -->
     <v-container class="py-8">
       <div class="mb-6">
-        <div class="md3e-eyebrow mb-1">项目概况 · Overview</div>
-        <div class="md3e-display-sm text-h4 text-on-surface">关于 HopeOS</div>
+        <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">项目概况 · Overview</div>
+        <div class="text-h4 text-on-surface">关于 HopeOS</div>
       </div>
       <v-row class="mb-6">
         <v-col v-for="f in facts" :key="f.label" cols="6" md="3">
@@ -138,8 +138,8 @@ const statusColor = (s: string) =>
     <!-- 已完成 -->
     <v-container class="py-8">
       <div class="mb-6">
-        <div class="md3e-eyebrow mb-1">里程碑 · Milestones</div>
-        <div class="md3e-display-sm text-h4 text-on-surface">已经实现的</div>
+        <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">里程碑 · Milestones</div>
+        <div class="text-h4 text-on-surface">已经实现的</div>
       </div>
       <v-row>
         <v-col v-for="item in done" :key="item.title" cols="12" md="6" lg="4">
@@ -163,8 +163,8 @@ const statusColor = (s: string) =>
     <!-- 开发路线 -->
     <v-container class="py-8">
       <div class="mb-6">
-        <div class="md3e-eyebrow mb-1">路线图 · Roadmap</div>
-        <div class="md3e-display-sm text-h4 text-on-surface">开发路线</div>
+        <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">路线图 · Roadmap</div>
+        <div class="text-h4 text-on-surface">开发路线</div>
       </div>
       <v-card elevation="0">
         <v-card-text class="pa-6">
@@ -188,8 +188,8 @@ const statusColor = (s: string) =>
     <!-- 在线体验 -->
     <v-container class="py-8">
       <div class="mb-2">
-        <div class="md3e-eyebrow mb-1">在线体验 · Try It</div>
-        <div class="md3e-display-sm text-h4 text-on-surface">在线体验</div>
+        <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">在线体验 · Try It</div>
+        <div class="text-h4 text-on-surface">在线体验</div>
       </div>
       <div class="text-body-1 text-medium-emphasis mb-6" style="line-height: 1.8">
         下面是一个纯前端的 HopeOS 模拟器（启动自检 → 桌面 → 终端），可直接在浏览器里操作。

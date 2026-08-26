@@ -7,10 +7,9 @@ defineProps<{
 </script>
 
 <template>
-  <!-- MD3E 特性网格：rich color（序号徽标用 primary/tertiary 交替）+ 弹性卡片 -->
   <section class="py-12 px-4">
     <div class="mx-auto" style="max-width: 1080px">
-      <h2 class="md3e-display-sm text-h4 text-on-surface mb-6">{{ title }}</h2>
+      <h2 class="text-h4 text-on-surface mb-6" style="font-weight: 700">{{ title }}</h2>
       <div
         :style="{
           display: 'grid',
@@ -40,7 +39,7 @@ defineProps<{
             <a
               v-if="it.link"
               :href="it.link"
-              class="text-primary text-decoration-none md3e-nudge d-inline-flex align-center"
+              class="text-primary text-decoration-none d-inline-flex align-center"
             >
               了解更多
               <v-icon icon="mdi-arrow-right" size="small" class="ml-1" />

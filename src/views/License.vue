@@ -38,8 +38,8 @@ const fullText = [
 <template>
   <v-container class="py-12 px-4" style="max-width: 896px">
     <div class="mb-8">
-      <div class="md3e-eyebrow mb-1">许可证 · Licenses</div>
-      <div class="md3e-display-sm text-h3 text-on-surface mb-2">
+      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">许可证 · Licenses</div>
+      <div class="text-h3 text-on-surface mb-2">
         HopeOS 第三方组件许可证说明
       </div>
       <div class="text-body-1 text-medium-emphasis" style="line-height: 1.8">

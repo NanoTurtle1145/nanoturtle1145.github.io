@@ -38,8 +38,8 @@ const links = [
 <template>
   <v-container class="py-12 px-4" style="max-width: 896px">
     <div class="mb-8">
-      <div class="md3e-eyebrow mb-1">友情链接 · Friends</div>
-      <div class="md3e-display-sm text-h3 text-on-surface mb-2">友情链接</div>
+      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">友情链接 · Friends</div>
+      <div class="text-h3 text-on-surface mb-2">友情链接</div>
       <div class="text-body-1 text-medium-emphasis">
         想要交换友链？欢迎通过
         <router-link to="/join" class="text-primary text-decoration-none">加入我们</router-link>

@@ -50,8 +50,8 @@ const statusColor = (s: string) =>
 <template>
   <v-container class="py-12 px-4" style="max-width: 1024px">
     <div class="mb-8">
-      <div class="md3e-eyebrow mb-1">项目一览 · Projects</div>
-      <div class="md3e-display-sm text-h3 text-on-surface mb-2">项目</div>
+      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">项目一览 · Projects</div>
+      <div class="text-h3 text-on-surface mb-2">项目</div>
       <div class="text-body-1 text-medium-emphasis">
         Under Construction… 工作室做过和正在做的一些东西。
       </div>

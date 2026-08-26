@@ -21,11 +21,8 @@ export default createVuetify({
   ssr: true,
   defaults: {
     VCard: {
+      // MD3 升高卡片：使用 surface 色 + 投影分离（Vuetify 4 默认行为）
       rounded: "xl",
-      // 填充式卡片：比页面背景高一级的容器色（浅色下略暗、深色下略亮）
-      color: "surface-container-low",
-      elevation: 0,
-      variant: "flat",
     },
     VBtn: { rounded: "pill" },
     VChip: { rounded: "pill" },
@@ -33,9 +30,8 @@ export default createVuetify({
     VSelect: { variant: "outlined" },
     VTextarea: { variant: "outlined" },
     VAlert: { rounded: "lg", variant: "tonal" },
-    VNavigationDrawer: { rounded: "lg", color: "surface-container-low" },
+    VNavigationDrawer: { rounded: "lg" },
     VList: { rounded: "lg" },
-    VAppBar: { color: "surface-container", elevation: 0 },
   },
   theme: {
     defaultTheme: "dark",

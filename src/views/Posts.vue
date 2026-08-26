@@ -24,8 +24,8 @@ const filtered = computed(() =>
 <template>
   <v-container class="py-12 px-4" style="max-width: 1024px">
     <div class="mb-8">
-      <div class="md3e-eyebrow mb-1">文章归档 · Posts</div>
-      <div class="md3e-display-sm text-h3 text-on-surface mb-2">全部文章</div>
+      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">文章归档 · Posts</div>
+      <div class="text-h3 text-on-surface mb-2">全部文章</div>
       <div class="text-body-1 text-medium-emphasis">
         共 {{ posts.length }} 篇。内容迁移自旧版官网 hopestudio.top，已做本地归档。
       </div>

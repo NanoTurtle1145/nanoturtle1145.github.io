@@ -9,7 +9,7 @@ defineProps<{
   <!-- MD3E 成员网格：头像形状多样（圆 / 圆角），角色用 tertiary 强调 -->
   <section class="py-12 px-4">
     <div class="mx-auto" style="max-width: 1080px">
-      <h2 class="md3e-display-sm text-h4 text-on-surface mb-6">{{ title }}</h2>
+      <h2 class="text-h4 text-on-surface mb-6" style="font-weight: 700">{{ title }}</h2>
       <div
         style="
           display: grid;

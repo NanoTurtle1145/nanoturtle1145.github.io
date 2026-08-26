@@ -30,14 +30,14 @@ const members = [
 <template>
   <v-container class="py-12 px-4" style="max-width: 1024px">
     <div class="mb-8">
-      <div class="md3e-eyebrow mb-1">成员列表 · Members</div>
-      <div class="md3e-display-sm text-h3 text-on-surface mb-2">成员列表</div>
+      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">成员列表 · Members</div>
+      <div class="text-h3 text-on-surface mb-2">成员列表</div>
       <div class="text-body-1 text-medium-emphasis">
         由于一些特殊原因，此处某些成员仅有昵称的缩写。
       </div>
     </div>
 
-    <div class="md3e-eyebrow mb-4">管理员</div>
+    <div class="text-subtitle-1 text-tertiary font-weight-medium mb-4">管理员</div>
     <v-row class="mb-10">
       <v-col v-for="m in admins" :key="m.name" cols="12" sm="6">
         <v-card elevation="0" class="h-100">
@@ -60,7 +60,7 @@ const members = [
       </v-col>
     </v-row>
 
-    <div class="md3e-eyebrow mb-4">成员</div>
+    <div class="text-subtitle-1 text-tertiary font-weight-medium mb-4">成员</div>
     <v-row>
       <v-col v-for="m in members" :key="m.name" cols="6" sm="3">
         <v-card elevation="0" class="text-center">

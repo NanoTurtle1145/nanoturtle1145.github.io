@@ -9,7 +9,7 @@ defineProps<{
   <!-- MD3E 链接卡片：surfaceContainerLowest 卡片 + 弹簧抬升 -->
   <section class="py-12 px-4">
     <div class="mx-auto" style="max-width: 1080px">
-      <h2 class="md3e-display-sm text-h4 text-on-surface mb-2">{{ title }}</h2>
+      <h2 class="text-h4 text-on-surface mb-2" style="font-weight: 700">{{ title }}</h2>
       <div
         style="
           display: grid;
