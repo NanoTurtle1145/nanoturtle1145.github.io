@@ -3,6 +3,9 @@ import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import GovHeader from "./components/GovHeader.vue";
 import Footer from "./components/Footer.vue";
+import { useThemeMode } from "./composables/useThemeMode";
+
+const { initFromDocument } = useThemeMode();
 
 // 回到顶部 FAB
 const showFab = ref(false);
@@ -42,6 +45,7 @@ function observeReveals() {
 
 const route = useRoute();
 onMounted(() => {
+  initFromDocument(); // 与 html[data-theme] 对齐，避免主题闪烁
   if (typeof window !== "undefined") window.addEventListener("scroll", onScroll, { passive: true });
   // 首次渲染可能尚未完成，给一帧缓冲
   requestAnimationFrame(observeReveals);

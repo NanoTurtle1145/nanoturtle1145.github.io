@@ -35,10 +35,32 @@
 
   /* ---------- 政务门户色板常量 ---------- */
   --gov-header-color: #0d1c28;
+  --gov-body-1: #3c4852;
+  --gov-body-2: #727475;
+  --gov-sheet: #eeeeee;
+  --gov-background: #f1f2f3;
   /* 层次阴影：近景描边 + 中距投影 + 远景弥散（比政务站默认更有纵深） */
   --gov-card-shadow: 0 1px 2px rgba(9, 41, 77, 0.05),
     0 8px 24px -6px rgba(9, 41, 77, 0.1),
     0 24px 48px -16px rgba(9, 41, 77, 0.08);
+}
+
+/* 深色主题：政务文字/背景/色块颜色 + 提前铺底防闪烁
+   （html[data-theme] 由 index.html 内联脚本先行设定，Vuetify 挂载后由 .v-theme--dark 接管） */
+html[data-theme="dark"],
+.v-theme--dark {
+  --gov-header-color: #e1e4e6;
+  --gov-body-1: #c1cad2;
+  --gov-body-2: #8a949c;
+  --gov-sheet: #1e2328;
+  --gov-background: #12161a;
+}
+html[data-theme="dark"] {
+  background-color: #12161a;
+  color-scheme: dark;
+}
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 /* ============================================================
@@ -71,6 +93,9 @@ html.js main section[id] {
   transition: opacity 0.7s var(--md3e-motion-emphasized-decelerate),
     transform 0.7s var(--md3e-motion-emphasized-decelerate);
   will-change: opacity, transform;
+  /* 视口外区块跳过渲染，进入视口附近才渲染（配合懒加载） */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 html.js main section[id].is-visible {
   opacity: 1;

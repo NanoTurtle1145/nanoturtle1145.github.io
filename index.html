@@ -15,6 +15,24 @@
     <!-- MD3E variable font (self-hosted Roboto Flex, no external dependency) -->
     <link rel="stylesheet" href="/fonts/fonts.css" />
     <title>希望工作室 | Hope Studio</title>
+    <!-- 主题预加载：先于 Vue 挂载设定，避免深色/浅色闪烁（FOUC） -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("hope-studio-theme");
+          if (t !== "dark" && t !== "light") {
+            t =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          }
+          document.documentElement.dataset.theme = t;
+        } catch (e) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>

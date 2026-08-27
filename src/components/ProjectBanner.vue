@@ -40,6 +40,8 @@ const paused = ref(false);
           :alt="item.title"
           class="position-absolute w-100 h-100 object-cover object-center select-none"
           draggable="false"
+          loading="lazy"
+          decoding="async"
         />
         <div
           v-else

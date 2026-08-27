@@ -109,14 +109,14 @@
       display: block
       font-weight: $header-font-weight !important
       line-height: $body-1-line-height !important
-      color: black
+      color: var(--gov-header-color)
       padding: 1.2rem
     &-items
       line-height: $body-2-line-height !important
       padding: 0px 1.2rem
       margin-bottom: .4rem
       a
-        color: black
+        color: var(--gov-header-color)
 
   .contactUS
     font-size: $body-1-font-size !important
@@ -126,20 +126,20 @@
       display: block
       font-weight: $header-font-weight !important
       line-height: $body-1-line-height !important
-      color: black
+      color: var(--gov-header-color)
       padding: 1.2rem
     &-content
       padding: 0px 1.2rem
     &-ysx
       display: block
-      color: black
+      color: var(--gov-header-color)
       padding-bottom: .8rem
-      border-bottom: 1px dashed #cfd2d4
+      border-bottom: 1px dashed rgb(var(--v-theme-outline-variant))
 
   .quickMark-item
     display: block
     background: $sheet-color
-    color: black
+    color: var(--gov-header-color)
     font-size: $body-1-font-size !important
     height: 60px
     line-height: 60px
@@ -151,7 +151,7 @@
     display: inline-block
     height: 100%
     width: 59%
-    background: url(https://www.gdzwfw.gov.cn/portal/assets/img/cavil.501536e.jpg) no-repeat 50% #eaebeb
+    background: url(https://www.gdzwfw.gov.cn/portal/assets/img/cavil.501536e.jpg) no-repeat 50% var(--gov-sheet)
     background-size: 4.8rem 2.4rem
     color: transparent
     text-indent: 100%
@@ -160,7 +160,7 @@
     display: inline-block
     height: 100%
     width: 40%
-    background: url(https://www.gdzwfw.gov.cn/portal/assets/img/red.19c24b7.png) no-repeat 50% #eaebeb
+    background: url(https://www.gdzwfw.gov.cn/portal/assets/img/red.19c24b7.png) no-repeat 50% var(--gov-sheet)
     background-size: 1.4rem auto
     white-space: nowrap
     overflow: hidden
@@ -176,7 +176,7 @@
       padding-right: .4rem
       font-size: $body-1-font-size !important      
       a
-        color: black
+        color: var(--gov-header-color)
       .beian-img 
         width: 1rem
         height: 1rem

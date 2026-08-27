@@ -42,7 +42,7 @@
           </v-tabs>          
           <v-window class="mt-6" v-model="state.acrossHandleModel" mandatory>
             <v-window-item v-for="(item, i) in state.across_handle" :key="i" :value="i">
-              <v-img class="float-left" :src="item.src" width="14rem"></v-img>
+              <v-img class="float-left" :src="item.src" width="14rem" loading="lazy" decoding="async"></v-img>
               <div class="kstb-rightbox-info"><template v-for="(link, i) in item.links">
                 <p v-if="i === 0"><a class="kstb-rightbox-info-title" :href="item.href">{{link}}</a></p>
                 <p v-else-if="i === 1" class="my-1"><a class="kstb-rightbox-info-subtitle my-2" :href="item.href">以 <span class="font-weight-bold">{{link}}</span> 为例</a></p>
@@ -278,5 +278,5 @@
         text-overflow: ellipsis
         padding: 0 1rem
         color: $header-color
-        background: #f1f2f3  
+        background: $background-color
 </style>

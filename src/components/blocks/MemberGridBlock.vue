@@ -25,7 +25,7 @@ defineProps<{
               :rounded="i % 2 === 0 ? 'lg' : 'circle'"
               class="mb-3"
             >
-              <v-img :src="it.avatar" alt="" />
+              <v-img :src="it.avatar" alt="" loading="lazy" decoding="async" />
             </v-avatar>
             <div
               v-else

@@ -31,6 +31,8 @@ const paused = ref(false);
         cover
         class="select-none"
         draggable="false"
+        loading="lazy"
+        decoding="async"
       />
     </v-carousel-item>
   </v-carousel>

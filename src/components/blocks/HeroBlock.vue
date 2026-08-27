@@ -38,6 +38,8 @@ defineProps<{
             class="rounded-xl"
             max-height="360"
             cover
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>

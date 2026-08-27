@@ -48,7 +48,7 @@
     height: 12rem
     padding: 1.75rem 1.75rem 2rem 2rem
     margin-top: 1.2rem
-    background-color: #fff
+    background-color: rgb(var(--v-theme-surface))
     transition: all .3s ease !important
     box-shadow: 0 0 1.5rem rgba(9,41,77,.12)
     cursor: pointer

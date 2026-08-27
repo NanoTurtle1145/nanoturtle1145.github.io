@@ -39,7 +39,7 @@
   margin: 3.2rem 0 0
   padding: 2.8rem 0 3.2rem
   width: 100%
-  background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, #143d6e 100%)
+  background: linear-gradient(135deg, #1867c0 0%, #143d6e 100%)
   background-size: 100% 100%
   background-position: 50%
 

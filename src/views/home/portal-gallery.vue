@@ -20,7 +20,7 @@
           :width="xs ? 460 : 280" 
           rounded="0" 
         >
-          <v-img cover :src="gallery.src" :alt="gallery.title">
+          <v-img cover :src="gallery.src" :alt="gallery.title" loading="lazy" decoding="async">
             <v-chip 
               v-if="gallery.chip" 
               class="ma-2 float-right"

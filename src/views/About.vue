@@ -58,6 +58,8 @@ const timeline = [
             alt="希望工作室成员合照"
             max-height="480"
             cover
+            loading="lazy"
+            decoding="async"
           />
         </div>
 

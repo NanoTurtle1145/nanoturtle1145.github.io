@@ -25,6 +25,18 @@
             <v-list-item><v-list-item-title>其他公共服务</v-list-item-title></v-list-item>            
           </v-list>
         </v-menu>
+        <v-btn
+          class="ml-1"
+          icon
+          variant="text"
+          color="white"
+          size="small"
+          :title="isDark ? '切换到浅色模式' : '切换到深色模式'"
+          :aria-label="isDark ? '切换到浅色模式' : '切换到深色模式'"
+          @click="toggle"
+        >
+          <v-icon>{{ isDark ? "mdi-white-balance-sunny" : "mdi-weather-night" }}</v-icon>
+        </v-btn>
         <v-spacer></v-spacer>
         <a class="toolbar-link d-none d-md-flex" v-for="link in links" :href="link.href">{{ link.name }}</a>
       </template>
@@ -72,7 +84,7 @@
         </div>
       </v-col>
 
-      <v-sheet class="hero-rightbox d-none d-sm-flex flex-column" color="white">
+      <v-sheet class="hero-rightbox d-none d-sm-flex flex-column" color="surface">
         <v-banner class="pa-5" lines="two">
           <template v-slot:prepend>
             <v-avatar color="primary" icon="mdi-account"></v-avatar>
@@ -104,6 +116,8 @@
   import { useDisplay } from 'vuetify';
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
+  import { useThemeMode } from '../composables/useThemeMode';
+  const { isDark, toggle } = useThemeMode();
   const router = useRouter()
   const searchQuery = ref('')
   function goSearch() {

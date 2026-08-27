@@ -45,7 +45,7 @@ const members = [
         <v-card elevation="0" class="h-100">
           <v-card-text>
             <v-avatar v-if="m.avatar" size="96" rounded="lg" class="mb-3">
-              <v-img :src="m.avatar" alt="" />
+              <v-img :src="m.avatar" alt="" loading="lazy" decoding="async" />
             </v-avatar>
             <div
               v-else
