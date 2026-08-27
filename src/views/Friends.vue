@@ -38,9 +38,11 @@ const links = [
 <template>
   <v-container class="py-12 px-4" style="max-width: 896px">
     <div class="mb-8">
-      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">友情链接 · Friends</div>
-      <div class="text-h3 text-on-surface mb-2">友情链接</div>
-      <div class="text-body-1 text-medium-emphasis">
+      <div class="gov-header-1 mb-2">
+        <span>友情链接</span>
+        <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
+      </div>
+      <div class="text-body-1" style="color: #3c4852; font-family: var(--gov-font-family);">
         想要交换友链？欢迎通过
         <router-link to="/join" class="text-primary text-decoration-none">加入我们</router-link>
         页面留下站点名称、地址与简介。
@@ -57,7 +59,7 @@ const links = [
         >
           <v-card elevation="0" hover class="h-100 pa-3">
             <v-card-text>
-              <div class="text-h6 font-weight-bold text-on-surface mb-2">{{ l.name }}</div>
+              <div class="text-title-medium font-weight-bold text-on-surface mb-2">{{ l.name }}</div>
               <div class="text-body-2 text-medium-emphasis mb-3">{{ l.desc }}</div>
               <div class="text-caption text-primary text-break">{{ l.url }}</div>
             </v-card-text>

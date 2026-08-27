@@ -1,36 +1,41 @@
 /* ============================================================
-   Material Design 3 设计系统层
-   Vuetify 4 原生 MD3 基线，补充少量实用样式和文章排版
+   政务服务门户设计系统层（参照 gd-government —— 广东政务服务网）
+   Vuetify 4 基线 + 政府门户视觉语言，补充实用样式和文章排版
    ============================================================ */
 
 :root {
-  /* ---------- 字体（变量字体：Roboto Flex 已自托管，CJK 走系统字体栈） ---------- */
-  --md3e-font-display: "Roboto Flex", "PingFang SC", "HarmonyOS Sans SC",
-    "Source Han Sans SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
-  --md3e-font-body: "Roboto Flex", "PingFang SC", "HarmonyOS Sans SC",
-    "Source Han Sans SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  /* ---------- 字体（政务门户字体栈：Helvetica Neue + 中文系统字体） ---------- */
+  --gov-font-family: "Helvetica Neue", Helvetica, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei UI Light", "Microsoft YaHei UI",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  --md3e-font-display: var(--gov-font-family);
+  --md3e-font-body: var(--gov-font-family);
   --md3e-font-mono: ui-monospace, "Cascadia Mono", "SF Mono", "JetBrains Mono",
     Menlo, Consolas, "Liberation Mono", monospace;
-  /* 让 Vuetify 的 typography 也吃到变量字体 */
+  /* 让 Vuetify 的 typography 也吃到政务字体 */
   --v-font-body: var(--md3e-font-body);
   --v-font-heading: var(--md3e-font-display);
 
-  /* ---------- 形状刻度（MD3 shape scale） ---------- */
-  --md3e-shape-xs: 4px;
-  --md3e-shape-sm: 8px;
-  --md3e-shape-md: 12px;
-  --md3e-shape-lg: 16px;
-  --md3e-shape-xl: 24px;
+  /* ---------- 形状刻度（政务门户：直角为主） ---------- */
+  --md3e-shape-xs: 2px;
+  --md3e-shape-sm: 4px;
+  --md3e-shape-md: 6px;
+  --md3e-shape-lg: 8px;
+  --md3e-shape-xl: 12px;
   --md3e-shape-pill: 9999px;
 
-  /* ---------- 动效（spring-based motion） ---------- */
-  --md3e-motion-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --md3e-motion-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  /* ---------- 动效（平缓 transition） ---------- */
+  --md3e-motion-spring: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --md3e-motion-emphasized: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --md3e-motion-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
   --md3e-motion-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
   --md3e-duration-short: 200ms;
   --md3e-duration-medium: 400ms;
   --md3e-duration-long: 600ms;
+
+  /* ---------- 政务门户色板常量 ---------- */
+  --gov-header-color: #0d1c28;
+  --gov-card-shadow: 0 0 1.5rem rgba(9, 41, 77, 0.12);
 }
 
 /* ============================================================
@@ -53,8 +58,8 @@ body {
 
 /* 选区与焦点 */
 ::selection {
-  background: rgb(var(--v-theme-primary-container));
-  color: rgb(var(--v-theme-on-primary-container));
+  background: rgb(var(--v-theme-primary));
+  color: rgb(var(--v-theme-on-primary));
 }
 
 :focus-visible {
@@ -81,26 +86,40 @@ body {
 }
 
 /* ============================================================
-   容器分组（tactic 4: container grouping）
-   用 Vuetify 原生 surface-container 色，配合圆角容器
+   卡片与分组（政务门户：白底卡片 + 柔和投影 + 直角）
    ============================================================ */
 .md3e-group {
-  background: rgb(var(--v-theme-surface-container));
-  border-radius: 24px;
+  background: rgb(var(--v-theme-surface));
+  border-radius: 0;
+  box-shadow: var(--gov-card-shadow);
+  border: 1px solid rgb(var(--v-theme-outline-variant), 0.6);
 }
+
+/* Vuetify 卡片统一走政务白卡风格 */
+.v-card {
+  border-radius: 0 !important;
+  border: 1px solid rgb(var(--v-theme-outline-variant), 0.5);
+}
+
+/* 灰色色块（政务门户 sheet 色）已由 styles/main.sass 提供 */
 
 /* ============================================================
    Vuetify 组件级打磨
    ============================================================ */
 
-/* 分割线淡一些，符合 outline-variant */
+/* 分割线淡一些 */
 .v-divider {
   border-color: rgb(var(--v-theme-outline-variant), 0.6) !important;
 }
 
-/* 顶部应用栏：底部细分隔线（替代硬阴影） */
+/* 顶部应用栏：政务蓝底 + 白字 */
 .v-app-bar {
   border-bottom: 1px solid rgb(var(--v-theme-outline-variant), 0.35);
+}
+
+/* 正文段落默认行高 */
+.v-main {
+  background: rgb(var(--v-theme-background));
 }
 
 /* ============================================================
@@ -108,7 +127,7 @@ body {
    ============================================================ */
 .post-body {
   font-family: var(--md3e-font-body);
-  font-size: 1rem;
+  font-size: 0.85rem;
   line-height: 2;
   color: rgb(var(--v-theme-on-surface-variant));
   word-wrap: break-word;
@@ -120,10 +139,10 @@ body {
 
 .post-body h1 {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 700;
   font-family: var(--md3e-font-display);
   letter-spacing: -0.01em;
-  color: rgb(var(--v-theme-on-surface));
+  color: var(--gov-header-color);
   margin-top: 2rem;
   margin-bottom: 1rem;
   line-height: 1.4;
@@ -131,18 +150,18 @@ body {
 
 .post-body h2 {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 700;
   font-family: var(--md3e-font-display);
-  color: rgb(var(--v-theme-on-surface));
+  color: var(--gov-header-color);
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
 .post-body h3 {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600;
   font-family: var(--md3e-font-display);
-  color: rgb(var(--v-theme-on-surface));
+  color: var(--gov-header-color);
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
@@ -152,7 +171,7 @@ body {
 .post-body h6 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: rgb(var(--v-theme-on-surface));
+  color: var(--gov-header-color);
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
@@ -182,9 +201,9 @@ body {
 }
 
 .post-body blockquote {
-  border-left: 4px solid rgb(var(--v-theme-tertiary), 0.6);
-  background: rgb(var(--v-theme-tertiary-container), 0.18);
-  border-radius: 0 12px 12px 0;
+  border-left: 4px solid rgb(var(--v-theme-primary), 0.6);
+  background: rgb(var(--v-theme-primary-container), 0.25);
+  border-radius: 0;
   padding: 0.75rem 1.25rem;
   margin: 1rem 0;
   color: rgb(var(--v-theme-on-surface-variant));
@@ -192,7 +211,7 @@ body {
 }
 
 .post-body img {
-  border-radius: 16px;
+  border-radius: 0;
   margin: 1.5rem 0;
   max-width: 100%;
   height: auto;
@@ -201,7 +220,7 @@ body {
 .post-body pre {
   background: rgb(var(--v-theme-surface-container-high));
   border: 1px solid rgb(var(--v-theme-outline-variant), 0.5);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 1rem;
   margin: 1.5rem 0;
   overflow-x: auto;
@@ -209,8 +228,8 @@ body {
 }
 
 .post-body code {
-  background: rgb(var(--v-theme-primary-container), 0.4);
-  border-radius: 4px;
+  background: rgb(var(--v-theme-primary-container), 0.5);
+  border-radius: 2px;
   padding: 1px 6px;
   color: rgb(var(--v-theme-primary));
   font-size: 0.875em;
@@ -267,7 +286,7 @@ body {
 .post-body iframe,
 .post-body video {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 0;
   margin: 1.5rem 0;
   aspect-ratio: 16 / 9;
 }

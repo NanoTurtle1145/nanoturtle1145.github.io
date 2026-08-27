@@ -27,7 +27,7 @@ const paused = ref(false);
     height="514"
     show-arrows="hover"
     hide-delimiters
-    class="rounded-xl overflow-hidden"
+    class="rounded-0 overflow-hidden"
     @mouseenter="paused = true"
     @mouseleave="paused = false"
   >
@@ -57,7 +57,7 @@ const paused = ref(false);
         <div
           class="position-absolute w-100 h-100 d-flex flex-column justify-end pa-8 pa-lg-12"
         >
-          <div class="text-h4 text-lg-h3 font-weight-bold text-white mb-3">
+          <div class="text-headline-large text-lg-display-small font-weight-bold text-white mb-3">
             {{ item.title }}
           </div>
           <div class="text-body-1 text-lg-subtitle-1 text-grey-lighten-3 mb-5" style="max-width: 42rem">

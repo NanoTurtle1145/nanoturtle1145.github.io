@@ -16,7 +16,7 @@ defineProps<{
           <div class="text-subtitle-1 text-tertiary font-weight-medium mb-3">
             希望工作室 · Hope Studio
           </div>
-          <h1 class="text-h3 text-on-surface mb-3" style="font-weight: 700">{{ title }}</h1>
+          <h1 class="text-display-medium text-on-surface mb-3" style="font-weight: 700">{{ title }}</h1>
           <p class="text-body-1 text-medium-emphasis mb-7" style="max-width: 34rem">
             {{ subtitle }}
           </p>

@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useHead } from "@vueuse/head";
 import { posts, categories } from "../data/posts";
+
+const route = useRoute();
+const router = useRouter();
 
 useHead({
   title: "文章 | 希望工作室",
@@ -16,28 +20,69 @@ useHead({
 const active = ref<string>("全部");
 const filters = computed(() => ["全部", ...categories]);
 
-const filtered = computed(() =>
-  active.value === "全部" ? posts : posts.filter((p) => p.category === active.value)
+// 首页搜索框/热门分类会带 ?q= 跳转过来
+const search = ref<string>("");
+watch(
+  () => route.query.q,
+  (q) => {
+    search.value = typeof q === "string" ? q : "";
+    if (search.value) {
+      // 命中某个分类则联动分类筛选
+      const hit = filters.value.find(
+        (c) => c !== "全部" && search.value === c
+      );
+      active.value = hit ?? "全部";
+    }
+  },
+  { immediate: true }
 );
+
+const normalized = computed(() => search.value.trim().toLowerCase());
+
+const filtered = computed(() => {
+  let list = active.value === "全部" ? posts : posts.filter((p) => p.category === active.value);
+  if (normalized.value) {
+    list = list.filter(
+      (p) =>
+        p.title.toLowerCase().includes(normalized.value) ||
+        p.excerpt.toLowerCase().includes(normalized.value) ||
+        p.category.toLowerCase().includes(normalized.value) ||
+        p.tags.some((t) => t.toLowerCase().includes(normalized.value))
+    );
+  }
+  return list;
+});
+
+function clearSearch() {
+  search.value = "";
+  active.value = "全部";
+  router.replace({ query: {} });
+}
 </script>
 
 <template>
   <v-container class="py-12 px-4" style="max-width: 1024px">
     <div class="mb-8">
-      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">文章归档 · Posts</div>
-      <div class="text-h3 text-on-surface mb-2">全部文章</div>
-      <div class="text-body-1 text-medium-emphasis">
+      <div class="gov-header-1 mb-2">
+        <span>全部文章</span>
+        <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
+      </div>
+      <div class="text-body-1" style="color: #3c4852; font-family: var(--gov-font-family);">
         共 {{ posts.length }} 篇。内容迁移自旧版官网 hopestudio.top，已做本地归档。
+        <template v-if="normalized">
+          — 搜索「{{ search }}」找到 {{ filtered.length }} 篇
+          <a href="#" class="text-primary" @click.prevent="clearSearch">清除</a>
+        </template>
       </div>
     </div>
 
-    <!-- 分类筛选（MD3 筛选 chip：选中填充 secondary-container，未选中描边） -->
+    <!-- 分类筛选（政务风格：选中填充 primary，未选中描边） -->
     <div class="d-flex flex-wrap ga-2 mb-10">
       <v-chip
         v-for="c in filters"
         :key="c"
-        :color="active === c ? 'secondary-container' : undefined"
-        :text-color="active === c ? 'on-secondary-container' : undefined"
+        :color="active === c ? 'primary' : undefined"
+        :text-color="active === c ? 'on-primary' : undefined"
         :variant="active === c ? 'flat' : 'outlined'"
         class="cursor-pointer"
         @click="active = c"
@@ -47,7 +92,7 @@ const filtered = computed(() =>
     </div>
 
     <!-- 列表 -->
-    <div class="d-flex flex-column ga-4">
+    <div v-if="filtered.length" class="d-flex flex-column ga-4">
       <router-link
         v-for="post in filtered"
         :key="post.slug"
@@ -62,7 +107,7 @@ const filtered = computed(() =>
               </v-chip>
               <span class="text-caption text-medium-emphasis">{{ post.date }}</span>
             </div>
-            <div class="text-h6 font-weight-bold text-on-surface mb-2">
+            <div class="text-title-medium font-weight-bold text-on-surface mb-2">
               {{ post.title }}
             </div>
             <div class="text-body-2 text-medium-emphasis">{{ post.excerpt }}</div>
@@ -81,7 +126,8 @@ const filtered = computed(() =>
         </v-card>
       </router-link>
     </div>
+    <div v-else class="text-body-1 text-medium-emphasis">
+      没有找到相关文章，换个关键词试试。
+    </div>
   </v-container>
 </template>
-
-

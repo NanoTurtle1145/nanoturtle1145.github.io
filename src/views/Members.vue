@@ -30,14 +30,16 @@ const members = [
 <template>
   <v-container class="py-12 px-4" style="max-width: 1024px">
     <div class="mb-8">
-      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">成员列表 · Members</div>
-      <div class="text-h3 text-on-surface mb-2">成员列表</div>
-      <div class="text-body-1 text-medium-emphasis">
+      <div class="gov-header-1 mb-2">
+        <span>成员列表</span>
+        <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
+      </div>
+      <div class="text-body-1" style="color: #3c4852; font-family: var(--gov-font-family);">
         由于一些特殊原因，此处某些成员仅有昵称的缩写。
       </div>
     </div>
 
-    <div class="text-subtitle-1 text-tertiary font-weight-medium mb-4">管理员</div>
+    <div class="gov-header-2 mb-4">管理员</div>
     <v-row class="mb-10">
       <v-col v-for="m in admins" :key="m.name" cols="12" sm="6">
         <v-card elevation="0" class="h-100">
@@ -50,9 +52,9 @@ const members = [
               class="v-avatar mb-3 rounded-lg bg-grey-darken-2 d-flex align-center justify-center"
               style="width: 96px; height: 96px"
             >
-              <span class="text-h6 text-grey-lighten-2">{{ m.name.charAt(0) }}</span>
+              <span class="text-title-medium text-grey-lighten-2">{{ m.name.charAt(0) }}</span>
             </div>
-            <div class="text-h6 font-weight-bold text-on-surface mb-1">{{ m.name }}</div>
+            <div class="text-title-medium font-weight-bold text-on-surface mb-1">{{ m.name }}</div>
             <div class="text-body-2 text-tertiary mb-3">{{ m.role }}</div>
             <div class="text-body-2 text-medium-emphasis">{{ m.desc }}</div>
           </v-card-text>
@@ -60,12 +62,12 @@ const members = [
       </v-col>
     </v-row>
 
-    <div class="text-subtitle-1 text-tertiary font-weight-medium mb-4">成员</div>
+    <div class="gov-header-2 mb-4">成员</div>
     <v-row>
       <v-col v-for="m in members" :key="m.name" cols="6" sm="3">
         <v-card elevation="0" class="text-center">
           <v-card-text>
-            <div class="text-h6 font-weight-bold text-on-surface">{{ m.name }}</div>
+            <div class="text-title-medium font-weight-bold text-on-surface">{{ m.name }}</div>
             <div class="text-body-2 text-primary">{{ m.role }}</div>
           </v-card-text>
         </v-card>

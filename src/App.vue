@@ -1,19 +1,7 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import { useRoute } from "vue-router";
-import Navigation from "./components/Navigation.vue";
+import { ref } from "vue";
+import GovHeader from "./components/GovHeader.vue";
 import Footer from "./components/Footer.vue";
-
-const navName = ref("希望工作室");
-const route = useRoute();
-
-watch(
-  () => route.meta.navName,
-  (newName) => {
-    navName.value = newName ? (newName as string) : "希望工作室";
-  },
-  { immediate: true }
-);
 
 // 回到顶部 FAB
 const showFab = ref(false);
@@ -32,7 +20,7 @@ if (typeof window !== "undefined") {
 
 <template>
   <v-app>
-    <Navigation :nav-name="navName" />
+    <GovHeader />
     <v-main>
       <router-view v-slot="{ Component }">
         <transition name="md3e-route" mode="out-in">
@@ -61,7 +49,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 路由过渡：轻微淡入 + 上移（MD3 emphasized motion） */
+/* 路由过渡：轻微淡入 + 上移 */
 .md3e-route-enter-active {
   transition: opacity var(--md3e-duration-medium) var(--md3e-motion-emphasized),
     transform var(--md3e-duration-medium) var(--md3e-motion-emphasized-decelerate);

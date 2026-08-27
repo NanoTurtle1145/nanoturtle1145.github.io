@@ -19,6 +19,7 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "@vueuse/head": "^2.0.0",
+    "sass": "^1.103.1",
     "typescript": "~5.6.2",
     "vite": "^6.3.5",
     "vite-ssg": "^25.0.0",

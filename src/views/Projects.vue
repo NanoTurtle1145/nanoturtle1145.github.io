@@ -50,9 +50,11 @@ const statusColor = (s: string) =>
 <template>
   <v-container class="py-12 px-4" style="max-width: 1024px">
     <div class="mb-8">
-      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">项目一览 · Projects</div>
-      <div class="text-h3 text-on-surface mb-2">项目</div>
-      <div class="text-body-1 text-medium-emphasis">
+      <div class="gov-header-1 mb-2">
+        <span>项目</span>
+        <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
+      </div>
+      <div class="text-body-1" style="color: #3c4852; font-family: var(--gov-font-family);">
         Under Construction… 工作室做过和正在做的一些东西。
       </div>
     </div>
@@ -62,7 +64,7 @@ const statusColor = (s: string) =>
         <v-card elevation="0" hover class="h-100 d-flex flex-column justify-space-between">
           <v-card-text>
             <div class="d-flex align-center ga-3 mb-3">
-              <div class="text-h6 font-weight-bold text-on-surface">{{ p.name }}</div>
+              <div class="text-title-medium font-weight-bold text-on-surface">{{ p.name }}</div>
               <v-chip
                 v-for="(st, idx) in p.status"
                 :key="idx"

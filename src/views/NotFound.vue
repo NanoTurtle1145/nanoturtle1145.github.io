@@ -7,7 +7,7 @@ useHead({ title: "页面未找到 | 希望工作室" });
 <template>
   <v-container class="d-flex align-center justify-center" style="min-height: 70vh">
     <div class="text-center py-24">
-      <div class="text-h1 font-weight-bold text-on-surface mb-4" style="font-size: clamp(5rem, 16vw, 9rem)">
+      <div class="text-display-large font-weight-bold text-on-surface mb-4" style="font-size: clamp(5rem, 16vw, 9rem)">
         404
       </div>
       <div class="text-body-1 text-medium-emphasis mb-8">

@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <section class="py-12 px-4">
     <div class="mx-auto" style="max-width: 1080px">
-      <h2 class="text-h4 text-on-surface mb-6" style="font-weight: 700">{{ title }}</h2>
+      <h2 class="gov-header-1 mb-6">{{ title }}</h2>
       <div
         :style="{
           display: 'grid',
@@ -32,7 +32,7 @@ defineProps<{
             >
               {{ String(i + 1).padStart(2, "0") }}
             </div>
-            <div class="text-h6 font-weight-bold text-on-surface mb-2">
+            <div class="text-title-medium font-weight-bold text-on-surface mb-2">
               {{ it.title }}
             </div>
             <p class="text-body-2 text-medium-emphasis mb-3">{{ it.desc }}</p>

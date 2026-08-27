@@ -9,7 +9,7 @@ defineProps<{
   <!-- MD3E 链接卡片：surfaceContainerLowest 卡片 + 弹簧抬升 -->
   <section class="py-12 px-4">
     <div class="mx-auto" style="max-width: 1080px">
-      <h2 class="text-h4 text-on-surface mb-2" style="font-weight: 700">{{ title }}</h2>
+      <h2 class="gov-header-1 mb-2">{{ title }}</h2>
       <div
         style="
           display: grid;
@@ -27,7 +27,7 @@ defineProps<{
         >
           <v-card elevation="0" hover class="h-100 pa-2">
             <v-card-text>
-              <div class="text-h6 font-weight-bold text-on-surface mb-2">
+              <div class="text-title-medium font-weight-bold text-on-surface mb-2">
                 {{ it.name }}
               </div>
               <p class="text-body-2 text-medium-emphasis mb-3">{{ it.desc }}</p>

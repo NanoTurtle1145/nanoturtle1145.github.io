@@ -39,7 +39,7 @@ const fullText = [
   <v-container class="py-12 px-4" style="max-width: 896px">
     <div class="mb-8">
       <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">许可证 · Licenses</div>
-      <div class="text-h3 text-on-surface mb-2">
+      <div class="text-display-medium text-on-surface mb-2">
         HopeOS 第三方组件许可证说明
       </div>
       <div class="text-body-1 text-medium-emphasis" style="line-height: 1.8">
@@ -55,7 +55,7 @@ const fullText = [
       不随 HopeOS 发行镜像一起分发，其许可证仅作信息性说明。
     </v-alert>
 
-    <div class="text-h5 font-weight-bold text-on-surface mt-6 mb-4">
+    <div class="text-title-large font-weight-bold text-on-surface mt-6 mb-4">
       1. 随镜像分发的第三方代码
     </div>
 
@@ -97,7 +97,7 @@ const fullText = [
       </v-card-text>
     </v-card>
 
-    <div class="text-h5 font-weight-bold text-on-surface mt-6 mb-4">
+    <div class="text-title-large font-weight-bold text-on-surface mt-6 mb-4">
       2. 随镜像内嵌的字体
     </div>
 
@@ -126,7 +126,7 @@ const fullText = [
       </v-card-text>
     </v-card>
 
-    <div class="text-h5 font-weight-bold text-on-surface mt-6 mb-4">
+    <div class="text-title-large font-weight-bold text-on-surface mt-6 mb-4">
       3. 构建与测试工具链（信息性，不随镜像分发）
     </div>
     <v-card elevation="0" class="mb-6">
@@ -148,7 +148,7 @@ const fullText = [
       </v-table>
     </v-card>
 
-    <div class="text-h5 font-weight-bold text-on-surface mt-6 mb-4">4. 许可证全文获取</div>
+    <div class="text-title-large font-weight-bold text-on-surface mt-6 mb-4">4. 许可证全文获取</div>
     <div class="d-flex flex-column ga-2">
       <div v-for="l in fullText" :key="l.name" class="text-body-1">
         <span class="text-on-surface">{{ l.name }}</span>：

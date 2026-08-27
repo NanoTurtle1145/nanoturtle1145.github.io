@@ -25,13 +25,15 @@ const timeline = [
 <template>
   <v-container class="py-12 px-4" style="max-width: 896px">
     <div class="mb-8">
-      <div class="text-subtitle-1 text-tertiary font-weight-medium mb-1">关于我们 · About</div>
-      <div class="text-h3 text-on-surface">关于我们</div>
+      <div class="gov-header-1">
+        <span>关于我们</span>
+        <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
+      </div>
     </div>
 
     <v-card elevation="0" class="mb-8">
       <v-card-text class="pa-6 pa-sm-10">
-        <div class="text-h5 font-weight-bold text-on-surface mb-2">
+        <div class="text-title-large font-weight-bold text-on-surface mb-2">
           Where there is a hope, there is a way.
         </div>
         <div class="text-subtitle-1 text-on-surface mb-6">有希望者，事竟成。</div>
@@ -61,7 +63,7 @@ const timeline = [
 
         <v-divider class="my-6" />
 
-        <div class="text-h6 font-weight-semibold text-on-surface mb-3">我们的图标</div>
+        <div class="text-title-medium font-weight-semibold text-on-surface mb-3">我们的图标</div>
         <div class="text-body-1 text-medium-emphasis" style="line-height: 2">
           「希望工作室」取前两个字拼音的首字母
           <span class="text-primary font-mono">X</span> 与
@@ -72,14 +74,14 @@ const timeline = [
 
         <v-divider class="my-6" />
 
-        <div class="text-h6 font-weight-semibold text-on-surface mb-3">我们都做些什么</div>
+        <div class="text-title-medium font-weight-semibold text-on-surface mb-3">我们都做些什么</div>
         <div class="text-body-1 text-medium-emphasis" style="line-height: 2">
           最初我们以著书为主，后来转型科技为主。在我们成立的几年后，同班的类似组织陆续出现，但最终我们至今仍然在正常运行。现在主要以科技为主，就是没事写点代码的那种。
         </div>
       </v-card-text>
     </v-card>
 
-    <div class="text-h5 text-on-surface mb-4" style="font-weight: 700">成长历史</div>
+    <div class="gov-header-2 mb-4" style="font-weight: 700">成长历史</div>
     <v-card elevation="0" class="mb-10">
       <v-card-text class="pa-6 pa-sm-10 text-body-1 text-medium-emphasis" style="line-height: 2">
         <p class="mb-4">
@@ -106,7 +108,7 @@ const timeline = [
       </v-card-text>
     </v-card>
 
-    <div class="text-h5 text-on-surface mb-4" style="font-weight: 700">大事记</div>
+    <div class="gov-header-2 mb-4" style="font-weight: 700">大事记</div>
     <div class="d-flex flex-column ga-3">
       <v-card
         v-for="item in timeline"

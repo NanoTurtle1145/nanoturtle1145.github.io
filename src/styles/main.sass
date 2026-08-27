@@ -1,0 +1,57 @@
+@use "./variable" as *
+
+/* Reset
+ * ------------------------------------------------- */
+
+html
+  font-size: 20px
+  font-family: $body-font-family
+  @media screen and (max-width: 1280px)
+    font-size: 18px
+  @media screen and (max-width: 960px)
+    font-size: 16px
+  @media screen and (max-width: 600px)
+    font-size: 14px
+a
+  text-decoration: none
+  &:hover
+    color: rgb(var(--v-theme-primary))
+
+/* Common
+ * ------------------------------------------------- */
+
+.bg-hover
+  transform: translate3d(0,-.3rem,0)
+
+/* 区块标题：首页用 header-*，子页面用 gov-header-*，样式统一 */
+.header-1, .gov-header-1
+  font-size: $header-1-font-size !important
+  font-weight: $header-font-weight !important
+  line-height: $header-1-line-height !important
+  letter-spacing: normal
+  font-family: $heading-font-family
+  text-transform: none
+  color: $header-color
+  height: 2.6rem
+  display: inline-flex
+  align-items: center
+  &:hover
+    color: rgb(var(--v-theme-primary))
+.header-2, .gov-header-2
+  font-size: $header-2-font-size !important
+  font-weight: $header-font-weight !important
+  line-height: $header-2-line-height !important
+  letter-spacing: normal
+  font-family: $heading-font-family
+  text-transform: none
+  color: $header-color
+  display: inline-flex
+  align-items: center
+
+/* Color
+ * ------------------------------------------------- */
+
+.bg-sheet-color
+  background-color: $sheet-color !important
+.bg-background-color
+  background-color: $background-color !important

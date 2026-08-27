@@ -42,11 +42,11 @@ defineProps({
 </script>
 
 <template>
-  <!-- MD3E top app bar：容器色 + 底部细分隔线（见 style.css .v-app-bar） -->
-  <v-app-bar>
+  <!-- 政务门户顶部导航：政务蓝底 + 白字 + 激活项白色下划线 -->
+  <v-app-bar color="primary">
     <template v-slot:prepend>
       <v-app-bar-nav-icon
-        class="d-lg-none"
+        class="d-lg-none text-white"
         @click="drawer = !drawer"
         aria-label="打开菜单"
       />
@@ -54,50 +54,32 @@ defineProps({
 
     <v-app-bar-title>
       <router-link to="/" class="d-flex align-center text-decoration-none">
-        <img src="/logo.svg" alt="Hope Studio" class="mr-2" style="height: 32px" />
-        <span class="text-h6 font-weight-bold text-on-surface">{{ navName }}</span>
+        <img src="/logo.svg" alt="Hope Studio" class="mr-2" style="height: 34px; filter: brightness(0) invert(1)" />
+        <span class="text-title-medium font-weight-bold text-white">{{ navName }}</span>
       </router-link>
     </v-app-bar-title>
 
-    <!-- 桌面端：MD3E 胶囊导航（激活项 secondary-container + 弹簧切换） -->
+    <!-- 桌面端：政务风格文字导航（激活项白色下划线） -->
     <template v-slot:append>
-      <div class="d-none d-lg-flex align-center ga-2 pr-4">
+      <div class="d-none d-lg-flex align-center h-100 pr-2">
         <template v-for="item in menu" :key="item.name">
           <router-link
             v-if="!isRawLink(item.link)"
             :to="item.link"
-            class="text-decoration-none"
+            class="gov-nav-link text-decoration-none"
+            :class="{ 'gov-nav-link--active': isActive(item.link) }"
           >
-            <v-chip
-              :color="isActive(item.link) ? 'secondary-container' : undefined"
-              :text-color="isActive(item.link) ? 'on-secondary-container' : undefined"
-              :variant="isActive(item.link) ? 'flat' : 'text'"
-              rounded="pill"
-              label
-              size="small"
-              class="pa-3 nav-chip"
-            >
-              {{ item.name }}
-            </v-chip>
+            {{ item.name }}
           </router-link>
           <a
             v-else
             :href="item.link"
             :target="item.link.startsWith('http') ? '_blank' : undefined"
             rel="noopener"
-            class="text-decoration-none"
+            class="gov-nav-link text-decoration-none"
+            :class="{ 'gov-nav-link--active': isActive(item.link) }"
           >
-            <v-chip
-              :color="isActive(item.link) ? 'secondary-container' : undefined"
-              :text-color="isActive(item.link) ? 'on-secondary-container' : undefined"
-              :variant="isActive(item.link) ? 'flat' : 'text'"
-              rounded="pill"
-              label
-              size="small"
-              class="pa-3 nav-chip"
-            >
-              {{ item.name }}
-            </v-chip>
+            {{ item.name }}
           </a>
         </template>
       </div>
@@ -120,8 +102,8 @@ defineProps({
           class="text-decoration-none"
         >
           <v-list-item
-            :color="isActive(item.link) ? 'secondary-container' : undefined"
-            rounded="lg"
+            :color="isActive(item.link) ? 'primary-container' : undefined"
+            rounded="0"
           >
             <v-list-item-title>{{ item.name }}</v-list-item-title>
           </v-list-item>
@@ -135,8 +117,8 @@ defineProps({
           class="text-decoration-none"
         >
           <v-list-item
-            :color="isActive(item.link) ? 'secondary-container' : undefined"
-            rounded="lg"
+            :color="isActive(item.link) ? 'primary-container' : undefined"
+            rounded="0"
           >
             <v-list-item-title>{{ item.name }}</v-list-item-title>
           </v-list-item>
@@ -147,12 +129,35 @@ defineProps({
 </template>
 
 <style scoped>
-.nav-chip {
-  transition: transform var(--md3e-duration-short) var(--md3e-motion-spring),
-    background-color var(--md3e-duration-short) var(--md3e-motion-emphasized),
-    color var(--md3e-duration-short) var(--md3e-motion-emphasized);
+/* 政务门户导航链接：白字，hover 半透明，激活项白色下划线 */
+.gov-nav-link {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--gov-font-family);
+  letter-spacing: normal;
+  position: relative;
+  transition: color var(--md3e-duration-short) var(--md3e-motion-emphasized);
 }
-.nav-chip:hover {
-  transform: translateY(-1px);
+.gov-nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+.gov-nav-link--active {
+  color: #ffffff;
+  font-weight: 600;
+}
+.gov-nav-link--active::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0;
+  height: 3px;
+  background: #ffffff;
 }
 </style>
