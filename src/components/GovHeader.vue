@@ -48,19 +48,23 @@
         <p class="hero-title">欢迎来到希望工作室</p>
         <v-text-field 
           class="mb-2"
+          v-model="searchQuery"
           label="搜索文章或项目…" 
           variant="solo" 
           single-line
           hide-details
           append-inner-icon="mdi-magnify"
+          @click:append-inner="goSearch"
+          @keydown.enter="goSearch"
         >
         </v-text-field>
         <div class="popular">
           <span class="popular-title">热门搜索：</span>
           <v-chip 
             v-for="popular in populars" 
+            :key="popular"
             class="ma-1" 
-            href="/" 
+            :to="`/posts?q=${encodeURIComponent(popular)}`" 
             color="black"
             size="small" 
             label
@@ -86,7 +90,7 @@
           <v-window-item class="universal" v-for="(universal, key) in universals" :value="key">          
             <v-row class="mt-2">
               <v-col  v-for="item in universal" cols="6" sm="12" md="12" lg="6" class="py-0">
-                <v-list-item class="universal-item" href="/">{{item}}</v-list-item>
+                <v-list-item class="universal-item" :href="item.href">{{item.text}}</v-list-item>
               </v-col>            
             </v-row>
           </v-window-item>
@@ -99,6 +103,13 @@
 <script setup lang="ts">
   import { useDisplay } from 'vuetify';
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
+  const router = useRouter()
+  const searchQuery = ref('')
+  function goSearch() {
+    const q = searchQuery.value.trim()
+    router.push(q ? { path: '/posts', query: { q } } : '/posts')
+  }
     const routes = [
     {path: '/', name: '首页'},
     {path: '/posts', name: '文章'},
@@ -120,8 +131,26 @@
   const universalModel = ref()
   const populars = ref(["工作室公告", "技术笔记", "分享", "历史资料"])
   const universals = ref({
-    personal: [ "查看全部文章", "最新文章", "项目一览", "HopeOS 详情", "成员列表", "关于我们", "加入我们", "友情链接" ],
-    legal: [ "开源项目", "技术笔记", "归档官网", "个人博客", "GitHub 组织", "HopeOJ", "WinUI 笔记", "RootMyS9280" ]
+    personal: [
+      {text: "查看全部文章", href: "/posts"},
+      {text: "最新文章", href: "/posts"},
+      {text: "项目一览", href: "/projects"},
+      {text: "HopeOS 详情", href: "/hopeos"},
+      {text: "成员列表", href: "/members"},
+      {text: "关于我们", href: "/about"},
+      {text: "加入我们", href: "/join"},
+      {text: "友情链接", href: "/friends"}
+    ],
+    legal: [
+      {text: "开源项目", href: "/projects"},
+      {text: "技术笔记", href: "/posts?q=技术笔记"},
+      {text: "归档官网", href: "/archive"},
+      {text: "个人博客", href: "https://blog.nanoturtle.cn"},
+      {text: "GitHub 组织", href: "https://github.com/NanoTurtle1145"},
+      {text: "HopeOJ", href: "http://hopeoj.asia/"},
+      {text: "WinUI 笔记", href: "/posts/winui-notes"},
+      {text: "RootMyS9280", href: "https://github.com/NanoTurtle1145/root-my-s9280"}
+    ]
   })
 </script>
 <style lang="sass" scoped>
@@ -131,6 +160,35 @@
     background-origin: padding-box
     background-position: 100% 100%
     background-size: cover
+    position: relative
+    overflow: hidden
+    // 漂浮光晕球（让头部超越政务站的呆板纯色渐变）
+    &::before
+      content: ""
+      position: absolute
+      top: -15%
+      left: -8%
+      width: 40rem
+      height: 40rem
+      background: radial-gradient(circle, rgba(255,255,255,.12) 0%, transparent 55%)
+      border-radius: 50%
+      filter: blur(3rem)
+      animation: orb-float 18s ease-in-out infinite alternate
+      pointer-events: none
+      z-index: 0
+    &::after
+      content: ""
+      position: absolute
+      bottom: -25%
+      right: -5%
+      width: 35rem
+      height: 35rem
+      background: radial-gradient(circle, rgba(66,165,245,.18) 0%, transparent 55%)
+      border-radius: 50%
+      filter: blur(4rem)
+      animation: orb-float 22s ease-in-out infinite alternate-reverse
+      pointer-events: none
+      z-index: 0
     .toolbar
       &-logo
         display: inline-block
@@ -174,6 +232,8 @@
           left: 8px
           top: 2px
     .hero
+      position: relative
+      z-index: 1
       padding: 2rem 0rem 2rem 0rem
       @media(min-width: 1280px)
         padding: 4rem 6rem 2rem 6rem
@@ -182,6 +242,7 @@
         line-height: 1
         overflow: hidden
         color: white
+        text-shadow: 0 2px 16px rgba(13, 42, 94, .55)
         // font
         font-size: 2.3rem
         font-family: $body-font-family
@@ -222,4 +283,10 @@
             &:before
               content: "●"
               margin-right: .5rem
+
+  @keyframes orb-float
+    0%
+      transform: translate(0, 0) scale(1)
+    100%
+      transform: translate(2.5rem, 1.5rem) scale(1.12)
 </style>

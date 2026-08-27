@@ -8,6 +8,11 @@ import "./style.css";
 export const createApp = ViteSSG(App, { routes }, (ctx) => {
   ctx.app.use(vuetify);
 
+  // 标记 JS 可用：滚动入场动画依赖该 class（无 JS 时区块始终可见）
+  if (typeof window !== "undefined") {
+    document.documentElement.classList.add("js");
+  }
+
   ctx.router.beforeEach((to, _from, next) => {
     const { title, description } = to.meta;
     const defaultTitle = "希望工作室 | Hope Studio";

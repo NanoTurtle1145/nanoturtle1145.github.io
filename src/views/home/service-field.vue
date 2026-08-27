@@ -1,5 +1,5 @@
 <template>
-  <div class="service-field">
+  <section id="serviceField" class="service-field">
     <v-container>
       <v-row>
         <v-banner class="bg-transparent" border="none">
@@ -41,7 +41,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </div>
+  </section>
 </template>
 <script setup>
   const outLinks = [

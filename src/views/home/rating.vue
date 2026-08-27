@@ -63,7 +63,14 @@
   &-item
     background: hsla(0,0%,100%,.15)
     padding: 1.5rem 1.3rem 1.5rem 1.4rem !important
-    color: white 
+    color: white
+    border: 1px solid hsla(0,0%,100%,.28)
+    backdrop-filter: blur(10px)
+    -webkit-backdrop-filter: blur(10px)
+    transition: background .35s var(--md3e-motion-emphasized), transform .35s var(--md3e-motion-emphasized-decelerate)
+    &:hover
+      background: hsla(0,0%,100%,.24)
+      transform: translateY(-4px)
     &-tip
       font-size: $body-1-font-size
       line-height: $body-1-line-height

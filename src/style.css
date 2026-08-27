@@ -35,7 +35,10 @@
 
   /* ---------- 政务门户色板常量 ---------- */
   --gov-header-color: #0d1c28;
-  --gov-card-shadow: 0 0 1.5rem rgba(9, 41, 77, 0.12);
+  /* 层次阴影：近景描边 + 中距投影 + 远景弥散（比政务站默认更有纵深） */
+  --gov-card-shadow: 0 1px 2px rgba(9, 41, 77, 0.05),
+    0 8px 24px -6px rgba(9, 41, 77, 0.1),
+    0 24px 48px -16px rgba(9, 41, 77, 0.08);
 }
 
 /* ============================================================
@@ -54,6 +57,57 @@ body {
   font-family: var(--md3e-font-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   视觉美化层（超越政务站：动效 + 层次 + 质感）
+   仅叠加在既有布局之上，不改变结构与语义
+   ============================================================ */
+
+/* ---- 滚动入场：区块渐显上浮（JS 可用时才隐藏内容，避免无 JS 白屏）---- */
+html.js main section[id] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--md3e-motion-emphasized-decelerate),
+    transform 0.7s var(--md3e-motion-emphasized-decelerate);
+  will-change: opacity, transform;
+}
+html.js main section[id].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- 按钮：玻璃高光质感（统一应用于所有实底按钮，尊重各自配色）---- */
+.v-btn--variant-flat {
+  position: relative;
+  overflow: hidden;
+}
+.v-btn--variant-flat::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 50%);
+  pointer-events: none;
+}
+
+/* ---- 卡片：悬停抬升 + 投影加深（政务白卡统一动效）---- */
+.v-card,
+.md3e-group {
+  transition: transform 0.4s var(--md3e-motion-emphasized-decelerate),
+    box-shadow 0.4s var(--md3e-motion-emphasized-decelerate);
+}
+.v-card:hover,
+.md3e-group:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 4px rgba(9, 41, 77, 0.06),
+    0 16px 40px -8px rgba(9, 41, 77, 0.18),
+    0 32px 64px -24px rgba(9, 41, 77, 0.14);
+}
+
+/* ---- 滚动条：更细腻的窄条 ---- */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
 /* 选区与焦点 */

@@ -3,6 +3,7 @@ import { computed, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useHead } from "@vueuse/head";
 import { posts, categories } from "../data/posts";
+import { searchIndex, searchPosts } from "../data/search-index";
 
 const route = useRoute();
 const router = useRouter();
@@ -40,15 +41,12 @@ watch(
 const normalized = computed(() => search.value.trim().toLowerCase());
 
 const filtered = computed(() => {
+  // 先按分类筛选（"全部" 不过滤）
   let list = active.value === "全部" ? posts : posts.filter((p) => p.category === active.value);
+  // 再用搜索索引做全文匹配（标题/摘要/分类/标签/正文）
   if (normalized.value) {
-    list = list.filter(
-      (p) =>
-        p.title.toLowerCase().includes(normalized.value) ||
-        p.excerpt.toLowerCase().includes(normalized.value) ||
-        p.category.toLowerCase().includes(normalized.value) ||
-        p.tags.some((t) => t.toLowerCase().includes(normalized.value))
-    );
+    const hits = new Set(searchPosts(normalized.value).map((r) => r.slug));
+    list = list.filter((p) => hits.has(p.slug));
   }
   return list;
 });

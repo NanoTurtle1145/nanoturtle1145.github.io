@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, watch } from "vue";
+import { useRoute } from "vue-router";
 import GovHeader from "./components/GovHeader.vue";
 import Footer from "./components/Footer.vue";
 
@@ -13,9 +14,43 @@ function scrollTop() {
   if (typeof window === "undefined") return;
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-if (typeof window !== "undefined") {
-  window.addEventListener("scroll", onScroll, { passive: true });
+
+/* ---- 滚动入场动画：观察 main 下的区块，进入视口时添加 .is-visible ---- */
+let revealObserver: IntersectionObserver | null = null;
+if (typeof window !== "undefined" && "IntersectionObserver" in window) {
+  revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver?.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+  );
 }
+
+function observeReveals() {
+  if (!revealObserver) return;
+  document
+    .querySelectorAll("main section[id]")
+    .forEach((el) => {
+      if (!el.classList.contains("is-visible")) revealObserver?.observe(el);
+    });
+}
+
+const route = useRoute();
+onMounted(() => {
+  if (typeof window !== "undefined") window.addEventListener("scroll", onScroll, { passive: true });
+  // 首次渲染可能尚未完成，给一帧缓冲
+  requestAnimationFrame(observeReveals);
+});
+// 路由切换后重新观察（等 md3e-route 过渡结束）
+watch(
+  () => route.fullPath,
+  () => setTimeout(observeReveals, 450)
+);
 </script>
 
 <template>
