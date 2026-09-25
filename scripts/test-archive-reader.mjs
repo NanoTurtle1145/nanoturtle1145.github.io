@@ -246,7 +246,106 @@ async function main() {
   check("切回站点排版", back.hasArticle && back.noIframe);
   check("URL 清除 mode", !back.url.includes("mode=raw"), back.url || "(空)");
 
-  console.log("\n【7】移动端（390x844）：目录抽屉");
+  console.log("\n【7】正文内章节链接（《资本论》目录页）");
+  await send("Page.navigate", { url: `${BASE}/archive/das-kapital/` });
+  await until(
+    "document.querySelectorAll('.book-body a[data-cid]').length > 0",
+    30000,
+    "目录页正文链接渲染"
+  );
+  const lk = await evaluate(`(() => {
+    const links = [...document.querySelectorAll('.book-body a[data-cid]')];
+    const bad = links.filter(a => !(a.getAttribute('href') || '').startsWith('?c='));
+    window.__noReload = true;
+    return {
+      count: links.length,
+      badCount: bad.length,
+      badSample: bad[0]?.getAttribute('href') || null,
+      dead: document.querySelectorAll('.book-body .book-deadlink').length,
+      head: document.querySelector('.reader-chapter-head__title')?.textContent?.trim(),
+    };
+  })()`);
+  check("目录页在默认章打开", !!lk.head, lk.head);
+  check(
+    "正文章节链接已改写为 ?c=",
+    lk.count > 0 && lk.badCount === 0,
+    `${lk.count} 个链接，未改写 ${lk.badCount} 个${lk.badSample ? " 例:" + lk.badSample : ""}`
+  );
+
+  await evaluate(`(() => {
+    const a = [...document.querySelectorAll('.book-body a[data-cid]')].find(x => x.dataset.cid === 'cap1_00');
+    if (a) a.click();
+    return !!a;
+  })()`);
+  await until(
+    "document.querySelector('.reader-chapter-head__title')?.textContent?.includes('序言')",
+    20000,
+    "点击正文链接后切到「序言」章"
+  );
+  const nv = await evaluate(`(() => ({
+    title: document.querySelector('.reader-chapter-head__title')?.textContent?.trim(),
+    url: location.search,
+    noReload: window.__noReload === true,
+    paras: document.querySelectorAll('.book-body p[data-b]').length,
+  }))()`);
+  check("点击正文链接完成跳转", !!nv.title, nv.title);
+  check("URL 同步目标章节", nv.url.includes("c=cap1_00"), nv.url);
+  check("站内跳转未整页刷新", nv.noReload);
+  check("目标章正文已渲染", nv.paras > 0, `${nv.paras} 段`);
+
+  // 原书存在指向未收录文件的死链（..\sub\gfhzz.html 等，CHM 内并无该文件），
+  // 导入时应转为不可跳转的标注而非留下必然 404 的链接
+  await send("Page.navigate", { url: `${BASE}/archive/das-kapital/?c=cap3_27` });
+  await until(
+    "document.querySelectorAll('.book-body p[data-b]').length > 0",
+    25000,
+    "第三卷第 27 章渲染"
+  );
+  const dl = await evaluate(`(() => {
+    const dead = [...document.querySelectorAll('.book-body .book-deadlink')];
+    return {
+      count: dead.length,
+      title: dead[0]?.getAttribute('title') || null,
+      isLink: dead.some(d => d.tagName === 'A'),
+      hasHref: dead.some(d => d.hasAttribute('href')),
+    };
+  })()`);
+  check("原书死链已转为惰性标注", dl.count > 0, `${dl.count} 处`);
+  check("死链不再是可跳转链接", !dl.isLink && !dl.hasHref, dl.title || "");
+
+  console.log("\n【8】原文模式下的章内链接");
+  await send("Page.navigate", { url: `${BASE}/archive/das-kapital/?c=capindex&mode=raw` });
+  await until("!!document.querySelector('iframe.reader-raw')", 20000, "原文 iframe");
+  await sleep(2500);
+  const rl = await evaluate(`(() => {
+    const f = document.querySelector('iframe.reader-raw');
+    const doc = f.contentDocument;
+    const links = [...doc.querySelectorAll('a[href$=".htm"], a[href$=".html"]')];
+    return { total: links.length, sample: links[0]?.getAttribute('href') || null };
+  })()`);
+  check("原文页存在章节链接", rl.total > 0, `${rl.total} 个，例:${rl.sample}`);
+
+  const before = await evaluate(
+    "document.querySelector('.reader-chapter-head__title')?.textContent?.trim()"
+  );
+  await evaluate(`(() => {
+    const doc = document.querySelector('iframe.reader-raw').contentDocument;
+    const a = [...doc.querySelectorAll('a[href$=".htm"], a[href$=".html"]')]
+      .find(x => /cap1_00/i.test(x.getAttribute('href')));
+    a.click();
+    return !!a;
+  })()`);
+  await sleep(1800);
+  const after = await evaluate(`(() => ({
+    title: document.querySelector('.reader-chapter-head__title')?.textContent?.trim(),
+    url: location.search,
+    iframeSrc: document.querySelector('iframe.reader-raw')?.getAttribute('src'),
+  }))()`);
+  check("点击原文链接在阅读器内换章", after.title !== before, `${before} → ${after.title}`);
+  check("原文模式保持且 URL 同步", after.url.includes('c=cap1_00') && after.url.includes('mode=raw'), after.url);
+  check("iframe 已指向新章原文", /cap1_00/.test(after.iframeSrc || ''), after.iframeSrc);
+
+  console.log("\n【9】移动端（390x844）：目录抽屉");
   await send("Emulation.setDeviceMetricsOverride", {
     width: 390, height: 844, deviceScaleFactor: 1, mobile: true,
   });

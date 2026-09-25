@@ -186,6 +186,22 @@ function openChapter(cid: string) {
   if (cid !== chapterId.value) loadChapter(cid);
 }
 
+/**
+ * 拦截正文内的章节链接（导入器已改写成 href="?c=<章节号>" + data-cid）。
+ * 不拦截的话会整页刷新；拦截后走站内切换，保留阅读器状态与滚动位置缓存。
+ */
+function onArticleClick(e: MouseEvent) {
+  const a = (e.target as HTMLElement | null)?.closest?.(
+    "a[data-cid]"
+  ) as HTMLAnchorElement | null;
+  if (!a) return;
+  const cid = a.dataset.cid ?? "";
+  if (cid && flat.value.some((c) => c.id === cid)) {
+    e.preventDefault();
+    openChapter(cid);
+  }
+}
+
 /* ------------------------------------------------------------------ 模式 */
 function setMode(m: "clean" | "raw") {
   mode.value = m;
@@ -581,6 +597,7 @@ watch(() => route.params.slug, bootstrap);
             class="book-body"
             :style="{ fontSize: fontSize + 'px' }"
             v-html="html"
+            @click="onArticleClick"
           />
 
           <!-- 原文模式 -->
@@ -937,6 +954,13 @@ watch(() => route.params.slug, bootstrap);
 }
 .book-body :deep(.book-link) {
   color: rgb(var(--v-theme-primary));
+}
+/* 原书死链：保留原文但标注为不可跳转，避免读者点了必然 404 */
+.book-body :deep(.book-deadlink) {
+  text-decoration: underline dotted;
+  text-decoration-color: rgb(var(--v-theme-outline));
+  text-underline-offset: 0.2em;
+  cursor: help;
 }
 .book-body :deep(.book-table) {
   overflow-x: auto;

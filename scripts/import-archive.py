@@ -98,6 +98,45 @@ def attr(tag: str, name: str) -> str | None:
     return next((g for g in m.groups() if g is not None), None)
 
 
+# 原书章节间链接：cap1_00.htm / ../sub/pareto.htm 之类（不含协议与目录层级）
+# 注意原书混用反斜杠（..\sub\gfhzz.html），匹配前统一成正斜杠
+CHAPTER_LINK_RE = re.compile(r"^(?:\.\./)*(?:sub/)?([^/\\]+)\.(?:htm|html?)$", re.I)
+SCHEME_RE = re.compile(r"^[a-z][a-z0-9+.-]*:", re.I)
+
+
+def link_tag(href: str, known: dict[str, str]) -> tuple[str, str | None]:
+    """把原书链接转成阅读器可解析的形式，返回 (起始标签, 需要闭合的行内标签名)。
+
+    原书是「同目录一个 .htm 一章」的扁平结构，链接写作 href="cap1_00.htm"。
+    这类相对链接若原样输出，在 /archive/<slug>?c=… 页面下会被解析成
+    /archive/cap1_00.htm 而 404，故改写为 ?c=<章节号>，并用 data-cid 供阅读器
+    拦截成站内跳转（避免整页刷新）。
+
+    原书还存在指向未收录文件的死链（如 ..\\sub\\gfhzz.html，CHM 里并无此文件），
+    这类改成语义化的 span：保留原文并注明原因，而不是留一个必然 404 的链接。
+    锚点链接（#小节名）与外部链接原样保留。
+    """
+    if href.startswith("#"):
+        return f'<a href="{html.escape(href, quote=True)}" class="book-link">', None
+    if not SCHEME_RE.match(href):
+        target = href.split("#", 1)[0].replace("\\", "/")
+        m = CHAPTER_LINK_RE.match(target)
+        if m:
+            real = known.get(m.group(1).lower())
+            if real:
+                q = html.escape(real, quote=True)
+                return (
+                    f'<a href="?c={q}" data-cid="{q}" class="book-link">',
+                    "a",
+                )
+            return (
+                f'<span class="book-deadlink" title="原书此处链接的'
+                f'《{html.escape(m.group(1), quote=True)}》未收录进该电子书">',
+                "span",
+            )
+    return f'<a href="{html.escape(href, quote=True)}" class="book-link">', None
+
+
 def extract_chm(src: Path, dest: Path) -> None:
     """用 7z 解包 CHM（p7zip 支持 Chm 格式）。"""
     if not shutil.which("7z"):
@@ -160,7 +199,9 @@ class Normalizer:
       <a NAME>    → 章内锚点
     """
 
-    def __init__(self) -> None:
+    def __init__(self, known: dict[str, str] | None = None) -> None:
+        # known: 小写章节号 → 实际章节号（用于区分站内链接与原书死链）
+        self._known: dict[str, str] = known or {}
         self.blocks: list[dict] = []
         self.anchors: list[dict] = []
         self._buf: list[str] = []
@@ -343,10 +384,12 @@ class Normalizer:
 
         if name == "a":
             if closing:
+                # 链接可能是 <a>（改写为站内跳转）或 <span>（原书死链），
+                # 两者都以 </a> 收尾，故弹到对应的行内标签为止
                 while self._inline:
                     t = self._inline.pop()
                     self._push(f"</{t}>")
-                    if t == "a":
+                    if t in ("a", "span"):
                         break
                 return
             an = attr(tag, "name") or attr(tag, "id")
@@ -357,8 +400,10 @@ class Normalizer:
                 self._pending_anchor = an
                 return
             if href and not href.lower().startswith("javascript:"):
-                self._inline.append("a")
-                self._push(f'<a href="{html.escape(href, quote=True)}" class="book-link">')
+                open_tag, inline_tag = link_tag(href, self._known)
+                if inline_tag:
+                    self._inline.append(inline_tag)
+                self._push(open_tag)
             return
 
         if name in INLINE_KEEP:
@@ -448,11 +493,13 @@ class Normalizer:
         self.blocks = out
 
 
-def normalize_chapter(html_text: str) -> tuple[list[dict], list[dict]]:
+def normalize_chapter(
+    html_text: str, known: dict[str, str] | None = None
+) -> tuple[list[dict], list[dict]]:
     """规范化一章正文，返回 (blocks, anchors)。"""
     body_m = re.search(r"<body[^>]*>(.*)</body>", html_text, re.I | re.S)
     body = body_m.group(1) if body_m else html_text
-    n = Normalizer()
+    n = Normalizer(known)
     n.feed(body)
     return n.result()
 
@@ -562,6 +609,8 @@ def main() -> int:
             and not p.name.startswith(("$", "#"))
         )
         by_name = {p.name.lower(): p for p in content_files}
+        # 章节号映射（小写 → 实际），用于判定原书链接是否为死链
+        known_ids = {p.stem.lower(): p.stem for p in content_files}
         # 原书 .hhc 里混有制作软件自带的英文标签（Contents / About eTextWizard），
         # 优先取含中文的目录名；全为英文时回落到文件自身的 <TITLE>。
         names_of: dict[str, list[str]] = {}
@@ -595,7 +644,7 @@ def main() -> int:
                 raw_page(text, title), encoding="utf-8"
             )
             # 站点排版模式
-            blocks, anchors = normalize_chapter(text)
+            blocks, anchors = normalize_chapter(text, known_ids)
             (out / "text" / f"{cid}.html").write_text(
                 blocks_to_html(blocks), encoding="utf-8"
             )
