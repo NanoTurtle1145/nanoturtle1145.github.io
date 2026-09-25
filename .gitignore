@@ -32,3 +32,8 @@ public/hopeos/
 .chrome-prof/
 .shots/
 .dom-*.html
+
+# 研究/审计的子代理草稿（不入库）
+.research/
+research/
+v-*.md

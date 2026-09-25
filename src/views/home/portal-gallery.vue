@@ -71,7 +71,9 @@
   .gallery
     margin-right: 24px
     margin-bottom: 4px
-    transition: all .3s ease !important
+    // 悬停过渡须尊重系统「减弱动效」，否则 !important 会击穿全局覆盖
+    @media (prefers-reduced-motion: no-preference)
+      transition: all .3s ease !important
     &-title
       font-size: $header-6-font-size !important
       font-weight: $header-font-weight !important

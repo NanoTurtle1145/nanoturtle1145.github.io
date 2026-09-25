@@ -378,4 +378,12 @@ html.js main section[id].is-visible {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  /* 上面的 * 规则对 Vuetify 的 .v-card（含 .v-card--link）无效：Vuetify 为其写了
+     !important 的 transition，同级 !important 下类选择器优先级更高，通用 * 压不住。
+     这里用「a + 类」抬高优先级（0,1,1 > 0,1,0），把卡片悬停过渡也一并关掉。 */
+  a.v-card,
+  a.v-card--link,
+  body .v-card--link {
+    transition: none !important;
+  }
 }
