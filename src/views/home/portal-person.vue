@@ -110,7 +110,7 @@
         ],
         enterprise_history: [
           {text: "加入我们", href: "/join"},
-          {text: "归档官网", href: "/archive"},
+          {text: "归档处", href: "/archive"},
           {text: "个人博客", href: "https://ntblog.cn"},
           {text: "GitHub", href: "https://github.com/NanoTurtle1145"}
         ],        

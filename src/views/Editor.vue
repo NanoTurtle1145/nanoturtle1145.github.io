@@ -291,7 +291,7 @@ async function patchNav(dir: any, slug: string, name: string) {
   const file = "src/components/Navigation.vue";
   let c = await fsRead(dir, file);
   if (c.includes(`link: "/${slug}"`)) return;
-  const anchor = `  { name: "归档官网", link: "/archive/" },`;
+  const anchor = `  { name: "归档处", link: "/archive" },`;
   const item = `  { name: "${escAttr(name)}", link: "/${slug}" },`;
   if (c.includes(anchor)) c = c.replace(anchor, `${anchor}\n${item}`);
   await fsWrite(dir, file, c);

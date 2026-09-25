@@ -16,6 +16,27 @@ function postPaths(): string[] {
   return [...src.matchAll(/"slug":\s*"([^"]+)"/g)].map((m) => `/posts/${m[1]}`);
 }
 
+/**
+ * 归档处资料列表由 scripts/import-archive.py 写入 public/archive/library/index.json，
+ * 这里读出来展开成 /archive/<slug> 供 vite-ssg 预渲染。
+ */
+function archivePaths(): string[] {
+  try {
+    const raw = readFileSync(
+      fileURLToPath(
+        new URL("./public/archive/library/index.json", import.meta.url)
+      ),
+      "utf-8"
+    );
+    return (JSON.parse(raw) as { slug: string }[])
+      .map((m) => m.slug)
+      .filter(Boolean)
+      .map((slug) => `/archive/${slug}`);
+  } catch {
+    return [];
+  }
+}
+
 // 用户 Pages 仓库（nanoturtle1145.github.io）+ 自定义域名，base 保持 "/"
 export default defineConfig({
   base: "/",
@@ -33,6 +54,7 @@ export default defineConfig({
           (p) => !p.includes(":") && !p.includes("*") && !p.includes("editor")
         ),
         ...postPaths(),
+        ...archivePaths(),
       ];
     },
   },

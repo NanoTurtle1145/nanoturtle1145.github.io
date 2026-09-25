@@ -52,9 +52,9 @@
       </template>
     </v-toolbar>
 
-    <!-- Hero -->
+    <!-- Hero（沉浸式页面收起） -->
 
-    <v-row class="hero">
+    <v-row v-if="!compact" class="hero">
       <v-col>
         <a class="zwfw" href="/">希望工作室</a>
         <p class="hero-title">欢迎来到希望工作室</p>
@@ -114,11 +114,14 @@
 </template>
 <script setup lang="ts">
   import { useDisplay } from 'vuetify';
-  import { ref } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { ref, computed } from 'vue';
+  import { useRouter, useRoute } from 'vue-router';
   import { useThemeMode } from '../composables/useThemeMode';
   const { isDark, toggle } = useThemeMode();
   const router = useRouter()
+  const route = useRoute()
+  // 阅读器等沉浸式页面收起 Hero：门户首页的高度会占掉大半个视口，把正文挤到折叠线下
+  const compact = computed(() => route.name === 'archive-reader')
   const searchQuery = ref('')
   function goSearch() {
     const q = searchQuery.value.trim()
@@ -132,7 +135,7 @@
     {path: '/about', name: '关于我们'},
     {path: '/join', name: '加入我们'},
     {path: '/friends', name: '友情链接'},
-    {path: '/archive/', name: '归档官网'},
+    {path: '/archive', name: '归档处'},
   ]
   const { name } = useDisplay()  
   const isEditing = false
@@ -158,7 +161,8 @@
     legal: [
       {text: "开源项目", href: "/projects"},
       {text: "技术笔记", href: "/posts?q=技术笔记"},
-      {text: "归档官网", href: "/archive"},
+      {text: "归档处", href: "/archive"},
+      {text: "旧版官网存档", href: "/archive/legacy/"},
       {text: "个人博客", href: "https://blog.nanoturtle.cn"},
       {text: "GitHub 组织", href: "https://github.com/NanoTurtle1145"},
       {text: "HopeOJ", href: "http://hopeoj.asia/"},

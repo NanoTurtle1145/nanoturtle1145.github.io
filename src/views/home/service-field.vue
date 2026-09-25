@@ -53,7 +53,7 @@
     {text: "友情链接", href: "/friends"}
   ]
   const innerLinks = [
-    {text: "归档官网", href: "/archive"},
+    {text: "归档处", href: "/archive"},
     {text: "HopeOS", href: "/hopeos"},
     {text: "个人博客", href: "https://ntblog.cn"}
   ]

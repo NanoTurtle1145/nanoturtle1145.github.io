@@ -26,3 +26,9 @@ website.kdev4
 WordPress.2026-08-07.xml
 nanoturtle1145.github.io/
 public/hopeos/
+
+# 归档处导入/测试的临时产物
+.chmwork/
+.chrome-prof/
+.shots/
+.dom-*.html

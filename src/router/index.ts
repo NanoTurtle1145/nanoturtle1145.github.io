@@ -63,6 +63,19 @@ const routes: RouteRecordRaw[] = [
     meta: { title: "第三方组件许可证 | 希望工作室" },
   },
   {
+    path: "/archive",
+    name: "archive",
+    component: () => import("../views/Archive.vue"),
+    meta: { title: "归档处 | 希望工作室", navName: "归档处" },
+  },
+  {
+    // 归档资料阅读器；/archive/legacy/ 是静态旧站存档，不走此路由
+    path: "/archive/:slug",
+    name: "archive-reader",
+    component: () => import("../views/ArchiveReader.vue"),
+    meta: { title: "归档处 | 希望工作室", navName: "归档处" },
+  },
+  {
     path: "/editor",
     name: "editor",
     component: () => import("../views/Editor.vue"),

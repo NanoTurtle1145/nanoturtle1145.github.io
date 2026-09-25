@@ -48,9 +48,9 @@
             <v-avatar size="24" rounded="0" icon="mdi-school" color="primary"></v-avatar>
             <span class="pl-4">HopeOJ</span>
           </a>
-          <a class="quickMark-item" href="/archive/">
+          <a class="quickMark-item" href="/archive">
             <v-avatar size="24" rounded="0" icon="mdi-archive" color="primary"></v-avatar>
-            <span class="pl-4">归档站</span>
+            <span class="pl-4">归档处</span>
           </a>
         </v-col>
       </v-row>
@@ -75,7 +75,7 @@
     import { useDisplay } from 'vuetify'
     const { name } = useDisplay()
     const state = reactive({
-      website_information: ["关于我们", "加入我们", "友情链接", "归档官网"],
+      website_information: ["关于我们", "加入我们", "友情链接", "归档处"],
       quickMark: {
         icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABZ9sFAAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAD2SURBVHgB7ZixDoIwEIZ7jYkOJDqY+AiO/gMfQYd2cuAf8BlceQYXXV18BhNHBhMHBhI39NqrdC0cAu1d+CVN6d3XK3cXwDB8BAJ2MAzDMAzDMAzDMEwM3tsAj8cD7/c7Xq9X1Go1FItFVKtVHMcx3djE4w8PD5hMJhBCoNfrodfr/X6AEmk0Gj8/53I5VKtVWJblZ7PZ4GAyHhIbrVYr3u/3sG0b5XIZq9UKpVJJH4kQAvv9Xn8+Pp9PWC6X2G63sCyLRCQSiUQikUgkEolEIpFIJBKJRCKRSCQS6U/0BQAA//8qJm/gQqY4EAAAAABJRU5ErkJggg==",
         list: [

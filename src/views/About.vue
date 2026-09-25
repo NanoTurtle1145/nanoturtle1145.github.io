@@ -49,8 +49,9 @@ const timeline = [
           <p class="mb-4">目前活跃人数约 5 人。</p>
           <p class="mb-4">
             旧版官网（hopestudio.top）已归档为静态站点，
-            <RouterLink to="/archive" class="text-primary text-decoration-none">点此访问归档官网</RouterLink>
-            ，保留了原有的 Argon 主题外观。
+            <a href="/archive/legacy/" class="text-primary text-decoration-none">点此访问旧版官网存档</a>
+            ，保留了原有的 Argon 主题外观；旧站存档与电子资料统一收录于
+            <RouterLink to="/archive" class="text-primary text-decoration-none">归档处</RouterLink>。
           </p>
           <v-img
             class="rounded-xl mt-6"

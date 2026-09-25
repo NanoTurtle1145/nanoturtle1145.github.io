@@ -13,8 +13,8 @@ const menuItems = ref([
   { name: "关于我们", link: "/about" },
   { name: "加入我们", link: "/join" },
   { name: "友情链接", link: "/friends" },
+  { name: "归档处", link: "/archive" },
   { name: "页面编辑器", link: "/editor", devOnly: true },
-  { name: "归档官网", link: "/archive/" },
 ]);
 
 // 页面编辑器仅在本地（localhost）显示，不发布到生产站点
@@ -25,9 +25,11 @@ const menu = computed(() =>
   menuItems.value.filter((i) => !(i.devOnly && !isLocal))
 );
 
-// 归档站是静态 HTML，需用原生 <a> 直接跳转，不能走 vue-router
+// 旧站存档 / 资料原件是静态 HTML，需用原生 <a> 直接跳转，不能走 vue-router
 const isRawLink = (link: string) =>
-  link.startsWith("http") || link.startsWith("/archive");
+  link.startsWith("http") ||
+  link.startsWith("/archive/legacy") ||
+  link.startsWith("/archive/library");
 
 // 首页 "/" 是其他所有路径的前缀，需用精确匹配，否则会常驻高亮
 const isActive = (link: string) =>

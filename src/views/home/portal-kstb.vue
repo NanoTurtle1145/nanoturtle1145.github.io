@@ -136,7 +136,7 @@
         ]}
       ],
       convenient_service: [
-        {text: "归档官网", href: "/archive"},
+        {text: "归档处", href: "/archive"},
         {text: "个人博客", href: "https://ntblog.cn"},
         {text: "友情链接", href: "/friends"},
         {text: "HopeOJ", href: "http://hopeoj.asia/"},
