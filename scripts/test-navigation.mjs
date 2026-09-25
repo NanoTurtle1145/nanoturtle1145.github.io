@@ -86,6 +86,23 @@ function judge(p) {
   return { ok: true, v };
 }
 
+/**
+ * 等待导航后的页面「稳定」再判定。
+ * 慢网络下异步路由 chunk 需要下载时间，固定 sleep 会采样到 enter 动画中途，
+ * 误报为过渡类残留；这里改为轮询直到内容就绪且过渡类清空。
+ * 先等 250ms 让离开动画开始，避免采样到尚未离开的旧页面。
+ */
+async function navSettle(budget = 8000) {
+  await sleep(250);
+  const t0 = Date.now();
+  let last = judge(await evaluate(PROBE));
+  while (!last.ok && Date.now() - t0 < budget) {
+    await sleep(200);
+    last = judge(await evaluate(PROBE));
+  }
+  return last;
+}
+
 async function goto(path) {
   await send("Page.navigate", { url: BASE + path });
   await sleep(4500);
@@ -137,8 +154,7 @@ async function main() {
   check("首页正常渲染", start.ok, start.v.text);
   for (const t of tabs) {
     await evaluate(clickTab(t));
-    await sleep(1500);
-    const r = judge(await evaluate(PROBE));
+    const r = await navSettle();
     check(`点「${t}」→ ${r.v.path}`, r.ok, r.ok ? r.v.text : r.why);
   }
 
@@ -150,8 +166,7 @@ async function main() {
     await evaluate(clickTab(a));
     await sleep(60);
     await evaluate(clickTab(b));
-    await sleep(1600);
-    const r = judge(await evaluate(PROBE));
+    const r = await navSettle();
     if (!r.ok) bad++;
     console.log(
       `  ${r.ok ? "✓" : "✗"} ${a}→${b} → ${r.v.path} 高=${r.v.innerH}${r.ok ? "" : " " + r.why}`
@@ -165,8 +180,7 @@ async function main() {
   check("阅读器正常渲染", reader.ok, reader.v.text);
   for (const t of ["文章", "归档处", "首页", "项目"]) {
     await evaluate(clickTab(t));
-    await sleep(1500);
-    const r = judge(await evaluate(PROBE));
+    const r = await navSettle();
     check(`阅读器 →「${t}」`, r.ok, r.ok ? r.v.path : r.why);
   }
 
@@ -174,9 +188,35 @@ async function main() {
   for (const from of ["/posts", "/projects", "/about", "/archive"]) {
     await goto(from);
     await evaluate(clickTab("成员"));
-    await sleep(1500);
-    const r = judge(await evaluate(PROBE));
+    const r = await navSettle();
     check(`${from} →「成员」`, r.ok, r.ok ? r.v.path : r.why);
+  }
+
+  console.log("\n【5】静态目录索引（旧站存档 / HopeOS 模拟器）");
+  // 这类 URL 是「目录 + 结尾斜杠」，不带 index.html。
+  // 线上 GitHub Pages 天然支持；dev 下 Vite 的 public 中间件不处理，
+  // 会回落到 SPA 回退返回应用外壳（HTTP 200！），故用 id="app" 作为判定依据。
+  const dirs = [
+    { path: "/archive/legacy/", name: "旧站存档首页" },
+    { path: "/archive/legacy/2025/09/01/hello-world/", name: "旧站文章页" },
+    { path: "/hopeos-emulator/", name: "HopeOS 模拟器" },
+  ];
+  for (const d of dirs) {
+    const raw = await evaluate(`(async () => {
+      const res = await fetch(${JSON.stringify(BASE + d.path)});
+      const html = await res.text();
+      return JSON.stringify({
+        status: res.status,
+        len: html.length,
+        isSpaShell: html.includes('id="app"'),
+      });
+    })()`);
+    const v = raw ? JSON.parse(raw) : { status: 0, len: 0, isSpaShell: false };
+    check(
+      `${d.name} 目录形式可直接访问`,
+      v.status === 200 && !v.isSpaShell && v.len > 20000,
+      `HTTP ${v.status}，${v.len} 字节${v.isSpaShell ? "（返回了应用外壳）" : ""}`
+    );
   }
 
   const failed = results.filter((r) => !r.ok);
