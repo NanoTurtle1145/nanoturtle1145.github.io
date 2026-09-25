@@ -61,9 +61,19 @@ watch(
   <v-app>
     <GovHeader />
     <v-main>
-      <router-view v-slot="{ Component }">
+      <!--
+        <Transition> 要求单一根节点。此前直接包 <component :is>，
+        一旦路由组件是多根（fragment，例如首页由 4 个区块组成），
+        离开时过渡状态机会卡死：旧内容移除后新路由再也不插入，
+        表现为点导航后正文空白、必须 F5 才能恢复。
+        这里固定包一层带 key 的单根容器，路由组件无论几个根都安全；
+        key 用 path（不含 query），避免阅读器切章节时被整个卸载重建。
+      -->
+      <router-view v-slot="{ Component, route }">
         <transition name="md3e-route" mode="out-in">
-          <component :is="Component" />
+          <div :key="route.path" class="route-view">
+            <component :is="Component" />
+          </div>
         </transition>
       </router-view>
     </v-main>
