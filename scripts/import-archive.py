@@ -586,10 +586,18 @@ def main() -> int:
         sys.exit(f"错误：源文件不存在 {src}")
 
     out = LIBRARY / args.slug
+    # 保留 <slug> 目录本身，只清空其内容。
+    # vite dev server 会缓存 public 目录清单，若把该目录整个删除再重建，
+    # 清单会失效，导致 /archive/library/<slug>/** 全部回落到 SPA 外壳（数据读不到），
+    # 表现为阅读器一直停在「正在载入档案…」。
     if out.exists():
-        shutil.rmtree(out)
-    (out / "text").mkdir(parents=True)
-    (out / "raw").mkdir(parents=True)
+        for child in out.iterdir():
+            if child.is_dir():
+                shutil.rmtree(child)
+            else:
+                child.unlink()
+    (out / "text").mkdir(parents=True, exist_ok=True)
+    (out / "raw").mkdir(parents=True, exist_ok=True)
 
     tmp = Path(tempfile.mkdtemp(prefix="archive-import-"))
     try:
