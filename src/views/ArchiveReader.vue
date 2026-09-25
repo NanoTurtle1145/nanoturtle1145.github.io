@@ -256,6 +256,9 @@ async function ensureIndex() {
     const res = await fetch(`${base.value}/search.json`);
     if (!res.ok) throw new Error("no index");
     indexData.value = (await res.json()) as SearchChapter[];
+    // 索引体积较大（可达数 MB）。若用户在索引到达前就已输入，此前那次检索
+    // 因无索引而返回空且不会自行重跑，这里补跑一次，否则界面会一直空着。
+    if (query.value.trim()) runSearch();
   } catch {
     indexError.value = true;
   } finally {

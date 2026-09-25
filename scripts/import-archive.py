@@ -586,18 +586,19 @@ def main() -> int:
         sys.exit(f"错误：源文件不存在 {src}")
 
     out = LIBRARY / args.slug
-    # 保留 <slug> 目录本身，只清空其内容。
-    # vite dev server 会缓存 public 目录清单，若把该目录整个删除再重建，
-    # 清单会失效，导致 /archive/library/<slug>/** 全部回落到 SPA 外壳（数据读不到），
-    # 表现为阅读器一直停在「正在载入档案…」。
+    # 只删除文件、保留目录结构。
+    # vite dev server 会缓存 public 目录清单；若把 text/ raw/ 这类目录整个删除再重建，
+    # 该目录下所有文件都会失效——请求回落到 SPA 外壳（HTTP 200 但内容是首页），
+    # 表现为阅读器正文/原文空白，且必须重启 dev server 才恢复。
+    OUT_DIRS = {"text", "raw", "source"}
     if out.exists():
-        for child in out.iterdir():
-            if child.is_dir():
-                shutil.rmtree(child)
-            else:
-                child.unlink()
-    (out / "text").mkdir(parents=True, exist_ok=True)
-    (out / "raw").mkdir(parents=True, exist_ok=True)
+        for path in sorted(out.rglob("*"), key=lambda p: len(p.parts), reverse=True):
+            if path.is_file():
+                path.unlink()
+            elif path.is_dir() and path.name not in OUT_DIRS:
+                path.rmdir()          # 上一次导入遗留的未知目录才删
+    for d in OUT_DIRS:
+        (out / d).mkdir(parents=True, exist_ok=True)
 
     tmp = Path(tempfile.mkdtemp(prefix="archive-import-"))
     try:
