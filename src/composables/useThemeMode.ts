@@ -1,42 +1,20 @@
 /**
- * 主题模式 composable：浅色/深色切换 + 持久化 + 系统偏好默认。
+ * 主题模式 composable —— Linear 皮肤为深色，站点为深色固定（dark-only）。
  *
- * - 首帧主题由 index.html 内联脚本写入 html[data-theme]，本模块负责与
- *   Vuetify 主题系统同步。
- * - 用户选择保存到 localStorage("hope-studio-theme")；无选择时跟随系统。
- * - isDark 为模块级单例，多处调用共享同一状态。
+ * - 本站「完全 Linear」风格，只保留深色皮肤；浅色（政务）仅存于 /archive/legacy
+ *   旧站静态快照中，不受 Vue 主题影响。
+ * - 为了彻底避免「旧站残留 localStorage(light) / 系统浅色偏好」导致首屏闪成浅色、
+ *   白字 hero 隐形的问题，这里强制 isDark 恒为 true，不再读存储或跟随系统。
+ * - 保留 isDark / toggle / initFromDocument 三个导出，兼容现有调用点。
  */
 import { useTheme } from "vuetify";
-import { ref, watch } from "vue";
-
-const STORAGE_KEY = "hope-studio-theme";
+import { ref } from "vue";
 
 export type ThemeName = "light" | "dark";
 
-// 模块级单例：App.vue 与各组件共享
-const isDark = ref(false);
+// 模块级单例：始终为深色
+const isDark = ref(true);
 let syncDocument: (() => void) | null = null;
-
-function readStoredTheme(): ThemeName | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const t = window.localStorage.getItem(STORAGE_KEY);
-    return t === "dark" || t === "light" ? t : null;
-  } catch {
-    return null;
-  }
-}
-
-function systemTheme(): ThemeName {
-  if (typeof window === "undefined") return "light";
-  try {
-    return window.matchMedia?.("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  } catch {
-    return "light";
-  }
-}
 
 export function useThemeMode() {
   const theme = useTheme();
@@ -44,58 +22,30 @@ export function useThemeMode() {
   if (!syncDocument) {
     syncDocument = () => {
       if (typeof document === "undefined") return;
-      document.documentElement.dataset.theme = theme.global.name.value;
+      document.documentElement.dataset.theme = "dark";
     };
   }
 
-  /** 与 html[data-theme]（预加载脚本设定的值）对齐，避免挂载时闪跳 */
   function initFromDocument() {
-    const docTheme =
-      typeof document !== "undefined"
-        ? document.documentElement.dataset.theme
-        : undefined;
-    if (docTheme === "dark" || docTheme === "light") {
-      theme.global.name.value = docTheme;
-    } else {
-      theme.global.name.value = readStoredTheme() ?? systemTheme();
-    }
-    isDark.value = theme.global.name.value === "dark";
+    // 深色固定：无论 html[data-theme] 被预加载脚本写成什么，都归一为深色
+    theme.global.name.value = "dark";
+    isDark.value = true;
+    syncDocument?.();
   }
 
-  function apply(name: ThemeName) {
-    theme.global.name.value = name;
-    isDark.value = name === "dark";
-    try {
-      window.localStorage.setItem(STORAGE_KEY, name);
-    } catch {
-      /* 忽略隐私模式下的存储异常 */
-    }
+  function apply(_name: ThemeName) {
+    // dark-only：忽略传入的浅色，始终深色
+    theme.global.name.value = "dark";
+    isDark.value = true;
     syncDocument?.();
   }
 
   function toggle() {
-    apply(theme.global.name.value === "dark" ? "light" : "dark");
+    // dark-only：开关无意义，保持深色
+    apply("dark");
   }
 
-  // 跟随系统偏好（仅当用户未显式选择时）
-  if (typeof window !== "undefined" && window.matchMedia) {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => {
-      if (!readStoredTheme()) {
-        theme.global.name.value = mq.matches ? "dark" : "light";
-        isDark.value = theme.global.name.value === "dark";
-        syncDocument?.();
-      }
-    };
-    mq.addEventListener?.("change", onChange);
-  }
-
-  watch(
-    () => theme.global.name.value,
-    (name) => {
-      isDark.value = name === "dark";
-    }
-  );
+  // 不跟随系统偏好，也不监听其变化，杜绝浅色注入
 
   return { isDark, toggle, initFromDocument };
 }

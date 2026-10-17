@@ -96,6 +96,10 @@
 
   .home
     position: relative
+    // 首页整体固定在近黑 Linear 画布上，避免任何浅色主题把白字 hero 顶成白底
+    background: #010102
+    min-height: 100vh
+    overflow: clip
     // Linear 标志性的顶部薰衣草辉光（叠加在近黑画布上，制造纵深）
     &::before
       content: ""
