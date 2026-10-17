@@ -42,7 +42,7 @@ const links = [
         <span>友情链接</span>
         <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
       </div>
-      <div class="text-body-1" style="color: #3c4852; font-family: var(--gov-font-family);">
+      <div class="text-body-1" style="color: var(--gov-body-1); font-family: var(--gov-font-family);">
         想要交换友链？欢迎通过
         <router-link to="/join" class="text-primary text-decoration-none">加入我们</router-link>
         页面留下站点名称、地址与简介。

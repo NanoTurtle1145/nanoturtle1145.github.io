@@ -35,57 +35,37 @@
 <style lang="sass">
 @use "@/styles/variable" as *
 
+// 数据条：近黑 + 薰衣草辉光（Linear），排版仍为政务的四格数据
 .rating
   margin: 3.2rem 0 0
   padding: 2.8rem 0 3.2rem
   width: 100%
-  background: linear-gradient(135deg, #1867c0 0%, #143d6e 100%)
-  background-size: 100% 100%
-  background-position: 50%
+  background: radial-gradient(120% 180% at 85% -10%, rgba(94,106,210,.18) 0%, transparent 55%), #0b0c0e
+  border-top: 1px solid #23252a
+  border-bottom: 1px solid #23252a
 
   &__content
     display: flex
     align-items: center
     justify-content: space-between
-    @media screen and (max-width: 1279px)
-      >
-        :nth-child(1)
-          border-right: 1px solid #e1e4e8
-        :nth-child(2)
-          border-bottom: 1px solid #e1e4e8      
-        :nth-child(3)
-          border-top: 1px solid #e1e4e8
-        :nth-child(4)
-          border-left: 1px solid #e1e4e8
-  &-star
-    vertical-align: bottom
-    padding-bottom: 6px
+
   &-item
-    background: hsla(0,0%,100%,.15)
-    padding: 1.5rem 1.3rem 1.5rem 1.4rem !important
-    color: white
-    border: 1px solid hsla(0,0%,100%,.28)
-    backdrop-filter: blur(10px)
-    -webkit-backdrop-filter: blur(10px)
-    transition: background .35s var(--md3e-motion-emphasized), transform .35s var(--md3e-motion-emphasized-decelerate)
-    &:hover
-      background: hsla(0,0%,100%,.24)
-      transform: translateY(-4px)
+    padding: .6rem 1.3rem
     &-tip
       font-size: $body-1-font-size
       line-height: $body-1-line-height
-      color: inherit
+      color: #8a8f98
     &-data
       font-size: $body-1-font-size
       line-height: $body-1-line-height
-      color: inherit
-      margin-top: .8rem
+      color: #f7f8f8
+      margin-top: .35rem
       white-space: nowrap
       a
         font-size: 2.4rem
         line-height: 2.8rem
-        color: inherit
+        color: #ffffff
         margin-right: .3rem
         &:hover
-          color: rgb(var(--v-theme-primary))  
+          color: #8b94f5
 </style>

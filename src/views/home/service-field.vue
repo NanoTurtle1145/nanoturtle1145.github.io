@@ -1,90 +1,116 @@
 <template>
-  <section id="serviceField" class="service-field">
+  <section id="serviceField" class="notice" aria-label="最新动态">
     <v-container>
-      <v-row>
-        <v-banner class="bg-transparent" border="none">
-          <template v-slot:prepend>
-            <v-avatar icon="mdi-room-service-outline"></v-avatar>
-          </template>       
-          <template v-slot:text>
-            <p class="service-field-title">有希望者，事竟成。</p>
-            <p class="service-field-text">Where there is a hope, there is a way.</p>            
-          </template>          
-        </v-banner>
-        <v-col class="d-none d-md-flex align-center">
-          <v-hover v-for="link in outLinks"><template v-slot:default="{ isHovering, props }">
-            <a :href="link.href" class="text-decoration-none">
-              <v-btn
-                v-bind="props"
-                :class="isHovering ? 'bg-primary' : undefined"
-                class="service-field-item mr-2" 
-                variant="flat" 
-                rounded="0" 
-                density="comfortable">{{link.text}}</v-btn>
-            </a>
-          </template></v-hover>
-          
-          <v-menu>
-            <template v-slot:activator="{ props }">
-              <v-btn class="service-field-item" size="x-small" height="28" width="28" rounded="0" variant="flat" density="comfortable" v-bind="props">
-                <v-icon icon="mdi-chevron-down"></v-icon>        
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item v-for="(link, index) in innerLinks" :key="index" :value="index">
-                <a :href="link.href" class="text-decoration-none">
-                  <v-list-item-title class="service-field-item">{{ link.text }}</v-list-item-title>
-                </a>
-              </v-list-item>
-            </v-list>
-          </v-menu>          
-        </v-col>
-      </v-row>
+      <div class="notice-inner">
+        <span class="notice-label">最新动态</span>
+        <div class="notice-list">
+          <router-link
+            v-for="post in latest"
+            :key="post.slug"
+            class="notice-item"
+            :to="`/posts/${post.slug}`"
+          >
+            <span class="notice-dot" aria-hidden="true"></span>
+            <span class="notice-title" :title="post.title">{{ post.title }}</span>
+            <time class="notice-date" :datetime="post.date">{{ post.shortDate }}</time>
+          </router-link>
+        </div>
+        <router-link class="notice-more" to="/posts">
+          <span>全部文章</span>
+          <v-icon icon="mdi-arrow-right" size="14" />
+        </router-link>
+      </div>
     </v-container>
   </section>
 </template>
 <script setup>
-  const outLinks = [
-    {text: "全部文章", href: "/posts"},
-    {text: "项目一览", href: "/projects"},
-    {text: "成员列表", href: "/members"},
-    {text: "关于我们", href: "/about"},
-    {text: "加入我们", href: "/join"},
-    {text: "友情链接", href: "/friends"}
-  ]
-  const innerLinks = [
-    {text: "归档处", href: "/archive"},
-    {text: "HopeOS", href: "/hopeos"},
-    {text: "个人博客", href: "https://ntblog.cn"}
-  ]
+  import { computed } from 'vue'
+  import { posts } from '../../data/posts'
+
+  // 首页首屏下方的一条「最新动态」：3 条最新文章，作为 hero 与正文之间的过渡带
+  const latest = computed(() =>
+    [...posts]
+      .sort((a, b) => (a.date < b.date ? 1 : -1))
+      .slice(0, 3)
+      .map((p) => ({ ...p, shortDate: p.date.slice(5) }))
+  )
 </script>
 <style lang="sass" scoped>
   @use "@/styles/variable" as *
-  .service-field
-    background: $background-color
-    &-title
-      font-size: $body-1-font-size !important
-      font-weight: $header-font-weight !important
-      line-height: $body-1-line-height !important
-      letter-spacing: normal
-      font-family: $body-font-family
-      color: $header-color
-    &-text
-      font-size: $body-2-font-size !important
-      font-weight: normal
-      line-height: $body-2-line-height !important
-      letter-spacing: normal
-      font-family: $body-font-family
-      color: $body-2-color
+
+  .notice
+    background: #0f1011
+    border-top: 1px solid #23252a
+    border-bottom: 1px solid #23252a
+    &-inner
+      display: flex
+      align-items: center
+      gap: 2rem
+      min-height: 3.4rem
+      padding: .55rem 0
+    &-label
+      flex: none
+      display: inline-flex
+      align-items: center
+      color: rgb(var(--v-theme-primary))
+      font-family: $heading-font-family
+      font-size: $body-1-font-size
+      font-weight: 600
+      &::before
+        content: ""
+        display: inline-block
+        width: .3rem
+        height: 1rem
+        margin-right: .5rem
+        background: linear-gradient(180deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-primary)))
+    &-list
+      display: flex
+      flex: 1
+      gap: 2.2rem
+      min-width: 0
     &-item
-      font-size: $body-1-font-size !important
-      font-weight: $header-font-weight !important
-      line-height: $body-1-line-height !important
-      letter-spacing: normal
+      display: inline-flex
+      flex: 1 1 0
+      align-items: center
+      gap: .45rem
+      min-width: 0
+      color: #d0d6e0
       font-family: $body-font-family
-      color: $header-color
+      font-size: .78rem
+      &:hover
+        color: #8b94f5
+    &-dot
+      flex: none
+      width: .3rem
+      height: .3rem
+      border-radius: 50%
+      background: rgba(var(--v-theme-primary), .5)
+    &-title
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+    &-date
+      flex: none
+      color: #62666d
+      font-size: .7rem
+      font-variant-numeric: tabular-nums
+    &-more
+      flex: none
+      display: inline-flex
+      align-items: center
+      gap: .2rem
+      color: #8a8f98
+      font-size: .72rem
+      &:hover
+        color: #8b94f5
+
+  @media (max-width: 960px)
+    .notice-inner
+      gap: 1rem
+    .notice-item:nth-child(n+2)
+      display: none
+    .notice-date
+      display: none
+    .notice-more
+      font-size: .7rem
 </style>
-
-
-
-

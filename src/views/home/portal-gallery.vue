@@ -24,7 +24,7 @@
             <v-chip 
               v-if="gallery.chip" 
               class="ma-2 float-right"
-              color="red" 
+              color="#C62828" 
               variant="flat" 
               size="small" 
             >{{gallery.chip}}</v-chip>

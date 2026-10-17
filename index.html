@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#1867C0" />
+    <meta name="theme-color" content="#0F1011" />
     <meta name="color-scheme" content="light dark" />
     <meta name="description" content="希望工作室（Hope Studio）官方网站——一个由学生组成的技术兴趣团队，专注桌面应用开发、操作系统探索与开源分享。有希望者，事竟成。" />
     <meta property="og:type" content="website" />
@@ -20,16 +20,11 @@
       (function () {
         try {
           var t = localStorage.getItem("hope-studio-theme");
-          if (t !== "dark" && t !== "light") {
-            t =
-              window.matchMedia &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
-          }
+          // Linear 皮肤为默认；用户显式选过浅色则保留（政务阅读模式）
+          if (t !== "dark" && t !== "light") t = "dark";
           document.documentElement.dataset.theme = t;
         } catch (e) {
-          document.documentElement.dataset.theme = "light";
+          document.documentElement.dataset.theme = "dark";
         }
       })();
     </script>

@@ -65,7 +65,7 @@ function clearSearch() {
         <span>全部文章</span>
         <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
       </div>
-      <div class="text-body-1" style="color: #3c4852; font-family: var(--gov-font-family);">
+      <div class="text-body-1" style="color: var(--gov-body-1); font-family: var(--gov-font-family);">
         共 {{ posts.length }} 篇。内容迁移自旧版官网 hopestudio.top，已做本地归档。
         <template v-if="normalized">
           — 搜索「{{ search }}」找到 {{ filtered.length }} 篇

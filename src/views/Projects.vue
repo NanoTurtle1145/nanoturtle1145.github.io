@@ -54,7 +54,7 @@ const statusColor = (s: string) =>
         <span>项目</span>
         <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
       </div>
-      <div class="text-body-1" style="color: #3c4852; font-family: var(--gov-font-family);">
+      <div class="text-body-1" style="color: var(--gov-body-1); font-family: var(--gov-font-family);">
         Under Construction… 工作室做过和正在做的一些东西。
       </div>
     </div>

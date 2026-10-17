@@ -34,7 +34,7 @@ const members = [
         <span>成员列表</span>
         <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
       </div>
-      <div class="text-body-1" style="color: #3c4852; font-family: var(--gov-font-family);">
+      <div class="text-body-1" style="color: var(--gov-body-1); font-family: var(--gov-font-family);">
         由于一些特殊原因，此处某些成员仅有昵称的缩写。
       </div>
     </div>
