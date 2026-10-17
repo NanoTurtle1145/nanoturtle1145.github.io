@@ -36,8 +36,21 @@ scripts/         构建后处理
 
 ## 部署
 
-推送到 `master` 分支后，GitHub Actions（`.github/workflows/deploy.yml`）自动构建并发布到 GitHub Pages。
+站点由「构建产物 + Pages 仓库」两步发布，**不依赖 GitHub Actions**：
 
-自定义域名通过 `public/CNAME` 配置，因此 `vite.config.ts` 中 `base` 为 `/`。
+```bash
+npm run build
+# 同步到 Pages 仓库（必须排除 .git 与 .gitignore，后者是 Pages 仓库自己跟踪的文件）
+rsync -a --delete --exclude=.git --exclude=.gitignore dist/ nanoturtle1145.github.io/
+cd nanoturtle1145.github.io && git add -A && git commit -m "deploy: ..." && git push origin main
+```
+
+- GitHub Pages 采用 legacy 模式：发布源是同一仓库的 `main` 分支（产物），
+  源码在 `master` 分支。自定义域名通过 `public/CNAME` 配置，因此
+  `vite.config.ts` 中 `base` 为 `/`。
+- `.github/workflows/deploy.yml` 与当前 Pages 配置不兼容：推 `master` 会触发它
+  并失败，它不会发布站点；真正的发布是上面推 `main`。
+
+更完整的发布检查清单与验证命令见 [context.md](./context.md)。
 
 动态路由 `/posts/:slug` 需要显式列出才能预渲染，这一步由 `vite.config.ts` 的 `includedRoutes` 从 `posts.ts` 中提取 slug 完成——新增文章时无需手动维护路径清单。
