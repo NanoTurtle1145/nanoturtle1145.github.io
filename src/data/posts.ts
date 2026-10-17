@@ -17,6 +17,17 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    "id": 775,
+    "slug": "revival",
+    "title": "满血复活：关于「有缘再见」的说明",
+    "date": "2026-10-17",
+    "category": "工作室公告",
+    "tags": ["公告"],
+    "excerpt": "7 月 21 日那篇《大家，有缘再见！》说的是旧版网站要关闭，不是工作室解散。我们没有走——网站今天满血复活，换了一副全新的 Linear 面貌回来了。",
+    "origin": "",
+    "content": '<p>如果你是因为 2026 年 7 月 21 日那篇《大家，有缘再见！》找到这里，请放心——<strong>我们没有走，工作室也一直没有解散。</strong>那篇文章说的是旧版官网要关闭，不是这个工作室要结束。今天，希望工作室的网站<strong>满血复活</strong>了，用一副全新的样子回来了。</p>\n\n<h2>那篇「有缘再见」到底在说什么</h2>\n\n<p>2026 年 7 月 21 日的告别文，背景是：旧版官网（基于 WordPress 的 www.hopestudio.top）因为服务器方案调整，计划在 8 月 20 日关闭。那是一份「网站搬家」的告别，而不是「工作室解散」的讣告。</p>\n\n<p>当时我们把整站做了快照，内容、配图和资料全都备份下来，为的就是今天能把它们原样找回来——它们没有丢，都好好躺在本站的<a href="/archive">归档处</a>里。</p>\n\n<h2>现在是什么状态</h2>\n\n<ul>\n<li><strong>网站满血复活</strong>：新版官网已上线，换了一套全新的 Linear 视觉，更简洁、更清爽；</li>\n<li><strong>内容完整保留</strong>：旧站的 33 篇文章、配图全部迁移并归档，链接已重写为站内地址；</li>\n<li><strong>归档处常开</strong>：<a href="/archive">归档处</a>里连旧版网站的整站快照都原样保留，想重温当年随时能看；</li>\n<li><strong>项目都在推进</strong>：HopeOS、RootMyS9280、WinUI 笔记等项目仍在维护，见<a href="/projects">项目一览</a>；</li>\n<li><strong>口号没变</strong>：<strong>有希望者，事竟成。</strong>Where there is a hope, there is a way.</li>\n</ul>\n\n<h2>所以，别担心</h2>\n\n<p>「再见」是跟旧版的网站告别，不是跟我们告别。我们还在，写文章还在继续，踩坑笔记还在更新，代码还在 GitHub 上开源。欢迎回来看看，也欢迎新朋友加入。</p>\n\n<p>希望工作室 · Hope Studio</p>\n\n<p>2026 年 10 月 17 日</p>',
+  },
+  {
     "id": 774,
     "slug": "farewell-and-see-you-again",
     "title": "大家，有缘再见！",
