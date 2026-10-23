@@ -1,22 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
+import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import GovHeader from "./components/GovHeader.vue";
 import Footer from "./components/Footer.vue";
 import { useThemeMode } from "./composables/useThemeMode";
 
 const { initFromDocument } = useThemeMode();
-
-// 回到顶部 FAB
-const showFab = ref(false);
-
-function onScroll() {
-  showFab.value = typeof window !== "undefined" && window.scrollY > 480;
-}
-function scrollTop() {
-  if (typeof window === "undefined") return;
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
 
 /* ---- 滚动入场动画：观察 main 下的区块，进入视口时添加 .is-visible ---- */
 let revealObserver: IntersectionObserver | null = null;
@@ -46,7 +35,6 @@ function observeReveals() {
 const route = useRoute();
 onMounted(() => {
   initFromDocument(); // 与 html[data-theme] 对齐，避免主题闪烁
-  if (typeof window !== "undefined") window.addEventListener("scroll", onScroll, { passive: true });
   // 首次渲染可能尚未完成，给一帧缓冲
   requestAnimationFrame(observeReveals);
 });
@@ -78,18 +66,6 @@ watch(
       </router-view>
     </v-main>
     <Footer />
-
-    <!-- 回到顶部 -->
-    <v-fab
-      v-model="showFab"
-      appear
-      icon="mdi-arrow-up"
-      location="bottom end"
-      offset
-      color="primary-container"
-      aria-label="回到顶部"
-      @click="scrollTop"
-    />
   </v-app>
 </template>
 
@@ -98,17 +74,17 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 路由过渡：轻微淡入 + 上移 */
+/* 路由过渡：淡入 + 轻微上浮 */
 .md3e-route-enter-active {
-  transition: opacity var(--md3e-duration-medium) var(--md3e-motion-emphasized),
-    transform var(--md3e-duration-medium) var(--md3e-motion-emphasized-decelerate);
+  transition: opacity 0.4s cubic-bezier(0.05, 0.7, 0.1, 1),
+    transform 0.5s cubic-bezier(0.05, 0.7, 0.1, 1);
 }
 .md3e-route-leave-active {
-  transition: opacity var(--md3e-duration-short) var(--md3e-motion-emphasized-accelerate);
+  transition: opacity 0.18s cubic-bezier(0.3, 0, 0.8, 0.15);
 }
 .md3e-route-enter-from {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(12px);
 }
 .md3e-route-leave-to {
   opacity: 0;

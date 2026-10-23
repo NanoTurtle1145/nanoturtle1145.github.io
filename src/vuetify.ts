@@ -19,22 +19,25 @@ export default createVuetify({
   directives,
   ssr: true,
   defaults: {
+    // 圆角统一走 src/style.css 的 --shape-* 刻度（对齐 MD3 / mdui）：
+    // card 12 / btn pill / chip 8 / field 8。这里与之一致，
+    // 样式冲突时由「统一控件形状层」兜底（!important + unlayered）。
     VCard: {
-      // Linear：小圆角 + 无投影（层级靠发丝描边/灰阶），排版沿用政务区块
-      rounded: "8",
+      // Linear：medium 圆角 + 无投影（层级靠发丝描边/灰阶），排版沿用政务区块
+      rounded: "12",
       elevation: 0,
       border: true,
     },
     VBtn: {
-      rounded: "6",
+      rounded: "pill",
       textTransform: "none",
     },
     VChip: { rounded: "8" },
-    VTextField: { variant: "outlined", rounded: "6" },
-    VSelect: { variant: "outlined", rounded: "6" },
-    VTextarea: { variant: "outlined", rounded: "6" },
-    VAlert: { rounded: "8", variant: "tonal" },
-    VNavigationDrawer: { rounded: "8" },
+    VTextField: { variant: "outlined", rounded: "8" },
+    VSelect: { variant: "outlined", rounded: "8" },
+    VTextarea: { variant: "outlined", rounded: "8" },
+    VAlert: { rounded: "12", variant: "tonal" },
+    VNavigationDrawer: { rounded: "0" },
     VList: { rounded: "8" },
     VTabs: { color: "primary" },
   },

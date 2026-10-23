@@ -1,6 +1,19 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useHead } from "@vueuse/head";
 import BannerCarousel from "../components/BannerCarousel.vue";
+import { posts } from "../data/posts";
+
+/**
+ * 项目动态：从站内文章里筛出提及 HopeOS 的（数据驱动，不虚构内容）。
+ * 目前只有一篇，将来写 HopeOS 相关文章时这里会自动多出来。
+ */
+const hopeosNews = computed(() =>
+  [...posts]
+    .filter((p) => /hopeos/i.test(`${p.title} ${p.excerpt} ${p.content}`))
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, 3)
+);
 
 useHead({
   title: "HopeOS | 希望工作室",
@@ -16,6 +29,9 @@ useHead({
 // 自动轮播的配图：合成 banner + 各真实运行场景截图
 const showcase = [
   "/banner.png",
+  "/media/hopeos/icewm-titled-window.png",
+  "/media/hopeos/icewm-managed-client.png",
+  "/media/hopeos/icewm-first-paint.png",
   "/media/hopeos/desktop.png",
   "/media/hopeos/stardustui.png",
   "/media/hopeos/ver.png",
@@ -65,6 +81,10 @@ const done = [
   {
     title: "POSIX 内核",
     desc: "每进程 fd/cwd、文件 I/O syscall、最小 libc、用户态 shell（fork/execve/重定向）、fork+COW 页表、宿主单测全绿。",
+  },
+  {
+    title: "X11 服务器 + IceWM",
+    desc: "把 X 服务器和 IceWM 窗口管理器搬进了 HopeOS：窗口收养、标题栏与任务栏按钮、客户端内容渲染已经工作（图标与壁纸待收尾）。",
   },
 ];
 
@@ -122,7 +142,7 @@ const statusColor = (s: string) =>
       </div>
       <v-row class="mb-6">
         <v-col v-for="f in facts" :key="f.label" cols="6" md="3">
-          <v-card elevation="0" class="pa-2">
+          <v-card elevation="0" class="pa-2 facts-card">
             <v-card-text>
               <div class="text-caption text-primary mb-1">{{ f.label }}</div>
               <div class="text-body-1 text-on-surface font-weight-medium">{{ f.value }}</div>
@@ -147,7 +167,7 @@ const statusColor = (s: string) =>
       </div>
       <v-row>
         <v-col v-for="item in done" :key="item.title" cols="12" md="6" lg="4">
-          <v-card elevation="0" hover class="h-100 pa-1">
+          <v-card elevation="0" hover class="h-100 pa-1 done-card">
             <v-card-text>
               <div class="d-flex align-center ga-2 mb-3">
                 <v-icon icon="mdi-check-circle" color="success" size="small" />
@@ -175,8 +195,8 @@ const statusColor = (s: string) =>
       <v-card elevation="0">
         <v-card-text class="pa-6">
           <div class="d-flex flex-column ga-4">
-            <div v-for="step in roadmap" :key="step.stage" class="d-flex align-start ga-4">
-              <v-chip size="small" :color="statusColor(step.status)" variant="tonal" class="mt-1 shrink-0">
+            <div v-for="step in roadmap" :key="step.stage" class="d-flex align-start ga-4 roadmap-row">
+              <v-chip size="small" :color="statusColor(step.status)" variant="tonal" class="mt-1 shrink-0 roadmap-chip">
                 {{ step.status }}
               </v-chip>
               <div>
@@ -189,6 +209,34 @@ const statusColor = (s: string) =>
           </div>
         </v-card-text>
       </v-card>
+    </v-container>
+
+    <!-- 项目动态（站内提及 HopeOS 的文章，自动汇总） -->
+    <v-container v-if="hopeosNews.length" class="py-8">
+      <div class="mb-6">
+        <div class="gov-header-1">
+          <span>项目动态</span>
+          <v-icon icon="mdi-arrow-right-thick" size="x-small" end />
+        </div>
+      </div>
+      <v-row>
+        <v-col v-for="n in hopeosNews" :key="n.slug" cols="12" md="6" lg="4">
+          <router-link :to="`/posts/${n.slug}`" class="text-decoration-none d-block h-100">
+            <v-card elevation="0" hover class="h-100 news-card">
+              <v-card-text>
+                <div class="d-flex flex-wrap align-center ga-2 mb-3">
+                  <v-chip size="x-small" color="primary" variant="tonal">{{ n.category }}</v-chip>
+                  <span class="text-caption text-medium-emphasis">{{ n.date }}</span>
+                </div>
+                <div class="text-subtitle-1 font-weight-bold text-on-surface mb-2 news-card-title">
+                  {{ n.title }}
+                </div>
+                <div class="text-body-2 text-medium-emphasis news-card-text">{{ n.excerpt }}</div>
+              </v-card-text>
+            </v-card>
+          </router-link>
+        </v-col>
+      </v-row>
     </v-container>
 
     <!-- 在线体验 -->
@@ -205,7 +253,7 @@ const statusColor = (s: string) =>
         （这是网页演示，并非真实运行的内核。）
       </div>
       <div
-        class="rounded-xl overflow-hidden border"
+        class="rounded-xl overflow-hidden border emulator-frame"
         style="aspect-ratio: 16 / 10; min-height: 420px; background: #000; border-color: rgb(var(--v-theme-outline))"
       >
         <iframe
@@ -226,5 +274,157 @@ const statusColor = (s: string) =>
     </v-container>
   </div>
 </template>
+
+<style lang="sass" scoped>
+  // ---------------- 入场动画 ----------------
+  @keyframes hopeos-rise
+    from
+      opacity: 0
+      transform: translateY(16px)
+    to
+      opacity: 1
+      transform: translateY(0)
+
+  .pb-8
+    > .v-container
+      animation: hopeos-rise .7s cubic-bezier(.05, .7, .1, 1) both
+      &:nth-child(1)
+        animation-delay: .04s
+      &:nth-child(2)
+        animation-delay: .1s
+      &:nth-child(3)
+        animation-delay: .16s
+      &:nth-child(4)
+        animation-delay: .22s
+      &:nth-child(5)
+        animation-delay: .28s
+      &:nth-child(6)
+        animation-delay: .34s
+      &:nth-child(7)
+        animation-delay: .4s
+
+  // ---------------- 标题与正文 ----------------
+  .gov-header-1
+    font-size: 1.35rem
+    font-weight: 700
+    letter-spacing: -.01em
+    transition: color .2s ease
+    &:hover
+      color: rgb(var(--v-theme-primary))
+
+  .text-display-large
+    font-weight: 700
+    letter-spacing: -.035em
+    background: linear-gradient(120deg, rgb(var(--v-theme-on-surface)) 0%, rgb(var(--v-theme-primary)) 105%)
+    -webkit-background-clip: text
+    background-clip: text
+    -webkit-text-fill-color: transparent
+
+  .text-body-1 code
+    background: rgba(var(--v-theme-primary), .14)
+    color: rgb(var(--v-theme-primary))
+    padding: .1rem .4rem
+    border-radius: var(--shape-xs)
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
+    font-size: .9em
+
+  // ---------------- 卡片基线 ----------------
+  .v-card
+    border-radius: var(--shape-md) !important
+    border: 1px solid rgb(var(--v-theme-outline-variant), .55)
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1), box-shadow .35s cubic-bezier(.4, 0, .2, 1), border-color .3s ease
+
+  .v-chip
+    border-radius: var(--shape-sm)
+    font-weight: 500
+
+  // 项目概况小卡：左侧主题色描边
+  .facts-card
+    border-left: 3px solid rgb(var(--v-theme-primary))
+    &:hover
+      transform: translateY(-3px)
+      box-shadow: 0 8px 22px rgba(var(--v-theme-primary), .12)
+
+  // 已实现清单卡片
+  .done-card
+    &:hover
+      transform: translateY(-4px)
+      border-color: rgb(var(--v-theme-primary), .5)
+      box-shadow: 0 12px 28px rgba(var(--v-theme-primary), .12)
+
+  // ---------------- 开发路线 ----------------
+  .roadmap-row
+    position: relative
+    padding: .4rem .5rem
+    border-radius: var(--shape-sm)
+    transition: background .25s ease, transform .25s ease
+    & + .roadmap-row
+      border-top: 1px solid rgb(var(--v-theme-outline-variant), .45)
+    &:hover
+      background: rgba(var(--v-theme-primary), .06)
+      transform: translateX(4px)
+
+  .roadmap-chip
+    min-width: 3.8rem
+    justify-content: center
+    font-weight: 600
+    letter-spacing: .02em
+
+  // ---------------- 项目动态 ----------------
+  .news-card
+    display: flex
+    flex-direction: column
+    &:hover
+      transform: translateY(-4px)
+      border-color: rgb(var(--v-theme-primary), .5)
+      box-shadow: 0 12px 30px rgba(var(--v-theme-primary), .14)
+
+  .news-card-title
+    transition: color .25s ease
+    display: -webkit-box
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+    overflow: hidden
+
+  .news-card-text
+    display: -webkit-box
+    -webkit-line-clamp: 3
+    -webkit-box-orient: vertical
+    overflow: hidden
+
+  .news-card:hover .news-card-title
+    color: rgb(var(--v-theme-primary))
+
+  // ---------------- 在线体验 ----------------
+  .emulator-frame
+    border-radius: var(--shape-lg) !important
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35)
+    transition: box-shadow .4s ease, border-color .4s ease, transform .4s ease
+    &:hover
+      transform: translateY(-2px)
+      border-color: rgb(var(--v-theme-primary), .7) !important
+      box-shadow: 0 16px 44px rgba(0, 0, 0, .45), 0 0 0 1px rgba(var(--v-theme-primary), .35)
+
+  // ---------------- 返回 ----------------
+  .pb-12 .v-btn
+    border-radius: var(--shape-btn)
+    text-transform: none
+    font-weight: 600
+    transition: transform .25s ease, background .25s ease
+    &:hover
+      transform: translateX(-4px)
+
+  // ---------------- 响应式 ----------------
+  @media (max-width: 960px)
+    .gov-header-1
+      font-size: 1.2rem
+
+    .roadmap-row
+      padding: .35rem .25rem
+
+  @media (prefers-reduced-motion: reduce)
+    .pb-8 > .v-container
+      animation: none
+</style>
 
 

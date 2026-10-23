@@ -81,7 +81,7 @@ const legacyEras = computed(() => [
               <v-card elevation="0" hover class="h-100">
                 <v-card-text class="pa-6">
                   <div class="d-flex align-center ga-3 mb-3">
-                    <v-avatar color="primary" variant="tonal" rounded="0" size="42">
+                    <v-avatar color="primary" variant="tonal" size="42">
                       <v-icon icon="mdi-history" />
                     </v-avatar>
                     <div>
@@ -133,7 +133,7 @@ const legacyEras = computed(() => [
             <v-card elevation="0" class="h-100 d-flex flex-column">
               <v-card-text class="pa-6 d-flex flex-column h-100">
                 <div class="d-flex align-center ga-3 mb-3">
-                  <v-avatar color="primary" variant="tonal" rounded="0" size="42">
+                  <v-avatar color="primary" variant="tonal" size="42">
                     <v-icon icon="mdi-book-open-page-variant-outline" />
                   </v-avatar>
                   <div class="flex-1">
@@ -172,15 +172,12 @@ const legacyEras = computed(() => [
                     :to="item.url"
                     color="primary"
                     variant="flat"
-                    rounded="0"
-                    prepend-icon="mdi-book-open-variant"
                   >
                     在线阅读
                   </v-btn>
                   <a :href="item.download" download class="text-decoration-none">
                     <v-btn
                       variant="outlined"
-                      rounded="0"
                       prepend-icon="mdi-download"
                     >
                       原件下载

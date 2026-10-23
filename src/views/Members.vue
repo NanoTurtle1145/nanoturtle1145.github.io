@@ -1,30 +1,11 @@
 <script setup lang="ts">
 import { useHead } from "@vueuse/head";
+import { admins, members } from "../data/members";
 
 useHead({
   title: "成员 | 希望工作室",
   meta: [{ name: "description", content: "希望工作室成员列表。" }],
 });
-
-const admins = [
-  {
-    avatar: "/member/nt.png",
-    name: "@NanoTurtle",
-    role: "管理员 · 创始人",
-    desc: "希望工作室创始人之一，元老级人物。是一位十分开朗的人，没了。个人博客 blog.nanoturtle.cn；近期沉迷 S24 Ultra 免解锁 root（开源项目 RootMyS9280）与 HopeOS。",
-  },
-  {
-    avatar: "/member/bs.png", // 可替换为实际头像路径，留空则显示首字母占位
-    name: "@BusyMitten / BusySheng",
-    role: "管理员 · 创始人",
-    desc: "希望工作室创始人之一，依旧元老级人物。他实力超群，超群，超群。",
-  },
-];
-
-const members = [
-  { name: "YP", role: "成员", desc: "" },
-  { name: "TP", role: "成员", desc: "" },
-];
 </script>
 
 <template>

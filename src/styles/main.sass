@@ -35,17 +35,21 @@ a
   height: 2.6rem
   display: inline-flex
   align-items: center
+  transition: color .2s ease
   &:before
     content: ""
     display: inline-block
     width: .35rem
     height: 1.3rem
-    border-radius: .2rem
+    border-radius: var(--shape-xs)
     background: linear-gradient(180deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-primary)))
     box-shadow: 0 0 .6rem rgba(var(--v-theme-primary), .35)
     margin-right: .75rem
+    transition: box-shadow .25s ease
   &:hover
     color: rgb(var(--v-theme-primary))
+    &:before
+      box-shadow: 0 0 1rem rgba(var(--v-theme-primary), .6)
 .header-2, .gov-header-2
   font-size: $header-2-font-size !important
   font-weight: $header-font-weight !important
@@ -61,7 +65,7 @@ a
     display: inline-block
     width: .3rem
     height: 1rem
-    border-radius: .2rem
+    border-radius: var(--shape-xs)
     background: linear-gradient(180deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-primary)))
     margin-right: .6rem
 

@@ -188,7 +188,7 @@ const fullText = [
 .license-list code {
   background: rgb(var(--v-theme-surface-variant));
   padding: 1px 6px;
-  border-radius: 4px;
+  border-radius: var(--shape-xs);
   font-size: 0.85em;
 }
 </style>

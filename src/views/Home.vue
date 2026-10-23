@@ -68,11 +68,153 @@
         <p>踩过的坑写成文档：三星 root 研究、系统美化、驱动移植，都在 GitHub 上。</p>
       </div>
     </section>
+
+    <!-- HopeOS：真实截图墙 + 能力清单 -->
+    <section id="hopeos" class="wrap sec hopeos">
+      <div class="sec-head">
+        <p class="eyebrow"><i aria-hidden="true"></i>操作系统项目</p>
+        <h2>从零手写的 <span class="grad">HopeOS</span></h2>
+        <p class="lead">
+          一个 x86-64 的 UEFI 操作系统：自己接管分页、中断与抢占式调度，写 VFS 与 ring 3
+          的 POSIX 用户态，再把 GUI 栈一层层搭起来。最近连 X11 服务器和 IceWM
+          窗口管理器都在里面跑起来了。
+        </p>
+        <div class="chips">
+          <span>抢占式调度</span>
+          <span>ring 3 + syscall</span>
+          <span>VFS / ramfs</span>
+          <span>自绘 GUI 桌面</span>
+          <span>IceWM + X11</span>
+          <span>GNU nano 移植</span>
+          <span>StarDustUI C++17</span>
+        </div>
+      </div>
+
+      <div class="shot-grid">
+        <figure
+          v-for="(s, i) in shots"
+          :key="s.src"
+          class="shot"
+          :class="{ 'shot-lg': i === 0 }"
+        >
+          <img
+            :src="s.src"
+            :alt="s.alt"
+            width="640"
+            height="480"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <b>{{ s.title }}</b>{{ s.text }}
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="cta cta-left">
+        <router-link class="btn btn-white" to="/hopeos">
+          <span>了解 HopeOS</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </router-link>
+        <router-link class="btn btn-ghost" to="/hopeos">在线体验模拟器</router-link>
+      </div>
+    </section>
+
+    <!-- 项目一览 -->
+    <section id="projects" class="wrap sec">
+      <div class="sec-head">
+        <h2>项目一览</h2>
+        <p class="lead">做过和正在做的一些东西，都还活着。</p>
+      </div>
+      <div class="proj-grid">
+        <template v-for="p in projects" :key="p.name">
+          <a
+            v-if="p.external"
+            class="proj"
+            :href="p.link"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="proj-top">
+              <h3>{{ p.name }}</h3>
+              <span class="proj-arrow" aria-hidden="true">&#8599;</span>
+            </div>
+            <p>{{ p.desc }}</p>
+            <div class="proj-tags">
+              <span v-for="st in p.status" :key="st" class="tag" :class="`tag-${statusColor(st)}`">{{ st }}</span>
+            </div>
+          </a>
+          <router-link v-else class="proj" :to="p.link">
+            <div class="proj-top">
+              <h3>{{ p.name }}</h3>
+              <span class="proj-arrow" aria-hidden="true">&#8594;</span>
+            </div>
+            <p>{{ p.desc }}</p>
+            <div class="proj-tags">
+              <span v-for="st in p.status" :key="st" class="tag" :class="`tag-${statusColor(st)}`">{{ st }}</span>
+            </div>
+          </router-link>
+        </template>
+      </div>
+      <router-link class="more" to="/projects">全部项目 →</router-link>
+    </section>
+
+    <!-- 团队 -->
+    <section id="team" class="wrap sec">
+      <div class="sec-head">
+        <h2>做这些事的人</h2>
+        <p class="lead">两个人起了个头，后来有人陆续加入。有些名字只留缩写。</p>
+      </div>
+      <div class="member-grid">
+        <div v-for="m in admins" :key="m.name" class="member">
+          <img
+            v-if="m.avatar"
+            class="member-avatar"
+            :src="m.avatar"
+            :alt="m.name"
+            width="52"
+            height="52"
+            loading="lazy"
+            decoding="async"
+          />
+          <div v-else class="member-avatar member-avatar--text">{{ m.name.charAt(0) }}</div>
+          <div class="member-body">
+            <div class="member-name">{{ m.name }}</div>
+            <div class="member-role">{{ m.role }}</div>
+            <p class="member-desc">{{ m.desc }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="chips member-chips">
+        <span v-for="m in members" :key="m.name">{{ m.name }} · {{ m.role }}</span>
+      </div>
+      <router-link class="more" to="/members">全部成员 →</router-link>
+    </section>
+
+    <!-- 加入我们 -->
+    <section id="join" class="wrap sec">
+      <div class="join-band">
+        <h2>有希望者，事竟成。</h2>
+        <p>
+          如果你也在折腾系统、写工具，或者只是想把踩过的坑记下来，
+          欢迎进来一起做点能留下来的东西。
+        </p>
+        <div class="cta">
+          <router-link class="btn btn-white" to="/join">
+            <span>加入工作室</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </router-link>
+          <router-link class="btn btn-ghost" to="/archive">逛逛归档处</router-link>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 <script setup lang="ts">
   import { computed } from "vue";
   import { posts } from "../data/posts";
+  import { projects, statusColor } from "../data/projects";
+  import { admins, members } from "../data/members";
 
   const recent = computed(() =>
     [...posts]
@@ -80,6 +222,40 @@
       .slice(0, 4)
       .map((p) => ({ ...p, shortDate: p.date.slice(5) }))
   );
+
+  // HopeOS 截图墙：文件都来自项目 docs/shots 的真实截屏
+  const shots = [
+    {
+      src: "/media/hopeos/icewm-titled-window.png",
+      alt: "IceWM 在 HopeOS 中管理的带标题栏窗口",
+      title: "IceWM 跑起来了",
+      text: "灰色标题栏「HopeOS X11 Test」+ 三个窗口按钮，客户区里是绿色文字 Hello HopeOS X11。",
+    },
+    {
+      src: "/media/hopeos/icewm-first-paint.png",
+      alt: "IceWM 桌面首帧",
+      title: "桌面首帧",
+      text: "黑色桌面、底部任务栏与右侧 LED 时钟。",
+    },
+    {
+      src: "/media/hopeos/icewm-managed-client.png",
+      alt: "IceWM 接管的客户端窗口",
+      title: "窗口管理",
+      text: "收养窗口、标题、任务栏按钮与客户端内容渲染都已工作。",
+    },
+    {
+      src: "/media/hopeos/gui-desktop.png",
+      alt: "HopeOS 自绘图形桌面",
+      title: "自绘 GUI 桌面",
+      text: "gfx → wm → compositor → desktop 一整套自己写。",
+    },
+    {
+      src: "/media/hopeos/start-menu.png",
+      alt: "HopeOS 开始菜单",
+      title: "开始菜单",
+      text: "点「开始」拉起应用列表，Terminal / Notepad / FileMgr / Snake。",
+    },
+  ];
 </script>
 <style lang="sass" scoped>
   $bg: #010102
@@ -93,6 +269,15 @@
   $subtle: #62666d
   $accent: #8b94f5
   $accent-soft: rgba(94, 106, 210, .16)
+
+  // hero 入场：逐级上浮淡入
+  @keyframes rise-in
+    from
+      opacity: 0
+      transform: translateY(18px)
+    to
+      opacity: 1
+      transform: translateY(0)
 
   .home
     position: relative
@@ -115,6 +300,39 @@
     margin: 0 auto
     padding: 0 32px
 
+  // 通用胶囊按钮（hero / HopeOS / 加入我们 共用）
+  .btn
+    display: inline-flex
+    align-items: center
+    gap: 8px
+    height: 40px
+    padding: 0 18px
+    border-radius: var(--shape-full)
+    font-size: 14px
+    font-weight: 500
+    border: 1px solid transparent
+    transition: transform .15s ease, background .15s ease, border-color .15s ease
+    svg
+      width: 14px
+      height: 14px
+      stroke: currentColor
+      stroke-width: 2
+      fill: none
+  .btn-white
+    background: #fff
+    color: #08090a
+    &:hover
+      background: #e9eaee
+      transform: translateY(-1px)
+  .btn-ghost
+    border-color: $line
+    color: $ink-2
+    background: rgba(255, 255, 255, .015)
+    &:hover
+      border-color: #3a3d45
+      color: #fff
+      background: rgba(255, 255, 255, .04)
+
   .hero
     padding: 104px 32px 56px
     text-align: center
@@ -130,9 +348,10 @@
       text-transform: uppercase
       color: $muted
       border: 1px solid $line
-      border-radius: 999px
+      border-radius: var(--shape-full)
       padding: 7px 14px
       background: rgba(255, 255, 255, .02)
+      animation: rise-in .7s cubic-bezier(.05, .7, .1, 1) both
       i
         width: 6px
         height: 6px
@@ -147,6 +366,7 @@
       letter-spacing: -.022em
       font-weight: 600
       color: $ink
+      animation: rise-in .7s .12s cubic-bezier(.05, .7, .1, 1) both
       .grad
         background: linear-gradient(180deg, #f7f8f8 0%, #8a8f98 100%)
         -webkit-background-clip: text
@@ -158,48 +378,20 @@
       color: $muted
       font-size: 16px
       line-height: 1.75
+      animation: rise-in .7s .22s cubic-bezier(.05, .7, .1, 1) both
     .cta
       display: flex
       justify-content: center
       gap: 12px
       margin-top: 32px
-      .btn
-        display: inline-flex
-        align-items: center
-        gap: 8px
-        height: 40px
-        padding: 0 18px
-        border-radius: 999px
-        font-size: 14px
-        font-weight: 500
-        border: 1px solid transparent
-        transition: transform .15s ease, background .15s ease, border-color .15s ease
-        svg
-          width: 14px
-          height: 14px
-          stroke: currentColor
-          stroke-width: 2
-          fill: none
-      .btn-white
-        background: #fff
-        color: #08090a
-        &:hover
-          background: #e9eaee
-          transform: translateY(-1px)
-      .btn-ghost
-        border-color: $line
-        color: $ink-2
-        background: rgba(255, 255, 255, .015)
-        &:hover
-          border-color: #3a3d45
-          color: #fff
-          background: rgba(255, 255, 255, .04)
+      animation: rise-in .7s .32s cubic-bezier(.05, .7, .1, 1) both
     .meta
       margin: 34px 0 0
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
       font-size: 11.5px
       letter-spacing: .06em
       color: $muted
+      animation: rise-in .7s .42s cubic-bezier(.05, .7, .1, 1) both
       b
         color: $ink-2
         font-weight: 500
@@ -207,10 +399,11 @@
   .panel
     margin-top: 40px
     border: 1px solid $line
-    border-radius: 14px
+    border-radius: var(--shape-md)
     background: linear-gradient(180deg, rgba(21, 22, 23, .92), rgba(12, 13, 14, .96))
     box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .9), 0 1px 0 rgba(255, 255, 255, .04) inset
     overflow: hidden
+    animation: rise-in .8s .5s cubic-bezier(.05, .7, .1, 1) both
     .panel-bar
       display: flex
       align-items: center
@@ -233,7 +426,7 @@
         font-size: 11px
         color: $subtle
         border: 1px solid $line-soft
-        border-radius: 6px
+        border-radius: var(--shape-xs)
         padding: 4px 12px
         background: rgba(0, 0, 0, .35)
       .ver
@@ -256,7 +449,7 @@
           font-size: 13px
           color: $muted
           padding: 8px 10px
-          border-radius: 7px
+          border-radius: var(--shape-sm)
           display: flex
           align-items: center
           gap: 9px
@@ -264,7 +457,7 @@
             content: ""
             width: 13px
             height: 13px
-            border-radius: 4px
+            border-radius: var(--shape-xs)
             border: 1px solid #2c2f35
             background: rgba(255, 255, 255, .02)
           &.is-active
@@ -304,15 +497,19 @@
             gap: 12px
             padding: 11px 0
             border-bottom: 1px solid $line-soft
+            transition: background .2s ease, padding-left .2s ease
             &:last-child
               border-bottom: 0
+            &:hover
+              background: rgba(255, 255, 255, .022)
+              padding-left: 6px
             .cat
               flex: none
               font-size: 10.5px
               color: #a9b0f4
               background: $accent-soft
               border: 1px solid rgba(94, 106, 210, .28)
-              border-radius: 5px
+              border-radius: var(--shape-xs)
               padding: 2px 7px
               letter-spacing: .02em
             .t
@@ -337,9 +534,14 @@
           margin-top: 20px
           .stat
             border: 1px solid $line-soft
-            border-radius: 8px
+            border-radius: var(--shape-sm)
             padding: 13px 14px
             background: rgba(255, 255, 255, .012)
+            transition: border-color .25s ease, background .25s ease, transform .25s ease
+            &:hover
+              border-color: rgba(139, 148, 245, .45)
+              background: rgba(139, 148, 245, .06)
+              transform: translateY(-2px)
             b
               display: block
               font-size: 21px
@@ -384,6 +586,291 @@
         font-size: 13.5px
         line-height: 1.75
         color: $muted
+    // features 区逐级入场
+    > .feature:nth-child(1)
+      animation: rise-in .7s .55s cubic-bezier(.05, .7, .1, 1) both
+    > .feature:nth-child(2)
+      animation: rise-in .7s .65s cubic-bezier(.05, .7, .1, 1) both
+    > .feature:nth-child(3)
+      animation: rise-in .7s .75s cubic-bezier(.05, .7, .1, 1) both
+
+  // ---------- 新增板块通用 ----------
+  .sec
+    margin-top: 96px
+
+  .sec-head
+    max-width: 720px
+    margin-bottom: 34px
+    h2
+      margin: 0
+      font-size: clamp(26px, 3vw, 38px)
+      line-height: 1.15
+      letter-spacing: -.022em
+      font-weight: 600
+      color: $ink
+      .grad
+        background: linear-gradient(180deg, #f7f8f8 0%, #8a8f98 100%)
+        -webkit-background-clip: text
+        background-clip: text
+        color: transparent
+    .lead
+      margin: 16px 0 0
+      font-size: 15px
+      line-height: 1.8
+      color: $muted
+    .eyebrow
+      display: inline-flex
+      align-items: center
+      gap: 9px
+      margin: 0 0 18px
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
+      font-size: 11px
+      letter-spacing: .16em
+      text-transform: uppercase
+      color: $muted
+      i
+        width: 6px
+        height: 6px
+        border-radius: 50%
+        background: $accent
+        box-shadow: 0 0 10px $accent
+
+  .chips
+    display: flex
+    flex-wrap: wrap
+    gap: 8px
+    margin-top: 20px
+    span
+      font-size: 12px
+      color: $ink-2
+      border: 1px solid $line
+      border-radius: var(--shape-full)
+      padding: 5px 11px
+      background: rgba(255, 255, 255, .015)
+      transition: border-color .2s ease, color .2s ease, background .2s ease
+      &:hover
+        border-color: rgba(139, 148, 245, .5)
+        color: #fff
+        background: rgba(139, 148, 245, .08)
+
+  .more
+    display: inline-block
+    margin-top: 20px
+    font-size: 13px
+    color: $muted
+    transition: color .2s ease, transform .2s ease
+    &:hover
+      color: $accent
+      transform: translateX(3px)
+
+  // ---------- HopeOS 截图墙 ----------
+  .hopeos
+    .cta
+      display: flex
+      gap: 12px
+      margin-top: 28px
+
+  .shot-grid
+    display: grid
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+    gap: 14px
+
+  .shot
+    margin: 0
+    border: 1px solid $line
+    border-radius: var(--shape-md)
+    overflow: hidden
+    background: linear-gradient(180deg, rgba(21, 22, 23, .9), rgba(12, 13, 14, .95))
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, box-shadow .3s ease
+    &:hover
+      transform: translateY(-4px)
+      border-color: rgba(139, 148, 245, .45)
+      box-shadow: 0 20px 44px -24px rgba(94, 106, 210, .7)
+    img
+      display: block
+      width: 100%
+      aspect-ratio: 4 / 3
+      object-fit: cover
+      border-bottom: 1px solid $line-soft
+      background: #000
+    figcaption
+      padding: 12px 14px 14px
+      font-size: 12.5px
+      line-height: 1.7
+      color: $muted
+      b
+        display: block
+        margin-bottom: 3px
+        font-size: 13px
+        font-weight: 600
+        color: $ink-2
+
+  .shot-lg
+    grid-column: span 2
+
+  // ---------- 项目一览 ----------
+  .proj-grid
+    display: grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: 14px
+
+  .proj
+    display: block
+    border: 1px solid $line
+    border-radius: var(--shape-md)
+    padding: 22px
+    background: rgba(255, 255, 255, .012)
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, background .3s ease, box-shadow .3s ease
+    &:hover
+      transform: translateY(-4px)
+      border-color: rgba(139, 148, 245, .45)
+      background: rgba(139, 148, 245, .05)
+      box-shadow: 0 20px 44px -26px rgba(94, 106, 210, .8)
+      .proj-arrow
+        color: $accent
+        transform: translate(2px, -2px)
+    .proj-top
+      display: flex
+      align-items: center
+      justify-content: space-between
+      gap: 12px
+      h3
+        margin: 0
+        font-size: 15px
+        font-weight: 600
+        letter-spacing: -.005em
+        color: $ink
+    .proj-arrow
+      flex: none
+      font-size: 14px
+      color: $subtle
+      transition: color .2s ease, transform .2s ease
+    p
+      margin: 10px 0 16px
+      font-size: 13px
+      line-height: 1.75
+      color: $muted
+    .proj-tags
+      display: flex
+      flex-wrap: wrap
+      gap: 6px
+      .tag
+        font-size: 10.5px
+        padding: 2px 8px
+        border-radius: var(--shape-xs)
+        border: 1px solid transparent
+        letter-spacing: .02em
+      .tag-info
+        color: #9fc4ff
+        background: rgba(96, 165, 250, .12)
+        border-color: rgba(96, 165, 250, .3)
+      .tag-success
+        color: #8ee2b0
+        background: rgba(74, 222, 128, .12)
+        border-color: rgba(74, 222, 128, .3)
+      .tag-warning
+        color: #f0cd86
+        background: rgba(250, 204, 21, .12)
+        border-color: rgba(250, 204, 21, .3)
+      .tag-error
+        color: #f3a3a3
+        background: rgba(248, 113, 113, .12)
+        border-color: rgba(248, 113, 113, .3)
+      .tag-grey
+        color: $muted
+        background: rgba(255, 255, 255, .05)
+        border-color: $line
+
+  // ---------- 团队 ----------
+  .member-grid
+    display: grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: 14px
+
+  .member
+    display: flex
+    gap: 14px
+    border: 1px solid $line
+    border-radius: var(--shape-md)
+    padding: 20px
+    background: rgba(255, 255, 255, .012)
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, background .3s ease
+    &:hover
+      transform: translateY(-3px)
+      border-color: rgba(139, 148, 245, .4)
+      background: rgba(139, 148, 245, .05)
+    .member-avatar
+      flex: none
+      width: 52px
+      height: 52px
+      border-radius: var(--shape-md)
+      object-fit: cover
+      border: 1px solid $line
+      background: $surface-2
+    .member-avatar--text
+      display: flex
+      align-items: center
+      justify-content: center
+      font-size: 18px
+      color: $ink-2
+    .member-body
+      min-width: 0
+    .member-name
+      font-size: 14px
+      font-weight: 600
+      color: $ink
+    .member-role
+      margin-top: 3px
+      font-size: 11.5px
+      color: #a9b0f4
+    .member-desc
+      margin: 9px 0 0
+      font-size: 12.5px
+      line-height: 1.7
+      color: $muted
+      display: -webkit-box
+      -webkit-line-clamp: 3
+      -webkit-box-orient: vertical
+      overflow: hidden
+
+  .member-chips
+    margin-top: 14px
+
+  // ---------- 加入我们 ----------
+  .join-band
+    position: relative
+    border: 1px solid $line
+    border-radius: var(--shape-xl)
+    padding: 52px 40px
+    text-align: center
+    overflow: hidden
+    background: linear-gradient(180deg, rgba(21, 22, 23, .92), rgba(12, 13, 14, .96))
+    box-shadow: 0 40px 90px -50px rgba(0, 0, 0, .95)
+    &::before
+      content: ""
+      position: absolute
+      inset: 0
+      pointer-events: none
+      background: radial-gradient(ellipse 60% 120% at 50% 0%, rgba(94, 106, 210, .22) 0%, transparent 68%)
+    > *
+      position: relative
+    h2
+      margin: 0
+      font-size: clamp(24px, 3vw, 34px)
+      letter-spacing: -.02em
+      font-weight: 600
+      color: $ink
+    p
+      max-width: 560px
+      margin: 16px auto 0
+      font-size: 14.5px
+      line-height: 1.8
+      color: $muted
+    .cta
+      display: flex
+      justify-content: center
+      gap: 12px
+      margin-top: 28px
 
   @media (max-width: 820px)
     .wrap
@@ -426,4 +913,42 @@
   @media (prefers-reduced-motion: reduce)
     .hero .cta .btn
       transition: none
+    .hero .eyebrow,
+    .hero h1,
+    .hero .lead,
+    .hero .cta,
+    .hero .meta,
+    .panel,
+    .features > .feature
+      animation: none
+
+  @media (max-width: 900px)
+    .sec
+      margin-top: 72px
+    .shot-grid
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+    .proj-grid,
+    .member-grid
+      grid-template-columns: 1fr
+
+  @media (max-width: 820px)
+    .join-band
+      padding: 36px 20px
+    .hopeos .cta,
+    .join-band .cta
+      flex-direction: column
+      align-items: stretch
+      max-width: 320px
+      margin-left: auto
+      margin-right: auto
+      .btn
+        justify-content: center
+
+  @media (max-width: 560px)
+    .shot-grid
+      grid-template-columns: 1fr
+    .shot-lg
+      grid-column: span 1
+    .sec-head
+      margin-bottom: 24px
 </style>

@@ -16,13 +16,25 @@
   --v-font-body: var(--md3e-font-body);
   --v-font-heading: var(--md3e-font-display);
 
-  /* ---------- 形状刻度（政务门户：直角为主） ---------- */
-  --md3e-shape-xs: 2px;
-  --md3e-shape-sm: 4px;
-  --md3e-shape-md: 6px;
-  --md3e-shape-lg: 8px;
-  --md3e-shape-xl: 12px;
-  --md3e-shape-pill: 9999px;
+  /* ---------- 形状刻度（对齐 MD3 / mdui 2 的 --mdui-shape-corner-*） ----------
+     全站所有圆角只允许取用这里 7 档中的值，控件语义别名在下方一层。
+     档位与 mdui 一一对应（0 / 4 / 8 / 12 / 16 / 28 / full），
+     将来若引入 mdui，令牌可 1:1 映射、无视觉断点。 */
+  --shape-none: 0;
+  --shape-xs: 4px; /* extra-small：内联标签、小徽章、菜单容器 */
+  --shape-sm: 8px; /* small：chip、输入框、列表项、头像 */
+  --shape-md: 12px; /* medium：卡片、面板、图片框（默认控件圆角） */
+  --shape-lg: 16px; /* large：大面板、FAB、模拟器外框 */
+  --shape-xl: 28px; /* extra-large：对话框、CTA 大横幅 */
+  --shape-full: 9999px; /* full：胶囊按钮、开关、圆点 */
+
+  /* ---------- 控件语义别名（统一控件外观：改这里即全站生效） ---------- */
+  --shape-btn: var(--shape-full); /* 按钮统一胶囊（MD3 button 规范） */
+  --shape-card: var(--shape-md); /* 卡片 / 面板 / 图片框 */
+  --shape-chip: var(--shape-sm); /* chip / 标签 */
+  --shape-field: var(--shape-sm); /* 输入框（outlined） */
+  --shape-menu: var(--shape-sm); /* 下拉菜单 / 列表容器 */
+  --shape-dialog: var(--shape-xl); /* 对话框 */
 
   /* ---------- 动效（平缓 transition） ---------- */
   --md3e-motion-spring: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -136,6 +148,7 @@ html.js main section[id].is-visible {
 .v-card:hover,
 .md3e-group:hover {
   transform: translateY(-4px);
+  border-color: rgb(var(--v-theme-primary), 0.45);
   box-shadow: 0 2px 4px rgba(9, 41, 77, 0.06),
     0 16px 40px -8px rgba(9, 41, 77, 0.18),
     0 32px 64px -24px rgba(9, 41, 77, 0.14);
@@ -156,7 +169,7 @@ html.js main section[id].is-visible {
 :focus-visible {
   outline: 2px solid rgb(var(--v-theme-primary));
   outline-offset: 2px;
-  border-radius: var(--md3e-shape-xs);
+  border-radius: var(--shape-xs);
 }
 
 /* 细滚动条，贴合容器色调 */
@@ -170,26 +183,79 @@ html.js main section[id].is-visible {
 }
 *::-webkit-scrollbar-thumb {
   background: rgb(var(--v-theme-outline-variant));
-  border-radius: var(--md3e-shape-pill);
+  border-radius: var(--shape-full);
 }
 *::-webkit-scrollbar-track {
   background: transparent;
 }
 
 /* ============================================================
-   卡片与分组（政务门户：白底卡片 + 柔和投影 + 直角）
+   统一控件形状层：全站唯一圆角来源（对齐 MD3 / mdui 2 刻度）
+   - 本样式位于 Vuetify @layer 之外 → 无层规则天然优先
+   - Vuetify 数字 rounded 产生的是内联样式 → 用 !important 兜底
+   - 手写组件（Home / GovHeader / …）只允许引用 --shape-* 令牌
    ============================================================ */
+/* 卡片 / 分组：默认 medium（12px） */
+.v-card {
+  border-radius: var(--shape-card) !important;
+  border: 1px solid rgb(var(--v-theme-outline-variant), 0.5);
+}
 .md3e-group {
   background: rgb(var(--v-theme-surface));
-  border-radius: 0;
+  border-radius: var(--shape-md);
   box-shadow: var(--gov-card-shadow);
   border: 1px solid rgb(var(--v-theme-outline-variant), 0.6);
 }
 
-/* Vuetify 卡片统一走政务白卡风格 */
-.v-card {
-  border-radius: 0 !important;
-  border: 1px solid rgb(var(--v-theme-outline-variant), 0.5);
+/* 按钮：常规按钮统一胶囊；图标按钮保持正圆；FAB 用 large */
+.v-btn:not(.v-btn--icon):not(.v-btn--fab) {
+  border-radius: var(--shape-btn) !important;
+}
+.v-btn--icon {
+  border-radius: var(--shape-full) !important;
+}
+.v-btn--fab,
+.v-fab {
+  border-radius: var(--shape-lg) !important;
+}
+
+/* chip / 标签 / 输入族 */
+.v-chip {
+  border-radius: var(--shape-chip) !important;
+}
+.v-field {
+  border-radius: var(--shape-field) !important;
+}
+
+/* 头像：统一小圆角方形（照片墙风格） */
+.v-avatar {
+  border-radius: var(--shape-sm) !important;
+}
+
+/* 菜单 / 列表 / 覆盖层 */
+.v-menu {
+  border-radius: var(--shape-menu) !important;
+}
+/* 对话框：外层容器与内层卡片都取 extra-large */
+.v-dialog,
+.v-dialog .v-card {
+  border-radius: var(--shape-dialog) !important;
+}
+.v-navigation-drawer {
+  border-radius: var(--shape-none);
+}
+
+/* 其他表面 */
+.v-alert,
+.v-expansion-panel,
+.v-data-table {
+  border-radius: var(--shape-md) !important;
+}
+.v-snackbar {
+  border-radius: var(--shape-sm) !important;
+}
+.v-progress-linear {
+  border-radius: var(--shape-full) !important;
 }
 
 /* 灰色色块（政务门户 sheet 色）已由 styles/main.sass 提供 */
@@ -294,7 +360,7 @@ html.js main section[id].is-visible {
 .post-body blockquote {
   border-left: 4px solid rgb(var(--v-theme-primary), 0.6);
   background: rgb(var(--v-theme-primary-container), 0.25);
-  border-radius: 0;
+  border-radius: 0; /* 刻意直角：左侧粗强调条与圆角混搭会突兀，保留直角 */
   padding: 0.75rem 1.25rem;
   margin: 1rem 0;
   color: rgb(var(--v-theme-on-surface-variant));
@@ -302,7 +368,7 @@ html.js main section[id].is-visible {
 }
 
 .post-body img {
-  border-radius: 0;
+  border-radius: var(--shape-md);
   margin: 1.5rem 0;
   max-width: 100%;
   height: auto;
@@ -311,7 +377,7 @@ html.js main section[id].is-visible {
 .post-body pre {
   background: rgb(var(--v-theme-surface-container-high));
   border: 1px solid rgb(var(--v-theme-outline-variant), 0.5);
-  border-radius: 0;
+  border-radius: var(--shape-sm);
   padding: 1rem;
   margin: 1.5rem 0;
   overflow-x: auto;
@@ -320,7 +386,7 @@ html.js main section[id].is-visible {
 
 .post-body code {
   background: rgb(var(--v-theme-primary-container), 0.5);
-  border-radius: 2px;
+  border-radius: var(--shape-xs);
   padding: 1px 6px;
   color: rgb(var(--v-theme-primary));
   font-size: 0.875em;
@@ -377,7 +443,7 @@ html.js main section[id].is-visible {
 .post-body iframe,
 .post-body video {
   width: 100%;
-  border-radius: 0;
+  border-radius: var(--shape-md);
   margin: 1.5rem 0;
   aspect-ratio: 16 / 9;
 }
@@ -427,15 +493,9 @@ html[data-theme="dark"]::-webkit-scrollbar-track {
 }
 html[data-theme="dark"]::-webkit-scrollbar-thumb {
   background: #3a3d45;
-  border-radius: 6px;
+  border-radius: var(--shape-xs);
   border: 2px solid #0a0b0c;
 }
 html[data-theme="dark"]::-webkit-scrollbar-thumb:hover {
   background: #4a4e58;
-}
-/* 子页卡片统一小圆角（个别组件仍硬编码 rounded="0"，在此兜底成 Linear 曲线） */
-html[data-theme="dark"] .v-card,
-html[data-theme="dark"] .v-navigation-drawer,
-html[data-theme="dark"] .v-list {
-  border-radius: 8px;
 }

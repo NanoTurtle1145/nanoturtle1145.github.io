@@ -90,14 +90,14 @@ function clearSearch() {
     </div>
 
     <!-- 列表 -->
-    <div v-if="filtered.length" class="d-flex flex-column ga-4">
+    <div v-if="filtered.length" class="d-flex flex-column ga-4 post-list">
       <router-link
         v-for="post in filtered"
         :key="post.slug"
         :to="`/posts/${post.slug}`"
         class="text-decoration-none"
       >
-        <v-card elevation="0" hover class="w-100">
+        <v-card elevation="0" hover class="w-100 post-card">
           <v-card-text class="pa-6">
             <div class="d-flex flex-wrap align-center ga-3 mb-2">
               <v-chip size="small" color="primary" variant="tonal">
@@ -105,7 +105,7 @@ function clearSearch() {
               </v-chip>
               <span class="text-caption text-medium-emphasis">{{ post.date }}</span>
             </div>
-            <div class="text-title-medium font-weight-bold text-on-surface mb-2">
+            <div class="text-title-medium font-weight-bold text-on-surface mb-2 post-title">
               {{ post.title }}
             </div>
             <div class="text-body-2 text-medium-emphasis">{{ post.excerpt }}</div>
@@ -124,8 +124,93 @@ function clearSearch() {
         </v-card>
       </router-link>
     </div>
-    <div v-else class="text-body-1 text-medium-emphasis">
+    <div v-else class="text-body-1 text-medium-emphasis empty-state">
       没有找到相关文章，换个关键词试试。
     </div>
   </v-container>
 </template>
+
+<style lang="sass" scoped>
+  @keyframes post-rise
+    from
+      opacity: 0
+      transform: translateY(12px)
+    to
+      opacity: 1
+      transform: translateY(0)
+
+  // 分类筛选：悬停微浮起，选中项带主题色辉光
+  .v-chip
+    border-radius: var(--shape-sm)
+    font-weight: 500
+    transition: transform .2s ease, box-shadow .25s ease, background .2s ease
+
+  .v-chip:hover
+    transform: translateY(-1px)
+
+  .v-chip--variant-flat
+    box-shadow: 0 4px 14px rgba(var(--v-theme-primary), .3)
+
+  // 文章卡片：左侧主题色描边在悬停时点亮
+  .post-card
+    position: relative
+    border-radius: var(--shape-md) !important
+    border: 1px solid rgb(var(--v-theme-outline-variant), .55)
+    overflow: hidden
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1), box-shadow .35s cubic-bezier(.4, 0, .2, 1), border-color .3s ease
+    &::before
+      content: ""
+      position: absolute
+      left: 0
+      top: 0
+      bottom: 0
+      width: 3px
+      background: linear-gradient(180deg, rgb(var(--v-theme-primary)), rgba(var(--v-theme-primary), .3))
+      transform: scaleY(0)
+      transform-origin: top
+      transition: transform .35s cubic-bezier(.4, 0, .2, 1)
+    &:hover
+      transform: translateY(-4px)
+      border-color: rgb(var(--v-theme-primary), .5)
+      box-shadow: 0 12px 32px rgba(var(--v-theme-primary), .14)
+    &:hover::before
+      transform: scaleY(1)
+
+  .post-title
+    transition: color .25s ease
+
+  .post-card:hover .post-title
+    color: rgb(var(--v-theme-primary))
+
+  // 列表逐级入场
+  .post-list > a
+    animation: post-rise .55s cubic-bezier(.05, .7, .1, 1) both
+    &:nth-child(1)
+      animation-delay: .02s
+    &:nth-child(2)
+      animation-delay: .06s
+    &:nth-child(3)
+      animation-delay: .1s
+    &:nth-child(4)
+      animation-delay: .14s
+    &:nth-child(5)
+      animation-delay: .18s
+    &:nth-child(6)
+      animation-delay: .22s
+    &:nth-child(n+7)
+      animation-delay: .26s
+
+  .empty-state
+    padding: 2rem
+    text-align: center
+    border: 1px dashed rgb(var(--v-theme-outline-variant), .8)
+    border-radius: var(--shape-md)
+
+  @media (max-width: 600px)
+    .post-card
+      border-radius: var(--shape-md) !important
+
+  @media (prefers-reduced-motion: reduce)
+    .post-list > a
+      animation: none
+</style>

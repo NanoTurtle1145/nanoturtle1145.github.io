@@ -44,71 +44,78 @@ defineProps({
 </script>
 
 <template>
-  <!-- 政务门户顶部导航：政务蓝底 + 白字 + 激活项白色下划线 -->
-  <v-app-bar color="primary">
+  <!-- 政务门户顶部导航：现代渐变风格 + 玻璃态效果 -->
+  <v-app-bar color="primary" elevation="0" class="nav-app-bar">
     <template v-slot:prepend>
       <v-app-bar-nav-icon
-        class="d-lg-none text-white"
+        class="d-lg-none text-white nav-menu-btn"
         @click="drawer = !drawer"
         aria-label="打开菜单"
       />
     </template>
 
     <v-app-bar-title>
-      <router-link to="/" class="d-flex align-center text-decoration-none">
-        <img src="/logo.svg" alt="Hope Studio" class="mr-2" style="height: 34px; filter: brightness(0) invert(1)" />
-        <span class="text-title-medium font-weight-bold text-white">{{ navName }}</span>
+      <router-link to="/" class="d-flex align-center text-decoration-none logo-link">
+        <img src="/logo.svg" alt="Hope Studio" class="nav-logo" style="height: 34px" />
+        <span class="nav-title">{{ navName }}</span>
       </router-link>
     </v-app-bar-title>
 
-    <!-- 桌面端：政务风格文字导航（激活项白色下划线） -->
+    <!-- 桌面端：现代化导航链接 -->
     <template v-slot:append>
-      <div class="d-none d-lg-flex align-center h-100 pr-2">
+      <div class="d-none d-lg-flex align-center h-100 nav-links">
         <template v-for="item in menu" :key="item.name">
           <router-link
             v-if="!isRawLink(item.link)"
             :to="item.link"
-            class="gov-nav-link text-decoration-none"
-            :class="{ 'gov-nav-link--active': isActive(item.link) }"
+            class="nav-link"
+            :class="{ 'nav-link--active': isActive(item.link) }"
           >
-            {{ item.name }}
+            <span class="nav-link-text">{{ item.name }}</span>
+            <span v-if="isActive(item.link)" class="nav-link-indicator" />
           </router-link>
           <a
             v-else
             :href="item.link"
             :target="item.link.startsWith('http') ? '_blank' : undefined"
             rel="noopener"
-            class="gov-nav-link text-decoration-none"
-            :class="{ 'gov-nav-link--active': isActive(item.link) }"
+            class="nav-link"
+            :class="{ 'nav-link--active': isActive(item.link) }"
           >
-            {{ item.name }}
+            <span class="nav-link-text">{{ item.name }}</span>
+            <span v-if="isActive(item.link)" class="nav-link-indicator" />
           </a>
         </template>
       </div>
     </template>
   </v-app-bar>
 
-  <!-- 移动端抽屉 -->
+  <!-- 移动端抽屉：现代化设计 -->
   <v-navigation-drawer
     v-model="drawer"
     temporary
     location="left"
-    class="d-lg-none"
+    class="nav-drawer"
+    elevation="4"
   >
-    <v-list>
+    <div class="nav-drawer-header">
+      <div class="nav-drawer-logo">
+        <img src="/logo.svg" alt="Hope Studio" class="nav-drawer-logo-icon" />
+        <span class="nav-drawer-logo-text">{{ navName }}</span>
+      </div>
+    </div>
+    <v-divider />
+    <v-list class="nav-drawer-list">
       <template v-for="item in menu" :key="item.name">
         <router-link
           v-if="!isRawLink(item.link)"
           :to="item.link"
           @click="drawer = false"
-          class="text-decoration-none"
+          class="nav-drawer-link"
+          :class="{ 'nav-drawer-link--active': isActive(item.link) }"
         >
-          <v-list-item
-            :color="isActive(item.link) ? 'primary-container' : undefined"
-            rounded="0"
-          >
-            <v-list-item-title>{{ item.name }}</v-list-item-title>
-          </v-list-item>
+          <span class="nav-drawer-link-text">{{ item.name }}</span>
+          <v-icon v-if="isActive(item.link)" icon="mdi-check" class="nav-drawer-link-icon" />
         </router-link>
         <a
           v-else
@@ -116,14 +123,11 @@ defineProps({
           @click="drawer = false"
           :target="item.link.startsWith('http') ? '_blank' : undefined"
           rel="noopener"
-          class="text-decoration-none"
+          class="nav-drawer-link"
+          :class="{ 'nav-drawer-link--active': isActive(item.link) }"
         >
-          <v-list-item
-            :color="isActive(item.link) ? 'primary-container' : undefined"
-            rounded="0"
-          >
-            <v-list-item-title>{{ item.name }}</v-list-item-title>
-          </v-list-item>
+          <span class="nav-drawer-link-text">{{ item.name }}</span>
+          <v-icon v-if="isActive(item.link)" icon="mdi-check" class="nav-drawer-link-icon" />
         </a>
       </template>
     </v-list>
@@ -131,35 +135,236 @@ defineProps({
 </template>
 
 <style scoped>
-/* 政务门户导航链接：白字，hover 半透明，激活项白色下划线 */
-.gov-nav-link {
+/* 浅色：政务蓝底 + 白字；深色 Linear 皮肤：近黑底 + 薰衣草强调 */
+.nav-app-bar {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--v-theme-primary)) 0%,
+    color-mix(in srgb, rgb(var(--v-theme-primary)) 82%, #0d1c28) 100%
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: box-shadow 0.3s ease;
+}
+
+.nav-app-bar:hover {
+  box-shadow: 0 4px 20px rgba(var(--v-theme-primary), 0.3);
+}
+
+.nav-menu-btn {
+  transition: transform 0.3s ease;
+}
+
+.nav-menu-btn:hover {
+  transform: scale(1.1);
+}
+
+.logo-link {
+  transition: opacity 0.3s ease;
+}
+
+.logo-link:hover {
+  opacity: 0.85;
+}
+
+.nav-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: rgb(var(--v-theme-on-primary));
+}
+
+.nav-links {
+  gap: 4px;
+}
+
+.nav-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   height: 100%;
-  padding: 0 1rem;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 0.8rem;
+  padding: 0 1.25rem;
+  color: rgba(var(--v-theme-on-primary), 0.85);
+  font-size: 0.875rem;
   font-weight: 500;
   font-family: var(--gov-font-family);
   letter-spacing: normal;
-  position: relative;
-  transition: color var(--md3e-duration-short) var(--md3e-motion-emphasized);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
-.gov-nav-link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
+
+.nav-link:hover {
+  color: rgb(var(--v-theme-on-primary));
+  background: rgba(var(--v-theme-on-primary), 0.1);
 }
-.gov-nav-link--active {
-  color: #ffffff;
+
+.nav-link--active {
+  color: rgb(var(--v-theme-on-primary));
   font-weight: 600;
 }
-.gov-nav-link--active::after {
-  content: "";
+
+.nav-link-indicator {
   position: absolute;
-  left: 1rem;
-  right: 1rem;
   bottom: 0;
+  left: 0;
+  width: 100%;
   height: 3px;
-  background: #ffffff;
+  background: rgb(var(--v-theme-on-primary));
+  box-shadow: 0 2px 8px rgba(var(--v-theme-on-primary), 0.5);
+}
+
+/* 移动端抽屉：与顶栏同色 */
+.nav-drawer {
+  background: rgb(var(--v-theme-primary));
+}
+
+.nav-drawer-header {
+  padding: 1.5rem;
+  background: rgba(var(--v-theme-on-primary), 0.08);
+}
+
+.nav-drawer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-drawer-logo-icon {
+  height: 32px;
+}
+
+.nav-drawer-logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: rgb(var(--v-theme-on-primary));
+  letter-spacing: -0.01em;
+}
+
+.nav-drawer-list {
+  padding: 0.5rem 0;
+}
+
+.nav-drawer-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.5rem;
+  color: rgba(var(--v-theme-on-primary), 0.85);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  margin: 0 0.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.nav-drawer-link:hover {
+  background: rgba(var(--v-theme-on-primary), 0.1);
+  color: rgb(var(--v-theme-on-primary));
+  border-left-color: rgb(var(--v-theme-inverse-primary));
+}
+
+.nav-drawer-link--active {
+  background: rgba(var(--v-theme-on-primary), 0.15);
+  color: rgb(var(--v-theme-on-primary));
+  border-left-color: rgb(var(--v-theme-inverse-primary));
+  font-weight: 600;
+}
+
+.nav-drawer-link-icon {
+  color: rgb(var(--v-theme-inverse-primary));
+  transition: transform 0.3s ease;
+}
+
+.nav-drawer-link--active .nav-drawer-link-icon {
+  transform: scale(1.1);
+}
+
+/* 深色 Linear 皮肤：近黑顶栏 + 薰衣草指示条（白 logo 在两种主题下均成立） */
+html[data-theme="dark"] .nav-app-bar {
+  background: rgb(var(--v-theme-surface));
+  border-bottom: 1px solid rgb(var(--v-theme-outline-variant), 0.7);
+}
+
+html[data-theme="dark"] .nav-app-bar:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .nav-title {
+  color: rgb(var(--v-theme-on-surface));
+}
+
+html[data-theme="dark"] .nav-link {
+  color: rgb(var(--v-theme-on-surface-variant));
+}
+
+html[data-theme="dark"] .nav-link:hover {
+  color: rgb(var(--v-theme-on-surface));
+  background: rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .nav-link--active {
+  color: rgb(var(--v-theme-on-surface));
+}
+
+html[data-theme="dark"] .nav-link-indicator {
+  background: rgb(var(--v-theme-primary));
+  box-shadow: 0 2px 10px rgba(var(--v-theme-primary), 0.6);
+}
+
+html[data-theme="dark"] .nav-drawer {
+  background: rgb(var(--v-theme-surface));
+}
+
+html[data-theme="dark"] .nav-drawer-header {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+html[data-theme="dark"] .nav-drawer-logo-text {
+  color: rgb(var(--v-theme-on-surface));
+}
+
+html[data-theme="dark"] .nav-drawer-link {
+  color: rgb(var(--v-theme-on-surface-variant));
+}
+
+html[data-theme="dark"] .nav-drawer-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgb(var(--v-theme-on-surface));
+  border-left-color: rgb(var(--v-theme-primary));
+}
+
+html[data-theme="dark"] .nav-drawer-link--active {
+  background: rgba(var(--v-theme-primary), 0.12);
+  color: rgb(var(--v-theme-on-surface));
+  border-left-color: rgb(var(--v-theme-primary));
+}
+
+html[data-theme="dark"] .nav-drawer-link-icon {
+  color: rgb(var(--v-theme-primary));
+}
+
+/* 响应式优化 */
+@media (max-width: 960px) {
+  .nav-title {
+    font-size: 1rem;
+  }
+
+  .nav-link {
+    padding: 0 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .nav-drawer-link {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-drawer-link {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    margin: 0 0.25rem;
+  }
 }
 </style>

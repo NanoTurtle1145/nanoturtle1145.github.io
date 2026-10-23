@@ -187,7 +187,7 @@
           padding: .6rem 1.1rem
           background: #fff
           box-shadow: 0 0 1.5rem 0 rgba(9,41,77,.12)
-          border-radius: 1.2rem
+          border-radius: var(--shape-lg)
           display: flex
           align-items: center
           &:before
