@@ -23,12 +23,15 @@ useHead({
       content:
         "HopeOS 是希望工作室发起的一个从零编写的 UEFI 操作系统项目，用于学习操作系统的运行原理，目前正处于活跃开发中，最早可追溯至2023年（https://hopestudio.mysxl.cn/blog/hope-os）。",
     },
+    // 分享卡片用桌面横幅
+    { property: "og:image", content: "https://www.hopestudio.top/media/hopeos/banner-hopeos.webp" },
+    { name: "twitter:card", content: "summary_large_image" },
   ],
 });
 
-// 自动轮播的配图：合成 banner + 各真实运行场景截图
+// 自动轮播的配图：HopeOS 桌面横幅 + 各真实运行场景截图
 const showcase = [
-  "/banner.png",
+  "/media/hopeos/banner-hopeos.webp",
   "/media/hopeos/icewm-titled-window.png",
   "/media/hopeos/icewm-managed-client.png",
   "/media/hopeos/icewm-first-paint.png",

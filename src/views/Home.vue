@@ -223,13 +223,13 @@
       .map((p) => ({ ...p, shortDate: p.date.slice(5) }))
   );
 
-  // HopeOS 截图墙：文件都来自项目 docs/shots 的真实截屏
+  // HopeOS 截图墙：首图是桌面横幅，其余来自项目 docs/shots 的真实截屏
   const shots = [
     {
-      src: "/media/hopeos/icewm-titled-window.png",
-      alt: "IceWM 在 HopeOS 中管理的带标题栏窗口",
-      title: "IceWM 跑起来了",
-      text: "灰色标题栏「HopeOS X11 Test」+ 三个窗口按钮，客户区里是绿色文字 Hello HopeOS X11。",
+      src: "/media/hopeos/banner-hopeos.webp",
+      alt: "HopeOS 桌面：计算器、系统信息、时钟与 IceWM 管理的 X11 窗口",
+      title: "HopeOS 0.2.0 桌面",
+      text: "计算器、系统信息、时钟和 IceWM 接管的 X11 窗口同时跑着，底部是 IceWM 与 HopeOS 两套任务栏。",
     },
     {
       src: "/media/hopeos/icewm-first-paint.png",
