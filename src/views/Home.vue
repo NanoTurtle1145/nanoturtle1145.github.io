@@ -1,17 +1,33 @@
 <template>
   <div class="home">
-    <section id="hero" class="wrap hero">
-      <p class="eyebrow"><i aria-hidden="true"></i>HOPE STUDIO — 学生技术兴趣团队</p>
-      <h1>把好奇心写成<br /><span class="grad">能跑起来的东西。</span></h1>
-      <p class="lead">写桌面应用、折腾操作系统、把踩过的坑整理成文章。不追热点，只做能留下来的东西。</p>
-      <div class="cta">
-        <router-link class="btn btn-white" to="/archive">
-          <span>看看我们做了什么</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </router-link>
-        <router-link class="btn btn-ghost" to="/join">加入工作室</router-link>
+    <!-- Hero：全幅 banner —— 整屏背景图 + 左侧渐变遮罩 + 左下文案 + 底部探索条 -->
+    <section id="hero" class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <img src="/media/hopeos/hero-banner.webp" alt="" fetchpriority="high" decoding="async" />
       </div>
-      <p class="meta"><b>2019</b> 年成立 · 浙江 · <b>{{ posts.length }}</b> 篇文章 / <b>4</b> 个项目 / <b>5</b> 名成员</p>
+      <div class="wrap hero-content">
+        <div class="hero-intro">
+          <p class="eyebrow"><i aria-hidden="true"></i>HOPE STUDIO — 学生技术兴趣团队</p>
+          <h1>把好奇心写成<br /><span class="grad">能跑起来的东西。</span></h1>
+          <p class="subtitle">HopeOS 0.2.0 · 从零手写的 UEFI 操作系统</p>
+          <p class="lead">写桌面应用、折腾操作系统、把踩过的坑整理成文章。不追热点，只做能留下来的东西。</p>
+          <div class="cta">
+            <router-link class="btn btn-white" to="/hopeos">
+              <span>了解 HopeOS</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </router-link>
+            <router-link class="btn btn-ghost" to="/archive">看看我们做了什么</router-link>
+          </div>
+          <p class="meta"><b>2019</b> 年成立 · 浙江 · <b>{{ posts.length }}</b> 篇文章 / <b>4</b> 个项目 / <b>5</b> 名成员</p>
+        </div>
+      </div>
+      <div class="wrap hero-bottom">
+        <a class="explore" href="#panel">
+          <span>探索我们的作品</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+        </a>
+        <span class="caption">QEMU 实拍 · HopeOS 0.2.0</span>
+      </div>
     </section>
 
     <section id="panel" class="wrap">
@@ -279,20 +295,32 @@
       opacity: 1
       transform: translateY(0)
 
+  // hero 背景：淡入 + 极缓慢推近（Ken Burns）
+  @keyframes hero-fade
+    from
+      opacity: 0
+    to
+      opacity: 1
+
+  @keyframes hero-zoom
+    from
+      transform: scale(1.06)
+    to
+      transform: scale(1)
+
+  // 底部「探索我们的作品」箭头轻微浮动
+  @keyframes hero-bounce
+    0%, 100%
+      transform: translateY(0)
+    50%
+      transform: translateY(4px)
+
   .home
     position: relative
     // 首页整体固定在近黑 Linear 画布上，避免任何浅色主题把白字 hero 顶成白底
     background: #010102
     min-height: 100vh
     overflow: clip
-    // Linear 标志性的顶部薰衣草辉光（叠加在近黑画布上，制造纵深）
-    &::before
-      content: ""
-      position: fixed
-      inset: 0
-      z-index: 0
-      pointer-events: none
-      background: radial-gradient(ellipse 72% 46% at 50% -6%, rgba(94, 106, 210, .16) 0%, transparent 62%)
 
   .wrap
     width: 100%
@@ -333,10 +361,39 @@
       color: #fff
       background: rgba(255, 255, 255, .04)
 
+  // Hero：全幅 banner —— 整屏背景图 + 左侧渐变遮罩 + 左下文案 + 底部探索条
   .hero
-    padding: 104px 32px 56px
-    text-align: center
     position: relative
+    isolation: isolate
+    display: flex
+    align-items: flex-end
+    min-height: calc(100svh - 63px) // 减掉 sticky 导航高度，首屏正好铺满
+    overflow: hidden
+    .hero-bg
+      position: absolute
+      inset: 0
+      z-index: -1
+      overflow: hidden
+      background: #05060a
+      img
+        width: 100%
+        height: 100%
+        object-fit: cover
+        object-position: right center
+        animation: hero-fade 1.2s cubic-bezier(.05, .7, .1, 1) both, hero-zoom 22s cubic-bezier(.05, .7, .1, 1) both
+      // 三层遮罩：顶部保导航可读 / 底部融入页面底色 / 左侧强力压暗给文案让位
+      &::after
+        content: ""
+        position: absolute
+        inset: 0
+        background: linear-gradient(180deg, rgba(1, 1, 2, .78) 0%, rgba(1, 1, 2, .32) 12%, rgba(1, 1, 2, 0) 30%), linear-gradient(0deg, #010102 0%, rgba(1, 1, 2, .86) 14%, rgba(1, 1, 2, .46) 34%, rgba(1, 1, 2, .12) 58%, rgba(1, 1, 2, 0) 80%), linear-gradient(90deg, rgba(1, 1, 2, .98) 0%, rgba(1, 1, 2, .96) 30%, rgba(1, 1, 2, .86) 45%, rgba(1, 1, 2, .55) 62%, rgba(1, 1, 2, .18) 78%, rgba(1, 1, 2, 0) 92%)
+    .hero-content
+      position: relative
+      width: 100%
+      padding-top: 120px
+      padding-bottom: 148px
+    .hero-intro
+      max-width: 660px
     .eyebrow
       display: inline-flex
       align-items: center
@@ -351,6 +408,7 @@
       border-radius: var(--shape-full)
       padding: 7px 14px
       background: rgba(255, 255, 255, .02)
+      backdrop-filter: blur(6px)
       animation: rise-in .7s cubic-bezier(.05, .7, .1, 1) both
       i
         width: 6px
@@ -359,34 +417,41 @@
         background: $accent
         box-shadow: 0 0 10px $accent
     h1
-      margin: 0 auto
-      max-width: 900px
-      font-size: clamp(40px, 5.5vw, 80px)
+      margin: 0
+      max-width: 820px
+      font-size: clamp(40px, 5.2vw, 76px)
       line-height: 1.06
       letter-spacing: -.022em
       font-weight: 600
       color: $ink
+      text-wrap: balance
       animation: rise-in .7s .12s cubic-bezier(.05, .7, .1, 1) both
       .grad
         background: linear-gradient(180deg, #f7f8f8 0%, #8a8f98 100%)
         -webkit-background-clip: text
         background-clip: text
         color: transparent
+    .subtitle
+      margin: 22px 0 0
+      font-size: clamp(16px, 1.5vw, 20px)
+      font-weight: 500
+      letter-spacing: .01em
+      color: $ink-2
+      animation: rise-in .7s .18s cubic-bezier(.05, .7, .1, 1) both
     .lead
-      max-width: 600px
-      margin: 26px auto 0
+      max-width: 520px
+      margin: 16px 0 0
       color: $muted
       font-size: 16px
       line-height: 1.75
-      animation: rise-in .7s .22s cubic-bezier(.05, .7, .1, 1) both
+      animation: rise-in .7s .24s cubic-bezier(.05, .7, .1, 1) both
     .cta
       display: flex
-      justify-content: center
       gap: 12px
-      margin-top: 32px
+      margin-top: 30px
       animation: rise-in .7s .32s cubic-bezier(.05, .7, .1, 1) both
     .meta
-      margin: 34px 0 0
+      margin: 30px 0 0
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
       font-size: 11.5px
       letter-spacing: .06em
@@ -395,6 +460,40 @@
       b
         color: $ink-2
         font-weight: 500
+    // 底部探索条：左「探索我们的作品 ↓」+ 右落款
+    .hero-bottom
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 26px
+      display: flex
+      align-items: center
+      justify-content: space-between
+      gap: 24px
+      animation: rise-in .8s .5s cubic-bezier(.05, .7, .1, 1) both
+      .explore
+        display: inline-flex
+        align-items: center
+        gap: 12px
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
+        font-size: 12px
+        letter-spacing: .08em
+        color: $muted
+        transition: color .2s ease
+        svg
+          width: 14px
+          height: 14px
+          stroke: currentColor
+          fill: none
+          stroke-width: 1.6
+          animation: hero-bounce 2.4s ease-in-out infinite
+        &:hover
+          color: $ink
+      .caption
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
+        font-size: 11.5px
+        letter-spacing: .08em
+        color: $subtle
 
   .panel
     margin-top: 40px
@@ -876,20 +975,37 @@
     .wrap
       padding: 0 20px
     .hero
-      padding: 64px 20px 40px
+      min-height: calc(100svh - 62px)
+      .hero-bg img
+        object-position: 62% center
+      // 移动端：文案占满宽度，加大整体压暗，让图只在上半部透气
+      .hero-bg::after
+        background: linear-gradient(180deg, rgba(1, 1, 2, .5) 0%, rgba(1, 1, 2, .68) 28%, rgba(1, 1, 2, .92) 54%, #010102 76%), linear-gradient(90deg, rgba(1, 1, 2, .92) 0%, rgba(1, 1, 2, .8) 48%, rgba(1, 1, 2, .6) 100%)
+      .hero-content
+        padding-top: 92px
+        padding-bottom: 112px
+      h1
+        font-size: clamp(32px, 8.6vw, 46px)
+      .subtitle
+        font-size: 15px
+        margin-top: 16px
       .lead
         font-size: 15px
-        margin-top: 20px
+        margin-top: 14px
       .cta
         flex-direction: column
         align-items: stretch
         max-width: 320px
-        margin: 26px auto 0
+        margin-top: 24px
         .btn
           justify-content: center
       .meta
         font-size: 10.5px
         line-height: 1.9
+      .hero-bottom
+        bottom: 18px
+        .caption
+          display: none
     .panel
       .panel-body
         grid-template-columns: 1fr
@@ -913,11 +1029,15 @@
   @media (prefers-reduced-motion: reduce)
     .hero .cta .btn
       transition: none
+    .hero-bg img,
+    .explore svg,
     .hero .eyebrow,
     .hero h1,
+    .hero .subtitle,
     .hero .lead,
     .hero .cta,
     .hero .meta,
+    .hero-bottom,
     .panel,
     .features > .feature
       animation: none
