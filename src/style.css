@@ -57,6 +57,54 @@
      不再用三层大弥散投影，避免白卡显脏） */
   --gov-card-shadow: 0 1px 2px rgba(9, 41, 77, 0.04),
     0 6px 16px -10px rgba(9, 41, 77, 0.1);
+
+  /* ---------- 站点主题令牌（手写 Linear 组件共用；Vuetify 组件走 --v-theme-*） ----------
+     默认浅色；html[data-theme="dark"] 覆盖为 Linear 深色。 */
+  --site-bg: #f5f6f8;
+  --site-surface: #ffffff;
+  --site-surface-2: #f0f2f5;
+  --site-card-bg: #ffffff;
+  --site-line: #e3e7ec;
+  --site-line-soft: #eef1f4;
+  --site-text: #0d1c28;
+  --site-text-2: #2b3a48;
+  --site-muted: #5f6368;
+  --site-subtle: #8a939c;
+  --site-accent: #1867c0;
+  --site-accent-strong: #12539d;
+  --site-accent-soft: rgba(24, 103, 192, 0.1);
+  --site-accent-line: rgba(24, 103, 192, 0.34);
+  --site-tint-1: rgba(13, 28, 40, 0.022);
+  --site-tint-2: rgba(13, 28, 40, 0.045);
+  --site-tint-3: rgba(13, 28, 40, 0.07);
+  --site-nav-bg: rgba(255, 255, 255, 0.82);
+  --site-nav-bg-strong: rgba(255, 255, 255, 0.97);
+  --site-nav-glow: rgba(24, 103, 192, 0.45);
+  --site-solid-btn-bg: #1867c0;
+  --site-solid-btn-ink: #ffffff;
+  --site-solid-btn-bg-hover: #12539d;
+  --site-glow: rgba(24, 103, 192, 0.1);
+  --site-accent-rgb: 24 103 192;
+  --site-shadow-rgb: 13 28 40;
+  --site-panel-bg: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+  --site-panel-shadow: 0 24px 60px -34px rgb(13 28 40 / 0.3), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+
+  /* 语义标签（项目状态）——浅色下用深一档文字保证对比度 */
+  --tag-info-fg: #0b57a4;
+  --tag-info-bg: rgba(24, 103, 192, 0.1);
+  --tag-info-line: rgba(24, 103, 192, 0.26);
+  --tag-success-fg: #14663c;
+  --tag-success-bg: rgba(22, 163, 74, 0.1);
+  --tag-success-line: rgba(22, 163, 74, 0.28);
+  --tag-warning-fg: #7a5200;
+  --tag-warning-bg: rgba(234, 179, 8, 0.14);
+  --tag-warning-line: rgba(234, 179, 8, 0.36);
+  --tag-error-fg: #a11d24;
+  --tag-error-bg: rgba(198, 0, 27, 0.09);
+  --tag-error-line: rgba(198, 0, 27, 0.26);
+  --tag-grey-fg: #5f6368;
+  --tag-grey-bg: rgba(13, 28, 40, 0.05);
+  --tag-grey-line: rgba(13, 28, 40, 0.12);
 }
 
 /* 深色主题：Linear 风皮肤（近黑 + 发丝描边 + 灰阶文字分层）
@@ -71,6 +119,53 @@ html[data-theme="dark"],
   /* 发丝描边 + 极淡投影，替代政务白卡的弥散阴影 */
   --gov-card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04),
     0 14px 34px -20px rgba(0, 0, 0, 0.9);
+
+  /* 站点主题令牌 → Linear 深色 */
+  --site-bg: #010102;
+  --site-surface: #0f1011;
+  --site-surface-2: #151617;
+  --site-card-bg: rgba(255, 255, 255, 0.012);
+  --site-line: #23252a;
+  --site-line-soft: #1a1c20;
+  --site-text: #f7f8f8;
+  --site-text-2: #d0d6e0;
+  --site-muted: #8a8f98;
+  --site-subtle: #62666d;
+  --site-accent: #8b94f5;
+  --site-accent-strong: #6f79e8;
+  --site-accent-soft: rgba(94, 106, 210, 0.16);
+  --site-accent-line: rgba(139, 148, 245, 0.32);
+  --site-tint-1: rgba(255, 255, 255, 0.012);
+  --site-tint-2: rgba(255, 255, 255, 0.045);
+  --site-tint-3: rgba(255, 255, 255, 0.07);
+  --site-nav-bg: rgba(1, 1, 2, 0.72);
+  --site-nav-bg-strong: rgba(1, 1, 2, 0.97);
+  --site-nav-glow: rgba(139, 148, 245, 0.5);
+  --site-solid-btn-bg: #ffffff;
+  --site-solid-btn-ink: #08090a;
+  --site-solid-btn-bg-hover: #e9eaee;
+  --site-glow: rgba(94, 106, 210, 0.16);
+  --site-accent-rgb: 139 148 245;
+  --site-shadow-rgb: 0 0 0;
+  --site-panel-bg: linear-gradient(180deg, rgba(21, 22, 23, 0.92), rgba(12, 13, 14, 0.96));
+  --site-panel-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+
+  /* 语义标签（项目状态）——深色下用亮色 */
+  --tag-info-fg: #9fc4ff;
+  --tag-info-bg: rgba(96, 165, 250, 0.12);
+  --tag-info-line: rgba(96, 165, 250, 0.3);
+  --tag-success-fg: #8ee2b0;
+  --tag-success-bg: rgba(74, 222, 128, 0.12);
+  --tag-success-line: rgba(74, 222, 128, 0.3);
+  --tag-warning-fg: #f0cd86;
+  --tag-warning-bg: rgba(250, 204, 21, 0.12);
+  --tag-warning-line: rgba(250, 204, 21, 0.3);
+  --tag-error-fg: #f3a3a3;
+  --tag-error-bg: rgba(248, 113, 113, 0.12);
+  --tag-error-line: rgba(248, 113, 113, 0.3);
+  --tag-grey-fg: #8a8f98;
+  --tag-grey-bg: rgba(255, 255, 255, 0.05);
+  --tag-grey-line: #23252a;
 }
 html[data-theme="dark"] {
   background-color: #010102;

@@ -1,51 +1,68 @@
 /**
- * 主题模式 composable —— Linear 皮肤为深色，站点为深色固定（dark-only）。
+ * 主题模式 composable —— 站点支持两套皮肤：
+ *   dark  = Linear 风（近黑画布 + 薰衣草强调，默认）
+ *   light = 政务风（浅灰画布 + 白卡 + 政务蓝）
  *
- * - 本站「完全 Linear」风格，只保留深色皮肤；浅色（政务）仅存于 /archive/legacy
- *   旧站静态快照中，不受 Vue 主题影响。
- * - 为了彻底避免「旧站残留 localStorage(light) / 系统浅色偏好」导致首屏闪成浅色、
- *   白字 hero 隐形的问题，这里强制 isDark 恒为 true，不再读存储或跟随系统。
- * - 保留 isDark / toggle / initFromDocument 三个导出，兼容现有调用点。
+ * 规则：首次访问跟随系统偏好（prefers-color-scheme），用户点过开关后以
+ * localStorage 为准。html[data-theme]、Vuetify 主题、<meta name="theme-color">
+ * 三者同步更新；index.html 里的内联脚本用同一套优先级先行设定，避免首屏闪烁。
  */
 import { useTheme } from "vuetify";
 import { ref } from "vue";
 
 export type ThemeName = "light" | "dark";
 
-// 模块级单例：始终为深色
+/** 与 index.html 内联脚本共用的存储键 */
+export const THEME_STORAGE_KEY = "hope-theme";
+
 const isDark = ref(true);
-let syncDocument: (() => void) | null = null;
+
+function systemPrefersDark(): boolean {
+  if (typeof window === "undefined" || !window.matchMedia) return true;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+function readStored(): ThemeName | null {
+  try {
+    const v = localStorage.getItem(THEME_STORAGE_KEY);
+    return v === "light" || v === "dark" ? v : null;
+  } catch {
+    return null;
+  }
+}
+
+function syncDocument(name: ThemeName) {
+  if (typeof document === "undefined") return;
+  document.documentElement.dataset.theme = name;
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", name === "dark" ? "#010102" : "#f5f6f8");
+}
 
 export function useThemeMode() {
   const theme = useTheme();
 
-  if (!syncDocument) {
-    syncDocument = () => {
-      if (typeof document === "undefined") return;
-      document.documentElement.dataset.theme = "dark";
-    };
+  /** 应用主题；persist 为 true 时写入 localStorage（只有用户主动切换才写） */
+  function apply(name: ThemeName, persist = false) {
+    theme.global.name.value = name;
+    isDark.value = name === "dark";
+    syncDocument(name);
+    if (persist) {
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, name);
+      } catch {
+        /* 隐私模式下忽略 */
+      }
+    }
   }
 
+  /** 挂载时对齐：已保存选择 > 系统偏好 > 深色 */
   function initFromDocument() {
-    // 深色固定：无论 html[data-theme] 被预加载脚本写成什么，都归一为深色
-    theme.global.name.value = "dark";
-    isDark.value = true;
-    syncDocument?.();
-  }
-
-  function apply(_name: ThemeName) {
-    // dark-only：忽略传入的浅色，始终深色
-    theme.global.name.value = "dark";
-    isDark.value = true;
-    syncDocument?.();
+    apply(readStored() ?? (systemPrefersDark() ? "dark" : "light"));
   }
 
   function toggle() {
-    // dark-only：开关无意义，保持深色
-    apply("dark");
+    apply(isDark.value ? "light" : "dark", true);
   }
 
-  // 不跟随系统偏好，也不监听其变化，杜绝浅色注入
-
-  return { isDark, toggle, initFromDocument };
+  return { isDark, toggle, apply, initFromDocument };
 }

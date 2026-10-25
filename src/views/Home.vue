@@ -274,17 +274,32 @@
   ];
 </script>
 <style lang="sass" scoped>
-  $bg: #010102
-  $surface: #0f1011
-  $surface-2: #151617
-  $line: #23252a
-  $line-soft: #1a1c20
-  $ink: #f7f8f8
-  $ink-2: #d0d6e0
-  $muted: #8a8f98
-  $subtle: #62666d
-  $accent: #8b94f5
-  $accent-soft: rgba(94, 106, 210, .16)
+  // ---- 站点主题令牌（style.css 的 --site-*，随明暗切换） ----
+  $bg: var(--site-bg)
+  $surface: var(--site-surface)
+  $surface-2: var(--site-surface-2)
+  $card-bg: var(--site-card-bg)
+  $line: var(--site-line)
+  $line-soft: var(--site-line-soft)
+  $ink: var(--site-text)
+  $ink-2: var(--site-text-2)
+  $muted: var(--site-muted)
+  $subtle: var(--site-subtle)
+  $accent: var(--site-accent)
+  $accent-soft: var(--site-accent-soft)
+  $tint-1: var(--site-tint-1)
+  $tint-2: var(--site-tint-2)
+  $tint-3: var(--site-tint-3)
+
+  // ---- Hero 是「深色图上压浅字」，两种主题下都保持深底浅字 → 固定色 ----
+  $hero-ink: #f7f8f8
+  $hero-ink-2: #dfe4ec
+  $hero-muted: #a9b1bd
+  $hero-subtle: #868e9a
+  $hero-line: rgba(255, 255, 255, .16)
+  $hero-accent: #8b94f5
+  $hero-accent-soft: rgba(94, 106, 210, .3)
+  $hero-tint: rgba(255, 255, 255, .03)
 
   // hero 入场：逐级上浮淡入
   @keyframes rise-in
@@ -318,7 +333,7 @@
   .home
     position: relative
     // 首页整体固定在近黑 Linear 画布上，避免任何浅色主题把白字 hero 顶成白底
-    background: #010102
+    background: $bg
     min-height: 100vh
     overflow: clip
 
@@ -347,19 +362,19 @@
       stroke-width: 2
       fill: none
   .btn-white
-    background: #fff
-    color: #08090a
+    background: var(--site-solid-btn-bg)
+    color: var(--site-solid-btn-ink)
     &:hover
-      background: #e9eaee
+      background: var(--site-solid-btn-bg-hover)
       transform: translateY(-1px)
   .btn-ghost
     border-color: $line
     color: $ink-2
-    background: rgba(255, 255, 255, .015)
+    background: $tint-1
     &:hover
-      border-color: #3a3d45
+      border-color: var(--site-accent-line)
       color: #fff
-      background: rgba(255, 255, 255, .04)
+      background: $tint-2
 
   // Hero：全幅 banner —— 整屏背景图 + 左侧渐变遮罩 + 左下文案 + 底部探索条
   .hero
@@ -403,19 +418,19 @@
       font-size: 11.5px
       letter-spacing: .16em
       text-transform: uppercase
-      color: $muted
-      border: 1px solid $line
+      color: $hero-muted
+      border: 1px solid $hero-line
       border-radius: var(--shape-full)
       padding: 7px 14px
-      background: rgba(255, 255, 255, .02)
+      background: $hero-tint
       backdrop-filter: blur(6px)
       animation: rise-in .7s cubic-bezier(.05, .7, .1, 1) both
       i
         width: 6px
         height: 6px
         border-radius: 50%
-        background: $accent
-        box-shadow: 0 0 10px $accent
+        background: $hero-accent
+        box-shadow: 0 0 10px $hero-accent
     h1
       margin: 0
       max-width: 820px
@@ -423,7 +438,7 @@
       line-height: 1.06
       letter-spacing: -.022em
       font-weight: 600
-      color: $ink
+      color: $hero-ink
       text-wrap: balance
       animation: rise-in .7s .12s cubic-bezier(.05, .7, .1, 1) both
       .grad
@@ -436,12 +451,12 @@
       font-size: clamp(16px, 1.5vw, 20px)
       font-weight: 500
       letter-spacing: .01em
-      color: $ink-2
+      color: $hero-ink-2
       animation: rise-in .7s .18s cubic-bezier(.05, .7, .1, 1) both
     .lead
       max-width: 520px
       margin: 16px 0 0
-      color: $muted
+      color: $hero-muted
       font-size: 16px
       line-height: 1.75
       animation: rise-in .7s .24s cubic-bezier(.05, .7, .1, 1) both
@@ -450,15 +465,24 @@
       gap: 12px
       margin-top: 30px
       animation: rise-in .7s .32s cubic-bezier(.05, .7, .1, 1) both
+      // 深色 hero 上的 ghost 按钮固定浅色
+      .btn-ghost
+        border-color: rgba(255, 255, 255, .2)
+        color: $hero-ink-2
+        background: $tint-2
+        &:hover
+          border-color: rgba(255, 255, 255, .36)
+          color: #fff
+          background: rgba(255, 255, 255, .09)
     .meta
       margin: 30px 0 0
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
       font-size: 11.5px
       letter-spacing: .06em
-      color: $muted
+      color: $hero-muted
       animation: rise-in .7s .42s cubic-bezier(.05, .7, .1, 1) both
       b
-        color: $ink-2
+        color: $hero-ink-2
         font-weight: 500
     // 底部探索条：左「探索我们的作品 ↓」+ 右落款
     .hero-bottom
@@ -478,7 +502,7 @@
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
         font-size: 12px
         letter-spacing: .08em
-        color: $muted
+        color: $hero-muted
         transition: color .2s ease
         svg
           width: 14px
@@ -488,19 +512,19 @@
           stroke-width: 1.6
           animation: hero-bounce 2.4s ease-in-out infinite
         &:hover
-          color: $ink
+          color: $hero-ink
       .caption
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
         font-size: 11.5px
         letter-spacing: .08em
-        color: $subtle
+        color: $hero-subtle
 
   .panel
     margin-top: 40px
     border: 1px solid $line
     border-radius: var(--shape-md)
-    background: linear-gradient(180deg, rgba(21, 22, 23, .92), rgba(12, 13, 14, .96))
-    box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .9), 0 1px 0 rgba(255, 255, 255, .04) inset
+    background: var(--site-panel-bg)
+    box-shadow: var(--site-panel-shadow)
     overflow: hidden
     animation: rise-in .8s .5s cubic-bezier(.05, .7, .1, 1) both
     .panel-bar
@@ -510,7 +534,7 @@
       height: 42px
       padding: 0 16px
       border-bottom: 1px solid $line-soft
-      background: rgba(255, 255, 255, .012)
+      background: $card-bg
       .dots
         display: flex
         gap: 6px
@@ -518,7 +542,7 @@
           width: 9px
           height: 9px
           border-radius: 50%
-          background: #2a2c31
+          background: $line
       .addr
         margin: 0 auto
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
@@ -527,7 +551,7 @@
         border: 1px solid $line-soft
         border-radius: var(--shape-xs)
         padding: 4px 12px
-        background: rgba(0, 0, 0, .35)
+        background: $surface-2
       .ver
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
         font-size: 10.5px
@@ -543,7 +567,7 @@
         display: flex
         flex-direction: column
         gap: 2px
-        background: rgba(255, 255, 255, .008)
+        background: $tint-1
         .rail-item
           font-size: 13px
           color: $muted
@@ -557,13 +581,13 @@
             width: 13px
             height: 13px
             border-radius: var(--shape-xs)
-            border: 1px solid #2c2f35
-            background: rgba(255, 255, 255, .02)
+            border: 1px solid $line
+            background: $tint-1
           &.is-active
             color: $ink
-            background: rgba(255, 255, 255, .055)
+            background: $tint-3
             &::before
-              background: linear-gradient(135deg, #5e6ad2, #9aa3ff)
+              background: linear-gradient(135deg, var(--site-accent), var(--site-accent-strong))
               border-color: transparent
         .rail-sep
           height: 1px
@@ -600,14 +624,14 @@
             &:last-child
               border-bottom: 0
             &:hover
-              background: rgba(255, 255, 255, .022)
+              background: $tint-1
               padding-left: 6px
             .cat
               flex: none
               font-size: 10.5px
-              color: #a9b0f4
+              color: var(--site-accent)
               background: $accent-soft
-              border: 1px solid rgba(94, 106, 210, .28)
+              border: 1px solid var(--site-accent-line)
               border-radius: var(--shape-xs)
               padding: 2px 7px
               letter-spacing: .02em
@@ -635,11 +659,11 @@
             border: 1px solid $line-soft
             border-radius: var(--shape-sm)
             padding: 13px 14px
-            background: rgba(255, 255, 255, .012)
+            background: $card-bg
             transition: border-color .25s ease, background .25s ease, transform .25s ease
             &:hover
-              border-color: rgba(139, 148, 245, .45)
-              background: rgba(139, 148, 245, .06)
+              border-color: var(--site-accent-line)
+              background: rgb(var(--site-accent-rgb) / .06)
               transform: translateY(-2px)
             b
               display: block
@@ -708,7 +732,7 @@
       font-weight: 600
       color: $ink
       .grad
-        background: linear-gradient(180deg, #f7f8f8 0%, #8a8f98 100%)
+        background: linear-gradient(180deg, var(--site-text) 0%, var(--site-muted) 100%)
         -webkit-background-clip: text
         background-clip: text
         color: transparent
@@ -745,12 +769,12 @@
       border: 1px solid $line
       border-radius: var(--shape-full)
       padding: 5px 11px
-      background: rgba(255, 255, 255, .015)
+      background: $tint-1
       transition: border-color .2s ease, color .2s ease, background .2s ease
       &:hover
-        border-color: rgba(139, 148, 245, .5)
+        border-color: var(--site-accent-line)
         color: #fff
-        background: rgba(139, 148, 245, .08)
+        background: rgb(var(--site-accent-rgb) / .08)
 
   .more
     display: inline-block
@@ -779,12 +803,12 @@
     border: 1px solid $line
     border-radius: var(--shape-md)
     overflow: hidden
-    background: linear-gradient(180deg, rgba(21, 22, 23, .9), rgba(12, 13, 14, .95))
+    background: var(--site-card-bg)
     transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, box-shadow .3s ease
     &:hover
       transform: translateY(-4px)
-      border-color: rgba(139, 148, 245, .45)
-      box-shadow: 0 20px 44px -24px rgba(94, 106, 210, .7)
+      border-color: var(--site-accent-line)
+      box-shadow: 0 20px 44px -24px rgb(var(--site-accent-rgb) / .55)
     img
       display: block
       width: 100%
@@ -818,13 +842,13 @@
     border: 1px solid $line
     border-radius: var(--shape-md)
     padding: 22px
-    background: rgba(255, 255, 255, .012)
+    background: $card-bg
     transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, background .3s ease, box-shadow .3s ease
     &:hover
       transform: translateY(-4px)
-      border-color: rgba(139, 148, 245, .45)
-      background: rgba(139, 148, 245, .05)
-      box-shadow: 0 20px 44px -26px rgba(94, 106, 210, .8)
+      border-color: var(--site-accent-line)
+      background: rgb(var(--site-accent-rgb) / .06)
+      box-shadow: 0 20px 44px -26px rgb(var(--site-accent-rgb) / .6)
       .proj-arrow
         color: $accent
         transform: translate(2px, -2px)
@@ -860,25 +884,25 @@
         border: 1px solid transparent
         letter-spacing: .02em
       .tag-info
-        color: #9fc4ff
-        background: rgba(96, 165, 250, .12)
-        border-color: rgba(96, 165, 250, .3)
+        color: var(--tag-info-fg)
+        background: var(--tag-info-bg)
+        border-color: var(--tag-info-line)
       .tag-success
-        color: #8ee2b0
-        background: rgba(74, 222, 128, .12)
-        border-color: rgba(74, 222, 128, .3)
+        color: var(--tag-success-fg)
+        background: var(--tag-success-bg)
+        border-color: var(--tag-success-line)
       .tag-warning
-        color: #f0cd86
-        background: rgba(250, 204, 21, .12)
-        border-color: rgba(250, 204, 21, .3)
+        color: var(--tag-warning-fg)
+        background: var(--tag-warning-bg)
+        border-color: var(--tag-warning-line)
       .tag-error
-        color: #f3a3a3
-        background: rgba(248, 113, 113, .12)
-        border-color: rgba(248, 113, 113, .3)
+        color: var(--tag-error-fg)
+        background: var(--tag-error-bg)
+        border-color: var(--tag-error-line)
       .tag-grey
-        color: $muted
-        background: rgba(255, 255, 255, .05)
-        border-color: $line
+        color: var(--tag-grey-fg)
+        background: var(--tag-grey-bg)
+        border-color: var(--tag-grey-line)
 
   // ---------- 团队 ----------
   .member-grid
@@ -892,12 +916,12 @@
     border: 1px solid $line
     border-radius: var(--shape-md)
     padding: 20px
-    background: rgba(255, 255, 255, .012)
+    background: $card-bg
     transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, background .3s ease
     &:hover
       transform: translateY(-3px)
-      border-color: rgba(139, 148, 245, .4)
-      background: rgba(139, 148, 245, .05)
+      border-color: var(--site-accent-line)
+      background: rgb(var(--site-accent-rgb) / .06)
     .member-avatar
       flex: none
       width: 52px
@@ -921,7 +945,7 @@
     .member-role
       margin-top: 3px
       font-size: 11.5px
-      color: #a9b0f4
+      color: var(--site-accent)
     .member-desc
       margin: 9px 0 0
       font-size: 12.5px
@@ -943,14 +967,14 @@
     padding: 52px 40px
     text-align: center
     overflow: hidden
-    background: linear-gradient(180deg, rgba(21, 22, 23, .92), rgba(12, 13, 14, .96))
-    box-shadow: 0 40px 90px -50px rgba(0, 0, 0, .95)
+    background: var(--site-panel-bg)
+    box-shadow: var(--site-panel-shadow)
     &::before
       content: ""
       position: absolute
       inset: 0
       pointer-events: none
-      background: radial-gradient(ellipse 60% 120% at 50% 0%, rgba(94, 106, 210, .22) 0%, transparent 68%)
+      background: radial-gradient(ellipse 60% 120% at 50% 0%, var(--site-glow) 0%, transparent 68%)
     > *
       position: relative
     h2
