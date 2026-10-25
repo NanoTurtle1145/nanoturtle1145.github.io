@@ -105,6 +105,22 @@
   --tag-grey-fg: #5f6368;
   --tag-grey-bg: rgba(13, 28, 40, 0.05);
   --tag-grey-line: rgba(13, 28, 40, 0.12);
+
+  /* Hero（首页大 banner）：浅色版 = 浅底 + 深字 + 白色遮罩 */
+  --hero-bg-base: #ffffff;
+  --hero-ink: #0d1c28;
+  --hero-ink-2: #2b3a48;
+  --hero-muted: #5f6368;
+  --hero-subtle: #808a94;
+  --hero-line: rgba(13, 28, 40, 0.14);
+  --hero-tint: rgba(255, 255, 255, 0.6);
+  --hero-ghost-border: rgba(13, 28, 40, 0.18);
+  --hero-ghost-border-hover: rgba(13, 28, 40, 0.34);
+  --hero-ghost-bg: rgba(255, 255, 255, 0.55);
+  --hero-ghost-bg-hover: #ffffff;
+  --hero-grad: linear-gradient(180deg, #0d1c28 0%, #5f6368 100%);
+  --hero-scrim: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.34) 12%, rgba(255, 255, 255, 0) 32%), linear-gradient(0deg, #f5f6f8 0%, rgba(245, 246, 248, 0.92) 14%, rgba(245, 246, 248, 0.6) 34%, rgba(245, 246, 248, 0.18) 58%, rgba(245, 246, 248, 0) 80%), linear-gradient(90deg, rgba(245, 246, 248, 0.97) 0%, rgba(245, 246, 248, 0.94) 30%, rgba(245, 246, 248, 0.8) 45%, rgba(245, 246, 248, 0.45) 62%, rgba(245, 246, 248, 0.12) 78%, rgba(245, 246, 248, 0) 92%);
+  --hero-scrim-mobile: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.66) 26%, rgba(245, 246, 248, 0.94) 52%, #f5f6f8 76%), linear-gradient(90deg, rgba(245, 246, 248, 0.9) 0%, rgba(245, 246, 248, 0.78) 48%, rgba(245, 246, 248, 0.55) 100%);
 }
 
 /* 深色主题：Linear 风皮肤（近黑 + 发丝描边 + 灰阶文字分层）
@@ -166,6 +182,22 @@ html[data-theme="dark"],
   --tag-grey-fg: #8a8f98;
   --tag-grey-bg: rgba(255, 255, 255, 0.05);
   --tag-grey-line: #23252a;
+
+  /* Hero（首页大 banner）：深色版 = 近黑底 + 浅字 + 黑色遮罩（原样） */
+  --hero-bg-base: #05060a;
+  --hero-ink: #f7f8f8;
+  --hero-ink-2: #dfe4ec;
+  --hero-muted: #a9b1bd;
+  --hero-subtle: #868e9a;
+  --hero-line: rgba(255, 255, 255, 0.16);
+  --hero-tint: rgba(255, 255, 255, 0.03);
+  --hero-ghost-border: rgba(255, 255, 255, 0.2);
+  --hero-ghost-border-hover: rgba(255, 255, 255, 0.36);
+  --hero-ghost-bg: rgba(255, 255, 255, 0.04);
+  --hero-ghost-bg-hover: rgba(255, 255, 255, 0.09);
+  --hero-grad: linear-gradient(180deg, #f7f8f8 0%, #8a8f98 100%);
+  --hero-scrim: linear-gradient(180deg, rgba(1, 1, 2, 0.78) 0%, rgba(1, 1, 2, 0.32) 12%, rgba(1, 1, 2, 0) 30%), linear-gradient(0deg, #010102 0%, rgba(1, 1, 2, 0.86) 14%, rgba(1, 1, 2, 0.46) 34%, rgba(1, 1, 2, 0.12) 58%, rgba(1, 1, 2, 0) 80%), linear-gradient(90deg, rgba(1, 1, 2, 0.98) 0%, rgba(1, 1, 2, 0.96) 30%, rgba(1, 1, 2, 0.86) 45%, rgba(1, 1, 2, 0.55) 62%, rgba(1, 1, 2, 0.18) 78%, rgba(1, 1, 2, 0) 92%);
+  --hero-scrim-mobile: linear-gradient(180deg, rgba(1, 1, 2, 0.5) 0%, rgba(1, 1, 2, 0.68) 28%, rgba(1, 1, 2, 0.92) 54%, #010102 76%), linear-gradient(90deg, rgba(1, 1, 2, 0.92) 0%, rgba(1, 1, 2, 0.8) 48%, rgba(1, 1, 2, 0.6) 100%);
 }
 html[data-theme="dark"] {
   background-color: #010102;

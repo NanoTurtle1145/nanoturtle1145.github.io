@@ -3,7 +3,8 @@
     <!-- Hero：全幅 banner —— 整屏背景图 + 左侧渐变遮罩 + 左下文案 + 底部探索条 -->
     <section id="hero" class="hero">
       <div class="hero-bg" aria-hidden="true">
-        <img src="/media/hopeos/hero-banner.webp" alt="" fetchpriority="high" decoding="async" />
+        <img class="hero-bg-light" src="/media/hopeos/hero-banner-light.webp" alt="" fetchpriority="high" decoding="async" />
+        <img class="hero-bg-dark" src="/media/hopeos/hero-banner.webp" alt="" decoding="async" />
       </div>
       <div class="wrap hero-content">
         <div class="hero-intro">
@@ -291,15 +292,15 @@
   $tint-2: var(--site-tint-2)
   $tint-3: var(--site-tint-3)
 
-  // ---- Hero 是「深色图上压浅字」，两种主题下都保持深底浅字 → 固定色 ----
-  $hero-ink: #f7f8f8
-  $hero-ink-2: #dfe4ec
-  $hero-muted: #a9b1bd
-  $hero-subtle: #868e9a
-  $hero-line: rgba(255, 255, 255, .16)
-  $hero-accent: #8b94f5
-  $hero-accent-soft: rgba(94, 106, 210, .3)
-  $hero-tint: rgba(255, 255, 255, .03)
+  // ---- Hero 令牌（浅色：浅底深字；深色：深底浅字）----
+  $hero-ink: var(--hero-ink)
+  $hero-ink-2: var(--hero-ink-2)
+  $hero-muted: var(--hero-muted)
+  $hero-subtle: var(--hero-subtle)
+  $hero-line: var(--hero-line)
+  $hero-accent: var(--site-accent)
+  $hero-accent-soft: var(--site-accent-soft)
+  $hero-tint: var(--hero-tint)
 
   // hero 入场：逐级上浮淡入
   @keyframes rise-in
@@ -389,19 +390,25 @@
       inset: 0
       z-index: -1
       overflow: hidden
-      background: #05060a
+      background: var(--hero-bg-base)
       img
+        position: absolute
+        inset: 0
         width: 100%
         height: 100%
         object-fit: cover
         object-position: right center
         animation: hero-fade 1.2s cubic-bezier(.05, .7, .1, 1) both, hero-zoom 22s cubic-bezier(.05, .7, .1, 1) both
+      // 浅/深两版背景图按 html[data-theme] 切换
+      .hero-bg-dark
+        display: none
       // 三层遮罩：顶部保导航可读 / 底部融入页面底色 / 左侧强力压暗给文案让位
+      // 遮罩令牌：浅色=白色渐变，深色=近黑渐变
       &::after
         content: ""
         position: absolute
         inset: 0
-        background: linear-gradient(180deg, rgba(1, 1, 2, .78) 0%, rgba(1, 1, 2, .32) 12%, rgba(1, 1, 2, 0) 30%), linear-gradient(0deg, #010102 0%, rgba(1, 1, 2, .86) 14%, rgba(1, 1, 2, .46) 34%, rgba(1, 1, 2, .12) 58%, rgba(1, 1, 2, 0) 80%), linear-gradient(90deg, rgba(1, 1, 2, .98) 0%, rgba(1, 1, 2, .96) 30%, rgba(1, 1, 2, .86) 45%, rgba(1, 1, 2, .55) 62%, rgba(1, 1, 2, .18) 78%, rgba(1, 1, 2, 0) 92%)
+        background: var(--hero-scrim)
     .hero-content
       position: relative
       width: 100%
@@ -442,7 +449,7 @@
       text-wrap: balance
       animation: rise-in .7s .12s cubic-bezier(.05, .7, .1, 1) both
       .grad
-        background: linear-gradient(180deg, #f7f8f8 0%, #8a8f98 100%)
+        background: var(--hero-grad)
         -webkit-background-clip: text
         background-clip: text
         color: transparent
@@ -465,15 +472,15 @@
       gap: 12px
       margin-top: 30px
       animation: rise-in .7s .32s cubic-bezier(.05, .7, .1, 1) both
-      // 深色 hero 上的 ghost 按钮固定浅色
+      // hero 上的 ghost 按钮跟随 hero 令牌
       .btn-ghost
-        border-color: rgba(255, 255, 255, .2)
+        border-color: var(--hero-ghost-border)
         color: $hero-ink-2
-        background: $tint-2
+        background: var(--hero-ghost-bg)
         &:hover
-          border-color: rgba(255, 255, 255, .36)
-          color: #fff
-          background: rgba(255, 255, 255, .09)
+          border-color: var(--hero-ghost-border-hover)
+          color: $hero-ink
+          background: var(--hero-ghost-bg-hover)
     .meta
       margin: 30px 0 0
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
@@ -1004,7 +1011,7 @@
         object-position: 62% center
       // 移动端：文案占满宽度，加大整体压暗，让图只在上半部透气
       .hero-bg::after
-        background: linear-gradient(180deg, rgba(1, 1, 2, .5) 0%, rgba(1, 1, 2, .68) 28%, rgba(1, 1, 2, .92) 54%, #010102 76%), linear-gradient(90deg, rgba(1, 1, 2, .92) 0%, rgba(1, 1, 2, .8) 48%, rgba(1, 1, 2, .6) 100%)
+        background: var(--hero-scrim-mobile)
       .hero-content
         padding-top: 92px
         padding-bottom: 112px
@@ -1049,6 +1056,13 @@
           border-left: 0
           border-top: 1px solid $line-soft
           margin-top: 20px
+
+  // 深色主题下换上深色版 hero 背景图
+  html[data-theme="dark"] .hero-bg
+    .hero-bg-light
+      display: none
+    .hero-bg-dark
+      display: block
 
   @media (prefers-reduced-motion: reduce)
     .hero .cta .btn
