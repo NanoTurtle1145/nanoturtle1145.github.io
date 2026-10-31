@@ -131,13 +131,10 @@ function clearSearch() {
 </template>
 
 <style lang="sass" scoped>
-  @keyframes post-rise
     from
       opacity: 0
-      transform: translateY(12px)
     to
       opacity: 1
-      transform: translateY(0)
 
   // 分类筛选：悬停微浮起，选中项带主题色辉光
   .v-chip
@@ -146,7 +143,6 @@ function clearSearch() {
     transition: transform .2s ease, box-shadow .25s ease, background .2s ease
 
   .v-chip:hover
-    transform: translateY(-1px)
 
   .v-chip--variant-flat
     box-shadow: 0 4px 14px rgba(var(--v-theme-primary), .3)
@@ -166,15 +162,12 @@ function clearSearch() {
       bottom: 0
       width: 3px
       background: linear-gradient(180deg, rgb(var(--v-theme-primary)), rgba(var(--v-theme-primary), .3))
-      transform: scaleY(0)
       transform-origin: top
       transition: transform .35s cubic-bezier(.4, 0, .2, 1)
     &:hover
-      transform: translateY(-4px)
       border-color: rgb(var(--v-theme-primary), .5)
       box-shadow: 0 12px 32px rgba(var(--v-theme-primary), .14)
     &:hover::before
-      transform: scaleY(1)
 
   .post-title
     transition: color .25s ease
@@ -184,7 +177,6 @@ function clearSearch() {
 
   // 列表逐级入场
   .post-list > a
-    animation: post-rise .55s cubic-bezier(.05, .7, .1, 1) both
     &:nth-child(1)
       animation-delay: .02s
     &:nth-child(2)
@@ -212,5 +204,4 @@ function clearSearch() {
 
   @media (prefers-reduced-motion: reduce)
     .post-list > a
-      animation: none
 </style>

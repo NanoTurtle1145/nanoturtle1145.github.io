@@ -1,48 +1,15 @@
 <script setup lang="ts">
-import { onMounted, watch } from "vue";
-import { useRoute } from "vue-router";
+import { onMounted } from "vue";
+
 import GovHeader from "./components/GovHeader.vue";
 import Footer from "./components/Footer.vue";
 import { useThemeMode } from "./composables/useThemeMode";
 
 const { initFromDocument } = useThemeMode();
 
-/* ---- 滚动入场动画：观察 main 下的区块，进入视口时添加 .is-visible ---- */
-let revealObserver: IntersectionObserver | null = null;
-if (typeof window !== "undefined" && "IntersectionObserver" in window) {
-  revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver?.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
-  );
-}
-
-function observeReveals() {
-  if (!revealObserver) return;
-  document
-    .querySelectorAll("main section[id]")
-    .forEach((el) => {
-      if (!el.classList.contains("is-visible")) revealObserver?.observe(el);
-    });
-}
-
-const route = useRoute();
 onMounted(() => {
   initFromDocument(); // 与 html[data-theme] 对齐，避免主题闪烁
-  // 首次渲染可能尚未完成，给一帧缓冲
-  requestAnimationFrame(observeReveals);
 });
-// 路由切换后重新观察（等 md3e-route 过渡结束）
-watch(
-  () => route.fullPath,
-  () => setTimeout(observeReveals, 450)
-);
 </script>
 
 <template>
@@ -74,17 +41,15 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 路由过渡：淡入 + 轻微上浮 */
+/* 路由过渡：只做 120ms 淡入，不位移 */
 .md3e-route-enter-active {
-  transition: opacity 0.4s cubic-bezier(0.05, 0.7, 0.1, 1),
-    transform 0.5s cubic-bezier(0.05, 0.7, 0.1, 1);
+  transition: opacity 0.12s ease;
 }
 .md3e-route-leave-active {
-  transition: opacity 0.18s cubic-bezier(0.3, 0, 0.8, 0.15);
+  transition: opacity 0.1s ease;
 }
 .md3e-route-enter-from {
   opacity: 0;
-  transform: translateY(12px);
 }
 .md3e-route-leave-to {
   opacity: 0;

@@ -237,22 +237,6 @@ body {
    仅叠加在既有布局之上，不改变结构与语义
    ============================================================ */
 
-/* ---- 滚动入场：区块渐显上浮（JS 可用时才隐藏内容，避免无 JS 白屏）---- */
-html.js main section[id] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s var(--md3e-motion-emphasized-decelerate),
-    transform 0.7s var(--md3e-motion-emphasized-decelerate);
-  will-change: opacity, transform;
-  /* 视口外区块跳过渲染，进入视口附近才渲染（配合懒加载） */
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
-}
-html.js main section[id].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* ---- 按钮：玻璃高光质感（统一应用于所有实底按钮，尊重各自配色）---- */
 .v-btn--variant-flat {
   position: relative;
@@ -266,19 +250,14 @@ html.js main section[id].is-visible {
   pointer-events: none;
 }
 
-/* ---- 卡片：悬停抬升 + 投影加深（政务白卡统一动效）---- */
+/* ---- 卡片：悬停只做描边变化，不位移、不加大投影（克制）---- */
 .v-card,
 .md3e-group {
-  transition: transform 0.4s var(--md3e-motion-emphasized-decelerate),
-    box-shadow 0.4s var(--md3e-motion-emphasized-decelerate);
+  transition: border-color 0.15s ease;
 }
 .v-card:hover,
 .md3e-group:hover {
-  transform: translateY(-4px);
   border-color: rgb(var(--v-theme-primary), 0.45);
-  box-shadow: 0 2px 4px rgba(9, 41, 77, 0.06),
-    0 16px 40px -8px rgba(9, 41, 77, 0.18),
-    0 32px 64px -24px rgba(9, 41, 77, 0.14);
 }
 
 /* ---- 滚动条：更细腻的窄条 ---- */

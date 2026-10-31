@@ -105,7 +105,6 @@ defineProps<{
 }
 
 .member-card:hover {
-  transform: translateY(-6px);
   box-shadow: 0 12px 32px rgba(var(--v-theme-primary), 0.15),
     0 24px 64px rgba(var(--v-theme-primary), 0.1) !important;
   border-color: rgb(var(--v-theme-primary), 0.8) !important;
@@ -135,7 +134,6 @@ defineProps<{
 }
 
 .member-card:hover .member-avatar {
-  transform: scale(1.08);
 }
 
 .member-avatar-glow {
@@ -157,19 +155,8 @@ defineProps<{
 
 .member-card:hover .member-avatar-glow {
   opacity: 1;
-  animation: pulse-glow 2s ease-in-out infinite;
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-}
 
 .member-avatar-placeholder {
   position: relative;
@@ -195,7 +182,6 @@ defineProps<{
 }
 
 .member-card:hover .member-avatar-placeholder {
-  transform: scale(1.08);
   box-shadow: 0 8px 24px rgba(var(--v-theme-primary), 0.25);
 }
 

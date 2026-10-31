@@ -152,7 +152,6 @@
     display: block
     object-fit: cover
   .brand:hover .brand-mark
-    transform: scale(1.08)
     box-shadow: 0 0 0 1px var(--site-accent-line), 0 6px 20px rgba(0, 0, 0, .24), 0 0 26px var(--site-accent-line)
   .links
     display: flex
@@ -202,7 +201,6 @@
       color: $ink
       border-color: $line
       background: $tint-1
-      transform: scale(1.06)
   .btn
     display: inline-flex
     align-items: center
@@ -219,7 +217,6 @@
       color: var(--site-solid-btn-ink)
       &:hover
         background: var(--site-solid-btn-bg-hover)
-        transform: translateY(-1px)
         box-shadow: 0 4px 16px var(--site-glow)
 
   // 移动端汉堡按钮
@@ -296,7 +293,6 @@
   .m-menu-enter-from,
   .m-menu-leave-to
     opacity: 0
-    transform: translateY(-8px)
 
   @media (max-width: 820px)
     .wrap

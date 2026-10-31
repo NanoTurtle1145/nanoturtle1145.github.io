@@ -62,17 +62,8 @@
   height: 2px;
   background: linear-gradient(90deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-primary)) 100%);
   background-size: 200% 100%;
-  animation: gradient-shift 3s ease-in-out infinite;
 }
 
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
 
 .footer-wrap {
   position: relative;
@@ -122,7 +113,6 @@
 }
 
 .footer-logo-badge:hover {
-  transform: translateY(-2px) scale(1.05);
   box-shadow: 0 0 0 1px rgb(var(--v-theme-primary), 0.6),
     0 6px 20px rgba(var(--v-theme-primary), 0.3);
 }
@@ -168,7 +158,6 @@
   background: linear-gradient(135deg, rgba(var(--v-theme-primary), 0.1) 0%, rgba(var(--v-theme-primary), 0.05) 100%);
   color: rgb(var(--v-theme-primary));
   border-color: rgba(var(--v-theme-primary), 0.3);
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(var(--v-theme-primary), 0.15);
 }
 
@@ -178,7 +167,6 @@
 }
 
 .footer-link:hover .footer-link-icon {
-  transform: scale(1.1);
 }
 
 .footer-link-divider {

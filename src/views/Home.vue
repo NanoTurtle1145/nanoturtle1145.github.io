@@ -401,34 +401,8 @@
   $hero-tint: var(--hero-tint)
 
   // hero 入场：逐级上浮淡入
-  @keyframes rise-in
-    from
-      opacity: 0
-      transform: translateY(18px)
-    to
-      opacity: 1
-      transform: translateY(0)
-
   // hero 背景：淡入 + 极缓慢推近（Ken Burns）
-  @keyframes hero-fade
-    from
-      opacity: 0
-    to
-      opacity: 1
-
-  @keyframes hero-zoom
-    from
-      transform: scale(1.06)
-    to
-      transform: scale(1)
-
   // 底部「探索我们的作品」箭头轻微浮动
-  @keyframes hero-bounce
-    0%, 100%
-      transform: translateY(0)
-    50%
-      transform: translateY(4px)
-
   .home
     position: relative
     // 首页整体固定在近黑 Linear 画布上，避免任何浅色主题把白字 hero 顶成白底
@@ -465,7 +439,6 @@
     color: var(--site-solid-btn-ink)
     &:hover
       background: var(--site-solid-btn-bg-hover)
-      transform: translateY(-1px)
   .btn-ghost
     border-color: $line
     color: $ink-2
@@ -496,7 +469,6 @@
         height: 100%
         object-fit: cover
         object-position: right center
-        animation: hero-fade 1.2s cubic-bezier(.05, .7, .1, 1) both, hero-zoom 22s cubic-bezier(.05, .7, .1, 1) both
       // 浅/深两版背景图按 html[data-theme] 切换
       .hero-bg-dark
         display: none
@@ -529,7 +501,6 @@
       padding: 7px 14px
       background: $hero-tint
       backdrop-filter: blur(6px)
-      animation: rise-in .7s cubic-bezier(.05, .7, .1, 1) both
       i
         width: 6px
         height: 6px
@@ -545,7 +516,6 @@
       font-weight: 600
       color: $hero-ink
       text-wrap: balance
-      animation: rise-in .7s .12s cubic-bezier(.05, .7, .1, 1) both
       .grad
         background: var(--hero-grad)
         -webkit-background-clip: text
@@ -557,19 +527,16 @@
       font-weight: 500
       letter-spacing: .01em
       color: $hero-ink-2
-      animation: rise-in .7s .18s cubic-bezier(.05, .7, .1, 1) both
     .lead
       max-width: 520px
       margin: 16px 0 0
       color: $hero-muted
       font-size: 16px
       line-height: 1.75
-      animation: rise-in .7s .24s cubic-bezier(.05, .7, .1, 1) both
     .cta
       display: flex
       gap: 12px
       margin-top: 30px
-      animation: rise-in .7s .32s cubic-bezier(.05, .7, .1, 1) both
       // hero 上的 ghost 按钮跟随 hero 令牌
       .btn-ghost
         border-color: var(--hero-ghost-border)
@@ -585,7 +552,6 @@
       font-size: 11.5px
       letter-spacing: .06em
       color: $hero-muted
-      animation: rise-in .7s .42s cubic-bezier(.05, .7, .1, 1) both
       b
         color: $hero-ink-2
         font-weight: 500
@@ -599,7 +565,6 @@
       align-items: center
       justify-content: space-between
       gap: 24px
-      animation: rise-in .8s .5s cubic-bezier(.05, .7, .1, 1) both
       .explore
         display: inline-flex
         align-items: center
@@ -615,7 +580,6 @@
           stroke: currentColor
           fill: none
           stroke-width: 1.6
-          animation: hero-bounce 2.4s ease-in-out infinite
         &:hover
           color: $hero-ink
       .caption
@@ -631,7 +595,6 @@
     background: var(--site-panel-bg)
     box-shadow: var(--site-panel-shadow)
     overflow: hidden
-    animation: rise-in .8s .5s cubic-bezier(.05, .7, .1, 1) both
     .panel-bar
       display: flex
       align-items: center
@@ -769,7 +732,6 @@
             &:hover
               border-color: var(--site-accent-line)
               background: rgb(var(--site-accent-rgb) / .06)
-              transform: translateY(-2px)
             b
               display: block
               font-size: 21px
@@ -816,11 +778,8 @@
         color: $muted
     // features 区逐级入场
     > .feature:nth-child(1)
-      animation: rise-in .7s .55s cubic-bezier(.05, .7, .1, 1) both
     > .feature:nth-child(2)
-      animation: rise-in .7s .65s cubic-bezier(.05, .7, .1, 1) both
     > .feature:nth-child(3)
-      animation: rise-in .7s .75s cubic-bezier(.05, .7, .1, 1) both
 
   // ---------- 新增板块通用 ----------
   .sec
@@ -889,7 +848,6 @@
     transition: color .2s ease, transform .2s ease
     &:hover
       color: $accent
-      transform: translateX(3px)
 
   // ---------- HopeOS 截图墙 ----------
   .hopeos
@@ -911,7 +869,6 @@
     background: var(--site-card-bg)
     transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, box-shadow .3s ease
     &:hover
-      transform: translateY(-4px)
       border-color: var(--site-accent-line)
       box-shadow: 0 20px 44px -24px rgb(var(--site-accent-rgb) / .55)
     img
@@ -950,13 +907,11 @@
     background: $card-bg
     transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, background .3s ease, box-shadow .3s ease
     &:hover
-      transform: translateY(-4px)
       border-color: var(--site-accent-line)
       background: rgb(var(--site-accent-rgb) / .06)
       box-shadow: 0 20px 44px -26px rgb(var(--site-accent-rgb) / .6)
       .proj-arrow
         color: $accent
-        transform: translate(2px, -2px)
     .proj-top
       display: flex
       align-items: center
@@ -1024,7 +979,6 @@
     background: $card-bg
     transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, background .3s ease
     &:hover
-      transform: translateY(-3px)
       border-color: var(--site-accent-line)
       background: rgb(var(--site-accent-rgb) / .06)
     .member-avatar
@@ -1175,7 +1129,6 @@
     z-index: 0
     pointer-events: none
     user-select: none
-    animation: rise-in .9s .3s cubic-bezier(.05, .7, .1, 1) both
   html[data-theme="dark"] .hero-watermark
     opacity: .2
 
@@ -1193,7 +1146,6 @@
     &:hover
       background: rgb(var(--site-accent-rgb) / .1)
       border-color: var(--site-accent)
-      transform: translateY(-1px)
     .featured-tag
       flex: none
       font-size: 10.5px
@@ -1260,12 +1212,10 @@
       text-decoration: none
       transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, background .3s ease
       &:hover
-        transform: translateY(-2px)
         border-color: var(--site-accent-line)
         background: rgb(var(--site-accent-rgb) / .05)
         .now-arrow
           color: $accent
-          transform: translateX(2px)
       .now-dot
         flex: none
         width: 8px
@@ -1306,7 +1256,6 @@
     background: $card-bg
     transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, box-shadow .3s ease
     &:hover
-      transform: translateY(-4px)
       border-color: var(--site-accent-line)
       box-shadow: 0 20px 44px -26px rgb(var(--site-accent-rgb) / .55)
     .latest-link
@@ -1357,7 +1306,6 @@
       transition: color .2s ease, transform .2s ease
     &:hover .latest-more
       color: $accent
-      transform: translateX(2px)
 
   @media (prefers-reduced-motion: reduce)
     .hero .cta .btn
@@ -1375,7 +1323,6 @@
     .panel,
     .features > .feature,
     .latest
-      animation: none
 
   @media (max-width: 900px)
     .sec

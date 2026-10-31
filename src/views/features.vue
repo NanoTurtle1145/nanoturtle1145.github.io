@@ -1211,7 +1211,6 @@ html[data-theme="dark"] .hope-mark--dark {
 
 .gain-card:hover {
   border-color: color-mix(in srgb, var(--fx-cyan) 34%, var(--site-line));
-  transform: translateY(-2px);
 }
 
 .gain-top {

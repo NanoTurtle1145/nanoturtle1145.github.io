@@ -81,19 +81,8 @@ defineProps<{
   border-radius: 50%;
   z-index: 0;
   pointer-events: none;
-  animation: float-glow 8s ease-in-out infinite;
 }
 
-@keyframes float-glow {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translate(-20px, 20px) scale(1.1);
-    opacity: 0.8;
-  }
-}
 
 .hero-container {
   position: relative;
@@ -122,7 +111,6 @@ defineProps<{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: fade-in-up 0.8s ease-out;
 }
 
 .hero-description {
@@ -136,41 +124,18 @@ defineProps<{
 }
 
 .hero-button .v-btn:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(var(--v-theme-primary), 0.35), 0 8px 24px rgba(var(--v-theme-primary), 0.25);
 }
 
 .hero-image-inner {
-  animation: fade-in-left 0.8s ease-out 0.2s both;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-image-inner:hover {
-  transform: scale(1.02);
 }
 
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes fade-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 
 /* 深色模式：光晕更明显 */
 html[data-theme="dark"] .hero-section::before {

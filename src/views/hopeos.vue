@@ -901,7 +901,6 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 .btn:hover {
-  transform: translateY(-1px);
 }
 
 .btn-solid {
@@ -1065,7 +1064,6 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 .shot-main:hover img {
-  transform: scale(1.012);
 }
 
 .shot-zoom {
@@ -1192,7 +1190,6 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 .milestone:hover {
-  transform: translateY(-3px);
   border-color: var(--site-accent-line);
   box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.4);
 }
@@ -1320,7 +1317,6 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 .feature:hover {
-  transform: translateY(-2px);
   border-color: var(--site-accent-line);
   background: var(--site-tint-1);
 }
@@ -1397,7 +1393,6 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 .shot-card:hover img {
-  transform: scale(1.025);
 }
 
 .shot-caption {
@@ -1542,7 +1537,6 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 .news-card:hover {
-  transform: translateY(-3px);
   border-color: var(--site-accent-line);
 }
 
@@ -1632,7 +1626,6 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 .news-card:hover .news-arrow {
-  transform: translateX(3px);
   color: var(--site-accent);
 }
 
@@ -1863,28 +1856,9 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 /* ---------------- 入场动画 ---------------- */
-@keyframes hp-rise {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes hp-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 .hero-copy > * {
-  animation: hp-rise 0.68s cubic-bezier(0.05, 0.7, 0.1, 1) both;
 }
 
 .hero-copy > :nth-child(1) {
@@ -1910,7 +1884,6 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 .hero-visual {
-  animation: hp-fade 0.9s 0.16s cubic-bezier(0.05, 0.7, 0.1, 1) both;
 }
 
 /* ---------------- 响应式 ---------------- */
