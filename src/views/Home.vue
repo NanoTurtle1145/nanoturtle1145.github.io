@@ -6,11 +6,12 @@
         <img class="hero-bg-light" src="/media/hopeos/hero-banner-light.webp" alt="" fetchpriority="high" decoding="async" />
         <img class="hero-bg-dark" src="/media/hopeos/hero-banner.webp" alt="" decoding="async" />
       </div>
+      <img class="hero-watermark" src="/logo-mark.svg" alt="" aria-hidden="true" decoding="async" />
       <div class="wrap hero-content">
         <div class="hero-intro">
           <p class="eyebrow"><i aria-hidden="true"></i>HOPE STUDIO — 学生技术兴趣团队</p>
           <h1>把好奇心写成<br /><span class="grad">能跑起来的东西。</span></h1>
-          <p class="subtitle">HopeOS 0.2.0 · 从零手写的 UEFI 操作系统</p>
+          <p class="subtitle">HopeOS · 从零手写的 UEFI 操作系统，最近 X11 / IceWM 也跑起来了</p>
           <p class="lead">写桌面应用、折腾操作系统、把踩过的坑整理成文章。不追热点，只做能留下来的东西。</p>
           <div class="cta">
             <router-link class="btn btn-white" to="/hopeos">
@@ -19,7 +20,7 @@
             </router-link>
             <router-link class="btn btn-ghost" to="/archive">看看我们做了什么</router-link>
           </div>
-          <p class="meta"><b>2019</b> 年成立 · 浙江 · <b>{{ posts.length }}</b> 篇文章 / <b>4</b> 个项目 / <b>5</b> 名成员</p>
+          <p class="meta"><b>2019</b> 年成立 · 浙江 · <b>{{ posts.length }}</b> 篇文章 / <b>{{ projects.length }}</b> 个项目 / <b>{{ totalMembers }}</b> 名成员</p>
         </div>
       </div>
       <div class="wrap hero-bottom">
@@ -27,7 +28,7 @@
           <span>探索我们的作品</span>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
         </a>
-        <span class="caption">QEMU 实拍 · HopeOS 0.2.0</span>
+        <span class="caption">QEMU 实拍 · HopeOS 桌面</span>
       </div>
     </section>
 
@@ -36,7 +37,7 @@
         <div class="panel-bar">
           <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="addr">hopestudio.top</span>
-          <span class="ver">2026.10</span>
+          <span class="ver">{{ siteVersion }}</span>
         </div>
         <div class="panel-body">
           <aside class="rail" aria-hidden="true">
@@ -53,6 +54,15 @@
               <span class="panel-title">最近更新</span>
               <router-link class="panel-link" to="/posts">全部文章 →</router-link>
             </div>
+            <a
+              v-if="featured"
+              class="featured"
+              :href="`/posts/${featured.slug}`"
+            >
+              <span class="featured-tag">公告</span>
+              <span class="featured-title">{{ featured.title }}</span>
+              <span class="featured-date">{{ featured.shortDate }}</span>
+            </a>
             <ul class="list">
               <li v-for="p in recent" :key="p.slug">
                 <span class="cat">{{ p.category }}</span>
@@ -62,8 +72,8 @@
             </ul>
             <div class="stats">
               <div class="stat"><b>{{ posts.length }}</b><span>篇文章</span></div>
-              <div class="stat"><b>4</b><span>个项目</span></div>
-              <div class="stat"><b>5</b><span>名成员</span></div>
+              <div class="stat"><b>{{ projects.length }}</b><span>个项目</span></div>
+              <div class="stat"><b>{{ totalMembers }}</b><span>名成员</span></div>
               <div class="stat"><b>2019</b><span>年成立</span></div>
             </div>
           </div>
@@ -71,7 +81,7 @@
       </div>
     </section>
 
-    <section id="features" class="wrap features">
+    <section id="features" class="wrap features" aria-label="工作室理念">
       <div class="feature">
         <h3>写出来</h3>
         <p>WinUI 笔记、UWP 多线程聊天室、Minecraft 服务器插件——从作业做到能用的工具。</p>
@@ -82,7 +92,7 @@
       </div>
       <div class="feature">
         <h3>传下去</h3>
-        <p>踩过的坑写成文档：三星 root 研究、系统美化、驱动移植，都在 GitHub 上。</p>
+        <p>踩过的坑写成文档：三星 root 研究、HopeOS、驱动移植，都在 GitHub 上。</p>
       </div>
     </section>
 
@@ -135,6 +145,61 @@
         </router-link>
         <router-link class="btn btn-ghost" to="/hopeos">在线体验模拟器</router-link>
       </div>
+    </section>
+
+    <!-- 当前在做的事 -->
+    <section id="now" class="wrap sec" aria-label="当前在做的事">
+      <div class="now-band">
+        <div class="now-head">
+          <p class="eyebrow"><i aria-hidden="true"></i>正在推进</p>
+          <h2>现在做的东西，<span class="grad">都还活着。</span></h2>
+        </div>
+        <div class="now-list">
+          <template v-for="p in activeProjects" :key="p.name">
+            <a
+              v-if="p.external"
+              class="now-item"
+              :href="p.link"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="now-dot" aria-hidden="true"></span>
+              <span class="now-name">{{ p.name }}</span>
+              <span class="now-desc">{{ p.desc }}</span>
+              <span class="now-arrow" aria-hidden="true">&#8599;</span>
+            </a>
+            <router-link v-else class="now-item" :to="p.link">
+              <span class="now-dot" aria-hidden="true"></span>
+              <span class="now-name">{{ p.name }}</span>
+              <span class="now-desc">{{ p.desc }}</span>
+              <span class="now-arrow" aria-hidden="true">&#8594;</span>
+            </router-link>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最新动态 -->
+    <section id="latest" class="wrap sec" aria-label="最新动态">
+      <div class="sec-head">
+        <p class="eyebrow"><i aria-hidden="true"></i>最近更新</p>
+        <h2>最新动态</h2>
+        <p class="lead">博客不追热点，只把踩过的坑和做出来的东西记下来。</p>
+      </div>
+      <div class="latest-grid">
+        <article v-for="p in latest" :key="p.slug" class="latest">
+          <router-link class="latest-link" :to="`/posts/${p.slug}`">
+            <div class="latest-top">
+              <span class="cat">{{ p.category }}</span>
+              <span class="latest-date">{{ p.shortDate }}</span>
+            </div>
+            <h3 class="latest-title">{{ p.title }}</h3>
+            <p class="latest-excerpt">{{ p.excerpt }}</p>
+            <span class="latest-more">阅读全文 →</span>
+          </router-link>
+        </article>
+      </div>
+      <router-link class="more" to="/posts">全部文章 →</router-link>
     </section>
 
     <!-- 项目一览 -->
@@ -233,11 +298,44 @@
   import { projects, statusColor } from "../data/projects";
   import { admins, members } from "../data/members";
 
+  // 成员总数 = 管理员 + 成员（避免硬编码）
+  const totalMembers = computed(() => admins.length + members.length);
+
+  // 构建期版本号：YYYY.MM，跟随站点发布月份
+  const siteVersion = computed(() => {
+    const now = new Date();
+    return `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, "0")}`;
+  });
+
+  // 最近更新面板：最新的「工作室公告」置顶为 featured，其余再取 3 条
+  const withShort = (p) => ({ ...p, shortDate: p.date.slice(5) });
+  const sortedByDate = computed(() =>
+    [...posts].sort((a, b) => (a.date < b.date ? 1 : -1))
+  );
+  const featured = computed(() => {
+    const top = sortedByDate.value.find((p) => p.category === "工作室公告");
+    return top ? withShort(top) : null;
+  });
   const recent = computed(() =>
-    [...posts]
-      .sort((a, b) => (a.date < b.date ? 1 : -1))
-      .slice(0, 4)
-      .map((p) => ({ ...p, shortDate: p.date.slice(5) }))
+    sortedByDate.value
+      .filter((p) => p.slug !== featured.value?.slug)
+      .slice(0, 3)
+      .map(withShort)
+  );
+
+  // 最新动态板块：最近 4 篇，excerpt 截断到约 64 字
+  const latest = computed(() =>
+    sortedByDate.value.slice(0, 4).map(withShort).map((p) => ({
+      ...p,
+      excerpt: p.excerpt.length > 64 ? p.excerpt.slice(0, 64) + "…" : p.excerpt,
+    }))
+  );
+
+  // 正在推进：状态含「更新中 / 内部开发中」的项目优先展示
+  const activeProjects = computed(() =>
+    projects.filter((p) =>
+      p.status.some((s) => s === "更新中" || s === "内部开发中")
+    )
   );
 
   // HopeOS 截图墙：首图是桌面横幅，其余来自项目 docs/shots 的真实截屏
@@ -1064,10 +1162,208 @@
     .hero-bg-dark
       display: block
 
+  // ---------- 新增板块：Hero 水印 / 置顶公告 / 正在推进 / 最新动态 ----------
+
+  // Hero 右上角的线稿 logo 水印：低透明度、随主题呼吸
+  .hero-watermark
+    position: absolute
+    top: 64px
+    right: 40px
+    width: 176px
+    height: 176px
+    opacity: .12
+    z-index: 0
+    pointer-events: none
+    user-select: none
+    animation: rise-in .9s .3s cubic-bezier(.05, .7, .1, 1) both
+  html[data-theme="dark"] .hero-watermark
+    opacity: .2
+
+  // 面板「最近更新」里的置顶公告条
+  .featured
+    display: flex
+    align-items: center
+    gap: 10px
+    margin: 10px 0 2px
+    padding: 11px 12px
+    border: 1px solid var(--site-accent-line)
+    border-radius: var(--shape-sm)
+    background: rgb(var(--site-accent-rgb) / .06)
+    transition: background .2s ease, border-color .2s ease, transform .2s ease
+    &:hover
+      background: rgb(var(--site-accent-rgb) / .1)
+      border-color: var(--site-accent)
+      transform: translateY(-1px)
+    .featured-tag
+      flex: none
+      font-size: 10.5px
+      color: var(--site-accent)
+      background: $accent-soft
+      border: 1px solid var(--site-accent-line)
+      border-radius: var(--shape-xs)
+      padding: 2px 7px
+      letter-spacing: .04em
+    .featured-title
+      flex: 1
+      min-width: 0
+      font-size: 13.5px
+      font-weight: 600
+      color: $ink
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      &:hover
+        color: var(--site-accent)
+    .featured-date
+      flex: none
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
+      font-size: 11px
+      color: $subtle
+
+  // 正在推进：横向滚动条式高亮带
+  .now-band
+    border: 1px solid $line
+    border-radius: var(--shape-xl)
+    padding: 30px 34px
+    background: var(--site-panel-bg)
+    box-shadow: var(--site-panel-shadow)
+    .now-head
+      display: flex
+      align-items: baseline
+      justify-content: space-between
+      gap: 20px
+      margin-bottom: 18px
+      h2
+        margin: 0
+        font-size: clamp(22px, 2.4vw, 30px)
+        letter-spacing: -.02em
+        font-weight: 600
+        color: $ink
+        .grad
+          background: linear-gradient(180deg, var(--site-text) 0%, var(--site-muted) 100%)
+          -webkit-background-clip: text
+          background-clip: text
+          color: transparent
+    .now-list
+      display: grid
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+      gap: 12px
+    .now-item
+      display: flex
+      align-items: center
+      gap: 12px
+      border: 1px solid $line-soft
+      border-radius: var(--shape-md)
+      padding: 14px 16px
+      background: $card-bg
+      color: inherit
+      text-decoration: none
+      transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, background .3s ease
+      &:hover
+        transform: translateY(-2px)
+        border-color: var(--site-accent-line)
+        background: rgb(var(--site-accent-rgb) / .05)
+        .now-arrow
+          color: $accent
+          transform: translateX(2px)
+      .now-dot
+        flex: none
+        width: 8px
+        height: 8px
+        border-radius: 50%
+        background: $accent
+        box-shadow: 0 0 10px $accent
+      .now-name
+        flex: none
+        font-size: 13.5px
+        font-weight: 600
+        color: $ink
+      .now-desc
+        flex: 1
+        min-width: 0
+        font-size: 12px
+        line-height: 1.55
+        color: $muted
+        display: -webkit-box
+        -webkit-line-clamp: 2
+        -webkit-box-orient: vertical
+        overflow: hidden
+      .now-arrow
+        flex: none
+        font-size: 13px
+        color: $subtle
+        transition: color .2s ease, transform .2s ease
+
+  // 最新动态：文章卡片网格
+  .latest-grid
+    display: grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: 14px
+  .latest
+    border: 1px solid $line
+    border-radius: var(--shape-md)
+    overflow: hidden
+    background: $card-bg
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1), border-color .3s ease, box-shadow .3s ease
+    &:hover
+      transform: translateY(-4px)
+      border-color: var(--site-accent-line)
+      box-shadow: 0 20px 44px -26px rgb(var(--site-accent-rgb) / .55)
+    .latest-link
+      display: flex
+      flex-direction: column
+      height: 100%
+      padding: 20px 22px 22px
+      color: inherit
+      text-decoration: none
+    .latest-top
+      display: flex
+      align-items: center
+      justify-content: space-between
+      gap: 12px
+      margin-bottom: 12px
+      .cat
+        font-size: 10.5px
+        color: var(--site-accent)
+        background: $accent-soft
+        border: 1px solid var(--site-accent-line)
+        border-radius: var(--shape-xs)
+        padding: 2px 7px
+        letter-spacing: .02em
+      .latest-date
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace
+        font-size: 11px
+        color: $subtle
+    .latest-title
+      margin: 0 0 8px
+      font-size: 15px
+      font-weight: 600
+      letter-spacing: -.005em
+      color: $ink
+      line-height: 1.5
+    .latest-excerpt
+      margin: 0 0 16px
+      font-size: 13px
+      line-height: 1.75
+      color: $muted
+      display: -webkit-box
+      -webkit-line-clamp: 3
+      -webkit-box-orient: vertical
+      overflow: hidden
+    .latest-more
+      margin-top: auto
+      font-size: 12.5px
+      color: $muted
+      transition: color .2s ease, transform .2s ease
+    &:hover .latest-more
+      color: $accent
+      transform: translateX(2px)
+
   @media (prefers-reduced-motion: reduce)
     .hero .cta .btn
       transition: none
     .hero-bg img,
+    .hero-watermark,
     .explore svg,
     .hero .eyebrow,
     .hero h1,
@@ -1077,7 +1373,8 @@
     .hero .meta,
     .hero-bottom,
     .panel,
-    .features > .feature
+    .features > .feature,
+    .latest
       animation: none
 
   @media (max-width: 900px)
@@ -1086,8 +1383,14 @@
     .shot-grid
       grid-template-columns: repeat(2, minmax(0, 1fr))
     .proj-grid,
-    .member-grid
+    .member-grid,
+    .now-list,
+    .latest-grid
       grid-template-columns: 1fr
+    .hero-watermark
+      width: 132px
+      height: 132px
+      right: 24px
 
   @media (max-width: 820px)
     .join-band
@@ -1101,6 +1404,17 @@
       margin-right: auto
       .btn
         justify-content: center
+    .now-band
+      padding: 24px 20px
+      .now-head
+        flex-direction: column
+        align-items: flex-start
+        gap: 8px
+    .hero-watermark
+      width: 108px
+      height: 108px
+      top: 78px
+      right: 16px
 
   @media (max-width: 560px)
     .shot-grid
@@ -1109,4 +1423,7 @@
       grid-column: span 1
     .sec-head
       margin-bottom: 24px
+    .latest
+      .latest-link
+        padding: 18px 18px 20px
 </style>
