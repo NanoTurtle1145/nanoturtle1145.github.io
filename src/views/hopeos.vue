@@ -27,6 +27,9 @@ useHead({
     },
     { name: "twitter:card", content: "summary_large_image" },
   ],
+  link: [
+    { rel: "icon", type: "image/svg+xml", href: "/media/hopeos/hopeos-mark.svg" },
+  ],
 });
 
 // 最新实拍：自研平铺 WM、StarDustUI 原生 shell、GNU coreutils 与 X11/IceWM。
@@ -299,7 +302,18 @@ onBeforeUnmount(() => {
     <header id="overview" class="hero wrap">
       <div class="hero-copy">
         <p class="eyebrow"><i aria-hidden="true"></i>操作系统项目 · HOPEOS 0.2.0</p>
-        <h1>HopeOS<span class="h1-dot" aria-hidden="true">.</span></h1>
+        <div class="hero-title-row">
+          <img
+            class="hero-mark"
+            src="/media/hopeos/hopeos-mark.svg"
+            alt="HopeOS 标志：H 形横梁上升起的太阳"
+            width="84"
+            height="84"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <h1>HopeOS<span class="h1-dot" aria-hidden="true">.</span></h1>
+        </div>
         <p class="tagline">从 UEFI 开始，自己写一个操作系统。</p>
         <p class="lead">
           从内核线程、抢占式调度、虚拟文件系统，到 ring 3 用户态与 POSIX
@@ -684,6 +698,18 @@ onBeforeUnmount(() => {
   border-radius: 50%;
   background: var(--site-accent);
   box-shadow: 0 0 10px var(--site-accent);
+}
+
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 22px);
+}
+
+.hero-mark {
+  flex: none;
+  width: clamp(56px, 7.2vw, 84px);
+  height: auto;
 }
 
 .hero h1 {
@@ -1825,7 +1851,19 @@ onBeforeUnmount(() => {
     padding-bottom: 46px;
   }
 
-  .hero h1 {
+  .hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 22px);
+}
+
+.hero-mark {
+  flex: none;
+  width: clamp(56px, 7.2vw, 84px);
+  height: auto;
+}
+
+.hero h1 {
     font-size: clamp(46px, 15vw, 64px);
   }
 

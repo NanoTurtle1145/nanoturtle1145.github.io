@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="HopeOS 标志（深底反白）">
+  <title>HopeOS 标志（深底反白）</title>
+  <g fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="butt" stroke-linejoin="round">
+    <rect x="76" y="76" width="872" height="872" rx="196"/>
+  </g>
+  <g fill="#FFFFFF">
+    <rect x="286" y="296" width="52" height="472" rx="8"/>
+    <rect x="686" y="296" width="52" height="472" rx="8"/>
+    <rect x="286" y="506" width="452" height="36" rx="8"/>
+  </g>
+  <g fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round">
+    <path d="M394 506A118 118 0 0 1 630 506"/>
+    <path d="M512 356V316"/>
+    <path d="M608 391L634 360"/>
+    <path d="M416 391L390 360"/>
+    <path d="M432 612H592"/>
+    <path d="M470 668H554"/>
+  </g>
+</svg>

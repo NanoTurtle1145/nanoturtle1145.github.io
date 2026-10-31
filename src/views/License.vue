@@ -280,11 +280,22 @@ const toneClass = (t?: string) =>
           <li><span class="text-on-surface">上游</span>：OpenXJ380（XJ380 内核），Copyright (c) XINGJI Studios 2017-2026</li>
           <li><span class="text-on-surface">许可证</span>：<span class="text-success font-weight-semibold">Apache License 2.0</span>（全文见 LICENSES/Apache-2.0.txt）</li>
           <li><span class="text-on-surface">快照</span>：<code>6a52c7bce805</code>（2026-10-28 捐赠）</li>
+          <li>
+            <span class="text-on-surface">修改声明（Apache-2.0 §4(b)）</span>：HopeOS 按
+            <code>docs/fusion/ROADMAP.md</code> 融合 OpenXJ380 的硬件/内核子系统（ACPI、PCI/PCIe、
+            AHCI、FAT32、APIC/HPET、网络栈接口等）。这些实现均<strong class="text-on-surface">
+            经过实质性修改</strong>：按 HopeOS 的内核接口、VFS 层、内存模型与构建系统重写或适配，
+            与 OpenXJ380 原文件在结构、命名、错误处理和并发模型上均不相同；不是原样拷贝。
+            若将来直接导入其源文件，会保留原版权头、在文件头标注修改说明，并逐文件登记。
+          </li>
           <li class="text-medium-emphasis">
-            HopeOS 以自身内核为主体，按 <code>docs/fusion/ROADMAP.md</code> 融合 XJ380 的硬件/内核
-            子系统经验。ACPI、PCI、AHCI、FAT32 等实现为 HopeOS 新写（参考其设计，未复制源码），
-            逐文件登记见 <code>docs/fusion/PROVENANCE.md</code>；如后续导入实体代码，会在此列明
-            文件、原路径与改动说明。
+            逐文件追溯（HopeOS 路径 / 参考的 OpenXJ380 位置 / 差异说明）见
+            <code>docs/fusion/PROVENANCE.md</code>；导入检查清单要求每个文件标注
+            “Derived from OpenXJ380 … 修改说明”并同步 NOTICE。
+          </li>
+          <li class="text-medium-emphasis">
+            网络栈为上游 lwIP 2.2.0 + HopeOS 自写的 NO_SYS 移植层（<code>kernel/net/lwip_port/</code>）；
+            FAT32 解析按 Microsoft FAT 规范新写，未引入 FatFs 源码。
           </li>
           <li class="text-medium-emphasis">
             商标：“XJ380”、“XINGJI”、“星纪”及其标识是 XINGJI Studios 的商标/名称。
