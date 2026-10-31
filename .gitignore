@@ -37,3 +37,6 @@ public/hopeos/
 .research/
 research/
 v-*.md
+
+# Python
+__pycache__/
