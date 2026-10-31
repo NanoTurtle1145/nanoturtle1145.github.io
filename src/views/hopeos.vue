@@ -84,6 +84,12 @@ const shots = [
     text: "单个 multicall 二进制 + /bin/gnu/ 105 个 applet；为它补齐 statx、*at、#! 等内核能力。",
   },
   {
+    src: "/media/hopeos/symlink.png",
+    alt: "HopeOS 终端里用 ln -s 创建符号链接，ls -l 显示 lrwxrwxrwx 与 -> 箭头，readlink -f 解析出绝对路径",
+    title: "VFS 符号链接",
+    text: "ramfs symlink：symlinkat / readlink / lstat，路径解析跟随链接、环路返回 ELOOP；ls -l 的箭头与 readlink -f 都是真语义。",
+  },
+  {
     src: "/media/hopeos/xdesk-apps.png",
     alt: "HopeOS 的 X11 桌面：IceWM 任务栏，XTerm、时钟、系统信息、计算器与欢迎窗口同时打开",
     title: "X11 + IceWM 多窗口",
@@ -170,6 +176,11 @@ const done = [
   },
   {
     area: "内核",
+    title: "VFS 符号链接",
+    desc: "ramfs symlink 节点：symlinkat / readlink / lstat / statx 的 NOFOLLOW，路径解析跟随链接并检测环路（ELOOP）。",
+  },
+  {
+    area: "内核",
     title: "lwIP 网络栈",
     desc: "IPv4 / ARP / ICMP / UDP / TCP / DHCP / DNS，用户态 socket 与 pipes 已接通。",
   },
@@ -211,11 +222,6 @@ const done = [
 ];
 
 const roadmap = [
-  {
-    stage: "VFS 符号链接",
-    detail: "给 ramfs 加 symlink 节点：symlinkat / readlink / 路径解析跟随链接，让 ln -s 与 realpath 可用。",
-    status: "进行中",
-  },
   {
     stage: "GUI 临界区 SMP 安全",
     detail: "窗口系统与合成器目前靠关中断保护；换成细粒度 spinlock，多核下也能稳定刷新。",
@@ -450,7 +456,7 @@ onBeforeUnmount(() => {
           <p class="kicker">IMPLEMENTED</p>
           <h2>已经实现的</h2>
         </div>
-        <span class="section-note">12 个子系统</span>
+        <span class="section-note">13 个子系统</span>
       </div>
 
       <div class="feature-grid">
