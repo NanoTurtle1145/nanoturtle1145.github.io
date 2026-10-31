@@ -57,6 +57,12 @@ const routes: RouteRecordRaw[] = [
     meta: { title: "HopeOS | 希望工作室" },
   },
   {
+    path: "/features",
+    name: "features",
+    component: () => import("../views/features.vue"),
+    meta: { title: "融合内核 | HopeOS × XJ380OS | 希望工作室" },
+  },
+  {
     path: "/license",
     name: "license",
     component: () => import("../views/License.vue"),

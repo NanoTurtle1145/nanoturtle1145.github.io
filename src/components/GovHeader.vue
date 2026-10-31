@@ -16,6 +16,7 @@
         <router-link to="/members">成员</router-link>
         <router-link to="/archive">归档处</router-link>
         <router-link to="/hopeos">HopeOS</router-link>
+        <router-link to="/features">融合内核</router-link>
       </nav>
 
       <div class="nav-right">
@@ -56,6 +57,7 @@
         <router-link to="/members" @click="menuOpen = false">成员</router-link>
         <router-link to="/archive" @click="menuOpen = false">归档处</router-link>
         <router-link to="/hopeos" @click="menuOpen = false">HopeOS</router-link>
+        <router-link to="/features" @click="menuOpen = false">融合内核</router-link>
         <router-link to="/join" class="m-menu-cta" @click="menuOpen = false">加入我们</router-link>
       </nav>
     </transition>

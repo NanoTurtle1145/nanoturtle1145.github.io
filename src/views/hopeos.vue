@@ -520,6 +520,16 @@ onBeforeUnmount(() => {
           <p>{{ step.detail }}</p>
         </li>
       </ol>
+
+      <router-link class="fusion-callout" to="/features">
+        <img class="fx-lockup--light" src="/media/hopeos/fusion-mark-light.svg" alt="" width="44" height="44" />
+        <img class="fx-lockup--dark" src="/media/hopeos/fusion-mark-dark.svg" alt="" width="44" height="44" />
+        <span>
+          <strong>融合内核专题</strong>
+          HopeOS 已吸收 XJ380OS 的 ACPI / PCI / AHCI / FAT32 / lwIP / SMP，过程、验收日志与踩坑记录都在这里。
+        </span>
+        <em aria-hidden="true">→</em>
+      </router-link>
     </section>
 
     <!-- 相关阅读 -->
@@ -704,6 +714,64 @@ onBeforeUnmount(() => {
   border-radius: 50%;
   background: var(--site-accent);
   box-shadow: 0 0 10px var(--site-accent);
+}
+
+.fx-lockup--dark {
+  display: none;
+}
+
+html[data-theme="dark"] .fx-lockup--light {
+  display: none;
+}
+
+html[data-theme="dark"] .fx-lockup--dark {
+  display: block;
+}
+
+.fusion-callout {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 14px 18px;
+  border: 1px solid var(--site-line);
+  border-left: 3px solid var(--site-accent);
+  border-radius: 12px;
+  background: var(--site-tint-1);
+  color: var(--site-muted);
+  font-size: 12.5px;
+  line-height: 1.65;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.fusion-callout:hover {
+  border-color: color-mix(in srgb, var(--site-accent) 40%, var(--site-line));
+  background: var(--site-tint-2);
+}
+
+.fusion-callout img {
+  flex: none;
+  width: 44px;
+  height: 44px;
+}
+
+.fusion-callout span {
+  min-width: 0;
+}
+
+.fusion-callout strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--site-text);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.fusion-callout em {
+  margin-left: auto;
+  color: var(--site-accent);
+  font-style: normal;
 }
 
 .hero-title-row {
