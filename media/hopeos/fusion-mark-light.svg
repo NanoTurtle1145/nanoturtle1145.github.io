@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="HopeOS × XJ380OS 融合标志（浅色版）">
+  <title>HopeOS × XJ380OS 融合标志（浅色版）</title>
+  <desc>圆角方框与 H 来自 HopeOS；H 的横梁换成青→黄渐变，表示两套内核在这里合流；日出弧与射线是 HopeOS 的“黎明”，太阳里嵌着 XJ380OS 青蓝色的山形图腾；横梁下的短线是倒影。</desc>
+  <defs>
+    <linearGradient id="fuse" x1="286" y1="0" x2="738" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0077B0"/>
+      <stop offset="0.5" stop-color="#0077B0"/>
+      <stop offset="1" stop-color="#B8860B"/>
+    </linearGradient>
+  </defs>
+  <!-- HopeOS：窗口方框 -->
+  <g fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="butt" stroke-linejoin="round">
+    <rect x="76" y="76" width="872" height="872" rx="196"/>
+  </g>
+  <!-- HopeOS：H 双柱（实心） -->
+  <g fill="#0B1220">
+    <rect x="286" y="296" width="52" height="472" rx="8"/>
+    <rect x="686" y="296" width="52" height="472" rx="8"/>
+  </g>
+  <!-- 融合横梁：青（XJ380OS）→ 黄（XJ380OS），把两个 H 柱连成一体 -->
+  <rect x="286" y="506" width="452" height="36" rx="8" fill="url(#fuse)"/>
+  <!-- HopeOS：日出弧与三道射线 -->
+  <g fill="none" stroke="#B8860B" stroke-width="12" stroke-linecap="round">
+    <path d="M394 506A118 118 0 0 1 630 506"/>
+    <path d="M512 356V316"/>
+    <path d="M608 391L634 360"/>
+    <path d="M416 391L390 360"/>
+  </g>
+  <!-- XJ380OS：青蓝色山形图腾，立在日出里 -->
+  <g fill="none" stroke="#0077B0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M432 506L512 418L592 506"/>
+  </g>
+  <!-- 倒影：XJ380OS 的青 -->
+  <g fill="none" stroke="#0077B0" stroke-width="12" stroke-linecap="round">
+    <path d="M432 620H592"/>
+    <path d="M470 676H554"/>
+  </g>
+</svg>
