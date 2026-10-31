@@ -19,22 +19,71 @@ useHead({
     {
       name: "description",
       content:
-        "HopeOS 是希望工作室发起的 UEFI 操作系统项目：从零手写内核、ring 3 用户态与 POSIX 系统调用，并已跑起 X11 服务器与 IceWM 桌面。",
+        "HopeOS 是希望工作室发起的 UEFI 操作系统项目：从零手写内核、ring 3 用户态与 POSIX 系统调用，已跑起 X11 + IceWM、自研平铺窗口管理器、StarDustUI 原生桌面与 GNU coreutils 工具链。",
     },
     {
       property: "og:image",
-      content: "https://www.hopestudio.top/media/hopeos/xdesk-apps.png",
+      content: "https://www.hopestudio.top/media/hopeos/wm-tile.png",
     },
     { name: "twitter:card", content: "summary_large_image" },
   ],
 });
 
-// 最新一轮 X11 / IceWM 实拍。首图同时用作 Hero。
+// 最新实拍：自研平铺 WM、StarDustUI 原生 shell、GNU coreutils 与 X11/IceWM。
+// 首图同时用作 Hero。
 const shots = [
+  {
+    src: "/media/hopeos/wm-tile.png",
+    alt: "HopeOS 自研平铺窗口管理器：TILE 布局下三个窗口并排，顶部面板显示工作区与布局",
+    title: "自研平铺 WM · TILE",
+    text: "内核级窗口管理器：TILE / GRID / MONOCLE 三种布局、6px gap、顶部面板与 Alt 快捷键。",
+  },
+  {
+    src: "/media/hopeos/wm-grid.png",
+    alt: "HopeOS 自研窗口管理器的 GRID 布局",
+    title: "GRID 布局",
+    text: "窗口自动排成网格，ring-3 原生窗口也可以通过 GUI_WIN_WM_TILE 加入平铺。",
+  },
+  {
+    src: "/media/hopeos/wm-workspace.png",
+    alt: "HopeOS 自研窗口管理器的第二个工作区",
+    title: "4 个工作区",
+    text: "Alt+1..4 切换工作区，Alt+Shift+1..4 把窗口送到别的区，面板实时显示状态。",
+  },
+  {
+    src: "/media/hopeos/wm-altdrag.png",
+    alt: "在 HopeOS 自研窗口管理器中用 Alt+鼠标拖动浮动窗口",
+    title: "Alt+拖动浮动窗口",
+    text: "平铺窗口可切换为浮动，用 Alt+左键拖动、Alt+右键缩放，行为接近 dwm。",
+  },
+  {
+    src: "/media/hopeos/stardust-desktop.png",
+    alt: "StarDust Desktop：StarDustUI 绘制的星空壁纸、顶栏时钟与底部 dock",
+    title: "StarDust Desktop",
+    text: "用 StarDustUI 写的原生桌面 shell：渐变星云壁纸、顶栏时钟、dock 启动真实 /bin 程序。",
+  },
+  {
+    src: "/media/hopeos/win9x-desktop.png",
+    alt: "HopeOS 95：Win9x 风格的青色桌面、3D 立体边框与任务栏开始菜单",
+    title: "HopeOS 95",
+    text: "1995 风格的桌面 shell：立体边框、渐变标题栏、任务栏和托盘时钟。",
+  },
+  {
+    src: "/media/hopeos/win9x-window.png",
+    alt: "HopeOS 95 的 iframe 式子窗口：局部坐标系、自有标题栏与拖动关闭",
+    title: "95 式 iframe 窗口",
+    text: "窗口不是内核窗口，而是 shell 自身绘制/命中的区域，拖动与关闭只改本地状态。",
+  },
+  {
+    src: "/media/hopeos/coreutils.png",
+    alt: "HopeOS 终端中运行 GNU coreutils：ls -l、df -h、sha256sum、seq 等",
+    title: "GNU coreutils 9.5",
+    text: "单个 multicall 二进制 + /bin/gnu/ 105 个 applet；为它补齐 statx、*at、#! 等内核能力。",
+  },
   {
     src: "/media/hopeos/xdesk-apps.png",
     alt: "HopeOS 的 X11 桌面：IceWM 任务栏，XTerm、时钟、系统信息、计算器与欢迎窗口同时打开",
-    title: "多窗口同时运行",
+    title: "X11 + IceWM 多窗口",
     text: "IceWM 接管 X11，XTerm、时钟、系统信息与计算器作为 X 客户端同时开着。",
   },
   {
@@ -53,7 +102,7 @@ const shots = [
     src: "/media/hopeos/desktop-native.png",
     alt: "HopeOS 原生窗口与 IceWM 管理的 X11 窗口共存",
     title: "原生与 X11 共存",
-    text: "原生 GUI 应用与 X 客户端在同一块屏幕上工作。",
+    text: "内核原生 GUI、StarDustUI 程序与 X 客户端在同一块屏幕上工作。",
   },
 ];
 
@@ -62,28 +111,35 @@ const heroShot = shots[0];
 const milestones = [
   {
     no: "01",
-    title: "X11 服务器",
-    desc: "从零实现协议子集：窗口创建与映射、事件队列、帧缓冲呈现，客户端可以正常绘制。",
-    icon: "code",
+    title: "自研平铺窗口管理器",
+    desc: "内核态 WM：TILE / GRID / MONOCLE 三种布局、6px gap、4 个工作区、Alt 快捷键，ring-3 窗口也可opt-in 参与平铺。",
+    icon: "grid",
   },
   {
     no: "02",
-    title: "IceWM 接管桌面",
-    desc: "上游 IceWM 在 HopeOS 上跑通窗口收养、标题栏、任务栏按钮与开始菜单。",
-    icon: "window",
+    title: "Two shells, one framework",
+    desc: "StarDust Desktop 与 HopeOS 95 都是 StarDustUI 写的原生桌面：星空壁纸 / dock，以及 Win9x 风格的 iframe 式窗口。",
+    icon: "layers",
   },
   {
     no: "03",
-    title: "X 应用生态",
-    desc: "XTerm、Clock、System Info、Calculator 已经作为 X 客户端运行，多窗口同时在线。",
-    icon: "terminal",
+    title: "GNU 工具链落地",
+    desc: "GNU coreutils 9.5 以单二进制 + 105 个 applet 装进 /bin/gnu；为它补上 statx、faccessat、*at 与 #! 脚本支持。",
+    icon: "code",
+  },
+  {
+    no: "04",
+    title: "X11 + IceWM 稳定运行",
+    desc: "从零实现的 X 协议子集配上上游 IceWM：窗口收养、标题栏、任务栏与开始菜单，XTerm 等客户端常驻。",
+    icon: "window",
   },
 ];
 
 const stack = [
   { label: "BOOT", title: "UEFI 引导", desc: "BOOTX64.EFI 加载 KERNEL.EFI" },
-  { label: "KERNEL", title: "内核", desc: "分页 · 堆 · 中断 · 抢占调度 · VFS" },
-  { label: "USER", title: "ring 3", desc: "POSIX syscall · 用户态 shell" },
+  { label: "KERNEL", title: "内核", desc: "分页 · 堆 · 中断 · 抢占调度 · VFS · lwIP" },
+  { label: "USER", title: "ring 3", desc: "POSIX syscall · shell · BusyBox · coreutils" },
+  { label: "UI", title: "StarDustUI", desc: "原生 shell · 自研平铺 WM" },
   { label: "X11", title: "X 服务器", desc: "窗口 · 事件 · 帧缓冲呈现" },
   { label: "WM", title: "IceWM", desc: "标题栏 · 任务栏 · 开始菜单" },
 ];
@@ -92,12 +148,12 @@ const done = [
   {
     area: "内核",
     title: "内存管理",
-    desc: "隐式空闲链表堆分配器（mm.c），8 MiB 堆；分页与 COW 页表已经就位。",
+    desc: "隐式空闲链表堆分配器（mm.c），分页与 COW 页表；用户态进程独立地址空间。",
   },
   {
     area: "内核",
     title: "中断 / 定时器",
-    desc: "自接管 GDT/TSS、256 项 IDT、8259 重映射、PIT 100 Hz、ExitBootServices。",
+    desc: "自接管 GDT/TSS、256 项 IDT、APIC/IOAPIC、PIT 100 Hz、ExitBootServices。",
   },
   {
     area: "内核",
@@ -106,18 +162,23 @@ const done = [
   },
   {
     area: "内核",
-    title: "VFS + ramfs",
-    desc: "文件系统接入内核，支持目录与文件读写，用户态可以正常访问。",
+    title: "VFS + ramfs + FAT32",
+    desc: "ramfs 承载整个 /bin；只读 FAT32 解析让 ESP 上的文件在启动时被装进 ramfs。",
+  },
+  {
+    area: "内核",
+    title: "lwIP 网络栈",
+    desc: "IPv4 / ARP / ICMP / UDP / TCP / DHCP / DNS，用户态 socket 与 pipes 已接通。",
   },
   {
     area: "图形",
-    title: "GUI 桌面",
-    desc: "离屏双缓冲 + 脏矩形合成，原生窗口、任务栏与桌面组件。",
+    title: "内核 GUI 桌面",
+    desc: "离屏双缓冲 + 脏矩形合成，原生窗口、任务栏与桌面组件（计算器、时钟、画图…）。",
   },
   {
     area: "图形",
     title: "PS/2 键鼠输入",
-    desc: "键盘、鼠标输入解码，并把事件路由到活动窗口。",
+    desc: "键盘、鼠标输入解码，并把事件路由到活动窗口；支持 Alt+Tab 与窗口拖动。",
   },
   {
     area: "图形",
@@ -125,47 +186,52 @@ const done = [
     desc: "X 协议子集、窗口与事件、帧缓冲呈现；IceWM 负责窗口管理与任务栏。",
   },
   {
-    area: "用户态",
-    title: "ring 3 + 系统调用",
-    desc: "分页基础设施、DPL3 描述符、0x80 syscall 门，用户程序在 ring 3 运行。",
+    area: "图形",
+    title: "自研平铺 WM",
+    desc: "TILE / GRID / MONOCLE 三布局、gap、4 工作区、Alt 拖动浮动窗口、ring-3 客户端接入。",
   },
   {
     area: "用户态",
-    title: "POSIX 内核",
-    desc: "每进程 fd/cwd、fork/execve/重定向、用户态 shell、最小 libc。",
+    title: "ring 3 + POSIX syscall",
+    desc: "分页、DPL3 描述符、SYSCALL 门；每进程 fd/cwd、fork/execve、重定向与管道。",
+  },
+  {
+    area: "用户态",
+    title: "StarDustUI 原生 shell",
+    desc: "StarDust Desktop（星空壁纸 + dock）与 HopeOS 95（Win9x 风格）都跑在 StarDustUI 上。",
+  },
+  {
+    area: "用户态",
+    title: "GNU coreutils + BusyBox",
+    desc: "coreutils 9.5 单二进制 105 applet；BusyBox 1.36.1 作为 /bin 基础工具集与脚本解释器。",
   },
 ];
 
 const roadmap = [
   {
-    stage: "IceWM 桌面收尾",
-    detail: "补齐 XPM 图标、桌面壁纸、任务栏时钟刷新与窗口拖拽细节。",
+    stage: "VFS 符号链接",
+    detail: "给 ramfs 加 symlink 节点：symlinkat / readlink / 路径解析跟随链接，让 ln -s 与 realpath 可用。",
     status: "进行中",
   },
   {
-    stage: "按需缺页（demand paging）",
-    detail: "在已有 COW + 可返回 #PF 的基础上，补齐真正的按需分页。",
-    status: "进行中",
-  },
-  {
-    stage: "可写、持久化文件系统",
-    detail: "把 ramfs 内容持久化到磁盘镜像，重启后仍然存在。",
+    stage: "GUI 临界区 SMP 安全",
+    detail: "窗口系统与合成器目前靠关中断保护；换成细粒度 spinlock，多核下也能稳定刷新。",
     status: "计划中",
   },
   {
-    stage: "用户态 libc 完善 + 工具链",
-    detail: "补齐 malloc / 信号 / stdio 缓冲，可承载更多第三方程序。",
+    stage: "可写、持久化文件系统",
+    detail: "把 ramfs 内容持久化到磁盘镜像（AHCI/NVMe），重启后仍然存在。",
+    status: "计划中",
+  },
+  {
+    stage: "用户态 libc 完善",
+    detail: "补齐信号、stdio 缓冲与线程，承载更多第三方程序。",
     status: "计划中",
   },
   {
     stage: "设备驱动",
-    detail: "先网络，再 GPU / 存储（AHCI、NVMe、USB）。",
+    detail: "NVMe / USB / GPU：先把存储与输入设备补齐，再谈硬件加速图形。",
     status: "计划中",
-  },
-  {
-    stage: "兼容 BusyBox",
-    detail: "PIE 加载 + auxv + arch_prctl + mmap/brk + 信号，分 A~E 阶段推进。",
-    status: "远期",
   },
   {
     stage: "承载 JVM → 跑 Minecraft",
@@ -237,8 +303,8 @@ onBeforeUnmount(() => {
         <p class="tagline">从 UEFI 开始，自己写一个操作系统。</p>
         <p class="lead">
           从内核线程、抢占式调度、虚拟文件系统，到 ring 3 用户态与 POSIX
-          系统调用，再到今天跑起来的 X11 + IceWM 桌面——每一层都从零实现。
-          目标不是做一个玩具，而是弄清楚一台计算机到底是怎么跑起来的。
+          系统调用，再到自研平铺窗口管理器、StarDustUI 原生桌面与 GNU 工具链——
+          每一层都从零实现。目标不是做一个玩具，而是弄清楚一台计算机到底是怎么跑起来的。
         </p>
 
         <div class="tags" aria-label="技术栈">
@@ -248,6 +314,9 @@ onBeforeUnmount(() => {
           <span>POSIX</span>
           <span>X11</span>
           <span>IceWM</span>
+          <span>StarDustUI</span>
+          <span>coreutils</span>
+          <span>平铺 WM</span>
         </div>
 
         <div class="cta-row">
@@ -269,7 +338,7 @@ onBeforeUnmount(() => {
         <div class="shot-shell">
           <div class="shot-bar">
             <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="shot-title">HopeOS · X11 session</span>
+            <span class="shot-title">HopeOS · tiling WM session</span>
             <span class="shot-live"><i aria-hidden="true"></i>RUNNING</span>
           </div>
           <button
@@ -285,7 +354,7 @@ onBeforeUnmount(() => {
           </button>
           <div class="shot-foot">
             <span>QEMU 实拍 · 1024 × 768</span>
-            <span>XTerm / Clock / SysInfo / Calc</span>
+            <span>TILE / GRID / MONOCLE · 4 workspaces</span>
           </div>
         </div>
         <div class="hero-glow" aria-hidden="true"></div>
@@ -297,13 +366,14 @@ onBeforeUnmount(() => {
       <div class="section-head">
         <div>
           <p class="kicker">LATEST</p>
-          <h2>X11 桌面已经跑起来了</h2>
+          <h2>自研 WM、原生 shell 与 GNU 工具链</h2>
         </div>
-        <span class="section-note">2026.10 · QEMU 实拍</span>
+        <span class="section-note">2026.11 · QEMU 实拍</span>
       </div>
       <p class="section-lead">
-        这一轮把图形栈从自绘桌面继续往上推：X 服务器、窗口管理器与 X
-        客户端全部接进 HopeOS，IceWM 已经可以管理真实窗口。
+        这一轮把桌面与用户态继续往上推：内核里长出了自研平铺窗口管理器，
+        StarDustUI 写出了两套原生桌面 shell，GNU coreutils 也被完整接进
+        /bin/gnu——底下补的是 statx、*at、#! 脚本解释这些通用内核能力。
       </p>
 
       <div class="milestone-grid">
@@ -317,6 +387,16 @@ onBeforeUnmount(() => {
               <svg v-else-if="m.icon === 'window'" viewBox="0 0 24 24">
                 <rect x="3" y="4" width="18" height="16" rx="2" />
                 <path d="M3 9h18" />
+              </svg>
+              <svg v-else-if="m.icon === 'grid'" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+              </svg>
+              <svg v-else-if="m.icon === 'layers'" viewBox="0 0 24 24">
+                <path d="m12 3 9 5-9 5-9-5 9-5Z" />
+                <path d="m3 13 9 5 9-5" />
               </svg>
               <svg v-else viewBox="0 0 24 24">
                 <rect x="3" y="4" width="18" height="16" rx="2" />
@@ -335,7 +415,7 @@ onBeforeUnmount(() => {
       <div class="section-head">
         <div>
           <p class="kicker">ARCHITECTURE</p>
-          <h2>从按电源键到 IceWM 桌面</h2>
+          <h2>从按电源键到平铺桌面</h2>
         </div>
         <span class="section-note">自底向上</span>
       </div>
@@ -356,7 +436,7 @@ onBeforeUnmount(() => {
           <p class="kicker">IMPLEMENTED</p>
           <h2>已经实现的</h2>
         </div>
-        <span class="section-note">9 个子系统</span>
+        <span class="section-note">12 个子系统</span>
       </div>
 
       <div class="feature-grid">
