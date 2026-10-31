@@ -522,8 +522,11 @@ onBeforeUnmount(() => {
       </ol>
 
       <router-link class="fusion-callout" to="/features">
-        <img class="fx-lockup--light" src="/media/hopeos/fusion-mark-light.svg" alt="" width="44" height="44" />
-        <img class="fx-lockup--dark" src="/media/hopeos/fusion-mark-dark.svg" alt="" width="44" height="44" />
+        <span class="callout-merge" aria-hidden="true">
+          <img class="mini-hope hope-mark--light" src="/media/hopeos/hopeos-mark.svg" alt="" width="40" height="40" />
+          <img class="mini-hope hope-mark--dark" src="/media/hopeos/hopeos-mark-inverse.svg" alt="" width="40" height="40" />
+          <img class="mini-xj" src="/media/hopeos/xj380-mark.png" alt="" width="40" height="40" />
+        </span>
         <span>
           <strong>融合内核专题</strong>
           HopeOS 已吸收 XJ380OS 的 ACPI / PCI / AHCI / FAT32 / lwIP / SMP，过程、验收日志与踩坑记录都在这里。
@@ -716,16 +719,46 @@ onBeforeUnmount(() => {
   box-shadow: 0 0 10px var(--site-accent);
 }
 
-.fx-lockup--dark {
+.hope-mark--dark {
   display: none;
 }
 
-html[data-theme="dark"] .fx-lockup--light {
+html[data-theme="dark"] .hope-mark--light {
   display: none;
 }
 
-html[data-theme="dark"] .fx-lockup--dark {
+html[data-theme="dark"] .hope-mark--dark {
   display: block;
+}
+
+/* 两个标志部分重叠：入口卡片上的小尺寸版本 */
+.callout-merge {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 62px;
+  height: 54px;
+}
+
+.callout-merge .mini-hope,
+.callout-merge .mini-xj {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.callout-merge .mini-hope {
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.callout-merge .mini-xj {
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
 }
 
 .fusion-callout {
@@ -748,12 +781,6 @@ html[data-theme="dark"] .fx-lockup--dark {
 .fusion-callout:hover {
   border-color: color-mix(in srgb, var(--site-accent) 40%, var(--site-line));
   background: var(--site-tint-2);
-}
-
-.fusion-callout img {
-  flex: none;
-  width: 44px;
-  height: 44px;
 }
 
 .fusion-callout span {

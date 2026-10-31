@@ -21,11 +21,8 @@ useHead({
       content:
         "HopeOS 的内核，装进 XJ380OS 的零件：ACPI/PCI、AHCI、FAT32、lwIP、4 核 SMP 的融合过程与验收记录。",
     },
-    { property: "og:image", content: "/media/hopeos/fusion-lockup-light.svg" },
+    { property: "og:image", content: "/media/hopeos/xj380-mark.png" },
     { name: "twitter:card", content: "summary_large_image" },
-  ],
-  link: [
-    { rel: "icon", type: "image/svg+xml", href: "/media/hopeos/fusion-mark-light.svg" },
   ],
 });
 
@@ -279,29 +276,46 @@ const whyRows = [
       </div>
 
       <div class="hero-art">
-        <div class="hero-lockup">
-          <img
-            class="fx-lockup fx-lockup--light"
-            src="/media/hopeos/fusion-lockup-light.svg"
-            alt="HopeOS × XJ380OS 融合内核标志：H 的横梁是青黄融合带，日出里嵌着山形"
-            width="1500"
-            height="460"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <img
-            class="fx-lockup fx-lockup--dark"
-            src="/media/hopeos/fusion-lockup-dark.svg"
-            alt="HopeOS × XJ380OS 融合内核标志（深色版）"
-            width="1500"
-            height="460"
-            loading="lazy"
-            decoding="async"
-          />
+        <div class="merge" role="img" aria-label="HopeOS 与 XJ380OS 两个标志部分重叠，重叠的部分代表融合内核">
+          <div class="merge-logo merge-logo--hope">
+            <img
+              class="hope-mark hope-mark--light"
+              src="/media/hopeos/hopeos-mark.svg"
+              alt=""
+              width="216"
+              height="216"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <img
+              class="hope-mark hope-mark--dark"
+              src="/media/hopeos/hopeos-mark-inverse.svg"
+              alt=""
+              width="216"
+              height="216"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+          <div class="merge-logo merge-logo--xj">
+            <img
+              src="/media/hopeos/xj380-mark.png"
+              alt=""
+              width="216"
+              height="216"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+          <span class="merge-glow" aria-hidden="true" />
         </div>
+        <p class="merge-eq">
+          <b>HopeOS</b><span aria-hidden="true">×</span><b>XJ380OS</b><span aria-hidden="true">=</span><em>融合内核</em>
+        </p>
         <p class="hero-caption">
-          左：HopeOS 的方框 / H / 日出；右：XJ380OS 的青蓝三角、青黄配色。
-          横梁是青→黄的融合带，太阳里的山来自 XJ380OS。
+          两个标志都按原样保留，只在右上 / 左下错开一部分重叠：左边是 HopeOS（桌面 ·
+          用户态 · POSIX），右边是 XJ380OS（ACPI · PCI · AHCI · FAT32 · lwIP · SMP）。
+          <b>重叠的那块，就是融合内核。</b>
         </p>
       </div>
     </header>
@@ -330,20 +344,23 @@ const whyRows = [
         </article>
 
         <div class="split-fuse" aria-hidden="true">
-          <img
-            class="split-mark fx-lockup--light"
-            src="/media/hopeos/fusion-mark-light.svg"
-            alt=""
-            width="88"
-            height="88"
-          />
-          <img
-            class="split-mark fx-lockup--dark"
-            src="/media/hopeos/fusion-mark-dark.svg"
-            alt=""
-            width="88"
-            height="88"
-          />
+          <span class="mini-merge">
+            <img
+              class="mini-hope hope-mark--light"
+              src="/media/hopeos/hopeos-mark.svg"
+              alt=""
+              width="56"
+              height="56"
+            />
+            <img
+              class="mini-hope hope-mark--dark"
+              src="/media/hopeos/hopeos-mark-inverse.svg"
+              alt=""
+              width="56"
+              height="56"
+            />
+            <img class="mini-xj" src="/media/hopeos/xj380-mark.png" alt="" width="56" height="56" />
+          </span>
           <span>融合</span>
         </div>
 
@@ -399,20 +416,23 @@ const whyRows = [
           <span class="map-item">StarDustUI · IceWM</span>
         </div>
         <div class="map-arrow" aria-hidden="true">
-          <img
-            class="fx-lockup--light"
-            src="/media/hopeos/fusion-mark-light.svg"
-            alt=""
-            width="64"
-            height="64"
-          />
-          <img
-            class="fx-lockup--dark"
-            src="/media/hopeos/fusion-mark-dark.svg"
-            alt=""
-            width="64"
-            height="64"
-          />
+          <span class="mini-merge mini-merge--lg">
+            <img
+              class="mini-hope hope-mark--light"
+              src="/media/hopeos/hopeos-mark.svg"
+              alt=""
+              width="48"
+              height="48"
+            />
+            <img
+              class="mini-hope hope-mark--dark"
+              src="/media/hopeos/hopeos-mark-inverse.svg"
+              alt=""
+              width="48"
+              height="48"
+            />
+            <img class="mini-xj" src="/media/hopeos/xj380-mark.png" alt="" width="48" height="48" />
+          </span>
           <span>合并进内核</span>
         </div>
         <div class="map-col map-col--xj">
@@ -774,36 +794,158 @@ html[data-theme="dark"] .features-page {
   color: var(--site-text);
 }
 
-/* Hero 右侧：融合标志 */
+/* Hero 右侧：两个标志部分重叠 —— 重叠处 = 融合内核 */
 .hero-art {
   min-width: 0;
-}
-
-.hero-lockup {
-  padding: 18px 20px;
+  padding: 22px 20px 16px;
   border: 1px solid var(--site-line);
   border-radius: 18px;
   background: var(--site-panel-bg);
   box-shadow: var(--site-panel-shadow);
 }
 
-.fx-lockup {
-  display: block;
+.merge {
+  position: relative;
   width: 100%;
-  height: auto;
+  max-width: 370px;
+  aspect-ratio: 370 / 320;
+  margin: 0 auto;
 }
 
-/* 主题切换：浅色看 light 版，深色看 dark 版（html[data-theme] 由首屏脚本先行设定） */
-.fx-lockup--dark {
+.merge-logo {
+  position: absolute;
+  width: 58.4%;
+  aspect-ratio: 1;
+  border-radius: 24%;
+  overflow: hidden;
+  line-height: 0;
+  font-size: 0;
+}
+
+.merge-logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.merge-logo--hope {
+  left: 0;
+  top: 1.9%;
+  z-index: 1;
+}
+
+.merge-logo--xj {
+  right: 1.6%;
+  bottom: 1.9%;
+  z-index: 2;
+  border-radius: 24%;
+  overflow: hidden;
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.22),
+    0 0 0 1px color-mix(in srgb, var(--fx-cyan) 26%, transparent);
+}
+
+/* 重叠区域的一层青色辉光：把两套品牌色“焊”在一起 */
+.merge-glow {
+  position: absolute;
+  z-index: 3;
+  left: 34%;
+  top: 29%;
+  width: 30%;
+  height: 42%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--fx-cyan) 50%, transparent),
+    transparent
+  );
+  filter: blur(16px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.merge-eq {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 7px;
+  margin: 16px 0 0;
+  color: var(--site-text-2);
+  font-size: 13.5px;
+  letter-spacing: -0.01em;
+}
+
+.merge-eq b {
+  color: var(--site-text);
+  font-weight: 600;
+}
+
+.merge-eq span {
+  color: var(--site-subtle);
+}
+
+.merge-eq em {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--fx-cyan) 14%, transparent);
+  color: color-mix(in srgb, var(--fx-cyan) 78%, var(--site-text));
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* HopeOS 标志的明暗两套线稿，按站点主题切换 */
+.hope-mark--dark {
   display: none;
 }
 
-html[data-theme="dark"] .fx-lockup--light {
+html[data-theme="dark"] .hope-mark--light {
   display: none;
 }
 
-html[data-theme="dark"] .fx-lockup--dark {
+html[data-theme="dark"] .hope-mark--dark {
   display: block;
+}
+
+/* 小尺寸的“重叠”图标，用在 why / map / HopeOS 页入口 */
+.mini-merge {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 82px;
+  height: 70px;
+}
+
+.mini-merge .mini-hope,
+.mini-merge .mini-xj {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+}
+
+.mini-merge .mini-hope {
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.mini-merge .mini-xj {
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+}
+
+.mini-merge--lg {
+  width: 72px;
+  height: 62px;
+}
+
+.mini-merge--lg .mini-hope,
+.mini-merge--lg .mini-xj {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
 }
 
 .hero-caption {
@@ -912,11 +1054,6 @@ html[data-theme="dark"] .fx-lockup--dark {
   color: var(--site-subtle);
   font-size: 11px;
   letter-spacing: 0.12em;
-}
-
-.split-mark {
-  width: 76px;
-  height: 76px;
 }
 
 .table-card {
@@ -1028,9 +1165,8 @@ html[data-theme="dark"] .fx-lockup--dark {
   text-align: center;
 }
 
-.map-arrow img {
-  width: 56px;
-  height: 56px;
+.map-arrow .mini-merge {
+  margin-bottom: 2px;
 }
 
 .map-result {
@@ -1420,11 +1556,6 @@ html[data-theme="dark"] .fx-lockup--dark {
     justify-content: flex-start;
     min-width: 0;
     padding: 4px 0;
-  }
-
-  .split-mark {
-    width: 56px;
-    height: 56px;
   }
 
   .map {
