@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="HopeOS 标志组合">
+  <title>HopeOS 标志组合：图形 + 字标</title>
+  <g transform="translate(44 46) scale(0.32)">
+    <g fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="butt" stroke-linejoin="round">
+      <rect x="76" y="76" width="872" height="872" rx="196"/>
+    </g>
+    <g fill="#0B1220">
+      <rect x="286" y="296" width="52" height="472" rx="8"/>
+      <rect x="686" y="296" width="52" height="472" rx="8"/>
+      <rect x="286" y="506" width="452" height="36" rx="8"/>
+    </g>
+    <g fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round">
+      <path d="M394 506A118 118 0 0 1 630 506"/>
+      <path d="M512 356V316"/>
+      <path d="M608 391L634 360"/>
+      <path d="M416 391L390 360"/>
+      <path d="M432 612H592"/>
+      <path d="M470 668H554"/>
+    </g>
+  </g>
+  <text x="410" y="256" font-family="'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif"
+        font-size="148" font-weight="700" letter-spacing="-3" fill="#0B1220">HopeOS</text>
+  <text x="416" y="330" font-family="'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif"
+        font-size="33" font-weight="500" letter-spacing="7" fill="#5F6368">OPERATING SYSTEM · UEFI · X86-64</text>
+</svg>
