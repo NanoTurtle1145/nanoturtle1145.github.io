@@ -100,3 +100,15 @@ One public GitHub repo holds both source and site: `NanoTurtle1145/nanoturtle114
 - Browser regression/audit scripts need headless Chrome on CDP port 9333:
   `scripts/test-navigation.mjs` (nav/blank-content bug) and
   `scripts/audit-design.mjs` (contrast, target sizes, reduced-motion).
+
+## Brand assets — wide lockup (2026-11-01)
+
+- `public/brand/` holds the wide 希望工作室 / Hope Studio lockup: ring-badge mark +
+  「希望工作室」+ letterspaced 「HOPE STUDIO」, light (`#0B1220`) and dark (`#EAF2FF`)
+  variants; `-tagline-` versions add 「学生技术兴趣团队 · 浙江 · 2019」.
+- Text is converted to outlines (中文 Noto Sans CJK SC Bold, 英文 site's Roboto Flex
+  instanced at wght 560/opsz 72), so the SVGs don't depend on fonts at read time;
+  the mark reuses `public/logo-mark.svg` line art. Regenerate with
+  `python3 scripts/make-brand-logo.py` (needs fontTools + brotli).
+- 4 SVGs (1265×420 / 1265×470), 2640px transparent PNG exports, `preview.png`.
+  Served at `https://www.hopestudio.top/brand/...`.
