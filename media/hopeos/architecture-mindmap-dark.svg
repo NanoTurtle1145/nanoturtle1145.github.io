@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="arch-map-svg" width="1080" height="680" viewBox="0 0 1080 680" role="img" aria-labelledby="arch-map-title arch-map-desc" font-family="'Noto Sans CJK SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif">
+<title id="arch-map-title">HopeOS 系统架构思维导图</title>
+<desc id="arch-map-desc">自下而上的六层块状结构：硬件与固件、UEFI 引导、内核、用户态 / ABI、GUI 图形栈、应用程序。</desc>
+<rect x="24" y="0" width="1032" height="82" rx="12" fill="#0f1011" stroke="#23252a" stroke-width="1.2"/>
+<rect x="24" y="14" width="4" height="54" rx="2" fill="#8b94f5" opacity="0.85"/>
+<text x="42" y="26" fill="#8b94f5" font-size="9" letter-spacing="1.4" font-weight="600" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">L05 · APPS</text>
+<text x="42" y="50" fill="#f7f8f8" font-size="16.5" font-weight="600">应用程序</text>
+<text x="42" y="68" fill="#8a8f98" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">user/ · kernel/apps/</text>
+<path d="M220 12 V70" fill="none" stroke="#1a1c20" stroke-width="1"/>
+<rect x="238" y="16" width="188" height="50" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="248" y="28" fill="#d0d6e0" font-size="12.5"><tspan x="248" y="28">Terminal · Notepad ·</tspan><tspan x="248" y="44">FileMgr</tspan></text>
+<rect x="438" y="16" width="188" height="50" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="448" y="28" fill="#d0d6e0" font-size="12.5"><tspan x="448" y="28">Paint · Snake ·</tspan><tspan x="448" y="44">SysMonitor</tspan></text>
+<rect x="638" y="16" width="188" height="50" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="648" y="28" fill="#d0d6e0" font-size="12.5"><tspan x="648" y="28">StarDust · HopeOS 95 ·</tspan><tspan x="648" y="44">IceWM</tspan></text>
+<rect x="838" y="16" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="848" y="28" fill="#d0d6e0" font-size="12.5"><tspan x="848" y="28">nano · coreutils · BusyBox</tspan></text>
+<path d="M540.0 102 V92" fill="none" stroke="#23252a" stroke-width="1.2"/>
+<path d="M540.0 86 l-4.2 7.5 h8.4 Z" fill="#23252a"/>
+<rect x="24" y="106" width="1032" height="82" rx="12" fill="#0f1011" stroke="#23252a" stroke-width="1.2"/>
+<rect x="24" y="120" width="4" height="54" rx="2" fill="#8b94f5" opacity="0.85"/>
+<text x="42" y="132" fill="#8b94f5" font-size="9" letter-spacing="1.4" font-weight="600" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">L04 · GUI</text>
+<text x="42" y="156" fill="#f7f8f8" font-size="16.5" font-weight="600">GUI 图形栈</text>
+<text x="42" y="174" fill="#8a8f98" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">kernel/gui/</text>
+<path d="M220 118 V176" fill="none" stroke="#1a1c20" stroke-width="1"/>
+<rect x="238" y="122" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="248" y="134" fill="#d0d6e0" font-size="12.5"><tspan x="248" y="134">compositor 双缓冲 + 脏矩形</tspan></text>
+<rect x="438" y="122" width="188" height="50" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="448" y="134" fill="#d0d6e0" font-size="12.5"><tspan x="448" y="134">wm / wmdwm 平铺 · 4 工作</tspan><tspan x="448" y="150">区</tspan></text>
+<rect x="638" y="122" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="648" y="134" fill="#d0d6e0" font-size="12.5"><tspan x="648" y="134">PS/2 键鼠 · fbcon 控制台</tspan></text>
+<rect x="838" y="122" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="848" y="134" fill="#d0d6e0" font-size="12.5"><tspan x="848" y="134">GB2312 位图字体</tspan></text>
+<path d="M540.0 208 V198" fill="none" stroke="#23252a" stroke-width="1.2"/>
+<path d="M540.0 192 l-4.2 7.5 h8.4 Z" fill="#23252a"/>
+<rect x="24" y="212" width="1032" height="82" rx="12" fill="#0f1011" stroke="#23252a" stroke-width="1.2"/>
+<rect x="24" y="226" width="4" height="54" rx="2" fill="#8b94f5" opacity="0.85"/>
+<text x="42" y="238" fill="#8b94f5" font-size="9" letter-spacing="1.4" font-weight="600" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">L03 · USER</text>
+<text x="42" y="262" fill="#f7f8f8" font-size="16.5" font-weight="600">用户态 / ABI</text>
+<text x="42" y="280" fill="#8a8f98" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">user/</text>
+<path d="M220 224 V282" fill="none" stroke="#1a1c20" stroke-width="1"/>
+<rect x="238" y="228" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="248" y="240" fill="#d0d6e0" font-size="12.5"><tspan x="248" y="240">ring 3 + POSIX syscall</tspan></text>
+<rect x="438" y="228" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="448" y="240" fill="#d0d6e0" font-size="12.5"><tspan x="448" y="240">libc · crt0 · malloc</tspan></text>
+<rect x="638" y="228" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="648" y="240" fill="#d0d6e0" font-size="12.5"><tspan x="648" y="240">fork / execve · 信号 · 管道</tspan></text>
+<rect x="838" y="228" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="848" y="240" fill="#d0d6e0" font-size="12.5"><tspan x="848" y="240">BusyBox · coreutils · musl</tspan></text>
+<path d="M540.0 314 V304" fill="none" stroke="#23252a" stroke-width="1.2"/>
+<path d="M540.0 298 l-4.2 7.5 h8.4 Z" fill="#23252a"/>
+<rect x="24" y="318" width="1032" height="126" rx="12" fill="#0f1011" stroke="#23252a" stroke-width="1.2"/>
+<rect x="24" y="332" width="4" height="98" rx="2" fill="#8b94f5" opacity="0.85"/>
+<text x="42" y="344" fill="#8b94f5" font-size="9" letter-spacing="1.4" font-weight="600" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">L02 · KERNEL</text>
+<text x="42" y="368" fill="#f7f8f8" font-size="16.5" font-weight="600">内核</text>
+<text x="42" y="386" fill="#8a8f98" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">kernel/</text>
+<path d="M220 330 V432" fill="none" stroke="#1a1c20" stroke-width="1"/>
+<rect x="238" y="334" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="248" y="346" fill="#d0d6e0" font-size="12.5"><tspan x="248" y="346">堆 64 MiB + 页池 96 MiB</tspan></text>
+<rect x="438" y="334" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="448" y="346" fill="#d0d6e0" font-size="12.5"><tspan x="448" y="346">分页 · 4 级页表 · COW</tspan></text>
+<rect x="638" y="334" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="648" y="346" fill="#d0d6e0" font-size="12.5"><tspan x="648" y="346">抢占调度 100 Hz</tspan></text>
+<rect x="838" y="334" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="848" y="346" fill="#d0d6e0" font-size="12.5"><tspan x="848" y="346">IDT 256 · APIC/IOAPIC</tspan></text>
+<rect x="238" y="378" width="188" height="50" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="248" y="390" fill="#d0d6e0" font-size="12.5"><tspan x="248" y="390">VFS：ramfs · FAT32 ·</tspan><tspan x="248" y="406">procfs</tspan></text>
+<rect x="438" y="378" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="448" y="390" fill="#d0d6e0" font-size="12.5"><tspan x="448" y="390">文件：symlink · statx · *at</tspan></text>
+<rect x="638" y="378" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="648" y="390" fill="#d0d6e0" font-size="12.5"><tspan x="648" y="390">网络：e1000 + lwIP 2.2.0</tspan></text>
+<rect x="838" y="378" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="848" y="390" fill="#d0d6e0" font-size="12.5"><tspan x="848" y="390">SMP：4 vCPU · 3 AP</tspan></text>
+<path d="M540.0 464 V454" fill="none" stroke="#23252a" stroke-width="1.2"/>
+<path d="M540.0 448 l-4.2 7.5 h8.4 Z" fill="#23252a"/>
+<rect x="24" y="468" width="1032" height="82" rx="12" fill="#0f1011" stroke="#23252a" stroke-width="1.2"/>
+<rect x="24" y="482" width="4" height="54" rx="2" fill="#8b94f5" opacity="0.85"/>
+<text x="42" y="494" fill="#8b94f5" font-size="9" letter-spacing="1.4" font-weight="600" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">L01 · BOOT</text>
+<text x="42" y="518" fill="#f7f8f8" font-size="16.5" font-weight="600">UEFI 引导</text>
+<text x="42" y="536" fill="#8a8f98" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">boot/</text>
+<path d="M220 480 V538" fill="none" stroke="#1a1c20" stroke-width="1"/>
+<rect x="238" y="484" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="248" y="496" fill="#d0d6e0" font-size="12.5"><tspan x="248" y="496">start.asm → main.c</tspan></text>
+<rect x="438" y="484" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="448" y="496" fill="#d0d6e0" font-size="12.5"><tspan x="448" y="496">LoadImage KERNEL.EFI</tspan></text>
+<rect x="638" y="484" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="648" y="496" fill="#d0d6e0" font-size="12.5"><tspan x="648" y="496">GOP 帧缓冲 + COM1</tspan></text>
+<rect x="838" y="484" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="848" y="496" fill="#d0d6e0" font-size="12.5"><tspan x="848" y="496">ExitBootServices</tspan></text>
+<path d="M540.0 570 V560" fill="none" stroke="#23252a" stroke-width="1.2"/>
+<path d="M540.0 554 l-4.2 7.5 h8.4 Z" fill="#23252a"/>
+<rect x="24" y="574" width="1032" height="82" rx="12" fill="#0f1011" stroke="#23252a" stroke-width="1.2"/>
+<rect x="24" y="588" width="4" height="54" rx="2" fill="#8b94f5" opacity="0.85"/>
+<text x="42" y="600" fill="#8b94f5" font-size="9" letter-spacing="1.4" font-weight="600" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">L00 · HARDWARE</text>
+<text x="42" y="624" fill="#f7f8f8" font-size="16.5" font-weight="600">硬件与固件</text>
+<text x="42" y="642" fill="#8a8f98" font-size="10" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">QEMU + OVMF</text>
+<path d="M220 586 V644" fill="none" stroke="#1a1c20" stroke-width="1"/>
+<rect x="238" y="590" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="248" y="602" fill="#d0d6e0" font-size="12.5"><tspan x="248" y="602">QEMU + OVMF · x86-64</tspan></text>
+<rect x="438" y="590" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="448" y="602" fill="#d0d6e0" font-size="12.5"><tspan x="448" y="602">PCIe · AHCI · e1000</tspan></text>
+<rect x="638" y="590" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="648" y="602" fill="#d0d6e0" font-size="12.5"><tspan x="648" y="602">PS/2 · HPET · APIC</tspan></text>
+<rect x="838" y="590" width="188" height="34" rx="8" fill="#17191c" stroke="#23252a" stroke-width="1"/>
+<text x="848" y="602" fill="#d0d6e0" font-size="12.5"><tspan x="848" y="602">4 vCPU · SIPI trampoline</tspan></text>
+</svg>
