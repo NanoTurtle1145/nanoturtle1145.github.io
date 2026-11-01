@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import { useHead } from "@vueuse/head";
 import { posts } from "../data/posts";
+import archMapSvg from "../assets/architecture-mindmap.svg?raw";
 
 /**
  * 项目动态：从站内文章里筛出提及 HopeOS 的（数据驱动，不虚构内容）。
@@ -447,6 +448,29 @@ onBeforeUnmount(() => {
           <p>{{ node.desc }}</p>
         </div>
       </div>
+    </section>
+
+    <!-- 系统全景 -->
+    <section id="mindmap" class="wrap section">
+      <div class="section-head">
+        <div>
+          <p class="kicker">SYSTEM MAP</p>
+          <h2>系统全景</h2>
+        </div>
+        <span class="section-note">6 层结构 · 28 个能力块</span>
+      </div>
+      <p class="section-lead">
+        从固件到应用：硬件 → UEFI 引导 → 内核 → 用户态 / ABI → GUI → 应用程序，
+        六层块自下而上叠成一座塔。每层左边写着仓库路径，右边是该层的能力块。
+      </p>
+      <div class="arch-map-scroll">
+        <div class="arch-map-inline" v-html="archMapSvg"></div>
+      </div>
+      <p class="arch-map-note">
+        <span>节点来源：boot/ · kernel/ · kernel/gui/ · user/ —— 对应 fusion 分支当前状态</span>
+        <a class="arch-map-link arch-map-link--light" href="/media/hopeos/architecture-mindmap-light.svg" target="_blank" rel="noopener">查看大图 ↗</a>
+        <a class="arch-map-link arch-map-link--dark" href="/media/hopeos/architecture-mindmap-dark.svg" target="_blank" rel="noopener">查看大图 ↗</a>
+      </p>
     </section>
 
     <!-- 已实现 -->
@@ -1887,7 +1911,59 @@ html[data-theme="dark"] .hope-mark--dark {
 }
 
 /* ---------------- 响应式 ---------------- */
+.arch-map-scroll {
+  overflow-x: auto;
+  margin: 0 -4px;
+  padding: 4px;
+  border-radius: 14px;
+}
+
+.arch-map-inline :deep(svg) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.arch-map-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 14px 0 0;
+  color: var(--site-subtle);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+.arch-map-link {
+  color: var(--site-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.arch-map-link:hover {
+  border-bottom-color: var(--site-accent-line);
+}
+
+.arch-map-link--dark {
+  display: none;
+}
+
+html[data-theme="dark"] .arch-map-link--light {
+  display: none;
+}
+
+html[data-theme="dark"] .arch-map-link--dark {
+  display: inline;
+}
+
 @media (max-width: 960px) {
+  .arch-map-inline :deep(svg) {
+    min-width: 1040px;
+  }
+
   .hero {
     grid-template-columns: minmax(0, 1fr);
     gap: 42px;

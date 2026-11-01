@@ -112,3 +112,16 @@ One public GitHub repo holds both source and site: `NanoTurtle1145/nanoturtle114
   `python3 scripts/make-brand-logo.py` (needs fontTools + brotli).
 - 4 SVGs (1265×420 / 1265×470), 2640px transparent PNG exports, `preview.png`.
   Served at `https://www.hopestudio.top/brand/...`.
+
+## HopeOS 系统架构块状图 (2026-11-01)
+
+- `/hopeos` 新增 `#mindmap` 区块：`src/assets/architecture-mindmap.svg`（内联，颜色走
+  `--site-*` 变量，明暗自动切换）+ `public/media/hopeos/architecture-mindmap-{light,dark}.svg`
+  （独立版，供「查看大图」新窗口打开，按 `html[data-theme]` 切换链接）。
+- 版式：自下而上的六层横向层块（硬件与固件 → UEFI 引导 → 内核 → 用户态/ABI → GUI →
+  应用程序），每层左侧层号/名称/仓库路径，右侧能力块；层间向上箭头。
+- 由 `scripts/make-architecture-map.py` 生成（fontTools 量字宽后手工折行、布局），
+  内容与 `kernel/`、`boot/`、`user/` 实际模块对应；仓库侧文档见
+  hopeos `docs/ARCHITECTURE.md`。
+- 注意：inline SVG 用 `v-html` 注入，样式需 `:deep(svg)`；窄屏 `min-width:1040px`
+  横向滚动，避免 12px 字被压到不可读。
