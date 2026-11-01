@@ -29,7 +29,7 @@
           :aria-label="isDark ? '切换到浅色模式' : '切换到深色模式'"
           :title="isDark ? '切换到浅色模式' : '切换到深色模式'"
           :aria-pressed="isDark"
-          @click="toggle"
+          @click="toggleTheme"
         >
           <!-- 深色下显示太阳（点它变浅色），浅色下显示月亮 -->
           <svg v-if="isDark" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -71,6 +71,11 @@
   const menuOpen = ref(false);
   const route = useRoute();
   const { isDark, toggle } = useThemeMode();
+
+  // 把按钮元素传给 composable，主题切换时从按钮中心做辐射动画
+  function toggleTheme(event: MouseEvent) {
+    toggle(event.currentTarget as HTMLElement | null);
+  }
   // 路由变化后自动收起移动端菜单
   watch(
     () => route.fullPath,

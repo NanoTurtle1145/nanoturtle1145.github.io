@@ -125,3 +125,26 @@ One public GitHub repo holds both source and site: `NanoTurtle1145/nanoturtle114
   hopeos `docs/ARCHITECTURE.md`。
 - 注意：inline SVG 用 `v-html` 注入，样式需 `:deep(svg)`；窄屏 `min-width:1040px`
   横向滚动，避免 12px 字被压到不可读。
+
+## 主题切换辐射动画 (2026-11-01)
+
+- 用户要求明暗切换「从按钮方向辐射出去」：用 View Transitions API 实现——点主题按钮时
+  以按钮中心为圆心，新主题的圆形 clip-path 从 0 扩到覆盖整屏（半径取到窗口最远角），
+  旧主题在下面不动，视觉上就是从按钮扩散。
+- `useThemeMode.ts`：`toggle(source?: Element)` 计算按钮中心/半径，写
+  `--theme-origin-x/y`、`--theme-reveal-radius` 到 `<html>`，在
+  `startViewTransition(async () => { apply(); await nextTick(); })` 里换主题，
+  `transition.finished` 后清掉变量；不支持该 API、无 source、或
+  `prefers-reduced-motion: reduce` 时直接切换（无动画）。
+- `GovHeader.vue`：`@click="toggleTheme"` 把 `currentTarget` 传进去（键盘触发同样有效）。
+- `style.css`：`::view-transition-new(root)` 做 `theme-radial-reveal` 0.55s
+  cubic-bezier(.22,.61,.36,1)；old(root) 静态、`mix-blend-mode: normal`；
+  reduced-motion 下再兜一层 `animation: none; clip-path: none`。
+- 验证（headless CDP，真实时间而非 virtual-time）：动画挂在
+  `::view-transition-new(root)`、圆心 (1146,31)=按钮中心、r=1501=窗口最远角；
+  逐帧冻结截图确认圆形从右上角扩散、左下角最后变；反向切换与快速双击都正常，
+  结束时 CSS 变量被清理；`--force-prefers-reduced-motion` 下瞬时切换无动画。
+- 坑：headless 的 `--virtual-time-budget` 下 View Transition 回调不会执行（`cbRan`
+  永远 false），必须走 CDP 真实时间（`/json/new` + Runtime.evaluate +
+  Page.captureScreenshot）才能验证；用 `emulation.setDeviceMetricsOverride`
+  固定 1440×1000。

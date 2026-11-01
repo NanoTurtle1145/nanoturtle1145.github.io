@@ -8,7 +8,7 @@
  * 三者同步更新；index.html 里的内联脚本用同一套优先级先行设定，避免首屏闪烁。
  */
 import { useTheme } from "vuetify";
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 
 export type ThemeName = "light" | "dark";
 
@@ -60,8 +60,62 @@ export function useThemeMode() {
     apply(readStored() ?? (systemPrefersDark() ? "dark" : "light"));
   }
 
-  function toggle() {
-    apply(isDark.value ? "light" : "dark", true);
+  type ViewTransitionLike = { finished: Promise<void> };
+  type ViewTransitionDocument = Document & {
+    startViewTransition?: (callback: () => Promise<void> | void) => ViewTransitionLike;
+  };
+
+  /**
+   * 主题切换动画：用 View Transitions API 把新主题做成一个从按钮中心
+   * 辐射出去的圆形，盖住旧主题。不支持 / 用户要求减弱动效时直接切换。
+   */
+  function toggle(source?: Element | null) {
+    const next: ThemeName = isDark.value ? "light" : "dark";
+    if (typeof document === "undefined") {
+      apply(next, true);
+      return;
+    }
+
+    const doc = document as ViewTransitionDocument;
+    const reduce =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!source || reduce || typeof doc.startViewTransition !== "function") {
+      apply(next, true);
+      return;
+    }
+
+    // 圆心 = 按钮中心；半径取到窗口最远角，保证圆能覆盖整屏
+    const rect = source.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+    const root = document.documentElement;
+    root.style.setProperty("--theme-origin-x", `${x}px`);
+    root.style.setProperty("--theme-origin-y", `${y}px`);
+    root.style.setProperty("--theme-reveal-radius", `${Math.ceil(radius)}px`);
+
+    let transition: ViewTransitionLike;
+    try {
+      transition = doc.startViewTransition(async () => {
+        apply(next, true);
+        // 等 Vuetify 把主题类名/变量刷到 DOM 上，再让浏览器拍新快照
+        await nextTick();
+      });
+    } catch {
+      apply(next, true);
+      return;
+    }
+
+    transition.finished.finally(() => {
+      root.style.removeProperty("--theme-origin-x");
+      root.style.removeProperty("--theme-origin-y");
+      root.style.removeProperty("--theme-reveal-radius");
+    });
   }
 
   return { isDark, toggle, apply, initFromDocument };
