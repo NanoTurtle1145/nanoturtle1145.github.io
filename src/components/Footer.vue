@@ -3,9 +3,24 @@
     <div class="footer-wrap foot">
       <div class="footer-content">
         <div class="footer-logo-section">
-          <span class="footer-logo-badge">
-            <img src="/logo.svg" alt="Hope Studio" class="footer-logo" width="30" height="30" />
-          </span>
+          <router-link class="footer-lockup" to="/" aria-label="希望工作室 Hope Studio">
+            <img
+              class="lockup lockup--light"
+              src="/brand/hope-studio-lockup-light.svg"
+              alt=""
+              width="180"
+              height="60"
+              decoding="async"
+            />
+            <img
+              class="lockup lockup--dark"
+              src="/brand/hope-studio-lockup-dark.svg"
+              alt=""
+              width="180"
+              height="60"
+              decoding="async"
+            />
+          </router-link>
           <p class="footer-tagline">有希望者，事竟成</p>
         </div>
         <div class="footer-links-section">
@@ -91,30 +106,37 @@
   margin-bottom: 1rem;
 }
 
-.footer-logo-badge {
+/* 横向文字标志：明暗两套 SVG 由 html[data-theme] 互换（容器清掉行高，
+   避免 img 的 display 与隐藏规则抢特异性） */
+.footer-lockup {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: var(--shape-sm);
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 0 0 1px rgb(var(--v-theme-outline-variant), 0.8),
-    0 4px 14px rgba(0, 0, 0, 0.18);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  line-height: 0;
+  font-size: 0;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
 }
 
-.footer-logo {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.footer-lockup img {
+  width: 180px;
+  height: auto;
 }
 
-.footer-logo-badge:hover {
-  box-shadow: 0 0 0 1px rgb(var(--v-theme-primary), 0.6),
-    0 6px 20px rgba(var(--v-theme-primary), 0.3);
+.lockup--dark {
+  display: none;
+}
+
+html[data-theme="dark"] .lockup--light {
+  display: none;
+}
+
+html[data-theme="dark"] .lockup--dark {
+  display: inline;
+}
+
+.footer-lockup:hover {
+  opacity: 0.82;
 }
 
 .footer-tagline {
@@ -188,11 +210,6 @@
   color: rgb(var(--v-theme-on-surface-variant));
   opacity: 0.8;
   letter-spacing: 0.03em;
-}
-
-/* 深色模式：只加深辉光，徽章仍为白底墨色 logo */
-html[data-theme="dark"] .footer-logo-badge {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
 html[data-theme="dark"] .site-foot::before {

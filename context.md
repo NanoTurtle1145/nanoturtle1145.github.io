@@ -148,3 +148,21 @@ One public GitHub repo holds both source and site: `NanoTurtle1145/nanoturtle114
   永远 false），必须走 CDP 真实时间（`/json/new` + Runtime.evaluate +
   Page.captureScreenshot）才能验证；用 `emulation.setDeviceMetricsOverride`
   固定 1440×1000。
+
+## 品牌落地：页脚宽 logo + 分享图 (2026-11-14)
+
+- 页脚原来的 30px 方徽章换成横向文字标志（`public/brand/hope-studio-lockup-*.svg`，
+  180×60），明暗两套由 `html[data-theme]` 互换；容器 `line-height:0` 清掉行内基线，
+  避免 img 的 display 与隐藏规则抢特异性（老坑）。标语「有希望者，事竟成」保留在下方。
+- 新增 `scripts/make-og-image.py` → `public/media/brand/og-default.png`（1200×630，
+  品牌深底 + 宽 logo + 标语 + 域名）；`index.html` 的 og:image / twitter:image 指向它，
+  twitter:card 改成 `summary_large_image`（原来是 `/logo.svg`，社交平台不认）。
+- 两个 README 加了 `<picture>` 头图（浅色/深色随 GitHub 主题切换）：本站 README 顶部，
+  HopeOS README 新增「出品」章节。
+- **坑（2026-11-14 机器重启后）**：本机 headless Chromium 完全加载不了 http(s) URL——
+  连 `http://127.0.0.1:PORT` 都一直挂起（`data:` 和 `file:` 正常），`--dump-dom`/
+  `--screenshot` 都超时，CDP 的 `Page.navigate` 也不返回。排查过 proxy（gsettings none）、
+  `--no-proxy-server`、`--single-process`、旧 headless 模式，都没用。
+  可靠替代：把 `dist/` 复制到临时目录、把绝对路径改写成相对、用 `file://` 加载探针页
+  （`--virtual-time-budget` + `--dump-dom` 取 computed style，`--screenshot` 取图）。
+  注意 dist 里 `<img src="/brand/...">` 这类绝对路径在 `file://` 下会失效，必须改写。

@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="public/brand/hope-studio-lockup-dark.svg">
+    <img src="public/brand/hope-studio-lockup-light.svg" width="420" alt="希望工作室 Hope Studio">
+  </picture>
+</p>
+
 # 希望工作室官方网站
 
 Hope Studio 官网。Vue 3 + TypeScript + Tailwind CSS + Vite-SSG，构建期预渲染为纯静态页面，部署在 GitHub Pages。
