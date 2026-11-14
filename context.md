@@ -166,3 +166,10 @@ One public GitHub repo holds both source and site: `NanoTurtle1145/nanoturtle114
   可靠替代：把 `dist/` 复制到临时目录、把绝对路径改写成相对、用 `file://` 加载探针页
   （`--virtual-time-budget` + `--dump-dom` 取 computed style，`--screenshot` 取图）。
   注意 dist 里 `<img src="/brand/...">` 这类绝对路径在 `file://` 下会失效，必须改写。
+
+## HopeOS 页同步内核/桌面进展 (2026-11-14)
+
+- 新增截图 `public/media/hopeos/ctxmenu.png`（docs/shots/27-ctxmenu.png），放进
+  `/hopeos` 的桌面实拍画廊首位附近。
+- `done[]` 加两条：「SMP 空闲（P4b）」——3 个 AP 停进 hlt，宿主 CPU 296%→6%；
+  「桌面右键菜单」——壁纸右键 + Shift+F10 键盘导航。区块计数 13 → 15。

@@ -43,6 +43,12 @@ const shots = [
     text: "内核级窗口管理器：TILE / GRID / MONOCLE 三种布局、6px gap、顶部面板与 Alt 快捷键。",
   },
   {
+    src: "/media/hopeos/ctxmenu.png",
+    alt: "HopeOS 桌面上的右键上下文菜单：Terminal / File Manager / SysMonitor / Control Panel、Run… 与 Shell",
+    title: "桌面右键菜单",
+    text: "壁纸右键弹出上下文菜单，Shift+F10 也能用键盘开；贴边翻回、点外面只关不穿透。",
+  },
+  {
     src: "/media/hopeos/wm-grid.png",
     alt: "HopeOS 自研窗口管理器的 GRID 布局",
     title: "GRID 布局",
@@ -189,6 +195,16 @@ const done = [
     area: "图形",
     title: "内核 GUI 桌面",
     desc: "离屏双缓冲 + 脏矩形合成，原生窗口、任务栏与桌面组件（计算器、时钟、画图…）。",
+  },
+  {
+    area: "内核",
+    title: "SMP 空闲（P4b）",
+    desc: "4 vCPU 启动后 3 个 AP 装内核 IDT、开中断后停进 hlt：宿主 CPU 从 296% 降到 6%，不再空转烧核。",
+  },
+  {
+    area: "图形",
+    title: "桌面右键菜单",
+    desc: "壁纸右键菜单 + Shift+F10 键盘导航（Up/Down/Enter/Esc），菜单是独立 overlay，贴边翻回、点外面只关不穿透。",
   },
   {
     area: "图形",
@@ -480,7 +496,7 @@ onBeforeUnmount(() => {
           <p class="kicker">IMPLEMENTED</p>
           <h2>已经实现的</h2>
         </div>
-        <span class="section-note">13 个子系统</span>
+        <span class="section-note">15 个子系统</span>
       </div>
 
       <div class="feature-grid">
